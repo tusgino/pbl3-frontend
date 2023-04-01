@@ -67,10 +67,6 @@ ul {
   list-style-type: none;
 }
 
-::placeholder {
-  font-style: italic;
-}
-
 .nav .nav__link {
   text-decoration: none;
 }
@@ -114,6 +110,10 @@ ul {
   color: #fff;
   background-color: var(--secondary-color);
   border: 2px solid var(--secondary-color);
+}
+
+.btn:active {
+  border: 2px solid var(--primary-color);
 }
 
 .btn-login {
