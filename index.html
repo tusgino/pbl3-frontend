@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Courses</title>
+  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="./styles/bootstrap/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Use font Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Slick slider -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+  <!-- Internal CSS -->
+  <link rel="stylesheet" href="./styles/reset.css">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/home.css">
+  <link rel="stylesheet" href="./styles/slick.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="./images/logo.png" alt="" width="122" height="70">
+        </a>
+        <form class="d-flex">
+          <input class="form-control me-2 text-search" type="search" placeholder="Tìm khóa học,..." aria-label="Search">
+          <button class="btn btn-outline-success btn-search" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#"> <i class="fas fa-list-alt" style="color: #38b6ff;"></i> Khóa học</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Hỗ trợ</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <button class="btn btn-outline-success me-2 btn-login" type="button">Đăng nhập</button>
+            </li>
+            <li class="nav-item">
+              <img class="nav-avatar"
+                src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                alt="user-avatar">
+            </li>
+            <li class="nav-item">
+              <i class="fas fa-shopping-bag nav-oder"></i>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <main>
+
+    <section class="carousel">
+      <div class="page-container">
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="2000">
+              <img
+                src="https://images.unsplash.com/photo-1679843218132-797b1f2525ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img
+                src="https://images.unsplash.com/photo-1678834610584-5fd88f44cf0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://images.unsplash.com/photo-1679663966317-5067cbc043b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="author">
+      <div class="page-container">
+        <h2 class="author-title">Học tập xu hướng MMO, kinh doanh, tiếp thị số mới và nổi bật 2023</h2>
+        <div class="author-preview">
+          <div class="author-item">
+            <img
+              src="https://images.unsplash.com/photo-1679746584014-fb31d4eb0a5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              alt="">
+            <h4>Tên khóa học</h4>
+            <h3>Nguyễn Văn A</h3>
+          </div>
+          <div class="author-item">
+            <img
+              src="https://images.unsplash.com/photo-1679746584014-fb31d4eb0a5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              alt="">
+            <h4>Tên khóa học</h4>
+            <h3>Nguyễn Văn A</h3>
+          </div>
+          <div class="author-item">
+            <img
+              src="https://images.unsplash.com/photo-1679746584014-fb31d4eb0a5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              alt="">
+            <h4>Tên khóa học</h4>
+            <h3>Nguyễn Văn A</h3>
+          </div>
+          <div class="author-item">
+            <img
+              src="https://images.unsplash.com/photo-1679746584014-fb31d4eb0a5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              alt="">
+            <h4>Tên khóa học</h4>
+            <h3>Nguyễn Văn A</h3>
+          </div>
+          <div class="author-item">
+            <img
+              src="https://images.unsplash.com/photo-1679746584014-fb31d4eb0a5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              alt="">
+            <h4>Tên khóa học</h4>
+            <h3>Nguyễn Văn A</h3>
+          </div>
+          <div class="author-item">
+            <img
+              src="https://images.unsplash.com/photo-1679746584014-fb31d4eb0a5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              alt="">
+            <h4>Tên khóa học</h4>
+            <h3>Nguyễn Văn A</h3>
+          </div>
+        </div>
+        <h3 class="author-desc">Và nhiều chuyên gia hàng đầu khác, luôn cập nhật nội dung hàng tháng</h3>
+      </div>
+    </section>
+
+    <section class="donors">
+      <div class="page-container">
+        <ul class="list-donors d-flex justify-content-evenly">
+          <li class="donor-item">
+            <img src="./images/donors/Logo.png" alt="">
+          </li>
+          <li class="donor-item">
+            <img src="./images/donors/Logo-1.png" alt="">
+          </li>
+          <li class="donor-item">
+            <img src="./images/donors/Logo-2.png" alt="">
+          </li>
+          <li class="donor-item">
+            <img src="./images/donors/Logo-3.png" alt="">
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="courses">
+      <div class="page-container">
+        <h3 class="course-title">🔥Khóa học nổi bật</h3>
+        <div class="list-courses">
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <img
+              src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="" class="course-image">
+            <h4 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+            <div class="course-info">
+              <div class="course-author">
+                <img
+                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                  alt="">
+                <span>Nguyễn Văn B</span>
+              </div>
+              <span class="course-tag">Đang thịnh hành🔥</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer></footer>
+
+  <script src="./js/bootstrap/bootstrap.bundle.min.js"></script>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <script type="module" src="./js/utils/slick.js"></script>
+</body>
+
+</html>
