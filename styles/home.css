@@ -111,7 +111,7 @@
   padding: 30px 0;
 }
 
-.list-courses {
+#list-courses {
   display: grid;
   margin: 0 100px;
   /* place-items: center; */
@@ -135,11 +135,10 @@
 }
 
 .course-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--title-color);
-  margin: 20px;
-  padding-left: 10px;
+  padding: 20px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -161,6 +160,7 @@
 }
 
 .course-author {
+  padding-left: 10px;
   display: flex;
   column-gap: 10px;
   align-items: center;
