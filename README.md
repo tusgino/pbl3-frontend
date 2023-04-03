@@ -8,7 +8,7 @@ git branch -M name-branch
 - Thêm 1 feature thì tạo 1 branch để push, ví dụ. Thêm quản lý hệ thống, thì sử dụng lệnh git branch -M feature/systermmanager.
 2. Push code
 ```
-git push
+git push -u origin name-branch
 ```
 3. Pull code
 ```
