@@ -12,7 +12,7 @@ html {
 }
 
 .login-register-form {
-  padding: 14rem 5rem;
+  padding: 14rem 5rem 0 5rem;
 }
 
 .form {
@@ -125,6 +125,7 @@ html {
 }
 
 .login-register-right {
+  height: 100vh;
   background-image: url("https://images.unsplash.com/photo-1680007631114-cc0b37816fff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
   object-fit: cover;
   background-size: cover;
