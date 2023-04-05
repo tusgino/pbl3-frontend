@@ -6,7 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online Courses</title>
-  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="images/logo.png" type="image/png">
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="./styles/bootstrap/bootstrap.min.css">
@@ -22,13 +22,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
-  <!-- Slick slider -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-
   <!-- Internal CSS -->
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/main.css">
-  <link rel="stylesheet" href="./styles/course.css">
+  <link rel="stylesheet" href="./styles/coursepost.css">
+  <link rel="stylesheet" href="./styles/courses.css">
+
 </head>
 
 <body>
@@ -54,13 +53,13 @@
   <header>
     <nav class="navbar navbar-expand-lg ">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="./index.html">
           <img src="./images/logo.png" alt="" width="122" height="70">
         </a>
-        <form class="d-flex">
+        <!-- <form class="d-flex">
           <input class="form-control me-2 text-search" type="search" placeholder="Tìm khóa học,..." aria-label="Search">
           <button class="btn btn-search" type="submit"><i class="fas fa-search"></i></button>
-        </form>
+        </form> -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -89,45 +88,86 @@
     </nav>
   </header>
 
+  <main>
+    <section class="search">
+      <div class="page-container">
+        <h1 class="search-title"><span>Chào Bạn👋</span> Hôm nay, bạn muốn học gì?</h1>
+        <div class="input-group search-box">
+          <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+          <input type="text" class="form-control" placeholder="Tìm khóa học..." aria-label="Username"
+            aria-describedby="basic-addon1">
+        </div>
+        <div class="search-tag">
+          <ul class="search-list">
+            <li class="search-item active">
+              <i class="fas fa-hashtag"></i>
+              <span>MMO</span>
+            </li>
+            <li class="search-item">
+              <i class="fas fa-hashtag"></i>
+              <span>Facebook</span>
+            </li>
+            <li class="search-item">
+              <i class="fas fa-hashtag"></i>
+              <span>SEO</span>
+            </li>
+            <li class="search-item">
+              <i class="fas fa-hashtag"></i>
+              <span>Frontend</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="courses">
+      <div class="page-container">
+        <div class="courses-container">
+          <ul id="list-courses">
+          </ul>
+        </div>
+        <button class="course-more">Xem thêm...</button>
+      </div>
+    </section>
+  </main>
+
   <footer>
-    <div class="page-container">
-      <div class="introduce-contrainer">
-        <div class="introduce-list">
-          <div class="introduce-item">
-            <img src="./images/logo.png" alt="" class="info-logo">
-            <ul class="list-info">
-              <li class="info-item">Email: pbl3@thh.com</li>
-              <li class="info-item">Hotline: 0123456789</li>
-              <li class="info-item">Giờ làm việc 8h30-18h từ thứ 2 tới thứ 6.</li>
-            </ul>
-          </div>
-          <div class="introduce-item">
-            <h4 class="info-header">Địa chỉ</h4>
-            <ul class="list-info">
-              <li class="info-item">54 Nguyễn Lương Bằng, Liên Chiểu, Đà Nẵng</li>
-            </ul>
-          </div>
-          <div class="introduce-item">
-            <h4 class="info-header">Hướng dẫn</h4>
-            <ul class="list-info">
-              <li class="info-item">Giới thiệu</li>
-              <li class="info-item">Chính sách</li>
-            </ul>
-          </div>
-          <div class="introduce-item">
-            <h4 class="info-header">Khám phá</h4>
-            <ul class="list-info">
-              <li class="info-item">Solution</li>
-            </ul>
-          </div>
-          <div class="introduce-item">
-            <h4 class="info-header">Liên kết</h4>
-            <ul class="list-social">
-              <li class="social-item"><i class="fab fa-facebook-square"></i></i></li>
-              <li class="social-item"><i class="fab fa-youtube"></i></li>
-              <li class="social-item"><i class="fab fa-twitter-square"></i></li>
-            </ul>
-          </div>
+
+    <div class="introduce-contrainer">
+      <div class="introduce-list">
+        <div class="introduce-item">
+          <img src="./images/logo.png" alt="" class="info-logo">
+          <ul class="list-info">
+            <li class="info-item">Email: pbl3@thh.com</li>
+            <li class="info-item">Hotline: 0123456789</li>
+            <li class="info-item">Giờ làm việc 8h30-18h từ thứ 2 tới thứ 6.</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Địa chỉ</h4>
+          <ul class="list-info">
+            <li class="info-item">54 Nguyễn Lương Bằng, Liên Chiểu, Đà Nẵng</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Hướng dẫn</h4>
+          <ul class="list-info">
+            <li class="info-item">Giới thiệu</li>
+            <li class="info-item">Chính sách</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Khám phá</h4>
+          <ul class="list-info">
+            <li class="info-item">Solution</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Liên kết</h4>
+          <ul class="list-social">
+            <li class="social-item"><i class="fab fa-facebook-square"></i></i></li>
+            <li class="social-item"><i class="fab fa-youtube"></i></li>
+            <li class="social-item"><i class="fab fa-twitter-square"></i></li>
+          </ul>
         </div>
   </footer>
 

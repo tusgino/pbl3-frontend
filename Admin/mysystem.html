@@ -30,7 +30,9 @@
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="stylesheet" href="../styles/home.css">
   <link rel="stylesheet" href="../styles/coursepost.css">
-  <link rel="stylesheet" href="../styles/slick.css">
+  <link rel="stylesheet" href="../styles/Admin/style.css">
+
+
 </head>
 
 <body>
@@ -59,20 +61,7 @@
         <a class="navbar-brand" href="../index.html">
           <img src="../images/logo.png" alt="" width="122" height="70">
         </a>
-        <form class="d-flex">
-          <input class="form-control me-2 text-search" type="search" placeholder="Tìm khóa học,..." aria-label="Search">
-          <button class="btn btn-search" type="submit"><i class="fas fa-search"></i></button>
-        </form>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="../course.html"> <i class="fas fa-list-alt" style="color: #38b6ff;"></i> Khóa
-                học</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Hỗ trợ</a>
-            </li>
-          </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
               <button class="btn me-2 btn-login" type="button">Quản trị hệ thống</button>
@@ -93,10 +82,65 @@
   </header>
 
   <main>
+    <div class="page-container">
+      <section class="sidebar">
+        <div class="d-flex flex-column flex-shrink-0 sidebar-item" style="max-width: 400px;">
+          <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              alt="" class="avatar">
+            <div class="user m-lg-3">
+              <span class="user-name">Admin</span>
+              <span class="user-desc">Quản trị hệ thống</span>
+            </div>
+          </div>
+          <hr>
+          <ul class="nav nav flex-column mb-auto">
+            <li class="nav-item ">
+              <i class="fas fa-th-large item-icon"></i>
+              <span class="item-text">Tổng quan</span>
+            </li>
+            <li>
+              <a href="#" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                  <use xlink:href="#speedometer2" />
+                </svg>
+                Dashboard
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                  <use xlink:href="#table" />
+                </svg>
+                Orders
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                  <use xlink:href="#grid" />
+                </svg>
+                Products
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link link-dark">
+                <svg class="bi me-2" width="16" height="16">
+                  <use xlink:href="#people-circle" />
+                </svg>
+                Customers
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="dasboard">
 
-
-
+      </section>
+    </div>
   </main>
+
 
   <footer>
     <div class="introduce-contrainer">
@@ -140,11 +184,6 @@
 
   <script src="../js/bootstrap/bootstrap.bundle.min.js"></script>
 
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-  <script type="module" src="../js/helpers/slick.js"></script>
   <script type="module" src="../js/main.js"></script>
   <script type="module" src="../js/home.js"></script>
 </body>
