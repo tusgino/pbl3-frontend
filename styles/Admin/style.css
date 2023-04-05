@@ -23,7 +23,8 @@ main {
 
 .sidebar-item {
   background-color: #fff;
-  padding: 3rem 2.2rem;
+  /* padding: 3rem 2.2rem; */
+  padding: 2px 2px;
 }
 
 .avatar {
@@ -43,4 +44,19 @@ main {
 .user-name {
   font-size: 1.8rem;
   color: var(--title-color);
+}
+.menu-item {
+  padding: 7px;
+  margin-left: 0.01%;
+  column-gap: 2px;
+  color : var(--link-color);
+  border-radius: 5px;
+}
+.menu-item:hover {
+  background-color: var(--secondary-color);
+  color: var(--background-color);
+}
+.menu-item:checked {
+  background-color: var(--secondary-color);
+  color: var(--background-color);
 }

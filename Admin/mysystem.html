@@ -83,8 +83,8 @@
 
   <main>
     <div class="page-container">
-      <section class="sidebar">
-        <div class="d-flex flex-column flex-shrink-0 sidebar-item" style="max-width: 400px;">
+      <section class="sidebar rounded-3">
+        <div class="p-2 d-flex flex-column flex-shrink-0 sidebar-item" style="max-width: 500px;">
           <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <img
               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
@@ -95,48 +95,72 @@
             </div>
           </div>
           <hr>
-          <ul class="nav nav flex-column mb-auto">
-            <li class="nav-item ">
+          <ul class="nav nav flex-column " >
+            <li class="menu-item nav-item">
               <i class="fas fa-th-large item-icon"></i>
               <span class="item-text">Tổng quan</span>
             </li>
-            <li>
-              <a href="#" class="nav-link link-dark">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#speedometer2" />
-                </svg>
-                Dashboard
-              </a>
+            <li class="menu-item nav-item">
+              <i class="far fa-user"></i>
+              <span class="item-text">Quản lí người dùng</span>
             </li>
-            <li>
-              <a href="#" class="nav-link link-dark">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#table" />
-                </svg>
-                Orders
-              </a>
+            <li class="menu-item nav-item ">
+              <i class="far fa-book"></i>
+              <span class="item-text">Quản lí khoá học</span>
             </li>
-            <li>
-              <a href="#" class="nav-link link-dark">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#grid" />
-                </svg>
-                Products
-              </a>
+            <li class="menu-item nav-item ">
+              <i class="far fa-list"></i>
+              <span class="item-text">Quản lí danh mục</span>
             </li>
-            <li>
-              <a href="#" class="nav-link link-dark">
-                <svg class="bi me-2" width="16" height="16">
-                  <use xlink:href="#people-circle" />
-                </svg>
-                Customers
-              </a>
+            <li class="menu-item nav-item">
+              <i class="far fa-chart-bar"></i> 
+              <span class="item-text">Thống kê</span>
             </li>
           </ul>
         </div>
       </section>
-      <section class="dasboard">
-
+      <section class="dashboard">
+        <div class="filter-bar flex-shrink-0">
+          <div class="container p-3 bg-white rounded-3">
+            <div class="d-inline-flex hstack gap-3">
+              <div class="user-role p-2">
+                <span class="p-2">Loại người dùng</span>
+                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                  <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btncheck1">Học viên</label>
+                
+                  <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btncheck2">Chuyên gia</label>
+                
+                  <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btncheck3">Admin</label>
+                </div>
+              </div>
+              <div class="user-status">
+                <span>Trạng thái tài khoản</span>
+                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                  <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btncheck5">Hoạt động</label>
+                
+                  <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btncheck6">Bị khoá</label>
+                </div>
+              </div>
+            </div>
+            <div class="hstack gap-3">
+              <div class="userdatecreate p-2">
+                <span class="p-2">Ngày tạo tài khoản </span>
+                <input type="date" id="datecreate-from">
+                <span class="p-2">-</span>
+                <input type="date" id="datecreate-to">
+              </div>
+              <div class="search-area">
+                <input type="text" id="txtsearch">
+                <button type="button" id="btn-search" class="btn">Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </main>
