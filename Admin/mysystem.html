@@ -83,93 +83,260 @@
 
   <main>
     <div class="page-container">
-      <section class="sidebar rounded-3">
-        <div class="p-2 d-flex flex-column flex-shrink-0 sidebar-item" style="max-width: 500px;">
-          <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <section class="sidebar ">
+        <div class="p-2 d-flex flex-column flex-shrink-0 sidebar-item container-rounded" style="width: 300px; ">
+          <div class="d-flex align-items-center ms-4 mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <img
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+              src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
               alt="" class="avatar">
             <div class="user m-lg-3">
               <span class="user-name">Admin</span>
               <span class="user-desc">Quản trị hệ thống</span>
             </div>
           </div>
-          <hr>
-          <ul class="nav nav flex-column " >
-            <li class="menu-item nav-item">
-              <i class="fas fa-th-large item-icon"></i>
-              <span class="item-text">Tổng quan</span>
+          <hr>  
+          <ul class="nav nav-pills flex-column p-1" role="tablist" >
+            <li class="nav-item">
+              <a class="nav-link active" data-bs-toggle="pill" href="#overview"><i class="fas fa-th-large item-icon"></i> Tổng quan</a>
             </li>
-            <li class="menu-item nav-item">
-              <i class="far fa-user"></i>
-              <span class="item-text">Quản lí người dùng</span>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="pill" href="#usermanager"><i class="far fa-user"></i> Quản lí người dùng</a>
             </li>
-            <li class="menu-item nav-item ">
-              <i class="far fa-book"></i>
-              <span class="item-text">Quản lí khoá học</span>
+            <li class="nav-item ">
+              <a class="nav-link" data-bs-toggle="pill" href="#coursemanager"><i class="fas fa-book"></i> Quản lí khoá học</a>
             </li>
-            <li class="menu-item nav-item ">
-              <i class="far fa-list"></i>
-              <span class="item-text">Quản lí danh mục</span>
+            <li class="nav-item ">
+              <a class="nav-link" data-bs-toggle="pill" href="#categorymanager"><i class="fas fa-list"></i> Quản lí danh mục</a>
             </li>
-            <li class="menu-item nav-item">
-              <i class="far fa-chart-bar"></i> 
-              <span class="item-text">Thống kê</span>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="pill" href="#analytics"><i class="far fa-chart-bar"></i>  Thống kê</a>
             </li>
           </ul>
         </div>
       </section>
-      <section class="dashboard p-5 ">
-        <div class="filter-bar ">
-          <div class="container bg-white rounded-3">
-            <div class="d-inline-flex hstack gap-3">
-              <div class="user-role p-2">
-                <span class="p-2">Loại người dùng</span>
-                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                  <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-                  <label class="btn btn-outline-primary" for="btncheck1">Học viên</label>
-                
-                  <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-                  <label class="btn btn-outline-primary" for="btncheck2">Chuyên gia</label>
-                
-                  <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-                  <label class="btn btn-outline-primary" for="btncheck3">Admin</label>
+      <section class="dashboard " style="width:100%">  
+        <div class="tab-content">
+          <div class="tab-pane container active" id="overview">...</div>
+          <div class="tab-pane container fade" id="usermanager">
+            <div class="quanlinguoidung">
+              <div class="filter-bar " >
+                <div class="container bg-white rounded-5 container-rounded">
+                  <div class=" hstack justify-content-between p-2" >
+                    <div class="user-role ">
+                      <span class="p-2">Loại người dùng</span>
+                      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                        <label class="nav-item btn btn-outline-primary" for="btncheck1">Học viên</label>
+                      
+                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                        <label class="nav-item btn btn-outline-primary" for="btncheck2">Chuyên gia</label>
+                      
+                        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                        <label class="nav-item btn btn-outline-primary" for="btncheck3">Admin</label>
+                      </div>
+                    </div>
+                    <div class="search-area">
+                      <input type="text" id="txtsearch">
+                      <button type="button" id="btn-search" class="btn nav-item">Tìm kiếm</button>
+                    </div>
+                  </div>
+                  <div class="hstack gap-3 justify-content-between p-2">
+                    <div class="userdatecreate">
+                      <span class="p-2 ">Ngày tạo tài khoản </span>
+                      <input type="date" id="datecreate-from" >
+                      <span class="p-2">-</span>
+                      <input type="date" id="datecreate-to">
+                    </div>
+                    <div class="user-status ">
+                      <span class="p-2">Trạng thái tài khoản</span>
+                      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+                        <label class="nav-item btn btn-outline-primary" for="btncheck5">Hoạt động</label>
+                      
+                        <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+                        <label class="nav-item btn btn-outline-primary" for="btncheck6">Bị khoá</label>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="user-status">
-                <span>Trạng thái tài khoản</span>
-                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                  <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
-                  <label class="btn btn-outline-primary" for="btncheck5">Hoạt động</label>
-                
-                  <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
-                  <label class="btn btn-outline-primary" for="btncheck6">Bị khoá</label>
+              <div class="field-bar">
+                <div class="container-rounded container p-3 bg-white rounded-3 mt-2 hstack gap-5  justify-content-around ps-5">
+                    <span>Mã người dùng</span>
+                    <span>Tên người dùng</span>
+                    <span>Loại người dùng</span>
+                    <span>Ngày tạo tài khoản</span>
+                    <span>Trạng thái tài khoản</span>
+                    </i>
                 </div>
               </div>
-            </div>
-            <div class="hstack gap-3">
-              <div class="userdatecreate p-2">
-                <span class="p-2">Ngày tạo tài khoản </span>
-                <input type="date" id="datecreate-from">
-                <span class="p-2">-</span>
-                <input type="date" id="datecreate-to">
-              </div>
-              <div class="search-area">
-                <input type="text" id="txtsearch">
-                <button type="button" id="btn-search" class="btn">Search</button>
+              <div class="data-view">
+                <div class="container p-3 bg-white rounded-3 mt-2  bg-white container-rounded">
+                 
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="field-bar">
-          <div class="container p-3 bg-white rounded-3">
-            <div class="hstack gap-4  justify-content-center ">
-              <span>Mã người dùng</span>
-              <span>Tên người dùng</span>
-              <span>Loại người dùng</span>
-              <span>Ngày tạo tài khoản</span>
-              <span>Trạng thái tài khoản</span>
-            </div>  
+          <div class="tab-pane container fade" id="coursemanager">
+            <div class="quanlikhoahoc">
+              <div class="filter-bar ">
+                <div class="container bg-white rounded-3 container-rounded">
+                  <div class=" hstack justify-content-between p-2" >
+                    <div class="category ">
+                      <span>Thể loại</span>
+                      <input type="text" id="name-category">
+                    </div>
+                    <div class="search-area">
+                      <input type="text" id="txtsearch">
+                      <button type="button" id="btn-search" class="btn nav-item">Tìm kiếm</button>
+                    </div>
+                    
+                  </div>
+                  <div class="hstack gap-3 justify-content-between p-2">
+                    <div class="userdatecreate">
+                      <span class="">Ngày đăng tải</span>
+                      <input type="date" id="datecreate-from">
+                      <span class="">-</span>
+                      <input type="date" id="datecreate-to">
+                    </div>
+                    <div class="course-status">
+                      <span class="">Trạng thái khoá học</span>
+                      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="checkbox" class="btn-check" id="btnchecktrue-coursestatus-manager" autocomplete="off">
+                        <label class="nav-item btn btn-outline-primary" for="btnchecktrue-coursestatus-manager">Hoạt động</label>
+                      
+                        <input type="checkbox" class="btn-check" id="btncheckfalse-coursestatus-manager" autocomplete="off">
+                        <label class="nav-item btn btn-outline-primary" for="btncheckfalse-coursestatus-manager">Lưu trữ</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="field-bar">
+                <div class="container-rounded container p-3 bg-white rounded-3 mt-2 hstack gap-5  justify-content-around ps-5">
+                    <span>Mã khoá học</span>
+                    <span>Tên khoá học</span>
+                    <span>Thể loại</span>
+                    <span>Ngày đăng tải</span>
+                    <span>Trạng thái khoá học</span>
+                    </i>
+                </div>
+              </div>
+              <div class="data-view">
+                <div class="container p-3 bg-white rounded-3 mt-2  bg-white container-rounded">
+                    
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane container fade" id="categorymanager">
+            <div class="quanlidanhmuc">
+              <div class="filter-bar ">
+                <div class="container bg-white rounded-3 hstack justify-content-between p-3 container-rounded">
+                      <div class="gap-3 hstack">
+                        <div>
+                          <button type="button" id="btn-add-category" class="btn">
+                            <i class="fas fa-plus-circle"></i> Thêm danh mục</button>
+                        </div>
+                        <div>
+                          <button type="button" id="btn-del-category" class="btn">
+                            <i class="fas fa-minus-circle "></i> Xoá danh mục</button>
+                        </div>
+                      </div>
+                      <div class="search-area">
+                        <input type="text" id="txtsearch">
+                        <button type="button" id="btn-search" class="btn nav-item">Tìm kiếm</button>
+                      </div>
+                </div>
+              </div>
+              <div class="field-bar">
+                <div class="container-rounded container p-3 bg-white rounded-3 mt-2 hstack gap-5  justify-content-around ps-5" style="width:50%">
+                    <span>Mã danh mục</span>
+                    <span>Tên danh mục</span>
+                </div>
+              </div>
+              <div class="data-view">
+                <div class="container-rounded container p-3 bg-white rounded-3 mt-2  bg-white" style="width:50%">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane container fade" id="analytics">
+            <div class="thongke">
+              <div class="filter-bar">
+                <div class="container bg-white " style="border-radius: 10px 10px 0px 0px;">
+                  <div class=" hstack justify-content-between p-1" >
+                    <div class="object-role p-1 hstack">
+                      <span class="">Loại đối tượng</span>
+                      <ul class="nav nav-pills btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <li class="nav-item ">
+                          <a class="nav-link active" data-bs-toggle="pill" href="#trade">Giao dịch</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-bs-toggle="pill" href="#student">Học viên</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-bs-toggle="pill" href="#expert">Chuyên gia</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" data-bs-toggle="pill" href="#course">Khoá học</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="search-area">
+                      <input type="text" id="txtsearch">
+                      <button type="button" id="btn-search" class="btn nav-item">Tìm kiếm</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-content" >
+                <div class="tab-pane container active" id="trade">
+                  <div class="filter-bar">
+                    <div class="container bg-white " style="border-radius: 0px 0px 10px 10px">
+                      <div class="hstack gap-3 justify-content-between p-2">
+                        <div class="userdatecreate p-2">
+                          <span class="p-2">Ngày giao dịch</span>
+                          <input type="date" id="datecreate-from">
+                          <span class="p-2">-</span>
+                          <input type="date" id="datecreate-to">
+                        </div>
+                        <div class="course-status">
+                          <span class="p-2">Trạng thái</span>
+                          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                            <input type="checkbox" class="btn-check" id="btnchecktrue-coursestatus-analytics" autocomplete="off">
+                            <label class="nav-item btn btn-outline-primary" for="btnchecktrue-coursestatus-analytics">Thành công</label>
+                          
+                            <input type="checkbox" class="btn-check" id="btncheckfalse-coursestatus-analytics" autocomplete="off">
+                            <label class="nav-item btn btn-outline-primary" for="btncheckfalse-coursestatus-analytics">Thất bại</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane container fade" id="student">...</div>
+                <div class="tab-pane container fade" id="expert">...</div>
+                <div class="tab-pane container fade" id="course">...</div>
+              </div>
+              
+              <div class="field-bar">
+                <div class="container-rounded container p-3 bg-white rounded-3 mt-2 hstack gap-5  justify-content-around ps-5">
+                    <span>Mã khoá học</span>
+                    <span>Tên khoá học</span>
+                    <span>Thể loại</span>
+                    <span>Ngày đăng tải</span>
+                    <span>Trạng thái khoá học</span>
+                    </i>
+                </div>
+              </div>
+              <div class="data-view">
+                <div class="container-rounded container p-3 bg-white rounded-3 mt-2  bg-white">
+      
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
