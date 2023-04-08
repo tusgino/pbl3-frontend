@@ -1,6 +1,11 @@
-function toggle(source) {
-  checkboxes = document.getElementsByName('checkboxcategory');
-  for (var i = 0, n = checkboxes.length; i < n; i++) {
-    checkboxes[i].checked = source.checked;
-  }
-}
+(() => {
+  const checkBox = document.getElementById('checkbox-all');
+  if (!checkBox) return;
+
+  checkBox.addEventListener('click', (event) => {
+    const checkBoxes = document.querySelectorAll('.checkbox-category');
+    checkBoxes.forEach((checkBox) => {
+      checkBox.checked = event.target.checked;
+    });
+  })
+})()
