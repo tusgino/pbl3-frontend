@@ -82,10 +82,11 @@
       </div>
     </div>
   </main>
-  <script src="/js/helpers/validator.js"></script>
-  <script src="/js/bootstrap/bootstrap.min.js"></script>
+  <script type="module" src="/js/helpers/validator.js"></script>
+  <script type="module" src="/js/bootstrap/bootstrap.min.js"></script>
 
-  <script>
+  <script type="module">
+    import { Validator } from '/js/helpers/validator.js';
     Validator({
       form: '.form',
       errorSelector: '.form-message',

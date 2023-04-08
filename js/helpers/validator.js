@@ -1,4 +1,4 @@
-Validator = function (options) {
+export const Validator = function (options) {
   // console.log(options);
 
   const selectorRules = {};
