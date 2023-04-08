@@ -39,7 +39,7 @@
           <div class="login-register-form">
             <a href="/index.html"><img src="/images/logo.png" alt="" class="logo"></a>
 
-            <form action="" class="form">
+            <form class="form" id="loginForm">
               <h3 class="heading">Đăng nhập vào TTH</h3>
               <h4 class="desc">Học tập, kết nối, thảo luận & xây dựng thương hiệu cá nhân cùng hơn 100.000 thành
                 viên khác.</h4>
@@ -66,8 +66,24 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          </div>
+          <div class="modal-body">
+            <!-- ... -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <script src="/js/helpers/validator.js"></script>
+  <script src="/js/bootstrap/bootstrap.min.js"></script>
 
   <script>
     Validator({
@@ -80,6 +96,7 @@
       ]
     });
   </script>
+  <script type="module" src="/js/login.js"></script>
 </body>
 
 </html>

@@ -39,7 +39,7 @@
           <div class="login-register-form">
             <a href="/index.html"><img src="/images/logo.png" alt="" class="logo"></a>
 
-            <form action="" method="post" class="form" id="form-1">
+            <form id="registerForm" class="form">
               <h3 class="heading">Đăng ký</h3>
               <div class="form-group">
                 <i class="far fa-user form-icon"></i>
@@ -81,12 +81,27 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          </div>
+          <div class="modal-body">
+            <!-- ... -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <script src="/js/helpers/validator.js"></script>
-
+  <script src="/js/bootstrap/bootstrap.min.js"></script>
   <script>
     Validator({
-      form: '#form-1',
+      form: '#registerForm',
       errorSelector: '.form-message',
       rule: [
         Validator.isRequired('#fullname', 'Vui lòng nhập họ và tên!'),
@@ -101,6 +116,7 @@
       ]
     });
   </script>
+  <script type="module" src="/js/register.js"></script>
 </body>
 
 </html>
