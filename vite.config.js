@@ -11,6 +11,7 @@ export default defineConfig({
         register: resolve(__dirname, 'register.html'),
         courses: resolve(__dirname, 'course.html'),
         detail: resolve(__dirname, 'course/detail.html'),
+        system: resolve(__dirname, 'admin/system.html'),
       },
     },
   },
