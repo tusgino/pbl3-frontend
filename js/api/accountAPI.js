@@ -1,6 +1,6 @@
 import axiosClient from "./axiosClient";
 
-const courseAPI = {
+const accountAPI = {
   // getAll(params) {
   //   const url = '/posts';
   //   return axiosClient.get(url, { params });
@@ -27,4 +27,4 @@ const courseAPI = {
   // },
 }
 
-export default courseAPI;
+export default accountAPI;

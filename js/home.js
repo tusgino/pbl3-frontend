@@ -12,14 +12,14 @@ const createCourseElement = (course) => {
 
 
   setTextContent(liElement, '[data-id="title"]', course.title);
-  setTextContent(liElement, '[data-id="name"]', course.author);
+  setTextContent(liElement, '[data-id="name"]', course.nameUser);
 
-  setSrcContent(liElement, '[data-id="thumbnail"]', course.imageUrl);
-  setSrcContent(liElement, '[data-id="avatar"]', course.imageUrl);
+  setSrcContent(liElement, '[data-id="thumbnail"]', course.thumbnail);
+  setSrcContent(liElement, '[data-id="avatar"]', course.avatarUser);
 
   liElement.firstElementChild?.addEventListener('click', () => {
     console.log('hello');
-    window.location.assign('/course/detail.html');
+    window.location.assign(`/course/detail.html?id=${course.id}`);
   })
 
   return liElement;
@@ -87,7 +87,6 @@ const initMoreCourse = () => {
 }
 
 
-
 const getPosts = async () => {
 
   initMoreCourse();
@@ -97,7 +96,7 @@ const getPosts = async () => {
       _page: 1,
       _limit: 9,
     };
-    const { data, pagination } = await courseAPI.getAll(params);
+    const { data: { data, pagination } } = await courseAPI.getAll(params);
     console.log(data);
     console.log(pagination);
     renderCourse(data);

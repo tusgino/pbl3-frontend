@@ -8,10 +8,13 @@
 
 .course-item {
   width: 400px;
-  height: 350px;
+  height: 100%;
   background-color: #fff;
   border-radius: 10px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .course-item > img {
@@ -68,6 +71,7 @@
   column-gap: 10px;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .course-more {
