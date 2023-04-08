@@ -1,0 +1,105 @@
+@import url(../variables.css);
+html {
+  font-size: 62.5%;
+}
+
+.hero {
+  width: 80%;
+  height: 700px;
+  background-image: url(/images/bg-detail.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+
+.hero-content {
+  margin-left: 20px;
+}
+
+.hero-count {
+  margin: 2rem 2rem;
+  display: inline-block;
+  padding: 2rem 2rem;
+  font-size: 1.6rem;
+  color: #fff;
+  background-color: #4b4e98;
+  border-radius: 1rem;
+}
+
+.hero-title {
+  max-width: 90%;
+  position: relative;
+  margin-left: 2rem;
+  font-size: 3.2rem;
+  color: #fff;
+  border-radius: 1rem;
+}
+
+.hero-author {
+  color: var(--secondary-color);
+  font-size: 2rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
+}
+
+.hero-info {
+  display: flex;
+  column-gap: 10rem;
+  margin-top: 4rem;
+  margin-left: 10rem;
+}
+
+.hero-price {
+  background-color: #fff;
+  width: 360px;
+  height: 400px;
+  border-radius: 1rem;
+}
+
+.hero-price .price-old {
+  display: inline-block;
+  color: #979797;
+  text-decoration: line-through;
+  font-size: 2.4rem;
+  margin: 3rem 0 1rem 3rem;
+}
+
+.hero-price .price {
+  margin-bottom: 2rem;
+  margin-left: 3rem;
+  display: flex;
+  align-items: center;
+  column-gap: 3rem;
+}
+
+.hero-price .price .price-new {
+  color: #04ce9e;
+  font-size: 3.2rem;
+}
+
+.hero-price .price .price-discount {
+  color: #fff;
+  font-size: 1.4rem;
+  background-color: #f75e5e;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+}
+.hero-price .form {
+  padding: 0 3rem;
+}
+
+.hero-price .form .form-group .form-text {
+  padding-left: 2rem;
+}
+
+.text-search {
+  padding: 0.375rem 0.75rem;
+  background-color: #fff;
+  font-size: 1.6rem;
+  border: 1px solid #ced4da;
+}
+.course-title {
+  font-size: 2.4rem;
+  color: #4b4e98;
+  padding: 3rem 2rem;
+}

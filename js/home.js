@@ -17,6 +17,11 @@ const createCourseElement = (course) => {
   setSrcContent(liElement, '[data-id="thumbnail"]', course.imageUrl);
   setSrcContent(liElement, '[data-id="avatar"]', course.imageUrl);
 
+  liElement.firstElementChild?.addEventListener('click', () => {
+    console.log('hello');
+    window.location.assign('/course/detail.html');
+  })
+
   return liElement;
 }
 

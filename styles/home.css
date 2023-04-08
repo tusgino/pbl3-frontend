@@ -1,11 +1,4 @@
-:root {
-  --primary-color: #5271ff;
-  --secondary-color: #38b6ff;
-  --title-color: #273167;
-  --link-color: #3b3b3b;
-  --box-color: #979797;
-  --donor-color: #eaf3fa;
-}
+@import url(variables.css);
 
 .carousel-item img {
   height: 500px;
