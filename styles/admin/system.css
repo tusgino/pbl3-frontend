@@ -23,7 +23,6 @@ main {
 
 .sidebar-item {
   background-color: #fff;
-  /* padding: 3rem 2.2rem; */
   padding: 2px 2px;
 }
 
@@ -37,7 +36,6 @@ main {
 .user {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: stretch;
 }
 
@@ -45,36 +43,18 @@ main {
   font-size: 1.8rem;
   color: var(--title-color);
 }
-.menu-item {
-  padding: 7px;
-  margin-left: 0.01%;
-  column-gap: 2px;
-  color: var(--link-color);
-  border-radius: 5px;
-  height: 100%;
-  cursor: pointer;
-  font-size: 20px;
-}
-.menu-item:hover {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-}
-/* .menu-item:checked {
-  background-color: var(--primary-color);
-  color: var(--background-color);
-} */
 .container-rounded {
   border-radius: 10px;
+  padding:5px;
+  margin:5px;
+  width: fit-content;
 }
 input[type="text"] {
   width: 200px;
   height: 30px;
-  /* padding: 12px 20px; */
-  /* margin: 3px 0; */
   box-sizing: border-box;
 }
 .container.row.col {
-  /* align-items: self; */
   justify-content: space-between;
   text-align: center;
 }
@@ -84,7 +64,6 @@ input[type="text"] {
 .overview .float-content .container-rounded {
   background-color: white;
   width: 210px;
-  /* width:fit-content; */
   padding: 10px;
   margin: 10px;
   text-align: center;
@@ -97,13 +76,6 @@ footer {
   position: relative;
   bottom: 0px;
 }
-/* .manager .data-view .record .col, .manager .field-bar .col {
-  text-align: center;
-} */
-/* .manager .data-view .record .cell, .manager .field-bar .cell {
-  text-align: center;
-  align-content: center;
-} */
 .container {
   padding: 0px;
 }
