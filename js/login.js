@@ -24,10 +24,11 @@ import { getValueForm, showModal } from "./utils";
       const res = await accountAPI.login(data);
       if (res.success) {
         showModal('Đăng nhập thành công', 'Vui lòng đợi');
-        console.log(res.data);
-        // setTimeout(() => {
-        //   window.location.assign('/');
-        // }, 2000);
+        localStorage.setItem('token', res.data);
+        // console.log(res.data);
+        setTimeout(() => {
+          window.location.assign('/');
+        }, 2000);
       }
     } catch (error) {
       console.log(error);

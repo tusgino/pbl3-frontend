@@ -1,4 +1,6 @@
+import accountAPI from "./api/accountAPI";
 import courseAPI from "./api/courseAPI";
+import userAPI from "./api/userAPI";
 import { getPostList, setSrcContent, setTextContent } from "./utils";
 
 const createCourseElement = (course) => {
@@ -106,6 +108,68 @@ const getPosts = async () => {
   }
 }
 
+const renderUIRole = async (role, token) => {
+  const btn_login = document.querySelector(".btn-login");
+  if (!btn_login) return;
+  const params = {
+    id: role.idUser,
+  }
+  try {
+    const { data } = await userAPI.getByID(params, token);
+    const avatar = document.querySelector('.nav-avatar');
+    if (avatar) {
+      avatar.src = data.avatar;
+    }
+    if (btn_login) {
+      if (role.role == 'Expert') {
+        btn_login.textContent = 'Quản lí khóa học';
+        const order = document.querySelector('.nav-order');
+        if (order) {
+          console.log('hello');
+          order.style.display = 'none';
+        }
+      }
+      if (role.role == 'Admin') {
+        btn_login.textContent = 'Quản lí hệ thống';
+        btn_login.addEventListener('click', () => {
+          window.location.href = "/admin/system.html";
+        })
+      }
+      if (role.role == 'Student') {
+        btn_login.textContent = 'Khu vực học tập';
+      }
+    }
+    const btn_profile = document.querySelector(".nav-avatar");
+    if (btn_profile) {
+      btn_profile.addEventListener('click', () => {
+        window.location.href = `/profile.html?id=${role.idUser}`;
+      })
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+const checkToken = async () => {
+  const token = localStorage.getItem('token');
+  if (!token) return;
+  const data = {
+    "token": token,
+  }
+  // console.log(params);
+  try {
+    const res = await accountAPI.checkToken(data);
+    // console.log(res.data);
+    if (res.success) {
+      renderUIRole(res.data, token)
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 (async () => {
+  checkToken();
   getPosts();
 })()

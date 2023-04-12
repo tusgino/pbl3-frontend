@@ -17,6 +17,10 @@ const accountAPI = {
     const url = '/public/Account/Login';
     return axiosClient.post(url, data);
   },
+  checkToken(data) {
+    const url = '/public/Account/check-valid-token';
+    return axiosClient.post(url, data);
+  }
   // update(data) {
   //   const url = `/posts/${data.id}`;
   //   return axiosClient.patch(url, data);

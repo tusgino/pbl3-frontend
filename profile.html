@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Courses</title>
+  <link rel="shortcut icon" href="images/logo.png" type="image/png">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/styles/bootstrap/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Use font Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Internal CSS -->
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/home.css">
+  <link rel="stylesheet" href="/styles/profile.css">
+</head>
+
+<body>
+
+  <template id="courseTemplate">
+    <li class="course-item">
+      <img
+        src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+        alt="" class="course-image" data-id="thumbnail">
+      <h4 class="course-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+      <div class="course-info">
+        <div class="course-author">
+          <img
+            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            alt="" data-id="avatar">
+          <span data-id="name">Nguyễn Văn B</span>
+        </div>
+        <span class="course-tag">Đang thịnh hành🔥</span>
+      </div>
+    </li>
+  </template>
+
+  <header>
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/index.html">
+          <img src="/images/logo.png" alt="" width="122" height="70">
+        </a>
+        <form class="d-flex">
+          <input class="form-control me-2 text-search" type="search" placeholder="Tìm khóa học,..." aria-label="Search">
+          <button class="btn btn-search" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/course.html"> <i class="fas fa-list-alt" style="color: #38b6ff;"></i> Khóa
+                học</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Hỗ trợ</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <button class="btn me-2 btn-login" type="button">Đăng nhập</button>
+            </li>
+            <li class="nav-item">
+              <img class="nav-avatar"
+                src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                alt="user-avatar">
+            </li>
+            <li class="nav-item">
+              <i class="fas fa-shopping-bag nav-oder"></i>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-container">
+      <section class="sidebar ">
+        <div class="d-flex flex-column flex-shrink-0 sidebar-item container-rounded" style="width: 300px; ">
+          <div
+            class="d-flex align-items-center ms-4 mt-5 mb-md-2 me-md-auto link-dark text-decoration-none sidebar-container">
+            <img
+              src="https://scontent.fdad3-4.fna.fbcdn.net/v/t39.30808-6/306842171_5450393821725874_8188976224161115177_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=1CtceYk53YAAX_8PEfK&_nc_ht=scontent.fdad3-4.fna&oh=00_AfAsdc0XnRVGnTI090OfMG0KTJQ4DGJvBRiffdktWvj7Aw&oe=6438031A"
+              alt="" class="avatar">
+            <div class="user m-lg-3">
+              <span class="user-name">Nguyễn Đình Tú</span>
+              <span class="user-desc">Học viên tại THH</span>
+            </div>
+          </div>
+          <ul class="nav nav-pills flex-column" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-bs-toggle="pill" href="#info"><i class="far fa-user item-icon"></i>
+                <span>Thông tin cá nhân</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="pill" href="#learning"><i class="fas fa-th-large item-icon"></i>
+                <span>Khu vực học tập</span></a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="dashboard" style="width:100%;min-height: 80vh;">
+        <div class="container p-0">
+          <div class="tab-content">
+            <div class="tab-pane container active" id="info">
+              <div class="info">
+                <div class="heading">
+                  <h1>Thông tin cá nhân</h1>
+                  <p class="desc">Cập nhật đầy đủ thông tin của bạn để hoạt động tốt hơn trên THH</p>
+                </div>
+                <div class="info-container">
+                  <div class="info-content">
+                    <div class="info-avatar">
+                      <form id="file-upload-form" class="uploader">
+                        <input id="file-upload" type="file" name="fileUpload" hidden />
+                        <label for="file-upload" id="file-drag">
+                          <img id="file-image" src="#" alt="Preview" class="hidden">
+                          <div id="start">
+                            <div id="notimage" class="hidden"></div>
+                          </div>
+                          <div id="response" class="hidden">
+                            <div id="messages"></div>
+                          </div>
+                        </label>
+                      </form>
+                    </div>
+                    <div class="info-form">
+                      <input type="text" name="name" id="name">
+                      <input type="text" name="phone" id="phone">
+                      <input type="password" name="password" id="password">
+                      <input type="email" name="email" id="email" disabled>
+                    </div>
+                  </div>
+                  <hr>
+                  <button class="save-info">Lưu lại</button>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane container fade" id="learning">
+              <div class="quanlinguoidung">
+                <div class="filter-bar">
+                  <div class="container bg-white rounded-5 container-rounded">
+                    <div class=" hstack justify-content-between p-2">
+                      <div class="user-role ">
+                        <span class="p-2">Loại người dùng</span>
+                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                          <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                          <label class="nav-item btn btn-outline-primary" for="btncheck1">Học viên</label>
+
+                          <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                          <label class="nav-item btn btn-outline-primary" for="btncheck2">Chuyên gia</label>
+
+                          <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                          <label class="nav-item btn btn-outline-primary" for="btncheck3">Admin</label>
+                        </div>
+                      </div>
+                      <div class="search-area">
+                        <input type="text" id="txtsearch">
+                        <button type="button" id="btn-search" class="btn nav-item">Tìm kiếm</button>
+                      </div>
+                    </div>
+                    <div class="hstack gap-3 justify-content-between p-2">
+                      <div class="userdatecreate">
+                        <span class="p-2 ">Ngày tạo tài khoản </span>
+                        <input type="date" id="datecreate-from">
+                        <span class="p-2">-</span>
+                        <input type="date" id="datecreate-to">
+                      </div>
+                      <div class="user-status ">
+                        <span class="p-2">Trạng thái tài khoản</span>
+                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                          <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+                          <label class="nav-item btn btn-outline-primary" for="btncheck5">Hoạt động</label>
+
+                          <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+                          <label class="nav-item btn btn-outline-primary" for="btncheck6">Bị khoá</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="container manager">
+                  <div class="container hstack field-bar my-3 rounded-3 bg-white p-3 ">
+                    <div class="cell col-1"></div> <!--avatar-->
+                    <div class="cell col">Mã người dùng</div>
+                    <div class="cell col">Tên người dùng</div>
+                    <div class="cell col">Loại người dùng</div>
+                    <div class="cell col">Ngày tạo tài khoản</div>
+                    <div class="cell col">Trạng thái tài khoản</div>
+                    <div class="cell col-1"></div> <!--icon information-->
+                  </div>
+                  <div class="container data-view bg-white rounded-3 p-3 ">
+                    <div class="record row">
+                      <div class="cell col-1"> <img
+                          src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
+                          alt="" class="avatar"></div>
+                      <div class="cell col">ad7389ad</div>
+                      <div class="cell col">Megumi </div>
+                      <div class="cell col">Học viên</div>
+                      <div class="cell col">1/1/2023</div>
+                      <div class="cell col">Hoạt động</div>
+                      <!-- <div class="col-1"><i class="fas fa-info-circle"></i></div> -->
+                      <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
+                          data-bs-target="#Modal-studentinfo"></i></div>
+                    </div>
+                  </div>
+                  <!-- modal student informatino-->
+                  <div class="modal fade rounded-3" id="Modal-studentinfo" role="dialog">
+                    <div class="modal-dialog modal-xxl modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header justify-content-between">
+                          <h4>Thông tin người dùng</h4>
+                          <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
+                              class="fas fa-times" style="color: #464646"></i></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="container">
+                            <div class="row justify-content-center my-2">
+                              <div class="col-2"></div>
+                              <div class="col-auto"><img
+                                  src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
+                                  alt="" class="avatar"></div>
+                              <div class="col-2"></div>
+                            </div>
+                            <div class="row my-2">
+
+                              <div class="col-5">Mã người dùng</div>
+                              <div class="col-auto">
+                                <input type="text" placeholder="ad7389ad" name="txt-user-id" disabled>
+                              </div>
+
+                            </div>
+                            <div class="row my-2">
+
+                              <div class="col-5">Tên người dùng</div>
+                              <div class="col-auto">
+                                <input type="text" placeholder="Megumi" name="txt-user-name" disabled>
+                              </div>
+
+                            </div>
+                            <div class="row my-2">
+
+                              <div class="col-5">Loại người dùng</div>
+                              <div class="col-auto">
+                                <input type="text" placeholder="Học viên" name="txt-user-role" disabled>
+                              </div>
+
+                            </div>
+                            <div class="row my-2">
+
+                              <div class="col-5">Ngày sinh</div>
+                              <div class="col-auto">
+                                <input type="text" placeholder="1/1/2011" name="txt-user-birth" disabled>
+                              </div>
+
+                            </div>
+                            <div class="row my-2">
+
+                              <div class="col-5">Số điện thoại</div>
+                              <div class="col-auto">
+                                <input type="text" placeholder="11111111" name="txt-user-pn" disabled>
+                              </div>
+
+                            </div>
+                            <div class="row my-2">
+
+                              <div class="col-5">CCCD</div>
+                              <div class="col-auto">
+                                <input type="text" placeholder="11111111" name="txt-user-idcard" disabled>
+                              </div>
+
+                            </div>
+                            <div class="row my-2">
+
+                              <div class="col-5">Email</div>
+                              <div class="col-auto">
+                                <input type="text" placeholder="megumikatou@gmail.com" name="txt-user-email" disabled>
+                              </div>
+
+                            </div>
+                            <div class="row my-2">
+
+                              <div class="col-5">Ngày tạo tài khoản</div>
+                              <div class="col-auto">
+                                <input type="text" placeholder="1/1/2011" name="txt-user-datecreate" disabled>
+                              </div>
+
+                            </div>
+                            <div class="row my-2">
+
+                              <div class="col-5">Trạng thái tài khoản</div>
+                              <div class="col-auto">
+                                <input type="text" placeholder="Hoạt động" name="txt-user-status" disabled>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="nav-item btn btn-default">Khoá tài khoản</button>
+                          <button type="button" class="nav-item btn btn-default">Xoá tài khoản</button>
+                          <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
+                            style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div id="loading-overlay" class="hidden">
+      <div id="loading-spinner"></div>
+      <div id="loading-message">Đang tải lên...</div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="introduce-contrainer">
+      <div class="introduce-list">
+        <div class="introduce-item">
+          <img src="/images/logo.png" alt="" class="info-logo">
+          <ul class="list-info">
+            <li class="info-item">Email: pbl3@thh.com</li>
+            <li class="info-item">Hotline: 0123456789</li>
+            <li class="info-item">Giờ làm việc 8h30-18h từ thứ 2 tới thứ 6.</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Địa chỉ</h4>
+          <ul class="list-info">
+            <li class="info-item">54 Nguyễn Lương Bằng, Liên Chiểu, Đà Nẵng</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Hướng dẫn</h4>
+          <ul class="list-info">
+            <li class="info-item">Giới thiệu</li>
+            <li class="info-item">Chính sách</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Khám phá</h4>
+          <ul class="list-info">
+            <li class="info-item">Solution</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Liên kết</h4>
+          <ul class="list-social">
+            <li class="social-item"><i class="fab fa-facebook-square"></i></i></li>
+            <li class="social-item"><i class="fab fa-youtube"></i></li>
+            <li class="social-item"><i class="fab fa-twitter-square"></i></li>
+          </ul>
+        </div>
+  </footer>
+
+  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script type="module" src="/js/main.js"></script>
+  <script type="module" src="/js/home.js"></script>
+  <script type="module" src="/js/profile.js"></script>
+</body>
+
+</html>
