@@ -1,0 +1,328 @@
+@import url(variables.css);
+
+main {
+  margin-top: 10rem;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+a:hover > i {
+  transform: rotate(0);
+}
+
+.page-container {
+  display: flex;
+  flex-direction: row;
+  column-gap: 2rem;
+}
+
+.sidebar-item {
+  background-color: #fff;
+  /* padding: 3rem 2.2rem; */
+  /* padding: 2px 2px; */
+  border-radius: 1.5rem;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 1rem;
+  object-position: top;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: stretch;
+}
+
+.user .user-name {
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.user .user-desc {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.nav-pills > .nav-item {
+  padding: 0;
+}
+
+.nav-pills {
+  margin-bottom: 2rem;
+}
+
+.nav-link > span {
+  padding-left: 2rem;
+}
+
+.item-icon {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-left: 1rem;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: var(--text-color);
+  background-color: #f8f9ff;
+}
+
+.nav-item > a {
+  padding: 1.2rem;
+}
+
+.heading {
+  /* margin-left: 2rem; */
+}
+
+.heading > h1 {
+  font-size: 3.2rem;
+  color: var(--title-color);
+  padding-bottom: 1rem;
+  font-weight: 600;
+}
+
+.heading > .desc {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  font-weight: 300;
+}
+
+/* styles.css */
+/* Căn giữa form upload */
+/* .uploader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+} */
+
+/* Kích thước và căn giữa khung nhìn trước ảnh */
+#file-drag {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* Ảnh được hiển thị trong khung nhìn trước ảnh */
+#file-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  object-position: top;
+  position: relative;
+}
+
+#file-drag::after {
+  content: "200";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  position: absolute;
+  transform: translate(80px, 70px);
+}
+
+/* Ẩn các phần tử không cần thiết ban đầu */
+.hidden {
+  display: none;
+}
+
+.info {
+  margin-left: 7rem;
+}
+
+.info-form > input {
+  width: 400px;
+  height: 5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.info-user input:focus {
+  border: 0px;
+  outline: none;
+}
+
+.info-content {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+}
+
+.info-container {
+  background-color: #fff;
+  border-radius: 2rem;
+}
+
+.info-avatar,
+.info-form {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.info-user {
+  margin: auto;
+}
+
+.save-info {
+  margin-top: 25rem;
+  margin-bottom: 2rem;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 5rem;
+  border: 0;
+  border-radius: 1rem;
+  padding: 0 1rem;
+  font-size: 2rem;
+  /* margin-bottom: 1rem; */
+  background-color: var(--primary-color);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* CSS cho màn hình loading */
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Màu nền đen với độ mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Đảm bảo màn hình loading luôn nằm trên cùng */
+}
+
+#loading-spinner {
+  /* Thêm kiểu cho spinner, ví dụ sử dụng CSS animation */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  border-top-color: #3498db; /* Màu sắc cho spinner */
+  animation: spin 1s infinite linear; /* Thêm animation cho spinner */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#loading-message {
+  margin-top: 16px;
+  color: #fff;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.learning-search {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 2rem 0;
+}
+.search-form {
+  background-color: #fff;
+  border-radius: 2rem;
+}
+
+.search-icon {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  padding: 2rem;
+}
+
+.search-input {
+  width: 400px;
+  /* height: 3rem; */
+  font-size: 2rem;
+  border: 0;
+}
+
+.search-input:focus {
+  outline: none;
+}
+.learning-container {
+  margin-left: 7rem;
+}
+.learning-item {
+  margin-top: 2rem;
+  max-width: 100%;
+  height: 15rem;
+  display: flex;
+  column-gap: 2.5rem;
+  background-color: #fff;
+}
+
+.learning-image {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 0.5rem 0 0 0.5rem;
+  object-fit: cover;
+  object-position: center;
+}
+
+.learning-author > img {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.learning-author {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+.learning-author > span {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.learning-title {
+  font-size: 2.4rem;
+  word-wrap: break-word;
+  font-weight: 500;
+}
+
+.learning-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
