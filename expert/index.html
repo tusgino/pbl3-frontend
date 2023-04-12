@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Courses</title>
+  <link rel="shortcut icon" href="images/logo.png" type="image/png">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/styles/bootstrap/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Use font Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Slick slider -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+  <!-- Internal CSS -->
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/home.css">
+  <link rel="stylesheet" href="/styles/coursepost.css">
+  <link rel="stylesheet" href="/styles/expert/style.css">
+  <link rel="stylesheet" href="/styles/slick.css">
+</head>
+
+<body>
+
+  <template id="courseTemplate">
+    <li class="course-item">
+      <img
+        src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+        alt="" class="course-image" data-id="thumbnail">
+      <h4 class="course-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+      <div class="course-info">
+        <div class="course-author">
+          <img
+            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            alt="" data-id="avatar">
+          <span data-id="name">Nguyễn Văn B</span>
+        </div>
+        <span class="course-tag">Đang thịnh hành🔥</span>
+      </div>
+    </li>
+  </template>
+
+  <header>
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/index.html">
+          <img src="/images/logo.png" alt="" width="122" height="70">
+        </a>
+      </div>
+    </nav>
+  </header>
+
+<main>
+    <div class="page-container flex">
+      <section class="sidebar ">
+        <div class="p-2 d-flex flex-column flex-shrink-0 sidebar-item container-rounded" style="width: 300px; ">
+          <div class="d-flex align-items-center ms-4 mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <img src="https://th.bing.com/th/id/R.10aa0c04ecd2f0e03960ec0ec3b42ae6?rik=5m18xurloloaPA&pid=ImgRaw&r=0" alt=""
+              class="avatar">
+            <div class="user m-lg-3">
+              <span class="user-name">Nguyễn Văn A</span>
+              <span class="user-desc">Chuyên gia tại THH</span>
+            </div>
+          </div>
+          <hr>
+          <ul class="nav nav-pills flex-column p-1" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-bs-toggle="pill" href="#coursemanager"><i class="far fa-user"></i> Quản lí khoá học
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" data-bs-toggle="pill" href="#coursemanager"><i class="fas fa-book"></i> Thanh toán tiền</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="pill" href="#analytics"><i class="far fa-chart-bar"></i> Thống kê</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="dashboard" style="width:100%;min-height: 80vh;">
+        <div class="title">
+          <h3 class="h3">Thông tin cá nhân</h3>
+          <section>Cập nhật đầy dủ thông tin của bạn để hoạt động tốt hơn trên THH</section>
+        </div>
+        <div class="main">
+          <img src="https://th.bing.com/th/id/R.10aa0c04ecd2f0e03960ec0ec3b42ae6?rik=5m18xurloloaPA&pid=ImgRaw&r=0" alt="" class="avatar avatar-main">
+          
+        </div>
+      </section>
+
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="introduce-contrainer">
+      <div class="introduce-list">
+        <div class="introduce-item">
+          <img src="/images/logo.png" alt="" class="info-logo">
+          <ul class="list-info">
+            <li class="info-item">Email: pbl3@thh.com</li>
+            <li class="info-item">Hotline: 0123456789</li>
+            <li class="info-item">Giờ làm việc 8h30-18h từ thứ 2 tới thứ 6.</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Địa chỉ</h4>
+          <ul class="list-info">
+            <li class="info-item">54 Nguyễn Lương Bằng, Liên Chiểu, Đà Nẵng</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Hướng dẫn</h4>
+          <ul class="list-info">
+            <li class="info-item">Giới thiệu</li>
+            <li class="info-item">Chính sách</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Khám phá</h4>
+          <ul class="list-info">
+            <li class="info-item">Solution</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Liên kết</h4>
+          <ul class="list-social">
+            <li class="social-item"><i class="fab fa-facebook-square"></i></i></li>
+            <li class="social-item"><i class="fab fa-youtube"></i></li>
+            <li class="social-item"><i class="fab fa-twitter-square"></i></li>
+          </ul>
+        </div>
+  </footer>
+
+  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <script type="module" src="/js/helpers/slick.js"></script>
+  <script type="module" src="/js/main.js"></script>
+  <script type="module" src="/js/home.js"></script>
+</body>
+
+</html>
