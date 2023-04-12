@@ -137,12 +137,15 @@ const renderUIRole = async (role, token) => {
       }
       if (role.role == 'Student') {
         btn_login.textContent = 'Khu vực học tập';
+        btn_login.addEventListener('click', () => {
+          window.location.href = `/profile.html?id=${role.idUser}&page=learning`;
+        });
       }
     }
     const btn_profile = document.querySelector(".nav-avatar");
     if (btn_profile) {
       btn_profile.addEventListener('click', () => {
-        window.location.href = `/profile.html?id=${role.idUser}`;
+        window.location.href = `/profile.html?id=${role.idUser}&page=profile`;
       })
     }
   } catch (error) {

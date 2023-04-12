@@ -31,20 +31,23 @@
 
 <body>
 
-  <template id="courseTemplate">
-    <li class="course-item">
-      <img
-        src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-        alt="" class="course-image" data-id="thumbnail">
-      <h4 class="course-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
-      <div class="course-info">
-        <div class="course-author">
+  <template id="learningTemplate">
+    <li class="learning-item">
+      <div class="learning-thumbnail">
+        <img
+          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          alt="" class="learning-image" data-id="thumbnail">
+      </div>
+      <div class="learning-info">
+        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit.
+        </h4>
+        <div class="learning-author">
           <img
             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
             alt="" data-id="avatar">
           <span data-id="name">Nguyễn Văn B</span>
         </div>
-        <span class="course-tag">Đang thịnh hành🔥</span>
       </div>
     </li>
   </template>
@@ -104,11 +107,13 @@
           </div>
           <ul class="nav nav-pills flex-column" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" data-bs-toggle="pill" href="#info"><i class="far fa-user item-icon"></i>
+              <a class="nav-link active" data-bs-toggle="pill" href="#info" id="info-tab"><i
+                  class="far fa-user item-icon"></i>
                 <span>Thông tin cá nhân</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="pill" href="#learning"><i class="fas fa-th-large item-icon"></i>
+              <a class="nav-link" data-bs-toggle="pill" href="#learning" id="learning-tab"><i
+                  class="fas fa-th-large item-icon"></i>
                 <span>Khu vực học tập</span></a>
             </li>
           </ul>
@@ -152,175 +157,74 @@
               </div>
             </div>
             <div class="tab-pane container fade" id="learning">
-              <div class="quanlinguoidung">
-                <div class="filter-bar">
-                  <div class="container bg-white rounded-5 container-rounded">
-                    <div class=" hstack justify-content-between p-2">
-                      <div class="user-role ">
-                        <span class="p-2">Loại người dùng</span>
-                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                          <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-                          <label class="nav-item btn btn-outline-primary" for="btncheck1">Học viên</label>
-
-                          <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-                          <label class="nav-item btn btn-outline-primary" for="btncheck2">Chuyên gia</label>
-
-                          <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-                          <label class="nav-item btn btn-outline-primary" for="btncheck3">Admin</label>
-                        </div>
-                      </div>
-                      <div class="search-area">
-                        <input type="text" id="txtsearch">
-                        <button type="button" id="btn-search" class="btn nav-item">Tìm kiếm</button>
-                      </div>
-                    </div>
-                    <div class="hstack gap-3 justify-content-between p-2">
-                      <div class="userdatecreate">
-                        <span class="p-2 ">Ngày tạo tài khoản </span>
-                        <input type="date" id="datecreate-from">
-                        <span class="p-2">-</span>
-                        <input type="date" id="datecreate-to">
-                      </div>
-                      <div class="user-status ">
-                        <span class="p-2">Trạng thái tài khoản</span>
-                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                          <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
-                          <label class="nav-item btn btn-outline-primary" for="btncheck5">Hoạt động</label>
-
-                          <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
-                          <label class="nav-item btn btn-outline-primary" for="btncheck6">Bị khoá</label>
-                        </div>
-                      </div>
-                    </div>
+              <div class="learning-container">
+                <div class="heading">
+                  <h1>Khu vực học tập</h1>
+                  <p class="desc">Khóa học, tài liệu mà bạn đăng ký sẽ được hiển thị dưới đây</p>
+                </div>
+                <div class="learning-search">
+                  <div class="search-form">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Tìm kiếm..." class="search-input">
                   </div>
                 </div>
-                <div class="container manager">
-                  <div class="container hstack field-bar my-3 rounded-3 bg-white p-3 ">
-                    <div class="cell col-1"></div> <!--avatar-->
-                    <div class="cell col">Mã người dùng</div>
-                    <div class="cell col">Tên người dùng</div>
-                    <div class="cell col">Loại người dùng</div>
-                    <div class="cell col">Ngày tạo tài khoản</div>
-                    <div class="cell col">Trạng thái tài khoản</div>
-                    <div class="cell col-1"></div> <!--icon information-->
-                  </div>
-                  <div class="container data-view bg-white rounded-3 p-3 ">
-                    <div class="record row">
-                      <div class="cell col-1"> <img
-                          src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
-                          alt="" class="avatar"></div>
-                      <div class="cell col">ad7389ad</div>
-                      <div class="cell col">Megumi </div>
-                      <div class="cell col">Học viên</div>
-                      <div class="cell col">1/1/2023</div>
-                      <div class="cell col">Hoạt động</div>
-                      <!-- <div class="col-1"><i class="fas fa-info-circle"></i></div> -->
-                      <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
-                          data-bs-target="#Modal-studentinfo"></i></div>
-                    </div>
-                  </div>
-                  <!-- modal student informatino-->
-                  <div class="modal fade rounded-3" id="Modal-studentinfo" role="dialog">
-                    <div class="modal-dialog modal-xxl modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header justify-content-between">
-                          <h4>Thông tin người dùng</h4>
-                          <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
-                              class="fas fa-times" style="color: #464646"></i></button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="container">
-                            <div class="row justify-content-center my-2">
-                              <div class="col-2"></div>
-                              <div class="col-auto"><img
-                                  src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
-                                  alt="" class="avatar"></div>
-                              <div class="col-2"></div>
-                            </div>
-                            <div class="row my-2">
-
-                              <div class="col-5">Mã người dùng</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="ad7389ad" name="txt-user-id" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row my-2">
-
-                              <div class="col-5">Tên người dùng</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="Megumi" name="txt-user-name" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row my-2">
-
-                              <div class="col-5">Loại người dùng</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="Học viên" name="txt-user-role" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row my-2">
-
-                              <div class="col-5">Ngày sinh</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="1/1/2011" name="txt-user-birth" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row my-2">
-
-                              <div class="col-5">Số điện thoại</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="11111111" name="txt-user-pn" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row my-2">
-
-                              <div class="col-5">CCCD</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="11111111" name="txt-user-idcard" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row my-2">
-
-                              <div class="col-5">Email</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="megumikatou@gmail.com" name="txt-user-email" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row my-2">
-
-                              <div class="col-5">Ngày tạo tài khoản</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="1/1/2011" name="txt-user-datecreate" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row my-2">
-
-                              <div class="col-5">Trạng thái tài khoản</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="Hoạt động" name="txt-user-status" disabled>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="nav-item btn btn-default">Khoá tài khoản</button>
-                          <button type="button" class="nav-item btn btn-default">Xoá tài khoản</button>
-                          <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
-                            style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
+                <div class="learning-courses">
+                  <ul class="learning-list">
+                    <li class="learning-item">
+                      <div class="learning-thumbnail">
+                        <img
+                          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                          alt="" class="learning-image" data-id="thumbnail">
+                      </div>
+                      <div class="learning-info">
+                        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit.
+                        </h4>
+                        <div class="learning-author">
+                          <img
+                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                            alt="" data-id="avatar">
+                          <span data-id="name">Nguyễn Văn B</span>
                         </div>
                       </div>
-                    </div>
-                  </div>
-
+                    </li>
+                    <li class="learning-item">
+                      <div class="learning-thumbnail">
+                        <img
+                          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                          alt="" class="learning-image" data-id="thumbnail">
+                      </div>
+                      <div class="learning-info">
+                        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit.
+                        </h4>
+                        <div class="learning-author">
+                          <img
+                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                            alt="" data-id="avatar">
+                          <span data-id="name">Nguyễn Văn B</span>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="learning-item">
+                      <div class="learning-thumbnail">
+                        <img
+                          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                          alt="" class="learning-image" data-id="thumbnail">
+                      </div>
+                      <div class="learning-info">
+                        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit.
+                        </h4>
+                        <div class="learning-author">
+                          <img
+                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                            alt="" data-id="avatar">
+                          <span data-id="name">Nguyễn Văn B</span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

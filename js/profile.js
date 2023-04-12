@@ -88,7 +88,41 @@ const handleSaveInfo = async () => {
 }
 
 (() => {
+  const searchParams = new URLSearchParams(window.location.search);
   handleProfile();
   handleAvatarChange();
   handleSaveInfo();
+  const page = searchParams.get('page');
+  console.log(page);
+  if (page == 'profile') {
+    const tabInfo = document.getElementById('info-tab');
+    const info = document.getElementById('info');
+    const tabDashboard = document.getElementById('learning-tab');
+    const dashboard = document.getElementById('learning');
+
+    dashboard.classList.add('fade');
+    tabInfo.classList.add('active');
+    info.classList.add('active');
+
+    tabDashboard.classList.remove('active');
+    dashboard.classList.remove('active');
+    info.classList.remove('fade');
+  }
+
+  if (page == 'learning') {
+    const tabInfo = document.getElementById('info-tab');
+    const info = document.getElementById('info');
+    const tabDashboard = document.getElementById('learning-tab');
+    const dashboard = document.getElementById('learning');
+
+
+    tabDashboard.classList.add('active');
+    dashboard.classList.add('active');
+    info.classList.add('fade');
+
+    dashboard.classList.remove('fade');
+    tabInfo.classList.remove('active');
+    info.classList.remove('active');
+  }
+
 })()
