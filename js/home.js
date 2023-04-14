@@ -148,6 +148,14 @@ const renderUIRole = async (role, token) => {
         window.location.href = `/profile.html?id=${role.idUser}&page=profile`;
       })
     }
+    const namePurchase = document.getElementById('name-purchase');
+    const emailPurchase = document.getElementById('email-purchase');
+    if (namePurchase && emailPurchase) {
+      namePurchase.value = data.name;
+      emailPurchase.value = data.email;
+      namePurchase.setAttribute('disabled', '');
+      emailPurchase.setAttribute('disabled', '');
+    }
   } catch (error) {
     console.log(error);
   }
