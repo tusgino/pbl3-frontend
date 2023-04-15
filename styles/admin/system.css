@@ -46,12 +46,12 @@ main {
 .container-rounded {
   border-radius: 10px;
   padding:5px;
-  margin:5px;
+  /* margin:5px; */
   width: fit-content;
 }
-input[type="text"] {
-  width: 200px;
-  height: 30px;
+input[type="text"], input[type="date"] {
+  width: 15rem;
+  height: 2rem;
   box-sizing: border-box;
 }
 .container.row.col {
