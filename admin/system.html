@@ -94,62 +94,40 @@
             </div>
           </div>
           <hr>
-          <ul class="nav nav-pills flex-column p-1" role="tablist">
+          <ul class="nav nav-pills flex-column p-1" id="sidebar-menu">
             <li class="nav-item">
-              <a class="nav-link active" data-bs-toggle="pill" href="#overview"><i
+              <a class="sidebaritem nav-link active" data-bs-toggle="pill" href="#overview"><i
                   class="fas fa-th-large item-icon"></i> Tổng quan</a>
             </li>
             <li class="nav-item">
-
-              
-              <div class="nav-link collapsed" data-bs-toggle="collapse" href="#usermanager-collapse" role="button" aria-expanded="false" aria-controls="sidebar-maps"><i class="far fa-user"></i> Quản lí người
-                dùng</div>
-              <ul class="nav collapse" id="usermanager-collapse" data-bs-parent="#sidebar-menu" style>
+              <a class="sidebaritem nav-link" data-bs-toggle="collapse" data-bs-target="#usermanager-collapse" role="button" ><i class="far fa-user"></i> Quản lí người dùng</a>
+              <ul class="nav collapse" id="usermanager-collapse" data-bs-parent="#sidebar-menu">
                 <li class="nav-item">
-                  <a class="nav-link" data-bs-toggle="pill" href="#usermanager-review"><i class="far fa-user-circle"></i> Xem người dùng</a>
+                  <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#usermanager-review"><i class="far fa-user-circle"></i> Xem người dùng</a>
                 </li>
                 <li class="nav-item">
-                  <div class="nav-link collapsed" data-bs-toggle="collapse" href="#usermanager-adduser-collapse" role="button" aria-expanded="false" aria-controls="sidebar-maps"><i class="fas fa-user-plus"></i> Thêm người
-                    dùng</div>
-                  <ul class="nav collapse" id="usermanager-adduser-collapse" data-bs-parent="#sidebar-menu" style>
+                  <a class="sidebaritem nav-link" data-bs-toggle="collapse" data-bs-target="#usermanager-adduser-collapse" role="button" ><i class="fas fa-user-plus"></i> Thêm User</a>        
+                  <ul class="nav collapse" id="usermanager-adduser-collapse" data-bs-parent="#usermanager-collapse">
                     <li class="nav-item">
-                      <a class="nav-link" data-bs-toggle="pill" href="#usermanager-addexpert"><i class="far fa-user"></i> Thêm Expert</a>
+                      <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#usermanager-addexpert"><i class="far fa-user"></i> Thêm Expert</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-bs-toggle="pill" href="#usermanager-addadmin"><i class="far fa-user"></i> Thêm Admin</a>
+                      <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#usermanager-addadmin"><i class="far fa-user"></i> Thêm Admin</a>
                     </li>
                   </ul>
                 </li>
               </ul>
-
-
-
-
-              <!-- <a class="nav-link" data-bs-toggle="pill" href="#usermanager"><i class="far fa-user"></i> Quản lí người
-                dùng</a> -->
-              <!-- <div class="nav-link" data-bs-toggle="collapse" data-bs-target=".multi-collapse"><i class="far fa-user"></i> Quản lí người
-                dùng</div>
-              <div class="col ms-4 ">
-                <div class="row collapse multi-collapse"> 
-                  <a class="nav-link" data-bs-toggle="pill" href="#usermanager-review"><i class="far fa-user"></i> Quản lí người
-                    dùng</a>
-                </div>
-                <div class="row collapse multi-collapse">
-                  <a class="nav-link" data-bs-toggle="pill" href="#usermanager-add"><i class="far fa-user"></i> Quản lí người
-                    dùng</a>
-                </div>
-              </div> -->
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="pill" href="#coursemanager"><i class="fas fa-book"></i> Quản lí khoá
+              <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#coursemanager"><i class="fas fa-book"></i> Quản lí khoá
                 học</a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link" data-bs-toggle="pill" href="#categorymanager"><i class="fas fa-list"></i> Quản lí danh
+              <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#categorymanager"><i class="fas fa-list"></i> Quản lí danh
                 mục</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="pill" href="#analytics"><i class="far fa-chart-bar"></i> Thống kê</a>
+              <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#analytics"><i class="far fa-chart-bar"></i> Thống kê</a>
             </li>
           </ul>
         </div>
