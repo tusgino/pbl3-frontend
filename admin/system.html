@@ -54,7 +54,21 @@
       </div>
     </li>
   </template>
-
+  <template id="userManageRecord">
+    <div class="record row">
+      <div class="cell col-1" data-id="avatar" > <img
+          src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
+          alt="" class="avatar"></div>
+      <!-- <div class="cell col">ad7389ad</div> -->
+      <div class="cell col" data-id="userName">Megumi </div>
+      <div class="cell col" data-id="userType">Học viên</div>
+      <div class="cell col" data-id="dateCreate">1/1/2023</div>
+      <div class="cell col" data-id="userStatus">Hoạt động</div>
+      <!-- <div class="col-1"><i class="fas fa-info-circle"></i></div> -->
+      <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
+          data-bs-target="#Modal-studentinfo"></i></div>
+    </div>
+  </template>
   <header>
     <nav class="navbar navbar-expand-lg ">
       <div class="container-fluid">
@@ -84,7 +98,7 @@
   <main>
     <div class="page-container flex">
       <section class="sidebar ">
-        <div class="p-2 d-flex flex-column flex-shrink-0 sidebar-item container-rounded" style="width: 320px;">
+        <div class="p-2 d-flex flex-column flex-shrink-0 sidebar-item container-rounded" style="width: 300px; ">
           <div class="d-flex align-items-center ms-4 mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <img src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg" alt=""
               class="avatar">
@@ -274,19 +288,7 @@
                     <div class="cell col-1"></div> <!--icon information-->
                   </div>
                   <div class="container data-view bg-white rounded-3 p-3 ">
-                    <div class="record row">
-                      <div class="cell col-1"> <img
-                          src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
-                          alt="" class="avatar"></div>
-                      <!-- <div class="cell col">ad7389ad</div> -->
-                      <div class="cell col">Megumi </div>
-                      <div class="cell col">Học viên</div>
-                      <div class="cell col">1/1/2023</div>
-                      <div class="cell col">Hoạt động</div>
-                      <!-- <div class="col-1"><i class="fas fa-info-circle"></i></div> -->
-                      <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
-                          data-bs-target="#Modal-studentinfo"></i></div>
-                    </div>
+                   
                   </div>
                   <!-- modal student informatino-->
                   <div class="modal fade rounded-3" id="Modal-studentinfo" role="dialog">

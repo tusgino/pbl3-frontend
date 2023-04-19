@@ -27,32 +27,12 @@
 
   <!-- Internal CSS -->
   <link rel="stylesheet" href="/styles/reset.css">
-  <link rel="stylesheet" href="/styles/login-register.css">
   <link rel="stylesheet" href="/styles/main.css">
-  <link rel="stylesheet" href="/styles/coursepost.css">
-  <link rel="stylesheet" href="/styles/course/detail.css">
+  <link rel="stylesheet" href="/styles/course/checkout.css">
 
 </head>
 
 <body>
-
-  <template id="courseTemplate">
-    <li class="course-item">
-      <img
-        src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-        alt="" class="course-image" data-id="thumbnail">
-      <h4 class="course-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
-      <div class="course-info">
-        <div class="course-author">
-          <img
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="" data-id="avatar">
-          <span data-id="name">Nguyễn Văn B</span>
-        </div>
-        <span class="course-tag">Đang thịnh hành🔥</span>
-      </div>
-    </li>
-  </template>
 
   <header>
     <nav class="navbar navbar-expand-lg ">
@@ -94,52 +74,76 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-container">
-        <div class="hero-content">
-          <div class="hero-count"><i class="far fa-user"></i> <span>1000 học viên</span></div>
-          <h1 class="hero-title">Lorem ipsum dolor sit amet consectetur. Viverra phasellus ac elit amet at urna nunc.
-            Faucibus risus et in amet ac.</h1>
-          <p class="hero-author">Bởi: <span>Nguyễn Văn A</span></p>
-        </div>
-        <div class="hero-info">
-          <div class="hero-video">
-            <video controls width="700">
-              <source id="video-src"
-                src="https://drive.google.com/uc?id=11W6_VgvRY1gs_Ptv0RQuZCUUCVxVG1aj&export=download" type="video/mp4">
-            </video>
-          </div>
-          <div class="hero-price">
-            <span class="price-old">1,125,000đ</span>
+    <h1 class="checkout-title">Xem lại yêu cầu đăng ký</h1>
+    <section class="info">
+      <div class="page-container">
+        <div class="info-content">
+          <img
+            src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt="Khóa học ..." class="course-thumbnail">
+          <div class="course-info">
+            <h3 class="course-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
             <div class="price">
-              <span class="price-new">900,000đ</span>
-              <span class="price-discount"> Tiết kiệm -20%</span>
+              <span class="price-new">900.000đ</span>
+              <span class="price-old">1.000.000đ</span>
             </div>
-            <form class="form">
-              <div class="form-group">
-                <input type="text" class="form-text" id="name-purchase" name="name" placeholder="Tên của bạn">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-text" id="email-purchase" name="email" placeholder="Email của bạn">
-              </div>
-              <button class="form-submit">Đăng kí khóa học</button>
-            </form>
           </div>
         </div>
-      </div>
       </div>
     </section>
 
-    <section class="courses">
+    <section class="payment">
       <div class="page-container">
-        <h3 class="course-title">🔥Khóa học nổi bật</h3>
-        <div class="courses-container">
-          <ul id="list-courses">
-          </ul>
-        </div>
-        <button class="course-more">Xem thêm...</button>
+        <h2 class="payment-title">Chọn phương thức thanh toán</h2>
+        <ul class="payment-list">
+          <li class="payment-item ">
+            <img src="/images/momo.png" alt="MOMO" class="payment-image">
+            <h4 class="payment-name">Ví điện tử MOMO</h4>
+            <p class="payment-status active">Hoàn thành ngay</p>
+            <div class="payment-radio">
+              <input type="radio" id="radio-momo" class="payment-choose" name="payment-option">
+              <label for="radio-momo"></label>
+            </div>
+          </li>
+          <li class="payment-item">
+            <img src="/images/vnpay.png" alt="VNPAY" class="payment-image">
+            <h4 class="payment-name">Quét VNpay QRcode</h4>
+            <p class="payment-status">Bảo trì</p>
+            <div class="payment-radio">
+              <input type="radio" id="radio-vnpay" class="payment-choose" name="payment-option">
+              <label for="radio-vnpay"></label>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
+
+    <section class="confirm">
+      <div class="page-container">
+        <div class="price">
+          <span class="price-new">900.000đ</span>
+          <span class="price-text">Giá gốc: </span><span class="price-old">1.000.000đ</span>
+        </div>
+        <div class="discount">
+          <p>Tiết kiệm <span>20% (225,000đ)</span></p>
+        </div>
+        <div class="info-user">
+          <h3>Thông tin cá nhân</h3>
+          <div class="name">
+            <i class="far fa-user"></i>
+            <span>Nguyễn Văn A</span>
+          </div>
+          <div class="email">
+            <i class="far fa-envelope"></i>
+            <span>nguyenvana@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-container">
+      <button class="submit-course"><i class="fas fa-chevron-circle-right"></i> Hoàn tất đăng ký</button>
+    </div>
   </main>
 
   <footer>
@@ -185,7 +189,8 @@
   <script type="module" src="/js/bootstrap/bootstrap.bundle.min.js"></script>
   <script type="module" src="/js/main.js"></script>
   <script type="module" src="/js/home.js"></script>
-  <script type="module" src="/js/course-detail.js"></script>
+  <script type="module" src="/js/course/checkout.js"></script>
+
 </body>
 
 </html>

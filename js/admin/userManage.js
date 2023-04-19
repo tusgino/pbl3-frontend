@@ -1,12 +1,37 @@
+import { setTextContent } from "../utils";
 import userAPI from "./userAPI";
 
+const createRecord = (data) => {
+    if(!data) return;
 
-(async() => {
-    // lay du lieu tu filter bar
+    const userManageRecord = document.getElementById('userManageRecord')
+    if(!userManageRecord) return;
+
+    const record = userManageRecord.content.cloneNode(true);
+    if(!record) return;
+
+    setTextContent(record, '[data-id="userName"', data.name);
+    setTextContent(record, '[data-id="userType"', data.typeOfUser);
+    setTextContent(record, '[data-id="dateCreate"', data.dateCreate);
+    setTextContent(record, '[data-id="userStatus"', data.status);
     
 
-    // do du lieu ra view
+}
+
+const renderRecord = (userList) => {
     
+    if(!Array.isArray(userList) || userList.length === 0) return;
+    const dataview = document.querySelector(".quanlinguoidung .data-view");
+    console.log(dataview);
+    if(!dataview) return;
+    userList.forEach((user) => {
+        const record = createRecord(user);
+        if(record) {
+            dataview.appendChild(record);
+        }
+    });
+}
+(async() => {    
     try {
 
         const params = {
@@ -21,6 +46,8 @@ import userAPI from "./userAPI";
         const res = await userAPI.getAllUsersByFiltering(params, token);
         console.log(res.data);
 
+        renderRecord(res.data)
+
         const viewData = res.data.map(item => {
             return {
                 "Tên người dùng": item.name,
@@ -30,14 +57,16 @@ import userAPI from "./userAPI";
             }
         });
         console.log(viewData)
-        const dataContainer = document.querySelector(".quanlinguoidung .data-view");
-        res.data.forEach(item => {
-            const element = document.createElement('div');
-            element.textContent = item.attribute1;
-            dataContainer.appendChild(element);
-        });
+
+
+        // const dataContainer = document.querySelector(".quanlinguoidung .data-view");
+        // res.data.forEach(item => {
+        //     const element = document.createElement('div');
+        //     element.textContent = item.attribute1;
+        //     dataContainer.appendChild(element);
+        // });
         
-        dataContainer.innerHTML = JSON.stringify(res.data)
+        //dataContainer.innerHTML = JSON.stringify(res.data)
 
     } catch (error) {
         console.log(error);
