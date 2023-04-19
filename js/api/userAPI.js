@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 export const userAPI = {
   getByID(params, token) {
-    const url = `/User/get-user`;
+    const url = `/private/User/get-user`;
     const config = {
       params,
       headers: {
@@ -13,7 +13,7 @@ export const userAPI = {
   },
 
   updateByID(id, data, token) {
-    const url = `/User/${id}`;
+    const url = `/private/User/${id}`;
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`,

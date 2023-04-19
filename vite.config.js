@@ -13,6 +13,7 @@ export default defineConfig({
         detail: resolve(__dirname, 'course/detail.html'),
         system: resolve(__dirname, 'admin/system.html'),
         profile: resolve(__dirname, 'profile.html'),
+        checkout: resolve(__dirname, 'course/checkout.html'),
       },
     },
   },

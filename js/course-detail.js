@@ -21,6 +21,14 @@ const rederCourse = (course) => {
   sourceElement.type = "video/mp4";
   videoNew.appendChild(sourceElement);
   videoElement.appendChild(videoNew);
+
+  const register = document.querySelector('.form');
+  if (register) {
+    register.addEventListener('submit', (e) => {
+      e.preventDefault();
+      window.location.href = `/course/checkout.html`
+    })
+  }
   // console.log(videoElement);
   // setSrcContent(document, '#video-src', course.videoPreview);
 }
