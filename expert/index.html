@@ -120,45 +120,46 @@
                       <input type="text" name="phone" id="phone">
                       <input type="password" name="password" id="password">
                       <input type="email" name="email" id="email" disabled>
-                      <button class="save-info show-bankinfo" data-bs-toggle="modal" data-bs-target="#bankinfo-modal">Hiển thị tài khoản ngân hàng</button>
+                      <button class="save-info show-bankinfo" data-bs-toggle="modal"
+                        data-bs-target="#bankinfo-modal">Hiển thị tài khoản ngân hàng</button>
                     </div>
-                    
+
                   </div>
                   <hr>
                   <div class="learning-courses">
-                  <div class="degree-heading">
-                    <h3 class="heading-text">Bằng cấp - Chứng nhận</h3>
-                    <i type="button" class="fa fa-plus" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
+                    <div class="degree-heading">
+                      <h3 class="heading-text">Bằng cấp - Chứng nhận</h3>
+                      <i type="button" class="fa fa-plus" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
 
+                    </div>
+                    <div class="degree-container">
+                      <ul class="degree-list">
+                        <li class="degree-item">
+                          <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit.
+                          </h4>
+
+                          <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
+
+                        </li>
+                        <li class="degree-item">
+                          <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit.
+                          </h4>
+                          <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
+
+                        </li>
+                        <li class="degree-item">
+                          <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit.
+                          </h4>
+                          <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
+
+                        </li>
+
+                      </ul>
+                    </div>
                   </div>
-                  <div class="degree-container">
-                    <ul class="degree-list">
-                    <li class="degree-item">
-                        <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit.
-                        </h4>
-                        
-                        <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
-                        
-                    </li>
-                    <li class="degree-item">
-                        <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit.
-                        </h4>
-                        <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
-
-                    </li>
-                    <li class="degree-item">
-                        <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit.
-                        </h4>
-                        <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
-
-                    </li>
-                    
-                  </ul>
-                  </div>
-                </div>
                   <button class="save-info">Lưu lại</button>
                 </div>
               </div>
@@ -233,7 +234,7 @@
                     </li>
                   </ul>
                   <button class="save-info create-course">Đăng tải khoá học</button>
-                  
+
                 </div>
               </div>
             </div>
@@ -244,10 +245,12 @@
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-body">
-                <h1 class="degree-title" id="degree-modal">Nhập thông tin bằng cấp - kinh nghiệm</h1>
-  
+                <h1 class="degree-title">Nhập thông tin bằng cấp - kinh nghiệm</h1>
+
                 <div class="degree-info">
-                  <img src="https://plus.unsplash.com/premium_photo-1669825003963-b76f8035d678?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80" alt="" id="degree-img">
+                  <img
+                    src="https://plus.unsplash.com/premium_photo-1669825003963-b76f8035d678?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80"
+                    alt="" id="degree-img">
                   <div class="degree-text">
                     <input type="text" id="degree-name" placeholder="Tên bằng cấp">
                     <textarea name="degree-desc" id="degree-desc" placeholder="Mô tả bằng cấp"></textarea>
@@ -261,23 +264,24 @@
             </div>
           </div>
         </div>
-      
+
 
         <!-- Modal bankinfo -->
 
-        <div class="modal fade" id="bankinfo-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="bankinfo-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-body">
-                <h1 class="bankinfo-title" id="bankinfo-modal">Xem thông tin tài khoản ngân hàng</h1>
-  
+                <h1 class="bankinfo-title">Xem thông tin tài khoản ngân hàng</h1>
+
                 <div class="bankinfo-info">
-                    <input type="text" id="bankinfo-number" placeholder="Số tài khoản">
-                    <input type="text" id="bankinfo-name" placeholder="Tên chủ tài khoản">
-                    <input type="text" id="bankinfo-bankname" placeholder="Tên ngân hàng">
+                  <input type="text" id="bankinfo-number" placeholder="Số tài khoản">
+                  <input type="text" id="bankinfo-name" placeholder="Tên chủ tài khoản">
+                  <input type="text" id="bankinfo-bankname" placeholder="Tên ngân hàng">
                 </div>
               </div>
-              <div class="modal-footer">
+              <div class="modal-action">
                 <button class="save-info bankinfo-save">Lưu</button>
                 <button class="save-info bankinfo-cancel">Huỷ</button>
               </div>

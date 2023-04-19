@@ -1,5 +1,5 @@
 @import url(/styles/variables.css);
-html{
+html {
   font-size: 62.5%;
 }
 
@@ -29,13 +29,12 @@ html{
   align-items: stretch;
 }
 
-.degree-item { 
+.degree-item {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
   background-color: #fff;
   margin: 1.5rem 1rem;
-
 }
 
 .degree-item > h4 {
@@ -50,14 +49,12 @@ html{
   cursor: pointer;
 }
 
-
-
 .degree-item > i:hover {
   opacity: 50%;
 }
 
 .degree-container {
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   border-radius: 1rem;
   padding-top: 4rem;
   height: 70rem;
@@ -80,8 +77,6 @@ html{
   cursor: pointer;
 }
 
-
-
 .degree-heading > i:hover {
   opacity: 50%;
 }
@@ -90,8 +85,7 @@ html{
   margin-top: 0;
   left: 0;
   transform: translateX(0);
-} 
-
+}
 
 .save-info {
   margin-top: 3rem;
@@ -125,8 +119,6 @@ html{
   padding: 1rem;
   width: 40rem;
   font-weight: 700;
-  
-  
 }
 
 .degree-text > textarea {
@@ -181,4 +173,16 @@ html{
   margin-top: 10rem;
 }
 
+.modal-action {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem;
+  background-color: #fff;
+  margin: 1.5rem 1rem;
+}
 
+.modal-action > button {
+  width: 30rem;
+  left: 0;
+  transform: translateX(0);
+}
