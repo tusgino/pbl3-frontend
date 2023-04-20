@@ -20,7 +20,6 @@ const createCourseElement = (course) => {
   setSrcContent(liElement, '[data-id="avatar"]', course.avatarUser);
 
   liElement.firstElementChild?.addEventListener('click', () => {
-    console.log('hello');
     window.location.assign(`/course/detail.html?id=${course.id}`);
   })
 
@@ -99,8 +98,9 @@ const getPosts = async () => {
       _limit: 9,
     };
     const { data: { data, pagination } } = await courseAPI.getAll(params);
-    console.log(data);
-    console.log(pagination);
+    console.log({ data: { data, pagination } });
+    // console.log(data);
+    // console.log(pagination);
     renderCourse(data);
     renderPagination(pagination);
   } catch (error) {

@@ -288,6 +288,7 @@ a:hover > i {
   display: flex;
   column-gap: 2.5rem;
   background-color: #fff;
+  cursor: pointer;
 }
 
 .learning-image {

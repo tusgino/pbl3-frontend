@@ -1,3 +1,4 @@
+import courseAPI from "./api/courseAPI";
 import uploadAPI from "./api/uploadAPI";
 import userAPI from "./api/userAPI";
 import { setSrcContent, setTextContent } from "./utils";
@@ -42,11 +43,11 @@ const renderUIProfile = (profile) => {
   formPassword.value = "*******";
 }
 
+
 const handleProfile = async () => {
   try {
     const searchParams = new URLSearchParams(window.location.search);
     const profileId = searchParams.get('id');
-    // console.log(courseId);
     if (!profileId)
       window.location.href = '/index.html';
     const token = localStorage.getItem('token');
@@ -54,9 +55,60 @@ const handleProfile = async () => {
       id: profileId,
     }
     const { data } = await userAPI.getByID(params, token);
-    console.log(data);
     renderUIProfile(data);
     handleSaveInfo(profileId);
+  } catch (error) {
+    console.log('Failed', error);
+  }
+}
+
+const createCourse = (course, profileId) => {
+  if (!course) return;
+  const liTemplate = document.getElementById('learningTemplate');
+  if (!liTemplate) return;
+  const liElement = liTemplate.content.cloneNode(true);
+  if (!liElement) return;
+
+  setSrcContent(liElement, '[data-id="thumbnail"]', course?.thumbnail);
+  setTextContent(liElement, '[data-id="title"]', course?.title);
+  setTextContent(liElement, '[data-id="name"]', course?.nameUser);
+  setSrcContent(liElement, '[data-id="avatar"]', course?.avatarUser);
+
+  console.log(course);
+  liElement.firstElementChild?.addEventListener('click', (e) => {
+    // e.preventDefault();
+    window.location.href = `/lesson/index.html?id=${profileId}&course=${course?.id}`;
+  });
+
+  return liElement;
+}
+
+const renderLearningUI = async (courses, profileId) => {
+  if (!Array.isArray(courses) || courses.length === 0) return;
+  const ulElement = document.querySelector('.learning-list');
+  if (!ulElement) return;
+  courses.forEach(course => {
+    const liElement = createCourse(course, profileId);
+    if (liElement)
+      ulElement.appendChild(liElement);
+  })
+}
+
+const handleLearning = async () => {
+  try {
+    const searchParams = new URLSearchParams(window.location.search);
+    const profileId = searchParams.get('id');
+    if (!profileId)
+      window.location.href = '/index.html';
+    const token = localStorage.getItem('token');
+    const params = {
+      id: profileId,
+    }
+    const { data } = await courseAPI.getByIDUser(params, token);
+    console.log(data);
+    renderLearningUI(data, profileId);
+    // console.log(res);
+    // renderLearningUI(res.data);
   } catch (error) {
     console.log('Failed', error);
   }
@@ -117,9 +169,12 @@ const handleSaveInfo = async (id) => {
 
 }
 
+
+
 (() => {
   const searchParams = new URLSearchParams(window.location.search);
   handleProfile();
+  handleLearning();
   handleAvatarChange();
   const page = searchParams.get('page');
   if (page == 'profile') {
@@ -152,5 +207,7 @@ const handleSaveInfo = async (id) => {
     tabInfo.classList.remove('active');
     info.classList.remove('active');
   }
+
+
 
 })()
