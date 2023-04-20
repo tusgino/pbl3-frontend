@@ -64,7 +64,7 @@
       <div class="cell col" data-id="userType">Học viên</div>
       <div class="cell col" data-id="dateCreate">1/1/2023</div>
       <div class="cell col" data-id="userStatus">Hoạt động</div>
-      <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
+      <div class="cell col-1" id="iconinfo"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
           data-bs-target="#Modal-studentinfo"></i></div>
     </div>
     
@@ -242,18 +242,18 @@
                       <div class="user-role ">
                         <span class="p-2">Loại người dùng</span>
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                          <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" checked>
-                          <label class="nav-item btn btn-outline-primary" for="btncheck1">Học viên</label>
+                          <input type="checkbox" class="btn-check" id="btncheckstudent" autocomplete="off" checked>
+                          <label class="nav-item btn btn-outline-primary " for="btncheckstudent">Học viên</label>
 
-                          <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" checked>
-                          <label class="nav-item btn btn-outline-primary" for="btncheck2">Chuyên gia</label>
+                          <input type="checkbox" class="btn-check" id="btncheckexpert" autocomplete="off" checked>
+                          <label class="nav-item btn btn-outline-primary" for="btncheckexpert">Chuyên gia</label>
 
-                          <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" checked>
-                          <label class="nav-item btn btn-outline-primary" for="btncheck3">Admin</label>
+                          <input type="checkbox" class="btn-check" id="btncheckadmin" autocomplete="off" checked>
+                          <label class="nav-item btn btn-outline-primary" for="btncheckadmin">Admin</label>
                         </div>
                       </div>
                       <div class="search-area">
-                        <input type="text" id="txtsearch">
+                        <input type="text" id="txtsearch-usermanage">
                         <button type="button" id="btn-search-usermanage" class="btn nav-item">Tìm kiếm</button>
                       </div>
                     </div>
@@ -267,11 +267,11 @@
                       <div class="user-status ">
                         <span class="p-2">Trạng thái tài khoản</span>
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                          <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off" checked>
-                          <label class="nav-item btn btn-outline-primary" for="btncheck5">Hoạt động</label>
+                          <input type="checkbox" class="btn-check" id="btncheckactive" autocomplete="off" checked>
+                          <label class="nav-item btn btn-outline-primary" for="btncheckactive">Hoạt động</label>
 
-                          <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off" checked>
-                          <label class="nav-item btn btn-outline-primary" for="btncheck6">Bị khoá</label>
+                          <input type="checkbox" class="btn-check" id="btncheckbanned" autocomplete="off" checked>
+                          <label class="nav-item btn btn-outline-primary" for="btncheckbanned">Bị khoá</label>
                         </div>
                       </div>
                     </div>
@@ -313,7 +313,7 @@
                                 <label for="detail-userName">Tên người dùng</label>
                               </div>
                               <div class="col">
-                                <input type="text" placeholder="Megumi" id="detail-userName" name="detail-userName" disabled>
+                                <input type="text" id="detail-userName" name="detail-userName" disabled>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
@@ -321,50 +321,51 @@
                                 <label for="detail-userType">Loại người dùng</label>
                               </div>
                               <div class="col">
-                                <input type="text" placeholder="Học viên" data-id="detail-userType" name="detail-userType" name="txt-user-role" disabled>
+                                <input type="text" id="detail-userType" name="detail-userType" name="txt-user-role" disabled>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col">Ngày sinh</div>
                               <div class="col">
-                                <input type="text" placeholder="1/1/2011" name="txt-user-birth" disabled>
+                                <input type="text" id="detail-userdob" name="txt-user-birth" disabled>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col">Số điện thoại</div>
                               <div class="col">
-                                <input type="text" placeholder="11111111" name="txt-user-pn" disabled>
+                                <input type="text" id="detail-userpn" name="txt-user-pn" disabled>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col">CCCD</div>
                               <div class="col">
-                                <input type="text" placeholder="11111111" name="txt-user-idcard" disabled>
+                                <input type="text" id="detail-useridcard" name="txt-user-idcard" disabled>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col">Email</div>
                               <div class="col">
-                                <input type="text" placeholder="megumikatou@gmail.com" name="txt-user-email" disabled>
+                                <input type="text" id="detail-useremail" name="txt-user-email" disabled>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col">Ngày tạo tài khoản</div>
                               <div class="col">
-                                <input type="text" placeholder="1/1/2011" name="txt-user-datecreate" disabled>
+                                <input type="text" id="detail-userdatecreate" name="txt-user-datecreate" disabled>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col">Trạng thái tài khoản</div>
                               <div class="col">
-                                <input type="text" placeholder="Hoạt động" name="txt-user-status" disabled>
+                                <input type="text" id="detail-userstatus" name="txt-user-status" disabled>
                               </div>
                             </div>
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="nav-item btn btn-default">Khoá tài khoản</button>
-                          <button type="button" class="nav-item btn btn-default">Xoá tài khoản</button>
+                          <button type="button" id="btn-banacc" class="nav-item btn btn-default">Khoá tài khoản</button>
+                          <button type="button" id="btn-unbanacc" class="nav-item btn btn-default">Mở tài khoản</button>
+                          <button type="button" id="btn-delacc" class="nav-item btn btn-default">Xoá tài khoản</button>
                           <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
                             style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
                         </div>
@@ -543,7 +544,7 @@
                         <input type="text" id="name-category">
                       </div>
                       <div class="search-area">
-                        <input type="text" id="txtsearch">
+                        <input type="text" id="txtsearch-coursemanage">
                         <button type="button" id="btn-search-coursemanage" class="btn nav-item">Tìm kiếm</button>
                       </div>
 
@@ -551,9 +552,9 @@
                     <div class="hstack gap-3 justify-content-between p-2">
                       <div class="userdatecreate">
                         <span class="">Ngày đăng tải</span>
-                        <input type="date" id="datecreate-from">
+                        <input type="date" id="dateupload-from">
                         <span class="">-</span>
-                        <input type="date" id="datecreate-to">
+                        <input type="date" id="dateupload-to">
                       </div>
                       <div class="course-status">
                         <span class="">Trạng thái khoá học</span>
@@ -720,7 +721,7 @@
                       </div>
                     </div>
                     <div class="search-area">
-                      <input type="text" id="txtsearch">
+                      <input type="text" id="txtsearch-categorymanage">
                       <button type="button" id="btn-search-categorymanage" class="nav-item btn">Tìm kiếm</button>
                     </div>
 
@@ -795,7 +796,7 @@
                         </ul>
                       </div>
                       <div class="search-area">
-                        <input type="text" id="txtsearch">
+                        <input type="text" id="txtsearch-analytics">
                         <button type="button" id="btn-search-trade" class="btn nav-item">Tìm kiếm</button>
                       </div>
                     </div>
@@ -838,9 +839,9 @@
                         <div class="hstack gap-3 justify-content-between p-2">
                           <div class="userdatecreate">
                             <span class="">Ngày giao dịch</span>
-                            <input type="date" id="datecreate-from">
+                            <input type="date" id="datetrade-from">
                             <span class="">-</span>
-                            <input type="date" id="datecreate-to">
+                            <input type="date" id="datetrade-to">
                           </div>
                         </div>
                       </div>
