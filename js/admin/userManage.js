@@ -10,12 +10,24 @@ const createRecord = (data) => {
     const record = userManageRecord.content.cloneNode(true);
     if(!record) return;
 
-    setTextContent(record, '[data-id="userName"', data.name);
-    setTextContent(record, '[data-id="userType"', data.typeOfUser);
-    setTextContent(record, '[data-id="dateCreate"', data.dateCreate);
-    setTextContent(record, '[data-id="userStatus"', data.status);
+    setTextContent(record, '[data-id="userName"]', data.name);
+    setTextContent(record, '[data-id="userType"]', data.typeOfUser);
+    setTextContent(record, '[data-id="dateCreate"]', data.dateCreate);
+    setTextContent(record, '[data-id="userStatus"]', data.status);
     
+    // setTextContent(record, '[id="detail-userName"]', data.name);
+    // setTextContent(record, '[data-id="detail-userType"]', data.typeOfUser);
+    //document.getElementById('detail-userName').value = data.name;
+     const detailusername = document.getElementById('detail-userName');
+    detailusername.value = data.name
+    // detailusername.setAttribute('value' , data.name);
+    // console.log(detailusername);
+    // detailusername.attribute.value = data.name;
 
+
+    const infoicon = userManageRecord.getel
+
+    return record;
 }
 
 const renderRecord = (userList) => {
@@ -52,7 +64,7 @@ const renderRecord = (userList) => {
             return {
                 "Tên người dùng": item.name,
                 "Loại người dùng": item.typeOfUser,
-                "Ngày tạo tài khoản" : item.dateCreate, 
+                "Ngày tạo tài khoản" :  item.dateCreate, 
                 "Trạng thái tài khoản" : item.status
             }
         });

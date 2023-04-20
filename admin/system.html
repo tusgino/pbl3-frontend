@@ -64,10 +64,10 @@
       <div class="cell col" data-id="userType">Học viên</div>
       <div class="cell col" data-id="dateCreate">1/1/2023</div>
       <div class="cell col" data-id="userStatus">Hoạt động</div>
-      <!-- <div class="col-1"><i class="fas fa-info-circle"></i></div> -->
       <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
           data-bs-target="#Modal-studentinfo"></i></div>
     </div>
+    
   </template>
   <header>
     <nav class="navbar navbar-expand-lg ">
@@ -117,7 +117,7 @@
               <a class="sidebaritem nav-link" data-bs-toggle="collapse" data-bs-target="#usermanager-collapse" role="button" ><i class="far fa-user"></i> Quản lí người dùng</a>
               <ul class="nav collapse" id="usermanager-collapse" data-bs-parent="#sidebar-menu">
                 <li class="nav-item">
-                  <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#usermanager-review"><i class="far fa-user-circle"></i> Xem người dùng</a>
+                  <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#usermanager-review"><i class="far fa-user-circle"></i> Xem User</a>
                 </li>
                 <li class="nav-item">
                   <a class="sidebaritem nav-link" data-bs-toggle="collapse" data-bs-target="#usermanager-adduser-collapse" role="button" ><i class="fas fa-user-plus"></i> Thêm User</a>        
@@ -254,7 +254,7 @@
                       </div>
                       <div class="search-area">
                         <input type="text" id="txtsearch">
-                        <button type="button" id="btn-search" class="btn nav-item">Tìm kiếm</button>
+                        <button type="button" id="btn-search-usermanage" class="btn nav-item">Tìm kiếm</button>
                       </div>
                     </div>
                     <div class="hstack gap-3 justify-content-between p-2">
@@ -308,77 +308,57 @@
                                   alt="" class="avatar"></div>
                               <div class="col-2"></div>
                             </div>
-                            <!-- <div class="row justify-content-center my-2">
-
-                              <div class="col-5">Mã người dùng</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="ad7389ad" name="txt-user-id" disabled>
-                              </div>
-
-                            </div> -->
                             <div class="row justify-content-center my-2">
-
-                              <div class="col">Tên người dùng</div>
                               <div class="col">
-                                <input type="text" placeholder="Megumi" name="txt-user-name" disabled>
+                                <label for="detail-userName">Tên người dùng</label>
                               </div>
-
+                              <div class="col">
+                                <input type="text" placeholder="Megumi" id="detail-userName" name="detail-userName" disabled>
+                              </div>
                             </div>
                             <div class="row justify-content-center my-2">
-
-                              <div class="col">Loại người dùng</div>
                               <div class="col">
-                                <input type="text" placeholder="Học viên" name="txt-user-role" disabled>
+                                <label for="detail-userType">Loại người dùng</label>
                               </div>
-
+                              <div class="col">
+                                <input type="text" placeholder="Học viên" data-id="detail-userType" name="detail-userType" name="txt-user-role" disabled>
+                              </div>
                             </div>
                             <div class="row justify-content-center my-2">
-
                               <div class="col">Ngày sinh</div>
                               <div class="col">
                                 <input type="text" placeholder="1/1/2011" name="txt-user-birth" disabled>
                               </div>
-
                             </div>
                             <div class="row justify-content-center my-2">
-
                               <div class="col">Số điện thoại</div>
                               <div class="col">
                                 <input type="text" placeholder="11111111" name="txt-user-pn" disabled>
                               </div>
-
                             </div>
                             <div class="row justify-content-center my-2">
-
                               <div class="col">CCCD</div>
                               <div class="col">
                                 <input type="text" placeholder="11111111" name="txt-user-idcard" disabled>
                               </div>
-
                             </div>
                             <div class="row justify-content-center my-2">
-
                               <div class="col">Email</div>
                               <div class="col">
                                 <input type="text" placeholder="megumikatou@gmail.com" name="txt-user-email" disabled>
                               </div>
-
                             </div>
                             <div class="row justify-content-center my-2">
-
                               <div class="col">Ngày tạo tài khoản</div>
                               <div class="col">
                                 <input type="text" placeholder="1/1/2011" name="txt-user-datecreate" disabled>
                               </div>
-
                             </div>
                             <div class="row justify-content-center my-2">
-
                               <div class="col">Trạng thái tài khoản</div>
                               <div class="col">
                                 <input type="text" placeholder="Hoạt động" name="txt-user-status" disabled>
                               </div>
-
                             </div>
                           </div>
                         </div>
@@ -564,7 +544,7 @@
                       </div>
                       <div class="search-area">
                         <input type="text" id="txtsearch">
-                        <button type="button" id="btn-search" class="btn nav-item">Tìm kiếm</button>
+                        <button type="button" id="btn-search-coursemanage" class="btn nav-item">Tìm kiếm</button>
                       </div>
 
                     </div>
@@ -741,7 +721,7 @@
                     </div>
                     <div class="search-area">
                       <input type="text" id="txtsearch">
-                      <button type="button" id="btn-search" class="nav-item btn">Tìm kiếm</button>
+                      <button type="button" id="btn-search-categorymanage" class="nav-item btn">Tìm kiếm</button>
                     </div>
 
                   </div>
@@ -816,7 +796,7 @@
                       </div>
                       <div class="search-area">
                         <input type="text" id="txtsearch">
-                        <button type="button" id="btn-search" class="btn nav-item">Tìm kiếm</button>
+                        <button type="button" id="btn-search-trade" class="btn nav-item">Tìm kiếm</button>
                       </div>
                     </div>
                   </div>
