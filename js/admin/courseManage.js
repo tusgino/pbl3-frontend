@@ -46,7 +46,8 @@ const setEventHandlerCourse = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        await courseAPI.updateCourse(params, token);
+        console.log(params)
+        console.log(await courseAPI.updateCourse(params, token));
         getCourses(1);
     })
     btnunbancourse.addEventListener('click', async(event) => {
@@ -132,7 +133,7 @@ const createRecord = (data) => {
             btnunbancourse.style.display = "none";
             btndelcourse.style.display = "none";
         }
-
+        console.log(data.id)
         btnbancourse.value = data.id;
         btnunbancourse.value = data.id;
         btndelcourse.value = data.id;
