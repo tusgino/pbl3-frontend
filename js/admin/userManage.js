@@ -3,31 +3,85 @@ import userAPI from "./userAPI";
 
 const token = localStorage.getItem('token');
 
+const getUsers = async(page) => {
+    const params = {
+        "_title_like" : document.getElementById('txtsearch-usermanage').value,
+        "_is_student" : document.getElementById("btncheckstudent").checked, 
+        "_is_expert" : document.getElementById('btncheckexpert').checked,
+        "_is_admin" : document.getElementById('btncheckadmin').checked,
+        "_start_date_create" : document.getElementById('datecreate-from').value,
+        "_end_date_create" : document.getElementById('datecreate-to').value,
+        "_status_active" : document.getElementById('btncheckactive').checked, 
+        "_status_banned" : document.getElementById('btncheckbanned').checked,
+        "page" : page,
+    };
+
+    const dataview = document.querySelector(".quanlinguoidung .data-view");
+    dataview.textContent = "";
+
+    const {data : {_data, _totalRows}} = await userAPI.getAllUsersByFiltering(params, token);
+    
+    renderRecord(_data);
+    renderPagination(_totalRows);
+}
+
+
 const setEventSearch = () => {
     const btnsearch = document.getElementById('btn-search-usermanage');
     btnsearch.addEventListener('click', async() => {
-        const params = {
-            "_title_like" : document.getElementById('txtsearch-usermanage').value,
-            "_is_student" : document.getElementById("btncheckstudent").checked, 
-            "_is_expert" : document.getElementById('btncheckexpert').checked,
-            "_is_admin" : document.getElementById('btncheckadmin').checked,
-            "_start_date_create" : document.getElementById('datecreate-from').value,
-            "_end_date_create" : document.getElementById('datecreate-to').value,
-            "_status_active" : document.getElementById('btncheckactive').checked, 
-            "_status_banned" : document.getElementById('btncheckbanned').checked,
-            "page" : 1,
-        };
-        // console.log(params);
-        const dataview = document.querySelector(".quanlinguoidung .data-view");
-        
-        // console.log(dataview);
-        dataview.textContent = "";
-        const { data : { _data , _totalRows }} = await userAPI.getAllUsersByFiltering(params, token);
-        
-        renderRecord(_data);
-        renderPagination(_totalRows);
+        getUsers(1);
     })
 
+}
+
+const setEventHandlerAcc = () => {
+    const btnbanacc = document.getElementById('btn-banacc');
+    const btnunbanacc = document.getElementById('btn-unbanacc');
+    const btndelacc= document.getElementById('btn-delacc');
+
+    btnbanacc.addEventListener('click', async(event) => {
+        const patch = [{
+            "operationType": 1,
+            "path": "/Status",
+            "op": "replace",
+            "value": 0,
+        }];
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        }
+        await userAPI.updateUser(params, token);
+        getUsers(1);
+    })
+    btnunbanacc.addEventListener('click', async(event) => {
+        const patch = [{
+            "operationType": 1,
+            "path": "/Status",
+            "op": "replace",
+            "value": 1,
+        }];
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        }
+        await userAPI.updateUser(params, token);
+        getUsers(1);
+    })
+    btndelacc.addEventListener('click', async(event) => {
+        const patch = [{
+            "operationType": 1,
+            "path": "/Status",
+            "op": "replace",
+            "value": -1,
+        }];
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        }
+        await userAPI.updateUser(params, token);
+        getUsers(1);
+    })
+    
 }
 
 const createRecord = (data) => {
@@ -54,13 +108,13 @@ const createRecord = (data) => {
     const detailuserdatecreate = document.getElementById('detail-userdatecreate');
     const detailuserstatus = document.getElementById('detail-userstatus');
     const btnbanacc = document.getElementById('btn-banacc');
-    const btndelacc= document.getElementById('btn-delacc');
     const btnunbanacc = document.getElementById('btn-unbanacc');
+    const btndelacc= document.getElementById('btn-delacc');
 
 
     //const detailstudentinfo = document.getElementById("Modal-studentinfo")
     // console.log(detailstudentinfo)
-    const iconinfo = record.getElementById('iconinfo');
+    const iconinfo = record.getElementById('usermanage-iconinfo');
     // console.log(iconinfo);
     iconinfo.addEventListener('click', () => {
         detailusername.value = data.name;
@@ -84,46 +138,13 @@ const createRecord = (data) => {
             btndelacc.style.display = "block";
             btnbanacc.style.display = "none";
         }
+        console.log(data);   
         
+        btnbanacc.value = data.id;
+        btnunbanacc.value = data.id;
+        btndelacc.value = data.id;
     })
-
-    btnbanacc.addEventListener('click', async() => {
-        const params = {
-            userid : data.iD,
-            change : {
-                "operationType": 1,
-                "path": "/Status",
-                "op": "replace",
-                "value": 0,
-            }
-        }
-        console.log(await userAPI.updateUser(params, token));
-    })
-    btnunbanacc.addEventListener('click', async() => {
-        const params = {
-            userid : data.iD,
-            change : {
-                "operationType": 1,
-                "path": "/Status",
-                "op": "replace",
-                "value": 1,
-            }
-        }
-        console.log(await userAPI.updateUser(params, token));
-    })
-    btndelacc.addEventListener('click', async() => {
-        const params = {
-            userid : data.iD,
-            change : {
-                "operationType": 1,
-                "path": "/Status",
-                "op": "replace",
-                "value": -1,
-            }
-        }
-        console.log(await userAPI.updateUser(params, token));
-        
-    })
+    
     
     return record;
 }
@@ -132,7 +153,7 @@ const renderRecord = (userList) => {
     
     if(!Array.isArray(userList) || userList.length === 0) return;
     const dataview = document.querySelector(".quanlinguoidung .data-view");
-    // console.log(dataview);
+    console.log(dataview);
     if(!dataview) return;
     userList.forEach((user) => {
         const record = createRecord(user);
@@ -150,26 +171,7 @@ const createPage = (data) => {
     liElement.textContent = data;
 
     liElement.addEventListener('click', async() => {
-        const params = {
-            "_title_like" : document.getElementById('txtsearch-usermanage').value,
-            "_is_student" : document.getElementById("btncheckstudent").checked, 
-            "_is_expert" : document.getElementById('btncheckexpert').checked,
-            "_is_admin" : document.getElementById('btncheckadmin').checked,
-            "_start_date_create" : document.getElementById('datecreate-from').value,
-            "_end_date_create" : document.getElementById('datecreate-to').value,
-            "_status_active" : document.getElementById('btncheckactive').checked, 
-            "_status_banned" : document.getElementById('btncheckbanned').checked,
-            "page" : data,
-        };
-        // console.log(params);
-        const dataview = document.querySelector(".quanlinguoidung .data-view");
-        
-        // console.log(dataview);
-        dataview.textContent = "";
-        const { data : { _data , _totalRows }} = await userAPI.getAllUsersByFiltering(params, token);
-
-        renderRecord(_data);
-        renderPagination(_totalRows);
+        getUsers(data);
     })
     // console.log(liElement);
     return liElement;
@@ -193,27 +195,10 @@ const renderPagination = (totalRows) => {
     try {
 
         setEventSearch();
+        setEventHandlerAcc();
 
-        const params = {
-            "_title_like" : document.getElementById('txtsearch-usermanage').value,
-            "_is_student" : document.getElementById("btncheckstudent").checked, 
-            "_is_expert" : document.getElementById('btncheckexpert').checked,
-            "_is_admin" : document.getElementById('btncheckadmin').checked,
-            "_start_date_create" : document.getElementById('datecreate-from').value,
-            "_end_date_create" : document.getElementById('datecreate-to').value,
-            "_status_active" : document.getElementById('btncheckactive').checked, 
-            "_status_banned" : document.getElementById('btncheckbanned').checked,
-            "page" : 1,
-        };
-        // console.log(params)
-        const { data : { _data , _totalRows }} = await userAPI.getAllUsersByFiltering(params, token);
-        // console.log(res.data);
-         
-        renderRecord(_data);
-        console.log(_data);
-        renderPagination(_totalRows);
-        console.log(_totalRows);
-
+        getUsers(1);
+        
     } catch (error) {
         console.log(error);
     }

@@ -55,7 +55,7 @@
     </li>
   </template>
   <template id="userManageRecord">
-    <div class="record row">
+    <div class="record row my-4">
       <div class="cell col-1" data-id="avatar" > <img
           src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
           alt="" class="avatar"></div>
@@ -64,10 +64,52 @@
       <div class="cell col" data-id="userType">Học viên</div>
       <div class="cell col" data-id="dateCreate">1/1/2023</div>
       <div class="cell col" data-id="userStatus">Hoạt động</div>
-      <div class="cell col-1" id="iconinfo"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
+      <div class="cell col-1" id="usermanage-iconinfo"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
           data-bs-target="#Modal-studentinfo"></i></div>
     </div>
-    
+  </template>
+  <template id="courseManageRecord">
+    <div class="record row my-4">
+      <!-- <div class="cell col">ad7389ad</div> -->
+      <div class="cell col" data-id="courseName">ABC</div>
+      <div class="cell col" data-id="category">XYZ</div>
+      <div class="cell col" data-id="dateUpload">1/1/2023</div>
+      <div class="cell col" data-id="courseStatus">Hoạt động</div>
+      <div class="cell col-1" id="coursemanage-iconinfo"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
+          data-bs-target="#Modal-courseinfo"></i></div>
+    </div>
+  </template>
+  <template id="tradeAnalyticsRecord">
+    <div class="record row my-4">
+      <div class="cell col" data-id="typeoftrade-tradeanalytics">Mua khoá học</div>
+      <div class="cell col" data-id="balance-tradeanalytics">500000</div>
+      <div class="cell col" data-id="dateoftrade-tradeanalytics">1/1/2023</div>
+      <div class="cell col" data-id="tradestatus-tradeanalytics">Thành công</div>
+    </div>
+  </template>
+  <template id="studentAnalyticsRecord">
+    <div class="record row my-4">
+      <div class="cell col" data-id="username-studentanalytics">Megumi</div>
+      <div class="cell col" data-id="coursebuy-studentanalytics">10</div>
+      <div class="cell col" data-id="coursefinish-studentanalytics">10</div>
+      <!-- <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#Modal-analytics-studentinfo"></i></div> -->
+    </div>
+  </template>
+  <template id="expertAnalyticsRecord">
+    <div class="record row my-4">
+      <div class="cell col" data-id="username-expertanalytics">Megumi</div>
+      <div class="cell col" data-id="courseupload-expertanalytics">10</div>
+      <div class="cell col" data-id="revenue-expertanalytics">500000</div>
+      <!-- <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#Modal-analytics-studentinfo"></i></div> -->
+    </div>
+  </template>
+  <template id="courseAnalyticsRecord">
+    <div class="record row my-4">
+      <div class="cell col" data-id="coursename-courseanalytics">ABC</div>
+      <div class="cell col" data-id="regusercount-courseanalytics">100</div>
+      <div class="cell col" data-id="rate-courseanalytics">5</div>
+      <!-- <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#Modal-analytics-studentinfo"></i></div> -->
+    </div>
   </template>
   <header>
     <nav class="navbar navbar-expand-lg ">
@@ -583,15 +625,7 @@
                     <div class="cell col-1"></div> <!--icon information-->
                   </div>
                   <div class="container data-view bg-white rounded-3 p-3">
-                    <div class="record row">
-                      <!-- <div class="cell col">ad7389ad</div> -->
-                      <div class="cell col">ABC</div>
-                      <div class="cell col">XYZ</div>
-                      <div class="cell col">1/1/2023</div>
-                      <div class="cell col">Hoạt động</div>
-                      <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
-                          data-bs-target="#Modal-courseinfo"></i></div>
-                    </div>
+                    
                   </div>
                   <div class="modal fade rounded-3" id="Modal-courseinfo" role="dialog">
                     <div class="modal-dialog modal-xxl modal-dialog-centered">
@@ -612,55 +646,57 @@
                             <div class="row justify-content-center my-2">
                               <div class="col-5">Tên khoá học</div>
                               <div class="col-auto">
-                                <input type="text" placeholder="HTML" name="txt-course-name" readonly>
+                                <input type="text" id="detail-courseName" placeholder="HTML" name="txt-course-name" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col-5">Thể loại</div>
                               <div class="col-auto">
-                                <input type="text" placeholder="Frontend" name="txt-course-category" readonly>
+                                <input type="text" id="detail-courseCategory" placeholder="Frontend" name="txt-course-category" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col-5">Người đăng</div>
                               <div class="col-auto">
-                                <input type="text" placeholder="Expert A" name="txt-user" readonly>
+                                <input type="text" id="detail-courseUploader" placeholder="Expert A" name="txt-user" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col-5">Ngày đăng tải</div>
                               <div class="col-auto">
-                                <input type="text" placeholder="11/11/1111" name="txt-course-upload-date" readonly>
+                                <input type="text" id="detail-courseDateUpload" placeholder="11/11/1111" name="txt-course-upload-date" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col-5">Giá khoá học</div>
                               <div class="col-auto">
-                                <input type="text" placeholder="500000" name="txt-course-price" readonly>
+                                <input type="text" id="detail-coursePrice" placeholder="500000" name="txt-course-price" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col-5">Giảm giá(%) </div>
                               <div class="col-auto">
-                                <input type="text" placeholder="50" name="txt-course-discount" readonly>
+                                <input type="text" id="detail-courseDiscount" placeholder="50" name="txt-course-discount" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col-5">Chiết khấu(%)</div>
                               <div class="col-auto">
-                                <input type="text" placeholder="10" name="txt-course-feepercent" readonly>
+                                <input type="text" id="detail-courseFee" placeholder="10" name="txt-course-feepercent" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
                               <div class="col-5">Trạng thái khoá học</div>
                               <div class="col-auto">
-                                <input type="text" placeholder="Hoạt động" name="txt-course-status" readonly>
+                                <input type="text" id="detail-courseStatus" placeholder="Hoạt động" name="txt-course-status" readonly>
                               </div>
                             </div>
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="nav-item btn btn-default">Lưu trữ</button>
+                          <button type="button" id="btn-bancourse" class="nav-item btn btn-default">Lưu trữ</button>
+                          <button type="button" id="btn-unbancourse" class="nav-item btn btn-default">Bỏ lưu trữ</button>
+                          <button type="button" id="btn-delcourse" class="nav-item btn btn-default">Cấm vĩnh viễn</button>
                           <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
                             style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
                         </div>
@@ -795,152 +831,162 @@
                           </li>
                         </ul>
                       </div>
-                      <div class="search-area">
-                        <input type="text" id="txtsearch-analytics">
-                        <button type="button" id="btn-search-trade" class="btn nav-item">Tìm kiếm</button>
-                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="tab-content">
                   <div class="tab-pane container active p-0" id="trade">
-                    <div class="filter-bar">
-                      <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
-                        <div class="hstack gap-3 justify-content-between p-2">
-                          <div class="trade-type">
-                            <span class="">Loại giao dịch</span>
-                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                              <input type="checkbox" class="btn-check" id="btnchecktrue-tradetype1-analytics"
-                                autocomplete="off" checked>
-                              <label class="nav-item btn btn-outline-primary"
-                                for="btnchecktrue-tradetype1-analytics">Mua khoá học</label>
-
-                              <input type="checkbox" class="btn-check" id="btnchecktrue-tradetype2-analytics"
-                                autocomplete="off" checked>
-                              <label class="nav-item btn btn-outline-primary"
-                                for="btnchecktrue-tradetype2-analytics">Duy trì tài khoản</label>
+                    <div class="thongkegiaodich">
+                      <div class="filter-bar">
+                        <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
+                          <div class="hstack gap-3 justify-content-between p-2">
+                            <div class="trade-type">
+                              <span class="">Loại giao dịch</span>
+                              <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                <input type="checkbox" class="btn-check" id="btnchecktrue-tradetype1-analytics"
+                                  autocomplete="off" checked>
+                                <label class="nav-item btn btn-outline-primary"
+                                  for="btnchecktrue-tradetype1-analytics">Mua khoá học</label>
+  
+                                <input type="checkbox" class="btn-check" id="btnchecktrue-tradetype2-analytics"
+                                  autocomplete="off" checked>
+                                <label class="nav-item btn btn-outline-primary"
+                                  for="btnchecktrue-tradetype2-analytics">Duy trì tài khoản</label>
+                              </div>
+                            </div>
+                            <div>
+                              <span>Số tiền giao dịch</span>
+                              <input type="text" id="txtbalance-from">
+                              <span>-</span>
+                              <input type="text" id="txtbalance-to">
                             </div>
                           </div>
-                          <div class="trade-status">
-                            <span class="">Trạng thái</span>
-                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                              <input type="checkbox" class="btn-check" id="btnchecktrue-tradestatus-analytics"
-                                autocomplete="off" checked>
-                              <label class="nav-item btn btn-outline-primary"
-                                for="btnchecktrue-tradestatus-analytics">Thành công</label>
-
-                              <input type="checkbox" class="btn-check" id="btncheckfalse-tradestatus-analytics"
-                                autocomplete="off" checked>
-                              <label class="nav-item btn btn-outline-primary"
-                                for="btncheckfalse-tradestatus-analytics">Thất bại</label>
+                          <div class="hstack gap-3 justify-content-between p-2">
+                            <div class="userdatecreate">
+                              <span class="">Ngày giao dịch</span>
+                              <input type="date" id="datetrade-from">
+                              <span class="">-</span>
+                              <input type="date" id="datetrade-to">
+                            </div>
+                            <div class="trade-status">
+                              <span class="">Trạng thái</span>
+                              <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                <input type="checkbox" class="btn-check" id="btnchecktrue-tradestatus-analytics"
+                                  autocomplete="off" checked>
+                                <label class="nav-item btn btn-outline-primary"
+                                  for="btnchecktrue-tradestatus-analytics">Thành công</label>
+                                <input type="checkbox" class="btn-check" id="btncheckwait-tradestatus-analytics"
+                                  autocomplete="off" checked>
+                                <label class="nav-item btn btn-outline-primary"
+                                  for="btncheckwait-tradestatus-analytics">Đang chờ</label>
+                                <input type="checkbox" class="btn-check" id="btncheckfalse-tradestatus-analytics"
+                                  autocomplete="off" checked>
+                                <label class="nav-item btn btn-outline-primary"
+                                  for="btncheckfalse-tradestatus-analytics">Thất bại</label>
+                              </div>
                             </div>
                           </div>
                         </div>
-                        <div class="hstack gap-3 justify-content-between p-2">
-                          <div class="userdatecreate">
-                            <span class="">Ngày giao dịch</span>
-                            <input type="date" id="datetrade-from">
-                            <span class="">-</span>
-                            <input type="date" id="datetrade-to">
-                          </div>
+                      </div>
+                      <div class="container manager">
+                        <div class="container hstack field-bar my-3 rounded-3 bg-white p-3 ">
+                          <!-- <div class="cell col">Mã giao dịch</div> -->
+                          <div class="cell col">Loại giao dịch</div>
+                          <div class="cell col">Số tiền giao dịch</div>
+                          <div class="cell col">Ngày giao dịch</div>
+                          <div class="cell col">Trạng thái giao dịch</div>
+                        </div>
+                        <div class="container data-view bg-white rounded-3 p-3">
+                          
                         </div>
                       </div>
-                    </div>
-                    <div class="container manager">
-                      <div class="container hstack field-bar my-3 rounded-3 bg-white p-3 ">
-                        <!-- <div class="cell col">Mã giao dịch</div> -->
-                        <div class="cell col">Loại giao dịch</div>
-                        <div class="cell col">Số tiền giao dịch</div>
-                        <div class="cell col">Ngày giao dịch</div>
-                        <div class="cell col">Trạng thái giao dịch</div>
-                      </div>
-                      <div class="container data-view bg-white rounded-3 p-3">
-                        <div class="record row">
-                          <!-- <div class="cell col">ad7389ad</div> -->
-                          <div class="cell col">Mua khoá học</div>
-                          <div class="cell col">500000</div>
-                          <div class="cell col">1/1/2023</div>
-                          <div class="cell col">Thành công</div>
-                        </div>
-                      </div>
-
                     </div>
                   </div>
                   <div class="tab-pane container fade p-0" id="student">
-                    <div class="filter-bar">
-                      <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
-                        <div class=" hstack justify-content-start gap-3 p-2">
-                          <span>Số khoá học đã mua</span>
-                          <input type="text" id="txtcoursebuy-from">
-                          <span>-</span>
-                          <input type="text" id="txtcoursebuy-to">
+                    <div class="thongkehocvien">
+                      <div class="filter-bar">
+                        <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
+                          <div class=" hstack justify-content-between gap-3 p-2">
+                            <div>
+                              <span>Số khoá học đã mua</span>
+                              <input type="text" id="txtcoursebuy-from">
+                              <span>-</span>
+                              <input type="text" id="txtcoursebuy-to">
+                            </div>
+                            <div class="search-area">
+                              <input type="text" id="txtsearch-studentanalytics">
+                              <button type="button" id="btn-search-studentanalytics" class="btn nav-item">Tìm kiếm</button>
+                            </div>
+                          </div>
+                          <div class=" hstack justify-content-start gap-3 p-2">
+                            <div>
+                              <span>Số khoá học đã hoàn thành</span>
+                              <input type="text" id="txtcoursefinish-from">
+                              <span>-</span>
+                              <input type="text" id="txtcoursefinish-to">
+                            </div>
+                          </div>
                         </div>
-                        <div class=" hstack justify-content-start gap-3 p-2">
-                          <span>Số khoá học đã hoàn thành</span>
-                          <input type="text" id="txtcoursefinish-from">
-                          <span>-</span>
-                          <input type="text" id="txtcoursefinish-to">
+  
+                      </div>
+                      <div class="container manager">
+                        <div class="container hstack field-bar my-3 rounded-3 bg-white p-3">
+                          <!-- <div class="cell col">Mã học viên</div> -->
+                          <div class="cell col">Tên học viên</div>
+                          <div class="cell col">Số khoá học đã mua</div>
+                          <div class="cell col">Số khoá học đã hoàn thành</div>
                         </div>
-                      </div>
-
-                    </div>
-                    <div class="container manager">
-                      <div class="container hstack field-bar my-3 rounded-3 bg-white p-3">
-                        <!-- <div class="cell col">Mã học viên</div> -->
-                        <div class="cell col">Tên học viên</div>
-                        <div class="cell col">Số khoá học đã mua</div>
-                        <div class="cell col">Số khoá học đã hoàn thành</div>
-                      </div>
-                      <!-- <div class="cell col-1"></div> icon information  -->
-                      <div class="container data-view bg-white rounded-3 p-3">
-                        <div class="record row">
-                          <!-- <div class="cell col">ad7389ad</div> -->
-                          <div class="cell col">Megumi</div>
-                          <div class="cell col">10</div>
-                          <div class="cell col">10</div>
-                          <!-- <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#Modal-analytics-studentinfo"></i></div> -->
+                        <!-- <div class="cell col-1"></div> icon information  -->
+                        <div class="container data-view bg-white rounded-3 p-3">
+                          
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="tab-pane container fade p-0" id="expert">
-                    <div class="filter-bar">
-                      <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
-                        <div class=" hstack justify-content-start gap-3 p-2">
-                          <span>Số khoá học đã đăng</span>
-                          <input type="text" id="txtcourseupload-from">
-                          <span>-</span>
-                          <input type="text" id="txtcourseupload-to">
-                        </div>
-                        <div class=" hstack justify-content-start gap-3 p-2">
-                          <span>Doanh thu</span>
-                          <input type="text" id="txtrevenue-from">
-                          <span>-</span>
-                          <input type="text" id="txtrevenue-to">
+                    <div class="thongkechuyengia">
+                      <div class="filter-bar">
+                        <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
+                          <div class=" hstack justify-content-between gap-3 p-2">
+                            <div>
+                              <span>Số khoá học đã đăng</span>
+                              <input type="text" id="txtcourseupload-from">
+                              <span>-</span>
+                              <input type="text" id="txtcourseupload-to">
+                            </div>
+  
+                            <div class="search-area">
+                              <input type="text" id="txtsearch-expertanalytics">
+                              <button type="button" id="btn-search-expertanalytics" class="btn nav-item">Tìm kiếm</button>
+                            </div>
+                          </div>
+                          <div class=" hstack justify-content-start gap-3 p-2">
+                            <div>
+                              <span>Doanh thu</span>
+                              <input type="text" id="txtrevenue-from">
+                              <span>-</span>
+                              <input type="text" id="txtrevenue-to">
+                            </div>
+                          </div>
                         </div>
                       </div>
+                      <div class="container manager">
+                        <div class="container hstack field-bar my-3 rounded-3 bg-white p-3">
+                          <!-- <div class="cell col">Mã chuyên gia</div> -->
+                          <div class="cell col">Tên chuyên gia</div>
+                          <div class="cell col">Số khoá học đã đăng</div>
+                          <div class="cell col">Doanh thu tháng trước</div>
+                          <!-- <div class="cell col-1"></div> icon information  -->
+                        </div>
+                        <div class="container data-view bg-white rounded-3 p-3">
+                          
+                        </div>
+                      </div>
+  
                     </div>
-                    <div class="container manager">
-                      <div class="container hstack field-bar my-3 rounded-3 bg-white p-3">
-                        <!-- <div class="cell col">Mã chuyên gia</div> -->
-                        <div class="cell col">Tên chuyên gia</div>
-                        <div class="cell col">Số khoá học đã đăng</div>
-                        <div class="cell col">Doanh thu tháng trước</div>
-                        <!-- <div class="cell col-1"></div> icon information  -->
-                      </div>
-                      <div class="container data-view bg-white rounded-3 p-3">
-                        <div class="record row">
-                          <!-- <div class="cell col">ad7389ad</div> -->
-                          <div class="cell col">Megumi</div>
-                          <div class="cell col">10</div>
-                          <div class="cell col">500000</div>
-                          <!-- <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#Modal-analytics-studentinfo"></i></div> -->
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
                   <div class="tab-pane container fade p-0" id="course">
+                   <div class="thongkekhoahoc">
                     <div class="filter-bar">
                       <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
                         <div class=" hstack justify-content-between gap-3 p-2">
@@ -950,11 +996,16 @@
                             <span>-</span>
                             <input type="text" id="txtstudentreg-to">
                           </div>
-                          <div class="hstack gap-3 justify-content-start">
-                            <div class="gap-1 hstack">
-                              <span>Đánh giá</span>
-                              <i class="fas fa-star" style="color: #ffff00;"></i>
-                            </div>
+                          <div class="search-area">
+                            <input type="text" id="txtsearch-courseanalytics">
+                            <button type="button" id="btn-search-courseanalytics" class="btn nav-item">Tìm kiếm</button>
+                          </div>
+                          
+                        </div>
+                        <div class=" hstack justify-content-between gap-3 p-2">
+                          <div class="gap-3 hstack">
+                            <span>Đánh giá</span>
+                            <i class="fas fa-star" style="color: #ffff00;"></i>
                             <select class="form-select" id="rate-from">
                               <option value="1" selected>1</option>
                               <option value="2">2</option>
@@ -984,15 +1035,10 @@
                         <!-- <div class="cell col-1"></div> icon information  -->
                       </div>
                       <div class="container data-view bg-white rounded-3 p-3">
-                        <div class="record row">
-                          <!-- <div class="cell col">ad7389ad</div> -->
-                          <div class="cell col">ABC</div>
-                          <div class="cell col">100</div>
-                          <div class="cell col">5</div>
-                          <!-- <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#Modal-analytics-studentinfo"></i></div> -->
-                        </div>
+                        
                       </div>
                     </div>
+                   </div>
                   </div>
                 </div>
               </div>
@@ -1052,6 +1098,8 @@
   <script type="module" src="/js/home.js"></script>
   <script type="module" src="/js/admin/system.js"></script>
   <script type="module" src="/js/admin/userManage.js"></script>
+  <script type="module" src="/js/admin/courseManage.js"></script>
+  <script type="module" src="/js/admin/analytics.js"></script>
 
 </body>
 
