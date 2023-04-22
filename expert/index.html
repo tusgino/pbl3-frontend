@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Courses</title>
+  <link rel="shortcut icon" href="images/logo.png" type="image/png">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/styles/bootstrap/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Use font Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+
+  <!-- Internal CSS -->
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/home.css">
+  <link rel="stylesheet" href="/styles/coursepost.css">
+  <link rel="stylesheet" href="/styles/profile.css">
+  <link rel="stylesheet" href="/styles/expert/style.css">
+</head>
+
+<body>
+
+  <template id="courseTemplate">
+    <li class="course-item">
+      <img
+        src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+        alt="" class="course-image" data-id="thumbnail">
+      <h4 class="course-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+      <div class="course-info">
+        <div class="course-author">
+          <img
+            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+            alt="" data-id="avatar">
+          <span data-id="name">Nguyễn Văn B</span>
+        </div>
+        <span class="course-tag">Đang thịnh hành🔥</span>
+      </div>
+    </li>
+  </template>
+
+  <header>
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/index.html">
+          <img src="/images/logo.png" alt="" width="122" height="70">
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-container">
+      <section class="sidebar ">
+        <div class="d-flex flex-column flex-shrink-0 sidebar-item container-rounded" style="width: 300px; ">
+          <div
+            class="d-flex align-items-center ms-4 mt-5 mb-md-2 me-md-auto link-dark text-decoration-none sidebar-container">
+            <img
+              src="https://scontent.fdad3-4.fna.fbcdn.net/v/t39.30808-6/306842171_5450393821725874_8188976224161115177_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=1CtceYk53YAAX_8PEfK&_nc_ht=scontent.fdad3-4.fna&oh=00_AfAsdc0XnRVGnTI090OfMG0KTJQ4DGJvBRiffdktWvj7Aw&oe=6438031A"
+              alt="" class="avatar">
+            <div class="user m-lg-3">
+              <span class="user-name">Huỳnh Minh Cường</span>
+              <span class="user-desc">Chuyên gia tại THH</span>
+            </div>
+          </div>
+          <ul class="nav nav-pills flex-column" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-bs-toggle="pill" href="#info" id="info-tab"><i
+                  class="far fa-user item-icon"></i>
+                <span>Thông tin cá nhân</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="pill" href="#learning" id="learning-tab"><i
+                  class="fas fa-th-large item-icon"></i>
+                <span>Quản lí khóa học</span></a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="dashboard" style="width:100%;min-height: 80vh;">
+        <div class="container p-0">
+          <div class="tab-content">
+            <div class="tab-pane container active" id="info">
+              <div class="info">
+                <div class="heading">
+                  <h1>Thông tin cá nhân</h1>
+                  <p class="desc">Cập nhật đầy đủ thông tin của bạn để hoạt động tốt hơn trên THH</p>
+                </div>
+                <div class="info-container">
+                  <div class="info-content">
+                    <div class="info-avatar">
+                      <form id="file-upload-form" class="uploader">
+                        <input id="file-upload" type="file" name="fileUpload" hidden />
+                        <label for="file-upload" id="file-drag">
+                          <img id="file-image" src="#" alt="Preview" class="hidden">
+                          <div id="start">
+                            <div id="notimage" class="hidden"></div>
+                          </div>
+                          <div id="response" class="hidden">
+                            <div id="messages"></div>
+                          </div>
+                        </label>
+                      </form>
+                    </div>
+                    <div class="info-form">
+                      <input type="text" name="name" id="name">
+                      <input type="text" name="phone" id="phone">
+                      <input type="password" name="password" id="password">
+                      <input type="email" name="email" id="email" disabled>
+                      <button class="save-info show-bankinfo" data-bs-toggle="modal"
+                        data-bs-target="#bankinfo-modal">Hiển thị tài khoản ngân hàng</button>
+                    </div>
+
+                  </div>
+                  <hr>
+                  <div class="learning-courses">
+                    <div class="degree-heading">
+                      <h3 class="heading-text">Bằng cấp - Chứng nhận</h3>
+                      <i type="button" class="fa fa-plus" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
+
+                    </div>
+                    <div class="degree-container">
+                      <ul class="degree-list">
+                        <li class="degree-item">
+                          <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit.
+                          </h4>
+
+                          <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
+
+                        </li>
+                        <li class="degree-item">
+                          <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit.
+                          </h4>
+                          <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
+
+                        </li>
+                        <li class="degree-item">
+                          <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit.
+                          </h4>
+                          <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
+
+                        </li>
+
+                      </ul>
+                    </div>
+                  </div>
+                  <button class="save-info">Lưu lại</button>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane container fade" id="learning">
+              <div class="learning-container">
+                <div class="heading">
+                  <h1>Quản lí khoá học</h1>
+                  <p class="desc">Khóa học, tài liệu mà bạn đăng tải sẽ được hiển thị dưới đây</p>
+                </div>
+                <div class="learning-search">
+                  <div class="search-form">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Tìm kiếm..." class="search-input">
+                  </div>
+                </div>
+                <div class="learning-courses">
+                  <ul class="learning-list">
+                    <li class="learning-item">
+                      <div class="learning-thumbnail">
+                        <img
+                          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                          alt="" class="learning-image" data-id="thumbnail">
+                      </div>
+                      <div class="learning-info">
+                        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit.
+                        </h4>
+                        <!-- <div class="learning-author">
+                          <img
+                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                            alt="" data-id="avatar">
+                          <span data-id="name">Nguyễn Văn B</span>
+                        </div> -->
+                      </div>
+                    </li>
+                    <li class="learning-item">
+                      <div class="learning-thumbnail">
+                        <img
+                          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                          alt="" class="learning-image" data-id="thumbnail">
+                      </div>
+                      <div class="learning-info">
+                        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit.
+                        </h4>
+                        <!-- <div class="learning-author">
+                          <img
+                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                            alt="" data-id="avatar">
+                          <span data-id="name">Nguyễn Văn B</span>
+                        </div> -->
+                      </div>
+                    </li>
+                    <li class="learning-item">
+                      <div class="learning-thumbnail">
+                        <img
+                          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                          alt="" class="learning-image" data-id="thumbnail">
+                      </div>
+                      <div class="learning-info">
+                        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit.
+                        </h4>
+                        <!-- <div class="learning-author">
+                          <img
+                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                            alt="" data-id="avatar">
+                          <span data-id="name">Nguyễn Văn B</span>
+                        </div> -->
+                      </div>
+                    </li>
+                  </ul>
+                  <button class="save-info create-course">Đăng tải khoá học</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal degree -->
+        <div class="modal fade" id="degree-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h1 class="degree-title">Nhập thông tin bằng cấp - kinh nghiệm</h1>
+
+                <div class="degree-info">
+                  <img
+                    src="https://plus.unsplash.com/premium_photo-1669825003963-b76f8035d678?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80"
+                    alt="" id="degree-img">
+                  <div class="degree-text">
+                    <input type="text" id="degree-name" placeholder="Tên bằng cấp">
+                    <textarea name="degree-desc" id="degree-desc" placeholder="Mô tả bằng cấp"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="save-info degree-save">Lưu</button>
+                <button class="save-info degree-cancel">Huỷ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Modal bankinfo -->
+
+        <div class="modal fade" id="bankinfo-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h1 class="bankinfo-title">Xem thông tin tài khoản ngân hàng</h1>
+
+                <div class="bankinfo-info">
+                  <input type="text" id="bankinfo-number" placeholder="Số tài khoản">
+                  <input type="text" id="bankinfo-name" placeholder="Tên chủ tài khoản">
+                  <input type="text" id="bankinfo-bankname" placeholder="Tên ngân hàng">
+                </div>
+              </div>
+              <div class="modal-action">
+                <button class="save-info bankinfo-save">Lưu</button>
+                <button class="save-info bankinfo-cancel">Huỷ</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div id="loading-overlay" class="hidden">
+      <div id="loading-spinner"></div>
+      <div id="loading-message">Đang tải lên...</div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="introduce-contrainer">
+      <div class="introduce-list">
+        <div class="introduce-item">
+          <img src="/images/logo.png" alt="" class="info-logo">
+          <ul class="list-info">
+            <li class="info-item">Email: pbl3@thh.com</li>
+            <li class="info-item">Hotline: 0123456789</li>
+            <li class="info-item">Giờ làm việc 8h30-18h từ thứ 2 tới thứ 6.</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Địa chỉ</h4>
+          <ul class="list-info">
+            <li class="info-item">54 Nguyễn Lương Bằng, Liên Chiểu, Đà Nẵng</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Hướng dẫn</h4>
+          <ul class="list-info">
+            <li class="info-item">Giới thiệu</li>
+            <li class="info-item">Chính sách</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Khám phá</h4>
+          <ul class="list-info">
+            <li class="info-item">Solution</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Liên kết</h4>
+          <ul class="list-social">
+            <li class="social-item"><i class="fab fa-facebook-square"></i></i></li>
+            <li class="social-item"><i class="fab fa-youtube"></i></li>
+            <li class="social-item"><i class="fab fa-twitter-square"></i></li>
+          </ul>
+        </div>
+  </footer>
+
+  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <script type="module" src="/js/helpers/slick.js"></script>
+  <script type="module" src="/js/main.js"></script>
+  <script type="module" src="/js/home.js"></script>
+  <script type="module" src="/js/profile.js"></script>
+</body>
+
+</html>

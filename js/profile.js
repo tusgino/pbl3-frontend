@@ -152,5 +152,4 @@ const handleSaveInfo = async (id) => {
     tabInfo.classList.remove('active');
     info.classList.remove('active');
   }
-
 })()
