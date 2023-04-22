@@ -33,36 +33,50 @@
 
 </head>
 
+<template id="video-template">
+  <video id="player" playsinline controls>
+    <source src="https://drive.google.com/uc?id=11W6_VgvRY1gs_Ptv0RQuZCUUCVxVG1aj&export=download" type="video/mp4"
+      class="video-src">
+  </video>
+</template>
+
+<template id="content-lesson">
+  <div class="lesson-container">
+    <section class="video">
+    </section>
+    <section class="desc"></section>
+    <section class="control">
+      <h3 class="title">Bài 1: Giới thiệu khóa học</h3>
+      <a href="" class="next"><i class="far fa-arrow-alt-circle-right"></i> <span>Bài tiếp theo</span></a>
+    </section>
+  </div>
+</template>
+
+<template id="lesson-template">
+  <a href="" class="lesson-item"><i class="fas fa-play-circle"></i> <span class="lesson-name">Bài 1: Giới thiệu
+      khóa
+      học</span></a>
+</template>
+
+<template id="tab-template">
+  <div class="tab-item">
+    <h3 class="item-heading" data-id="title"></h3>
+    <div class="lesson-list">
+    </div>
+  </div>
+</template>
+
 <body>
   <div class="dashboard-container">
     <div class="tab active">
       <div class="tab-heading">
         <h2 class="title">Nội dung khóa học</h2>
-        <div class="expand">
+        <!-- <div class="expand">
           <i class="far fa-arrow-alt-circle-left"></i>
-          <!-- <i class="fas fa-chevron-circle-right"></i> -->
           <span>Mở rộng</span>
-        </div>
+        </div> -->
       </div>
       <div class="tab-list">
-        <div class="tab-item">
-          <div class="item-heading">Chương 1: Thiết lập và tổng quan</div>
-          <div class="lesson-list">
-            <a href="" class="lesson-item active"><i class="fas fa-play-circle"></i> <span>Bài 1: Giới thiệu khóa
-                học</span></a>
-            <a href="" class="lesson-item"><i class="fas fa-play-circle"></i> <span>Bài 2: Các thiết lập quan
-                trọng</span> </a>
-          </div>
-        </div>
-        <div class="tab-item">
-          <div class="item-heading">Chương 2: Kiến thức</div>
-          <div class="lesson-list">
-            <a href="" class="lesson-item"><i class="fas fa-play-circle"></i> <span>Bài 3: Các kiến thức cơ bản</span>
-            </a>
-            <a href="" class="lesson-item"><i class="fas fa-play-circle"></i> <span>Bài 4: Phân tích thiết kế</span>
-            </a>
-          </div>
-        </div>
       </div>
     </div>
     <div class="content">
@@ -76,29 +90,16 @@
           </div>
         </nav>
       </header>
-      <main>
-        <section class="video">
-          <video id="player" playsinline controls>
-            <source src="https://drive.google.com/uc?id=11W6_VgvRY1gs_Ptv0RQuZCUUCVxVG1aj&export=download"
-              type="video/mp4">
-          </video>
-        </section>
-        <section class="desc"></section>
-        <section class="control">
-          <h3 class="title">Bài 1: Giới thiệu khóa học</h3>
-          <a href="" class="next"><i class="far fa-arrow-alt-circle-right"></i> <span>Bài tiếp theo</span></a>
-        </section>
+      <main id="main">
       </main>
     </div>
   </div>
 
   <script type="module" src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.plyr.io/3.6.4/plyr.js"></script>
   <script type="module" src="/js/main.js"></script>
   <script type="module" src="/js/home.js"></script>
-  <script src="https://cdn.plyr.io/3.6.4/plyr.js"></script>
-  <script>
-    const player = new Plyr('#player');
-  </script>
+  <script type="module" src="/js/lesson/main.js"></script>
 
 </body>
 
