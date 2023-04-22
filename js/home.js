@@ -124,10 +124,14 @@ const renderUIRole = async (role, token) => {
       if (role.role == 'Expert') {
         btn_login.textContent = 'Quản lí khóa học';
         const order = document.querySelector('.nav-order');
+        console.log('hello');
         if (order) {
-          console.log('hello');
           order.style.display = 'none';
         }
+        if (avatar)
+          avatar.addEventListener('click', () => {
+            window.location.href = `/expert/index.html`;
+          })
       }
       if (role.role == 'Admin') {
         btn_login.textContent = 'Quản lí hệ thống';
@@ -140,6 +144,10 @@ const renderUIRole = async (role, token) => {
         btn_login.addEventListener('click', () => {
           window.location.href = `/profile.html?id=${role.idUser}&page=learning`;
         });
+        if (avatar)
+          avatar.addEventListener('click', () => {
+            window.location.href = `/profile.html?id=${role.idUser}&page=profile`;
+          })
       }
     }
     const btn_profile = document.querySelector(".nav-avatar");
