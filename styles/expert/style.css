@@ -32,9 +32,10 @@ html {
 .degree-item {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1.8rem 1rem;
   background-color: #fff;
   margin: 1.5rem 1rem;
+  border-radius: 1rem;
 }
 
 .degree-item > h4 {
@@ -65,10 +66,12 @@ html {
   justify-content: space-between;
   padding-left: 2rem;
   padding-right: 7rem;
+  margin: 2rem 0;
 }
 
 .degree-heading > h3 {
   font-size: 2.5rem;
+  /* margin: 2rem 0; */
 }
 
 .degree-heading > i {
@@ -170,7 +173,7 @@ html {
 }
 
 .save-info.create-course {
-  margin-top: 10rem;
+  margin-top: 3rem;
 }
 
 .modal-action {

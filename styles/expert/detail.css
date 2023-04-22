@@ -1,0 +1,206 @@
+@import url(/styles/variables.css);
+html {
+  font-size: 62.5%;
+}
+.page-container {
+  margin-top: 8rem;
+}
+
+.detail-title,
+.detail-desc {
+  font-size: 3.2rem;
+  font-weight: 500;
+  color: var(--title-color);
+  margin-left: 5rem;
+}
+
+.detail-desc {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+section.detail-form {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 3rem 5rem;
+  font-size: 2rem;
+}
+
+.detail-item {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  margin-bottom: 3rem;
+  align-items: center;
+}
+
+.detail-item .detail-label {
+  font-weight: 500;
+  color: var(--title-color);
+}
+
+.detail-item > input {
+  border: none;
+  background-color: #f2f2f2;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+  padding: 1.2rem 2rem;
+  width: 80%;
+}
+
+.detail-item > input:focus {
+  outline-color: var(--secondary-color);
+}
+
+.desc-content > label {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.desc-content {
+  width: 80%;
+}
+.ck-editor__editable {
+  height: 20rem;
+  font-size: 1.6rem;
+  font-weight: 300;
+  padding: 1rem;
+  resize: none;
+}
+
+.detail-category > select {
+  border: none;
+  background-color: #f2f2f2;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+  padding: 1.2rem 2rem;
+  width: 80%;
+}
+.detail-category > select:focus {
+  outline: none;
+}
+
+#file-drag {
+  width: 80%;
+  height: calc(88.8rem * 9 / 16);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  background-image: url(/images/upload.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20%;
+  border: 2px dashed #404040;
+  cursor: pointer;
+}
+
+/* Ảnh được hiển thị trong khung nhìn trước ảnh */
+#file-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: relative;
+}
+
+/* Ẩn các phần tử không cần thiết ban đầu */
+.hidden {
+  display: none;
+}
+
+.status-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  column-gap: 3rem;
+}
+
+.status-content label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  cursor: pointer;
+  position: relative;
+}
+
+.status-content input {
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.status-content .design {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #494949;
+  border-radius: 50%;
+  margin-right: 2rem;
+}
+
+.status-content .design::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+}
+
+.status-content .design::before {
+  background: var(--secondary-color);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.status-content .text {
+  font-weight: 600;
+}
+
+.status-content input:checked + .design::before {
+  opacity: 1;
+  transform: scale(0.6);
+}
+
+.status-content input:hover + .design,
+input:focus + .design {
+  border: 1px solid var(--secondary-color);
+}
+
+.status-content input:hover ~ .text {
+  color: var(--secondary-color);
+}
+
+.btn {
+  width: 24rem;
+  height: 5rem;
+  background-color: var(--secondary-color);
+  border-radius: 1rem;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+.detail-chapter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 3rem;
+}
