@@ -1,36 +1,94 @@
-import { setTextContent } from "../utils";
-import categoryAPI from "./categoryAPI";
+import { getValueForm, setTextContent, showModal } from "../utils";
+import categoryAPI from "./categoryAPI";    
+import courseAPI from "./courseAPI";
+import systemAPI  from "./system";
 
 const token = localStorage.getItem('token');
 
+const addCategory = async() => {
+
+    const categoryname = document.getElementById('category-name');
+    const message = categoryname.parentNode.querySelector('.form-message');
+    const formadd = document.getElementById('btn-form-addcategory');
+    formadd.addEventListener('click',() => {
+        categoryname.value = '';
+        message.textContent = '';
+    })
+    const btnadd = document.getElementById('btn-add-category');
+    btnadd.addEventListener('click', async() => {
+        if(categoryname.value != "") {
+            const params = {
+                "_category_name" : categoryname.value,
+            };
+            const res = await categoryAPI.addCategory(params, token);
+            
+            if(res.message == "Trung") {
+                alert("Them that bai");
+            } else {
+                alert('Them thanh cong');
+            }
+            getCategories(1);
+        }
+    })
+
+    
+}
+
+const deleteCategories = async() => {
+    const modaldel = document.getElementById('Modal-delcategory');
+    const btnmodaldel = modaldel.querySelector('.close');
+    const dataview = document.querySelector('.quanlidanhmuc .data-view');
+    const checkboxes = dataview.getElementsByClassName('checkbox-category')
+
+    btnmodaldel.addEventListener('click', () => {
+        if(checkboxes.length == 0) {
+            alert("Chưa chọn cái nào");
+            return;
+        }
+    })
+
+    const btndel = document.getElementById('btn-del-category');
+    if(!btndel) return;
+
+    btndel.addEventListener('click', async() => {
+        const list = [];
+        for(let i = 0; i < checkboxes.length; ++i) {
+            if(checkboxes[i].checked == true) {
+                list.push(checkboxes[i].value);
+            }
+        }
+        console.log(list);
+        await categoryAPI.deleteCategories(list, token);
+        getCategories(1);
+    })
+}
+
 const getCategories = async(page) => {
+    const checkboxall = document.getElementById('checkbox-all');
+    checkboxall.checked = false;
+
     const params = {
-    "_title_like" : document.getElementById('txtsearch-categorymanage').value,
-    "page" : page,
+        "_title_like" : document.getElementById('txtsearch-categorymanage').value,
+        "page" : page,
     };
 
     const dataview = document.querySelector(".quanlidanhmuc .data-view");
     dataview.textContent = "";
     
     const { data : {_data, _totalRows}} = await categoryAPI.getAllCategory(params, token);
-
-    renderRecord(_data);
-    renderPagination(_totalRows);
-
-
+    systemAPI.renderRecord(_data, 'quanlidanhmuc', createRecord);
+    systemAPI.renderPagination(_totalRows, 'quanlidanhmuc', getCategories);
 };
 
-const setEventSearch = () => {
+const setEventSearch = async() => {
     const btnsearch = document.getElementById('btn-search-categorymanage');
     btnsearch.addEventListener('click', async() => {
         getCategories(1);
     })
-
 }
 
 const createRecord = (data) => {
     if(!data) return;
-
     const categoryManageRecord = document.getElementById('categoryManageRecord')
     if(!categoryManageRecord) return;
 
@@ -39,48 +97,49 @@ const createRecord = (data) => {
 
     setTextContent(record, '[data-id="categoryName"]', data.name);
 
+    const checkbox = record.querySelector('.checkbox-category');
+    checkbox.setAttribute('value', `${data.idCategory}`);
+    checkbox.addEventListener('click' , () => {
+        console.log(checkbox.value);
+    })
+
+    const iconinfo = record.getElementById('categorymanage-iconinfo');
+    
+    iconinfo.addEventListener('click', async() => {
+    
+        const ul = document.getElementById('categoryCourseList');
+        ul.textContent = "";    
+    
+        const params = {
+            id : data.idCategory,
+        }
+        const courseList = await courseAPI.getAllCoursesByCategoryID(params, token);
+        console.log(courseList);
+        courseList.forEach((course) => {
+            ul.appendChild(createCourseItem(course));
+        });
+    })
 
     return record;
 }
-
-const renderRecord = (userList) => {
-    
-    if(!Array.isArray(userList) || userList.length === 0) return;
-    const dataview = document.querySelector(".quanlidanhmuc .data-view");
-    console.log(dataview);
-    if(!dataview) return;
-    userList.forEach((user) => {
-        const record = createRecord(user);
-        if(record) {
-            dataview.appendChild(record);
-        }
-    });
+const createCourseItem = (data) => {
+    const li = document.createElement('li');
+    li.setAttribute('class', 'mt-2');
+    li.textContent = data;
+    return li;
 }
 
-const createPage = (data) => {
-    const liElement = document.createElement('li');
-    liElement.classList.add("page-item");
-    liElement.classList.add("btn");
+(async() => {
+    try {
+        getCategories(1);
+        
+        setEventSearch();
+        
+        addCategory();
 
-    liElement.textContent = data;
+        deleteCategories();
 
-    liElement.addEventListener('click', async() => {
-        getUsers(data);
-    })
-    // console.log(liElement);
-    return liElement;
-}
-
-const renderPagination = (totalRows) => {
-    const ulElement = document.createElement('ul');
-    ulElement.classList.add("pagination");
-    ulElement.classList.add("justify-content-center");
-    ulElement.classList.add("gap-2");
-    const totalPage = Math.ceil(totalRows / 10);
-    for(let i = 1; i <= totalPage; ++i) {
-        ulElement.appendChild(createPage(i));
+    } catch(error) {
+        console.log(error);
     }
-    const dataview = document.querySelector(".quanlinguoidung .data-view");
-    dataview.appendChild(ulElement);
-    // console.log(ulElement);
-} 
+})()

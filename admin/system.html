@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="/styles/admin/system.css">
 
 
+
 </head>
 
 <body>
@@ -77,6 +78,14 @@
       <div class="cell col" data-id="courseStatus">Hoạt động</div>
       <div class="cell col-1" id="coursemanage-iconinfo"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal"
           data-bs-target="#Modal-courseinfo"></i></div>
+    </div>
+  </template>
+  <template id="categoryManageRecord">
+    <div class="record row my-4">
+      <input type="checkbox" name="checkboxcategory" class="cell col-1 checkbox-category">
+      <!-- <div class="cell col">ad7389ad</div> -->
+      <div class="cell col" data-id="categoryName">ABC</div>
+      <div class="cell col-1" id="categorymanage-iconinfo"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#Modal-category-info"></i></div>
     </div>
   </template>
   <template id="tradeAnalyticsRecord">
@@ -405,9 +414,9 @@
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" id="btn-banacc" class="nav-item btn btn-default">Khoá tài khoản</button>
-                          <button type="button" id="btn-unbanacc" class="nav-item btn btn-default">Mở tài khoản</button>
-                          <button type="button" id="btn-delacc" class="nav-item btn btn-default">Xoá tài khoản</button>
+                          <button type="button" id="btn-banacc" data-bs-dismiss="modal" class="nav-item btn btn-default">Khoá tài khoản</button>
+                          <button type="button" id="btn-unbanacc" data-bs-dismiss="modal" class="nav-item btn btn-default">Mở tài khoản</button>
+                          <button type="button" id="btn-delacc" data-bs-dismiss="modal" class="nav-item btn btn-default">Xoá tài khoản</button>
                           <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
                             style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
                         </div>
@@ -534,46 +543,52 @@
               </div>
             </div>
             <div class="tab-pane container fade" id="usermanager-addadmin">
-              <div class="container bg-white p-3 pb-5">
-                <h2 style="position: relative; top:1rem;"><i class="fas fa-arrow-right fa-lg"></i> Thêm Admin</h3>        
-                  <div class="row justify-content-center my-2">
-                    <div class="col-auto"><img
-                        src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
-                        alt="" class="avatar"></div>
-                      <!-- Avatar Display -->
-                    <!-- <img src="default-avatar.png" alt="Default Avatar" width="200" height="200"> -->
-
-                    <!-- Avatar Upload Form -->
-                    <!-- <form action="#" method="post" enctype="multipart/form-data">
-                      <label for="avatar">Choose an avatar:</label>
-                      <input type="file" id="avatar" name="avatar" accept="image/*">
-                      <br>
-                      <input type="submit" value="Upload">
-                    </form> -->
+              <div class="container bg-white p-3 pb-5 ">
+                <h1 style="top:2rem;"><i class="fas fa-arrow-right fa-lg"></i> Thêm Admin</h1>        
+                <div class="container mt-3" style="display:grid; grid-template-columns: repeat(3,1fr);">
+                  <div class="col cell">
+                      <input type="file" id="file-upload" name="file-upload" hidden>
+                      <div>
+                        <img src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
+                        alt="avatar" class="avatar" style="width: 9rem;height: 9rem;">
+                        <label for="file-upload" >
+                          <i class="fas fa-camera fa-lg" style="color: #787878;position:relative; bottom: 0.7rem;right: 1.7rem; "></i>
+                        </label>
+                      </div>
                   </div>
-                  <div class="row justify-content-center my-2">
-                      <input type="text" placeholder="Tên người dùng" name="txt-user-name">
+                  <div class="col">
+                    <div class="row">
+                      <input type="text" placeholder="Tên người dùng" name="txt-admin-name">
+                    </div>
+                    <div class="row">
+                      <input type="date" placeholder="Ngày sinh" name="txt-admin-birth">
+                    </div>
+                    <div class="row">
+                      <input type="text" placeholder="Số điện thoại" name="txt-admin-phonenumber">
+                    </div>
+                    <div class="row">
+                      <input type="text" placeholder="CCCD" name="txt-admin-idcard">
+                    </div>
                   </div>
-                  <div class="row justify-content-center my-2">
-                      <input type="date" placeholder="Ngày sinh" name="txt-user-birth">
+                  <div class="col">
+                    <div class="row">
+                      <input type="text" placeholder="Email" name="txt-admin-email">
+                    </div>
+                    <div class="row">
+                      <input type="text" placeholder="Số tài khoản" name="txt-admin-banknumber">  
+                    </div>
+                    <div class="row">
+                      <input type="text" placeholder="Tên ngân hàng" name="txt-admin-bankname">
+                    </div>
+                    <div class="row">
+                      <input type="text" placeholder="Mật khẩu" name="txt-admin-password">
+                    </div>
                   </div>
-                  <div class="row justify-content-center my-2">
-                      <input type="text" placeholder="Số điện thoại" name="txt-user-pn">
-                  </div>
-                  <div class="row justify-content-center my-2">
-                      <input type="text" placeholder="CCCD" name="txt-user-idcard">
-                  </div>
-                  <div class="row justify-content-center my-2">
-                      <input type="text" placeholder="Email" name="txt-user-email">
-                  </div>
-                  <div class="row justify-content-center my-2">     
-                      <input type="text" placeholder="Số tài khoản" name="txt-user-datecreate">          
-                  </div>
-                  <div class="row justify-content-center my-2">
-                      <input type="text" placeholder="Tên ngân hàng" name="txt-user-status">
-                  </div>
-
-
+                </div>
+                <div class="mt-3 me-3 hstack gap-3" style="left:20rem">
+                  <button class="nav-item btn" id="btn-clear-form">Xoá thông tin</button>
+                  <button class="nav-item btn" id="btn-add-admin">Thêm Admin</button>
+                </div>
               </div>
             </div>
             <div class="tab-pane container fade" id="coursemanager">
@@ -694,9 +709,9 @@
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" id="btn-bancourse" class="nav-item btn btn-default">Lưu trữ</button>
-                          <button type="button" id="btn-unbancourse" class="nav-item btn btn-default">Bỏ lưu trữ</button>
-                          <button type="button" id="btn-delcourse" class="nav-item btn btn-default">Cấm vĩnh viễn</button>
+                          <button type="button" id="btn-bancourse" data-bs-dismiss="modal" class="nav-item btn btn-default">Lưu trữ</button>
+                          <button type="button" id="btn-unbancourse" data-bs-dismiss="modal" class="nav-item btn btn-default">Bỏ lưu trữ</button>
+                          <button type="button" id="btn-delcourse" data-bs-dismiss="modal" class="nav-item btn btn-default">Cấm vĩnh viễn</button>
                           <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
                             style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
                         </div>
@@ -712,7 +727,7 @@
                   <div class="container bg-white rounded-3 hstack justify-content-between p-3 container-rounded" style="width:100%"> 
                     <div>
                       <button type="button" class="nav-item btn" data-bs-toggle="modal"
-                        data-bs-target="#Modal-addcategory">Thêm danh mục</button>
+                        data-bs-target="#Modal-addcategory" id="btn-form-addcategory">Thêm danh mục</button>
                       <div class="modal fade" id="Modal-addcategory" role="dialog">
                         <div class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
@@ -722,10 +737,15 @@
                                   class="fas fa-times" style="color: #464646"></i></button>
                             </div>
                             <div class="modal-body">
-                              <input type="text" placeholder="Tên danh mục" name="category-name">
+                                <form class="form" id="addCategoryForm">
+                                  <div class="form-group">
+                                    <input type="text" placeholder="Tên danh mục" id="category-name"> 
+                                    <span class="form-message"></span>
+                                  </div>
+                                </form>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="nav-item btn btn-default">Thêm</button>
+                              <button type="button" class="nav-item btn btn-default form-submit" data-bs-dismiss="modal" id="btn-add-category">Thêm</button>
                               <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
                                 style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
                             </div>
@@ -741,14 +761,14 @@
                           <div class="modal-content">
                             <div class="modal-header">
                               <h3 class="modal-title">Xác nhận xoá danh mục</h3>
-                              <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
+                              <button type="button" class="close" data-bs-dismiss="modal" style="border:none;"><i
                                   class="fas fa-times" style="color: #464646"></i></button>
                             </div>
                             <div class="modal-body">
                               <p>Bạn có chắc chắn muốn xoá?</p>
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="nav-item btn btn-default">Xoá</button>
+                              <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal" id="btn-del-category">Xoá</button>
                               <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
                                 style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
                             </div>
@@ -771,12 +791,7 @@
                     <div class="cell col-1"></div> 
                   </div>
                   <div class="container data-view bg-white rounded-3 p-3">
-                    <div class="record row hstack">
-                      <input type="checkbox" name="checkboxcategory" class="cell col-1 checkbox-category">
-                      <!-- <div class="cell col">ad7389ad</div> -->
-                      <div class="cell col">ABC</div>
-                      <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#Modal-category-info"></i></div>
-                    </div>
+                    
                   </div>
                 </div>
                 <div class="modal fade" id="Modal-category-info" role="dialog">
@@ -788,9 +803,8 @@
                             class="fas fa-times" style="color: #464646"></i></button>
                       </div>
                       <div class="modal-body">
-                        <span>Danh mục gồm những khoá học sau</span>
-
-                        <ul class="ms-4">
+                        <span>Danh mục gồm những khoá học sau:</span>
+                        <ul class="ms-4 mt-2" id="categoryCourseList">
                           <li>Tên khoá học 1</li>
                           <li>Tên khoá học 2</li>
                         </ul>
@@ -1099,8 +1113,18 @@
   <script type="module" src="/js/admin/system.js"></script>
   <script type="module" src="/js/admin/userManage.js"></script>
   <script type="module" src="/js/admin/courseManage.js"></script>
+  <script type="module" src="/js/admin/categoryManage.js"></script>
   <script type="module" src="/js/admin/analytics.js"></script>
-
+  <script type="module">
+    import { Validator } from '/js/helpers/validator.js';
+    Validator({
+      form: '.form',
+      errorSelector: '.form-message',
+      rule: [
+        Validator.isRequired('#category-name', 'Nhập thiếu'),
+      ]
+    });
+  </script>
 </body>
 
 </html>

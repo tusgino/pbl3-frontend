@@ -31,6 +31,7 @@ main {
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
+  border : 1px solid #646464;
 }
 
 .user {
@@ -87,4 +88,44 @@ footer {
 
   /*this centers the text vertically*/
   align-items: center;
+}
+.form {
+  width: 100%;
+  align-self: center;
+}
+.form-group {
+  display: flex;
+  /* margin-bottom: 2rem; */
+  flex-direction: column;
+  position: relative;
+}
+.form-label,
+.form-message {
+  text-align: left;
+}
+
+.form-group.invalid .form-text {
+  border: 2px solid #ff0000;
+  /* border-color: #ff0000; */
+}
+.form-message {
+  font-size: 1rem;
+  padding: 0.4rem 0 0;
+  line-height: 1.6rem;
+}
+
+.form-group.invalid .form-message {
+  color: #ff0000;
+}
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--title-color);
+  /* margin-bottom: 2rem; */
+}
+
+.modal-body {
+  font-size: 1.3rem;
+  font-weight: 300;
+  /* border: 0; */
 }

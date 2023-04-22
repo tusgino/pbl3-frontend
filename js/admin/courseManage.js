@@ -1,85 +1,8 @@
 import { setTextContent } from "../utils";
 import courseAPI from "./courseAPI";
+import systemAPI from "./system";
 
 const token = localStorage.getItem('token');
-
-const getCourses = async(page) => {
-    const params = {
-        "_title_like" : document.getElementById('txtsearch-coursemanage').value,
-        "_category_name" : document.getElementById('name-category').value,
-        "_start_upload_day" : document.getElementById('dateupload-from').value, 
-        "_end_upload_day" : document.getElementById('dateupload-to').value,
-        "_status_active" : document.getElementById('btnchecktrue-coursestatus-manager').checked,
-        "_status_store" : document.getElementById('btncheckfalse-coursestatus-manager').checked,
-        "page" : page,
-    };
-
-    const dataview = document.querySelector('.quanlikhoahoc .data-view');
-    dataview.textContent = "";
-
-    const {data : {_data, _totalRows}} = await courseAPI.getAllCoursesByFiltering(params, token);
-
-    renderRecord(_data);
-    renderPagination(_totalRows);
-}
-
-const setEventSearch = () => {
-    const btnsearch = document.getElementById('btn-search-coursemanage');
-    btnsearch.addEventListener('click', async() => {
-        getCourses(1);
-    })
-}
-
-const setEventHandlerCourse = () => {
-    const btnbancourse = document.getElementById('btn-bancourse');
-    const btnunbancourse = document.getElementById('btn-unbancourse');
-    const btndelcourse = document.getElementById('btn-delcourse');
-
-    btnbancourse.addEventListener('click', async(event) => {
-        const patch = [{
-            "operation": 1,
-            "path": "/Status",
-            "op": "replace",
-            "value": 0,
-        }];
-        const params = {
-            id : event.target.value,
-            patchDoc : JSON.stringify(patch),
-        };
-        console.log(params)
-        console.log(await courseAPI.updateCourse(params, token));
-        getCourses(1);
-    })
-    btnunbancourse.addEventListener('click', async(event) => {
-        const patch = [{
-            "operation": 1,
-            "path": "/Status",
-            "op": "replace",
-            "value": 1,
-        }];
-        const params = {
-            id : event.target.value,
-            patchDoc : JSON.stringify(patch),
-        };
-        await courseAPI.updateCourse(params, token);
-        getCourses(1);
-    })
-    btndelcourse.addEventListener('click', async(event) => {
-        const patch = [{
-            "operation": 1,
-            "path": "/Status",
-            "op": "replace",
-            "value": -1,
-        }];
-        const params = {
-            id : event.target.value,
-            patchDoc : JSON.stringify(patch),
-        };
-        await courseAPI.updateCourse(params, token);
-        getCourses(1);
-    })
-
-}
 
 const createRecord = (data) => {
     if(!data) return;
@@ -139,53 +62,88 @@ const createRecord = (data) => {
         btndelcourse.value = data.id;
 
     })
-    // console.log(record);
     return record;
 
 }
 
-const renderRecord = (courseList) => {
-    if(!Array.isArray(courseList) || courseList.length === 0) return;
-    const dataview = document.querySelector(".quanlikhoahoc .data-view");
-    // console.log(dataview)
-    if(!dataview) return;
 
-    courseList.forEach((course) => {
-        const record = createRecord(course);
-        if(record) {
-            dataview.appendChild(record);
-        }
+const getCourses = async(page) => {
+    const params = {
+        "_title_like" : document.getElementById('txtsearch-coursemanage').value,
+        "_category_name" : document.getElementById('name-category').value,
+        "_start_upload_day" : document.getElementById('dateupload-from').value, 
+        "_end_upload_day" : document.getElementById('dateupload-to').value,
+        "_status_active" : document.getElementById('btnchecktrue-coursestatus-manager').checked,
+        "_status_store" : document.getElementById('btncheckfalse-coursestatus-manager').checked,
+        "page" : page,
+    };
+
+    const dataview = document.querySelector('.quanlikhoahoc .data-view');
+    dataview.textContent = "";
+
+    const {data : {_data, _totalRows}} = await courseAPI.getAllCoursesByFiltering(params, token);
+
+    systemAPI.renderRecord(_data, 'quanlikhoahoc', createRecord);
+    systemAPI.renderPagination(_totalRows, 'quanlikhoahoc', getCourses);
+}
+
+const setEventSearch = () => {
+    const btnsearch = document.getElementById('btn-search-coursemanage');
+    btnsearch.addEventListener('click', async() => {
+        getCourses(1);
+    })
+}
+
+const setEventHandlerCourse = () => {
+    const btnbancourse = document.getElementById('btn-bancourse');
+    const btnunbancourse = document.getElementById('btn-unbancourse');
+    const btndelcourse = document.getElementById('btn-delcourse');
+
+    btnbancourse.addEventListener('click', async(event) => {
+        const patch = [{
+            "operation": 1,
+            "path": "/Status",
+            "op": "replace",
+            "value": 0,
+        }];
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        };
+        console.log(params)
+        console.log(await courseAPI.updateCourse(params, token));
+        getCourses(1);
+    })
+    btnunbancourse.addEventListener('click', async(event) => {
+        const patch = [{
+            "operation": 1,
+            "path": "/Status",
+            "op": "replace",
+            "value": 1,
+        }];
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        };
+        await courseAPI.updateCourse(params, token);
+        getCourses(1);
+    })
+    btndelcourse.addEventListener('click', async(event) => {
+        const patch = [{
+            "operation": 1,
+            "path": "/Status",
+            "op": "replace",
+            "value": -1,
+        }];
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        };
+        await courseAPI.updateCourse(params, token);
+        getCourses(1);
     })
 
 }
-
-const createPage = (data) => {
-    const liElement = document.createElement('li');
-    liElement.classList.add("page-item");
-    liElement.classList.add("btn");
-
-    liElement.textContent = data;
-
-    liElement.addEventListener('click', async() => {
-        getCourses(data);
-    })
-    // console.log(liElement);
-    return liElement;
-}
-
-const renderPagination = (totalRows) => {
-    const ulElement = document.createElement('ul');
-    ulElement.classList.add("pagination");
-    ulElement.classList.add("justify-content-center");
-    ulElement.classList.add("gap-2");
-    const totalPage = Math.ceil(totalRows / 10);
-    for(let i = 1; i <= totalPage; ++i) {
-        ulElement.appendChild(createPage(i));
-    }
-    const dataview = document.querySelector(".quanlikhoahoc .data-view");
-    dataview.appendChild(ulElement);
-    // console.log(ulElement);
-} 
 
 (async() => {    
     try {

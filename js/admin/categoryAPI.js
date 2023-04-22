@@ -4,7 +4,7 @@ import axiosClient from "../api/axiosClient";
 
 const categoryAPI = {
     addCategory (params, token) {
-        const url = '/private/Category/add-category';
+        const url = `/private/Category/Add-category?_category_name=${params._category_name}`;
         const config = {
             headers : {
                 // 'Content-Type' : 'application/json',
@@ -12,10 +12,10 @@ const categoryAPI = {
                 'Authorization': `Bearer ${token}`,
             }
         }
-        return axiosClient.post(url, {params});
+        return axiosClient.post(url, params);
     },
     getAllCategory(params, token) {
-        const url = '/private/Category/get-all-categories';
+        const url = '/private/Category/Get-all-categories';
         const config = {
             headers : {
                 // 'Content-Type' : 'application/json',
@@ -26,17 +26,17 @@ const categoryAPI = {
         return axiosClient.get(url, {params});
     },
     deleteCategories (params, token) {
-        const url = '/private/Category/delete-categories';
+        const url = '/private/Category/Delete-categories';
         const config = {
             headers : {
-                // 'Content-Type' : 'application/json',
+                'Content-Type' : 'application/json-patch+json',
                 // 'Accept' : 'application/json',
                 'Authorization': `Bearer ${token}`,
-            }
+            },
+            data : params,
         }
-        return axiosClient.delete(url, {params});
+        return axiosClient.delete(url, config);
     },
-
 
 }
 
