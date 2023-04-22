@@ -9,6 +9,16 @@ const courseAPI = {
     const url = '/public/Course/Get-course-by-IdCourse';
     return axiosClient.get(url, { params });
   },
+  getByIDUser(params, token) {
+    const url = '/public/Course/Get-all-course-by-Id';
+    const config = {
+      params,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    };
+    return axiosClient.get(url, config);
+  }
   // create(data) {
   //   const url = '/posts';
   //   return axiosClient.post(url, data);
