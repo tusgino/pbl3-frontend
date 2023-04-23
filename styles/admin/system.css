@@ -160,6 +160,16 @@ input {
   padding: 10px 20px;
 }
 
+.modal-body .col {
+  display: flex;
+
+  /*this centers the text horizontally*/
+  
+
+  /*this centers the text vertically*/
+  align-items: center;  
+}
+
 .avatar {
   object-position: top;
 }
@@ -167,7 +177,11 @@ input {
 #btn-search-usermanage,
 #btn-search-coursemanage,
 #btn-form-addcategory,
-#btn-search-categorymanage {
+#btn-search-categorymanage,
+#btn-search-tradeanalytics,
+#btn-search-studentanalytics,
+#btn-search-expertanalytics,
+#btn-search-courseanalytics {
   background-color: var(--secondary-color);
   color: white;
   border-radius: 0.5rem;

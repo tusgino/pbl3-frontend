@@ -10,16 +10,18 @@ const token = localStorage.getItem('token');
 const createRecord_Trade = (data) => {
     if(!data) return;
 
-    const tradeRecord = document.getElementById('tradeAnanlyticsRecord');
+    const tradeRecord = document.getElementById('tradeAnalyticsRecord');
     if(!tradeRecord) return;
 
     const record = tradeRecord.content.cloneNode(true);
     if(!record) return;
 
-    setTextContent(record, '[data-id="typeoftrade-tradeanalytics"]', data.TypeOfTrade);
-    setTextContent(record, '[data-id="balance-tradeanalytics"]', data.Balance);
-    setTextContent(record, '[data-id="dateoftrade-tradeanalytics"]', data.DateOfTrade);
-    setTextContent(record, '[data-id="tradestatus-tradeanalytics"]', data.TradeStatus);
+    if(data.typeOfTrade == 0) setTextContent(record, '[data-id="typeoftrade-tradeanalytics"]', "Mua khoá học");
+    else if(data.typeOfTrade == 1) setTextContent(record, '[data-id="typeoftrade-tradeanalytics"]', "Phí tài khoản");
+    setTextContent(record, '[data-id="balance-tradeanalytics"]', data.balance);
+    const dateoftrade = new Date(data.dateOfTrade);
+    setTextContent(record, '[data-id="dateoftrade-tradeanalytics"]', dateoftrade.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
+    setTextContent(record, '[data-id="tradestatus-tradeanalytics"]', data.tradeStatus);
 
 
     return record;

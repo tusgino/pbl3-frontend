@@ -42,6 +42,16 @@ const userAPI = {
     }
     return axiosClient.get(url, {params});
   },
+  getByID(params, token) {
+    const url = `/private/User/get-user`;
+    const config = {
+      params,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    };
+    return axiosClient.get(url, config);
+  },
 }
 
 export default userAPI;

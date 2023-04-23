@@ -18,9 +18,17 @@ const createRecord = (data) => {
     const avatar = record.querySelector('.avatar');
     // console.log(avatar)
     avatar.src = data.avatar;
+
+    const _datecreate = new Date(data.dateCreate);
+    const datecreate = _datecreate.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
+    const _dateofbirth = new Date(data.dateOfBirth);
+    const dateofbirth = _dateofbirth.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
+
+    
+
     setTextContent(record, '[data-id="userName"]', data.name);
     setTextContent(record, '[data-id="userType"]', data.typeOfUser);
-    setTextContent(record, '[data-id="dateCreate"]', data.dateCreate);
+    setTextContent(record, '[data-id="dateCreate"]', datecreate);
     setTextContent(record, '[data-id="userStatus"]', data.status);
     
     // const modalstudentinfo = document.getElementById('Modal-studentinfo');
@@ -43,14 +51,15 @@ const createRecord = (data) => {
     const iconinfo = record.getElementById('usermanage-iconinfo');
     // console.log(iconinfo);
     iconinfo.addEventListener('click', () => {
-        detailuseravatar.value = data.avatar;
+        detailuseravatar.src = data.avatar;
         detailusername.value = data.name;
         detailusertype.value = data.typeOfUser;
-        detailuserdob.value = data.dateOfBirth;
+        if(dateofbirth == 'Invalid Date') detailuserdob.value = data.dateOfBirth;
+        else detailuserdob.value = dateofbirth;
         detailuserpn.value = data.phoneNumber;
         detailuseridcard.value = data.idCard;
         detailuseremail.value = data.email;
-        detailuserdatecreate.value = data.dateCreate;
+        detailuserdatecreate.value = datecreate;
         detailuserstatus.value = data.status;
         if(data.typeOfUser == "Admin" || data.status == "Cấm vĩnh viễn") {
             btnbanacc.style.display = "none";

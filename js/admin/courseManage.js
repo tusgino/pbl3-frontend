@@ -13,10 +13,17 @@ const createRecord = (data) => {
     const record = courseManageRecord.content.cloneNode(true);
     if(!record) return;
 
+
+    const _dateupload = new Date(data.dateUpload);
+    const dateupload = _dateupload.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
+
+
+
     setTextContent(record, '[data-id="courseName"]', data.name);
-    setTextContent(record, '[data-id="category"]', data.category);
-    setTextContent(record, '[data-id="dateUpload"]', data.dateUpload);
+    // setTextContent(record, '[data-id="category"]', data.category);
+    setTextContent(record, '[data-id="dateUpload"]', dateupload);
     setTextContent(record, '[data-id="courseStatus"]', data.status);
+
 
     const detailcoursename = document.getElementById('detail-courseName');
     const detailcategory = document.getElementById('detail-courseCategory');
@@ -38,7 +45,7 @@ const createRecord = (data) => {
         detailcoursename.value= data.name;
         detailcategory.value = data.category;
         detailcourseuploader.value = data.uploadUser;
-        detailcoursedateupload.value = data.dateUpload;
+        detailcoursedateupload.value = dateupload;
         detailcourseprice.value = data.price;
         detailcoursediscount.value = data.discount;
         detailcoursefee.value = data.feePercent;
