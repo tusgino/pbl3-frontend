@@ -98,7 +98,6 @@ const getPosts = async () => {
       _limit: 9,
     };
     const { data: { data, pagination } } = await courseAPI.getAll(params);
-    console.log({ data: { data, pagination } });
     // console.log(data);
     // console.log(pagination);
     renderCourse(data);
@@ -123,6 +122,9 @@ const renderUIRole = async (role, token) => {
     if (btn_login) {
       if (role.role == 'Expert') {
         btn_login.textContent = 'Quản lí khóa học';
+        btn_login.addEventListener('click', () => {
+          window.location.href = `/expert/index.html?id=${role.idUser}&page=courses`;
+        });
         const order = document.querySelector('.nav-order');
         console.log('hello');
         if (order) {
@@ -130,7 +132,7 @@ const renderUIRole = async (role, token) => {
         }
         if (avatar)
           avatar.addEventListener('click', () => {
-            window.location.href = `/expert/index.html`;
+            window.location.href = `/expert/index.html?id=${role.idUser}&page=profile`;
           })
       }
       if (role.role == 'Admin') {

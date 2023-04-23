@@ -32,6 +32,7 @@ html {
 .degree-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1.8rem 1rem;
   background-color: #fff;
   margin: 1.5rem 1rem;
@@ -96,12 +97,18 @@ html {
 
 .modal-content {
   width: auto;
+  border-radius: 1rem;
 }
 
 .degree-title {
-  font-size: 2rem;
+  font-size: 2.8rem;
+  font-weight: 500;
   text-align: center;
   color: var(--primary-color);
+  margin-top: 3rem;
+}
+h4.degree-title {
+  margin-top: 0;
 }
 
 .degree-info {
@@ -121,7 +128,11 @@ html {
   font-size: 2rem;
   padding: 1rem;
   width: 40rem;
+  height: 5rem;
   font-weight: 700;
+  border: 0px;
+  background-color: #ebebeb;
+  border-radius: 1rem;
 }
 
 .degree-text > textarea {
@@ -129,9 +140,12 @@ html {
   padding: 1rem;
   width: 40rem;
   height: 30rem;
-  margin-top: 3rem;
   font-weight: 300;
-  padding-top: 3rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border: 0px;
+  background-color: #ebebeb;
+  border-radius: 1rem;
 }
 
 .degree-text > input:focus {
@@ -155,6 +169,7 @@ html {
   text-align: center;
   color: var(--primary-color);
   font-weight: 700;
+  margin-top: 4rem;
 }
 
 .bankinfo-info {
@@ -165,11 +180,13 @@ html {
 
 .bankinfo-info > input {
   font-size: 2rem;
-  padding: 1rem;
   width: 60rem;
   font-weight: 400;
-  margin-top: 4rem;
+  margin-top: 3rem;
   border-radius: 1rem;
+  border: 0px;
+  background-color: #ebebeb;
+  padding: 1.5rem 2rem;
 }
 
 .save-info.create-course {
@@ -188,4 +205,86 @@ html {
   width: 30rem;
   left: 0;
   transform: translateX(0);
+}
+
+.modal.show .modal-dialog {
+  transform: translateX(-25%);
+}
+
+.degree-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#degree-drag {
+  width: 40rem;
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ebebeb;
+  cursor: pointer;
+  border-radius: 1rem;
+  border: 2px dashed #787878;
+  background-image: url(/images/upload.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30%;
+}
+
+#degree-image {
+  width: 40rem;
+  height: 30rem;
+  object-fit: cover;
+  border-radius: 1rem;
+  object-position: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.notification {
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+  width: max-content;
+  font-size: 1.8rem;
+  padding: 3rem 5rem 3rem 3rem;
+  border-radius: 4px;
+  background-color: #141619;
+  color: #f6f5f9;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.14);
+  transform: translateY(30px);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.notification.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.notification-progress {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background-image: linear-gradient(to right, #539bdb, #3250bf);
+  border-radius: inherit;
+}
+
+.notification.active .notification-progress {
+  animation: progress 3s linear forwards;
+}
+
+@keyframes progress {
+  to {
+    transform: scaleX(1);
+  }
 }

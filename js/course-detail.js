@@ -2,7 +2,7 @@ import courseAPI from "./api/courseAPI";
 import { setSrcContent, setTextContent, toVND } from "./utils";
 
 
-const rederCourse = (course) => {
+const rederCourse = (course, id) => {
   if (!course) return;
   console.log(course);
   setTextContent(document, '.hero-title', course.title);
@@ -13,24 +13,26 @@ const rederCourse = (course) => {
   const videoElement = document.querySelector('.hero-video');
   videoElement.innerHTML = ''
   const videoNew = document.createElement('video');
+  videoNew.setAttribute('id', 'player');
+  videoNew.setAttribute('playsinline', '');
+  videoNew.setAttribute('controls', '');
   videoNew.controls = true;
   videoNew.width = 700;
   const sourceElement = document.createElement("source");
-  sourceElement.id = "video-src";
   sourceElement.src = course.videoPreview;
   sourceElement.type = "video/mp4";
+  sourceElement.classList.add('video-src');
   videoNew.appendChild(sourceElement);
   videoElement.appendChild(videoNew);
-
   const register = document.querySelector('.form');
   if (register) {
     register.addEventListener('submit', (e) => {
       e.preventDefault();
-      window.location.href = `/course/checkout.html`
+      const email = document.getElementById('email-purchase').value;
+      const name = document.getElementById('name-purchase').value;
+      window.location.href = `/course/checkout.html?id=${id}&email=${email}&name=${name}`
     })
   }
-  // console.log(videoElement);
-  // setSrcContent(document, '#video-src', course.videoPreview);
 }
 
 (async () => {
@@ -42,7 +44,7 @@ const rederCourse = (course) => {
       window.location.href = '/index.html';
     const course = await courseAPI.getByID({ id: courseId });
     // console.log(course.data);
-    rederCourse(course.data);
+    rederCourse(course.data, courseId);
   } catch (error) {
     console.log('Failed', error);
   }

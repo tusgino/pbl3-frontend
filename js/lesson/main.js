@@ -1,9 +1,9 @@
 import lessonAPI from "../api/lessonAPI";
 import { setTextContent } from "../utils";
 
-const createLessonElement = (chapter, lesson) => {
+const createLessonElement = (chapter, lesson, nextLessons) => {
   if (!lesson) return;
-  console.log(lesson);
+  // console.log(nextLessons);
 
   const lessonTemplate = document.getElementById('lesson-template');
   if (!lessonTemplate) return;
@@ -14,6 +14,11 @@ const createLessonElement = (chapter, lesson) => {
     li.querySelector('.lesson-item')?.classList.add('active');
     renderDashboard(lesson.idLesson);
   }
+  const aElement = li.firstElementChild ?? li.querySelector('a');
+  if (!aElement) return;
+  aElement.dataset.id = lesson.idLesson;
+  if (nextLessons)
+    aElement.dataset.idNext = nextLessons?.idLesson;
   li.firstElementChild?.addEventListener('click', (event) => {
     event.preventDefault();
     document.querySelector('.lesson-item.active').classList.remove('active');
@@ -22,7 +27,7 @@ const createLessonElement = (chapter, lesson) => {
   })
   return li;
 }
-const createChapterElement = (chapter) => {
+const createChapterElement = (chapter, nextChapter) => {
   if (!chapter) return;
 
   const tabTemplate = document.getElementById('tab-template');
@@ -32,8 +37,13 @@ const createChapterElement = (chapter) => {
   setTextContent(tab, '[data-id="title"]', chapter.name);
   const lessonList = tab.querySelector('.lesson-list');
   if (!lessonList) return;
-  chapter.lessons.forEach(lesson => {
-    const lessonElement = createLessonElement(chapter, lesson);
+  chapter.lessons.forEach((lesson, index) => {
+    let nextLessons = chapter.lessons[index + 1];
+    if (nextLessons === undefined && nextChapter !== undefined) {
+      nextLessons = nextChapter.lessons[0];
+    }
+    // console.log(nextLessons);
+    const lessonElement = createLessonElement(chapter, lesson, nextLessons);
     if (lessonElement)
       lessonList.appendChild(lessonElement);
   });
@@ -47,8 +57,9 @@ const handleTab = (chapters) => {
   if (!Array.isArray(chapters) || chapters.length === 0) return;
   const tabList = document.querySelector('.tab-list');
   if (!tabList) return;
-  chapters.forEach(chapter => {
-    const tab = createChapterElement(chapter);
+  chapters.forEach((chapter, index) => {
+    const nextChapter = chapters[index + 1];
+    const tab = createChapterElement(chapter, nextChapter);
     if (tab)
       tabList.appendChild(tab);
   })
@@ -56,6 +67,8 @@ const handleTab = (chapters) => {
 }
 
 const renderDashboard = async (idLesson) => {
+  console.log(idLesson);
+
 
   const token = localStorage.getItem('token');
   if (!token) return;
@@ -76,10 +89,24 @@ const renderDashboard = async (idLesson) => {
   content.querySelector('.desc').innerHTML = data.desc;
   document.getElementById('main').appendChild(content);
   const player = new Plyr('#player');
+  handleDashboard();
 }
 
 const handleDashboard = () => {
-
+  const nextButton = document.querySelector('.next');
+  const currentLesson = document.querySelector('.lesson-item.active');
+  if (!nextButton || !currentLesson) return;
+  if (currentLesson.dataset.idNext) {
+    nextButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      const nextLesson = document.querySelector(`[data-id="${currentLesson.dataset.idNext}"]`);
+      if (!nextLesson) return;
+      nextLesson.click();
+    });
+  }
+  else {
+    nextButton.classList.add('hidden');
+  }
 }
 
 const renderUI = async (idUser, token, idCourse) => {

@@ -12,7 +12,6 @@ const handleImageChange = () => {
     fileReader.readAsDataURL(file);
     document.getElementById('file-drag').style.border = "0px";
   });
-
 }
 
 (() => {

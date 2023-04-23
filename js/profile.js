@@ -114,12 +114,52 @@ const handleLearning = async () => {
   }
 }
 
+const updateNotAvatar = async (id) => {
+  const loadingOverlay = document.getElementById('loading-overlay');
+  loadingOverlay.classList.remove('hidden');
+  const token = localStorage.getItem('token');
+  if (!token) return;
+  try {
+    const formName = document.querySelector('#name');
+    if (!formName) return;
+    const formEmail = document.querySelector('#email');
+    if (!formEmail) return;
+    const formPhone = document.querySelector('#phone');
+    if (!formPhone) return;
+    const formPassword = document.querySelector('#password');
+    if (!formPassword) return;
+    const data = [
+      {
+        "path": "name",
+        "op": "replace",
+        "value": formName.value
+      },
+      {
+        "path": "phoneNumber",
+        "op": "replace",
+        "value": formPhone.value
+      },
+    ]
+    const resUpdate = await userAPI.updateByID(id, data, token);
+    if (resUpdate.success) {
+      window.location.reload();
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+    loadingOverlay.classList.add('hidden');
+  }
+}
+
 const handleSaveInfo = async (id) => {
   document.querySelector('.save-info').addEventListener('click', async (event) => {
     event.preventDefault();
     const fileInput = document.getElementById('file-upload');
     if (!fileInput) return;
-    if (!fileInput.files[0]) return;
+    if (!fileInput.files[0]) {
+      updateNotAvatar(id);
+      return;
+    };
     const file = fileInput.files[0];
     const formData = new FormData();
     formData.append('file', file);

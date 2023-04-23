@@ -34,20 +34,25 @@
 
 <body>
 
-  <template id="courseTemplate">
-    <li class="course-item">
-      <img
-        src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-        alt="" class="course-image" data-id="thumbnail">
-      <h4 class="course-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
-      <div class="course-info">
-        <div class="course-author">
-          <img
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-            alt="" data-id="avatar">
-          <span data-id="name">Nguyễn Văn B</span>
-        </div>
-        <span class="course-tag">Đang thịnh hành🔥</span>
+  <template id="degree-template">
+    <li class="degree-item" data-degree="default">
+      <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+        elit.
+      </h4>
+      <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
+    </li>
+  </template>
+  <template id="course-template">
+    <li class="learning-item">
+      <div class="learning-thumbnail">
+        <img
+          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          alt="" class="learning-image" data-id="thumbnail">
+      </div>
+      <div class="learning-info">
+        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit.
+        </h4>
       </div>
     </li>
   </template>
@@ -69,7 +74,7 @@
           <div
             class="d-flex align-items-center ms-4 mt-5 mb-md-2 me-md-auto link-dark text-decoration-none sidebar-container">
             <img
-              src="https://scontent.fdad3-4.fna.fbcdn.net/v/t39.30808-6/306842171_5450393821725874_8188976224161115177_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=1CtceYk53YAAX_8PEfK&_nc_ht=scontent.fdad3-4.fna&oh=00_AfAsdc0XnRVGnTI090OfMG0KTJQ4DGJvBRiffdktWvj7Aw&oe=6438031A"
+              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
               alt="" class="avatar">
             <div class="user m-lg-3">
               <span class="user-name">Huỳnh Minh Cường</span>
@@ -134,33 +139,10 @@
                     </div>
                     <div class="degree-container">
                       <ul class="degree-list">
-                        <li class="degree-item">
-                          <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit.
-                          </h4>
-
-                          <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
-
-                        </li>
-                        <li class="degree-item">
-                          <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit.
-                          </h4>
-                          <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
-
-                        </li>
-                        <li class="degree-item">
-                          <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit.
-                          </h4>
-                          <i type="button" class="far fa-eye" data-bs-toggle="modal" data-bs-target="#degree-modal"></i>
-
-                        </li>
-
                       </ul>
                     </div>
                   </div>
-                  <button class="save-info">Lưu lại</button>
+                  <button class="save-info save-form">Lưu lại</button>
                 </div>
               </div>
             </div>
@@ -178,63 +160,8 @@
                 </div>
                 <div class="learning-courses">
                   <ul class="learning-list">
-                    <li class="learning-item">
-                      <div class="learning-thumbnail">
-                        <img
-                          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                          alt="" class="learning-image" data-id="thumbnail">
-                      </div>
-                      <div class="learning-info">
-                        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit.
-                        </h4>
-                        <!-- <div class="learning-author">
-                          <img
-                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                            alt="" data-id="avatar">
-                          <span data-id="name">Nguyễn Văn B</span>
-                        </div> -->
-                      </div>
-                    </li>
-                    <li class="learning-item">
-                      <div class="learning-thumbnail">
-                        <img
-                          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                          alt="" class="learning-image" data-id="thumbnail">
-                      </div>
-                      <div class="learning-info">
-                        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit.
-                        </h4>
-                        <!-- <div class="learning-author">
-                          <img
-                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                            alt="" data-id="avatar">
-                          <span data-id="name">Nguyễn Văn B</span>
-                        </div> -->
-                      </div>
-                    </li>
-                    <li class="learning-item">
-                      <div class="learning-thumbnail">
-                        <img
-                          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                          alt="" class="learning-image" data-id="thumbnail">
-                      </div>
-                      <div class="learning-info">
-                        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit.
-                        </h4>
-                        <!-- <div class="learning-author">
-                          <img
-                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                            alt="" data-id="avatar">
-                          <span data-id="name">Nguyễn Văn B</span>
-                        </div> -->
-                      </div>
-                    </li>
                   </ul>
                   <button class="save-info create-course">Đăng tải khoá học</button>
-
                 </div>
               </div>
             </div>
@@ -248,9 +175,24 @@
                 <h1 class="degree-title">Nhập thông tin bằng cấp - kinh nghiệm</h1>
 
                 <div class="degree-info">
-                  <img
-                    src="https://plus.unsplash.com/premium_photo-1669825003963-b76f8035d678?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80"
-                    alt="" id="degree-img">
+
+                  <div class="degree-avatar">
+                    <form id="degree-upload-form" class="uploader">
+                      <input id="degree-upload" type="file" name="fileUpload" hidden />
+                      <label for="degree-upload" id="degree-drag">
+                        <img id="degree-image"
+                          src="https://plus.unsplash.com/premium_photo-1677474826931-eb70ec714d99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                          alt="Preview" class="hidden">
+                        <div id="start">
+                          <div id="notimage" class="hidden"></div>
+                        </div>
+                        <div id="response" class="hidden">
+                          <div id="messages"></div>
+                        </div>
+                      </label>
+                    </form>
+                  </div>
+
                   <div class="degree-text">
                     <input type="text" id="degree-name" placeholder="Tên bằng cấp">
                     <textarea name="degree-desc" id="degree-desc" placeholder="Mô tả bằng cấp"></textarea>
@@ -283,7 +225,7 @@
               </div>
               <div class="modal-action">
                 <button class="save-info bankinfo-save">Lưu</button>
-                <button class="save-info bankinfo-cancel">Huỷ</button>
+                <button class="save-info bankinfo-cancel" data-bs-dismiss="modal">Huỷ</button>
               </div>
             </div>
           </div>
@@ -294,7 +236,6 @@
       <div id="loading-spinner"></div>
       <div id="loading-message">Đang tải lên...</div>
     </div>
-
   </main>
 
   <footer>
@@ -346,7 +287,7 @@
   <script type="module" src="/js/helpers/slick.js"></script>
   <script type="module" src="/js/main.js"></script>
   <script type="module" src="/js/home.js"></script>
-  <script type="module" src="/js/profile.js"></script>
+  <script type="module" src="/js/expert/profile.js"></script>
 </body>
 
 </html>
