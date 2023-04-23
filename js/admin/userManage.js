@@ -7,6 +7,7 @@ const token = localStorage.getItem('token');
 
 const createRecord = (data) => {
     if(!data) return;
+    // console.log(data)   
 
     const userManageRecord = document.getElementById('userManageRecord')
     if(!userManageRecord) return;
@@ -14,12 +15,16 @@ const createRecord = (data) => {
     const record = userManageRecord.content.cloneNode(true);
     if(!record) return;
 
+    const avatar = record.querySelector('.avatar');
+    // console.log(avatar)
+    avatar.src = data.avatar;
     setTextContent(record, '[data-id="userName"]', data.name);
     setTextContent(record, '[data-id="userType"]', data.typeOfUser);
     setTextContent(record, '[data-id="dateCreate"]', data.dateCreate);
     setTextContent(record, '[data-id="userStatus"]', data.status);
     
     // const modalstudentinfo = document.getElementById('Modal-studentinfo');
+    const detailuseravatar = document.getElementById('detail-userAvatar');
     const detailusername = document.getElementById('detail-userName');
     const detailusertype = document.getElementById('detail-userType');
     const detailuserdob = document.getElementById('detail-userdob');
@@ -38,6 +43,7 @@ const createRecord = (data) => {
     const iconinfo = record.getElementById('usermanage-iconinfo');
     // console.log(iconinfo);
     iconinfo.addEventListener('click', () => {
+        detailuseravatar.value = data.avatar;
         detailusername.value = data.name;
         detailusertype.value = data.typeOfUser;
         detailuserdob.value = data.dateOfBirth;
