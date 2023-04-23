@@ -1,6 +1,7 @@
-import { setTextContent } from "../utils";
+import { setTextContent, showModal } from "../utils";
 import userAPI from "./userAPI";
 import systemAPI from "./system";
+import accountAPI from "../api/accountAPI";
 
 const token = localStorage.getItem('token');
 
@@ -175,16 +176,16 @@ const clearFormHandle = async() => {
     const addadminform = document.getElementById('usermanager-addadmin');
     
     btnclearform.addEventListener('click', () => {
-        addadminform.querySelector('.avatar').src = "https://media.istockphoto.com/id/474001892/photo/a-icon-of-a-businessman-avatar-or-profile-pic.jpg?b=1&s=170667a&w=0&k=20&c=trV5fWB-V__5-cM1ipDyOaQ6Sng1rj74qMuOQSt4sug=";
-        addadminform.querySelector('input[name="txt-admin-name"]').value = null;
-        addadminform.querySelector('input[name="txt-admin-birth"]').value = null;
-        addadminform.querySelector('input[name="txt-admin-phonenumber"]').value = null;
-        addadminform.querySelector('input[name="txt-admin-idcard"]').value = null;
-        addadminform.querySelector('input[name="txt-admin-email"]').value = null;
-        addadminform.querySelector('input[name="txt-admin-banknumber"]').value = null;
-        addadminform.querySelector('input[name="txt-admin-bankname"]').value = null;
-        addadminform.querySelector('input[name="txt-admin-password"]').value = null;
-    
+        addadminform.querySelector('.avatar').src = "https://media.istockphoto.com/id/1307140502/vi/vec-to/vector-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-h%E1%BB%93-s%C6%A1-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-ch%C3%A2n-dung-avatar-logo-k%C3%BD-t%C3%AAn-ng%C6%B0%E1%BB%9Di-h%C3%ACnh-d%E1%BA%A1ng.jpg?s=612x612&w=0&k=20&c=yCpEW0XGq3LCgCn-0GupWknu4pIYxEm8CigGHnqVkQU=";
+        addadminform.querySelector('input[name="txt-admin-name"]').value = '';
+        // addadminform.querySelector('input[name="txt-admin-birth"]').value = '';
+        // addadminform.querySelector('input[name="txt-admin-phonenumber"]').value = '';
+        addadminform.querySelector('input[name="txt-admin-email"]').value = '';
+        // addadminform.querySelector('input[name="txt-admin-banknumber"]').value = '';
+        // addadminform.querySelector('input[name="txt-admin-bankname"]').value = '';
+        addadminform.querySelector('input[name="txt-admin-password"]').value = '';
+        addadminform.querySelector('input[name="txt-admin-repassword"]').value = '';
+        
     
 
     })
@@ -193,13 +194,63 @@ const clearFormHandle = async() => {
 }
 
 const addAdmin = async() => {
-    
+    const btnaddadmin = document.getElementById('btn-add-admin');
+    btnaddadmin.addEventListener('click', async () => {
+        const addadminform = document.getElementById('usermanager-addadmin');
+        const name = addadminform.querySelector('input[name="txt-admin-name"]').value;
+        const email = addadminform.querySelector('input[name="txt-admin-email"]').value;
+        const password = addadminform.querySelector('input[name="txt-admin-password"]').value;
+        const repassword = addadminform.querySelector('input[name="txt-admin-repassword"]').value;
+
+        if(name == '' || email == '' || password == '' || repassword == '') {
+            alert("Thieu thong tin");
+            return;
+        }
+        if(confirm('Xác nhận thêm?')) {
+
+            try {
+                const data = {
+                    "name" : name,
+                    "username" : email,
+                    "password" : password, 
+                    "repassword" : repassword, 
+                    "typeOfUser" : 0, 
+                }
+                const res = await accountAPI.register(data);
+                if(res.success) {
+                    alert("Them admin thanh cong");
+                }
+                
+            
+            
+            
+            } catch (error) {
+                //console.log(error);
+            }
+
+
+
+
+
+
+            
+
+
+            
+
+
+        }
+    })
+
+
+
 }
 
 (async() => {    
     try {
         avatarHandle();
         clearFormHandle();
+        addAdmin();
 
 
         setEventSearch();
