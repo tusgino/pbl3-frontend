@@ -31,7 +31,7 @@ main {
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
-  border : 1px solid #646464;
+  border: 1px solid #646464;
 }
 
 .user {
@@ -46,11 +46,12 @@ main {
 }
 .container-rounded {
   border-radius: 10px;
-  padding:5px;
+  padding: 5px;
   /* margin:5px; */
   width: fit-content;
 }
-input[type="text"], input[type="date"] {
+input[type="text"],
+input[type="date"] {
   width: 15rem;
   height: 2rem;
   box-sizing: border-box;
@@ -128,4 +129,103 @@ footer {
   font-size: 1.3rem;
   font-weight: 300;
   /* border: 0; */
+}
+
+a:hover > i {
+  transform: rotate(0);
+}
+
+.nav-item {
+  padding: 0 0.5rem;
+}
+.nav-item > a {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+input {
+  border: 0px;
+  background-color: #f5f5f5;
+  border-radius: 0.5rem;
+  font-size: 16px;
+}
+
+.modal-body {
+  font-size: 16px;
+}
+
+.modal-body input {
+  padding: 10px 20px;
+}
+
+.avatar {
+  object-position: top;
+}
+
+#btn-search-usermanage,
+#btn-search-coursemanage,
+#btn-form-addcategory,
+#btn-search-categorymanage {
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 0px;
+  font-size: 16px;
+}
+
+#txtsearch-usermanage {
+  border: 0px;
+  font-size: 16px;
+  padding: 1.2rem 2rem;
+}
+.search-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 1rem;
+  /* margin-bottom: 1rem; */
+}
+label.btn {
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+input[type="text"],
+input[type="date"] {
+  width: 15rem;
+  height: 40px;
+  box-sizing: border-box;
+}
+#btn-banacc,
+#btn-delacc,
+#deleteCategory {
+  background-color: #ff0000;
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 0px;
+  font-size: 16px;
+}
+.btn-default {
+  background-color: #f5f5f5;
+  color: #000000;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+}
+#btn-unbanacc {
+  background-color: #38b6ff;
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 0px;
+  font-size: 16px;
+}
+
+.btn:focus {
+  outline: none;
+  border: 0;
 }
