@@ -58,13 +58,13 @@
   <template id="userManageRecord">
     <div class="record row my-4">
       <div class="cell col-1" data-id="avatar"> <img
-          src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg" alt=""
+          src="https://media.istockphoto.com/id/1307140502/vi/vec-to/vector-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-h%E1%BB%93-s%C6%A1-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-ch%C3%A2n-dung-avatar-logo-k%C3%BD-t%C3%AAn-ng%C6%B0%E1%BB%9Di-h%C3%ACnh-d%E1%BA%A1ng.jpg?s=612x612&w=0&k=20&c=yCpEW0XGq3LCgCn-0GupWknu4pIYxEm8CigGHnqVkQU=" alt=""
           class="avatar"></div>
       <!-- <div class="cell col">ad7389ad</div> -->
-      <div class="cell col" data-id="userName">Megumi </div>
-      <div class="cell col" data-id="userType">Admin</div>
-      <div class="cell col" data-id="dateCreate">1/1/2023</div>
-      <div class="cell col" data-id="userStatus">Hoạt động</div>
+      <div class="cell col" data-id="userName"></div>
+      <div class="cell col" data-id="userType"></div>
+      <div class="cell col" data-id="dateCreate"></div>
+      <div class="cell col" data-id="userStatus"></div>
       <div class="cell col-1" id="usermanage-iconinfo"><i type="button" class="fas fa-info-circle"
           data-bs-toggle="modal" data-bs-target="#Modal-studentinfo"></i></div>
     </div>
@@ -72,10 +72,10 @@
   <template id="courseManageRecord">
     <div class="record row my-4">
       <!-- <div class="cell col">ad7389ad</div> -->
-      <div class="cell col" data-id="courseName">ABC</div>
-      <div class="cell col" data-id="category">Frontend</div>
-      <div class="cell col" data-id="dateUpload">1/1/2023</div>
-      <div class="cell col" data-id="courseStatus">Hoạt động</div>
+      <div class="cell col" data-id="courseName"></div>
+      <div class="cell col" data-id="category"></div>
+      <div class="cell col" data-id="dateUpload"></div>
+      <div class="cell col" data-id="courseStatus"></div>
       <div class="cell col-1" id="coursemanage-iconinfo"><i type="button" class="fas fa-info-circle"
           data-bs-toggle="modal" data-bs-target="#Modal-courseinfo"></i></div>
     </div>
@@ -83,18 +83,19 @@
   <template id="categoryManageRecord">
     <div class="record row my-4">
       <input type="checkbox" name="checkboxcategory" class="cell col-1 checkbox-category">
-      <!-- <div class="cell col">ad7389ad</div> -->
-      <div class="cell col" data-id="categoryName">ABC</div>
+      <div class="cell col" data-id="categoryName"></div>
       <div class="cell col-1" id="categorymanage-iconinfo"><i type="button" class="fas fa-info-circle"
           data-bs-toggle="modal" data-bs-target="#Modal-category-info"></i></div>
     </div>
   </template>
-  <template id="tradeAnalyticsRecord">
+  <template id="tradeManageRecord">
     <div class="record row my-4">
-      <div class="cell col" data-id="typeoftrade-tradeanalytics">Mua khoá học</div>
-      <div class="cell col" data-id="balance-tradeanalytics">500000</div>
-      <div class="cell col" data-id="dateoftrade-tradeanalytics">1/1/2023</div>
-      <div class="cell col" data-id="tradestatus-tradeanalytics">Thành công</div>
+      <div class="cell col" data-id="typeoftrade-trademanage">Mua khoá học</div>
+      <div class="cell col" data-id="balance-tradeamanage">500000</div>
+      <div class="cell col" data-id="dateoftrade-trademanage">1/1/2023</div>
+      <div class="cell col" data-id="tradestatus-trademanage">Thành công</div>
+      <div class="cell col-1" id="trademanage-iconinfo"><i type="button" class="fas fa-info-circle"
+        data-bs-toggle="modal" data-bs-target="#Modal-tradeinfo"></i></div>
     </div>
   </template>
   <template id="studentAnalyticsRecord">
@@ -191,13 +192,15 @@
             </li>
             <li class="nav-item">
               <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#coursemanager"><i class="fas fa-book"></i>
-                Quản lí khoá
-                học</a>
+                Quản lí khoá học</a>
             </li>
             <li class="nav-item ">
               <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#categorymanager"><i class="fas fa-list"></i>
-                Quản lí danh
-                mục</a>
+                Quản lí danh mục</a>
+            </li>
+            <li class="nav-item ">
+              <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#trademanager"><i class="fas fa-list"></i>
+                Quản lí giao dịch</a>
             </li>
             <li class="nav-item">
               <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#analytics"><i class="far fa-chart-bar"></i>
@@ -663,7 +666,6 @@
                 </div>
                 <div class="container manager">
                   <div class="container hstack field-bar my-3 rounded-3 bg-white p-3 ">
-                    <!-- <div class="cell col">Mã khoá học</div> -->
                     <div class="cell col">Tên khoá học</div>
                     <div class="cell col">Thể loại</div>
                     <div class="cell col">Ngày đăng tải</div>
@@ -688,7 +690,7 @@
                                 <label for="detail-courseName">Tên khoá học</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-courseName" placeholder="HTML" name="txt-course-name"
+                                <input type="text" id="detail-courseName" placeholder="" name="txt-course-name"
                                   readonly>
                               </div>
                             </div>
@@ -697,7 +699,7 @@
                                 <label for="detail-courseCategory">Thể loại</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-courseCategory" placeholder="Frontend"
+                                <input type="text" id="detail-courseCategory" placeholder=""
                                   name="txt-course-category" readonly>
                               </div>
                             </div>
@@ -706,7 +708,7 @@
                                 <label for="detail-courseUploader">Tên người đăng</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-courseUploader" placeholder="Expert A" name="txt-user"
+                                <input type="text" id="detail-courseUploader" placeholder="" name="txt-user"
                                   readonly>
                               </div>
                             </div>
@@ -715,7 +717,7 @@
                                 <label for="detail-courseDateUpload">Ngày đăng tải</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-courseDateUpload" placeholder="11/11/1111"
+                                <input type="text" id="detail-courseDateUpload" placeholder=""
                                   name="txt-course-upload-date" readonly>
                               </div>
                             </div>
@@ -724,7 +726,7 @@
                                 <label for="detail-coursePrice">Giá khoá học</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-coursePrice" placeholder="500000" name="txt-course-price"
+                                <input type="text" id="detail-coursePrice" placeholder="" name="txt-course-price"
                                   readonly>
                               </div>
                             </div>
@@ -733,7 +735,7 @@
                                 <label for="detail-courseDiscount">Giảm giá(%)</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-courseDiscount" placeholder="50"
+                                <input type="text" id="detail-courseDiscount" placeholder=""
                                   name="txt-course-discount" readonly>
                               </div>
                             </div>
@@ -742,7 +744,7 @@
                                 <label for="detail-courseFee">Chiết khấu(%)</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-courseFee" placeholder="10" name="txt-course-feepercent"
+                                <input type="text" id="detail-courseFee" placeholder="" name="txt-course-feepercent"
                                   readonly>
                               </div>
                             </div>
@@ -751,7 +753,7 @@
                                 <label for="detail-courseStatus">Trạng thái khoá học</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-courseStatus" placeholder="Hoạt động"
+                                <input type="text" id="detail-courseStatus" placeholder=""
                                   name="txt-course-status" readonly>
                               </div>
                             </div>
@@ -877,6 +879,166 @@
 
               </div>
             </div>
+            <div class="tab-pane container fade" id="trademanager">
+                <div class="quanligiaodich">
+                  <div class="filter-bar">
+                    <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
+                      <div class="hstack gap-3 justify-content-between p-2">
+                        <div class="trade-type">
+                          <span class="">Loại giao dịch</span>
+                          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                            <input type="checkbox" class="btn-check" id="btnchecktrue-tradetype1"
+                              autocomplete="off" checked>
+                            <label class="nav-item btn btn-outline-primary"
+                              for="btnchecktrue-tradetype1">Mua khoá học</label>
+                            <input type="checkbox" class="btn-check" id="btnchecktrue-tradetype2"
+                              autocomplete="off" checked>
+                            <label class="nav-item btn btn-outline-primary"
+                              for="btnchecktrue-tradetype2">Duy trì tài khoản</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="hstack gap-3 justify-content-between p-2">
+                        <div class="userdatecreate">
+                          <span class="">Ngày giao dịch</span>
+                          <input type="date" id="datetrade-from">
+                          <span class="">-</span>
+                          <input type="date" id="datetrade-to">
+                        </div>
+                        <div class="trade-status">
+                          <span class="">Trạng thái</span>
+                          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                            <input type="checkbox" class="btn-check" id="btnchecktrue-tradestatus"
+                              autocomplete="off" checked>
+                            <label class="nav-item btn btn-outline-primary"
+                              for="btnchecktrue-tradestatus">Thành công</label>
+                            <input type="checkbox" class="btn-check" id="btncheckwait-tradestatus"
+                              autocomplete="off" checked>
+                            <label class="nav-item btn btn-outline-primary"
+                              for="btncheckwait-tradestatus">Đang chờ</label>
+                            <input type="checkbox" class="btn-check" id="btncheckfalse-tradestatus"
+                              autocomplete="off" checked>
+                            <label class="nav-item btn btn-outline-primary"
+                              for="btncheckfalse-tradestatus">Thất bại</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="hstack gap-3 justify-content-between p-2">
+                        <div>
+                          <span>Số tiền giao dịch</span>
+                          <input type="text" id="txtbalance-from">
+                          <span>-</span>
+                          <input type="text" id="txtbalance-to">
+                        </div>
+                        <div class="search-area">
+                          <button type="button" id="btn-search-trademanage" class="btn nav-item">Tìm
+                            kiếm</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container manager">
+                    <div class="container hstack field-bar my-3 rounded-3 bg-white p-3 ">
+                      <div class="cell col">Loại giao dịch</div>
+                      <div class="cell col">Số tiền giao dịch</div>
+                      <div class="cell col">Ngày giao dịch</div>
+                      <div class="cell col">Trạng thái giao dịch</div>
+                      <div class="cell col-1"></div>
+                    </div>
+                    <div class="container data-view bg-white rounded-3 p-3">
+
+                    </div>
+                    <div class="modal fade rounded-3" id="Modal-tradeinfo" role="dialog">
+                      <div class="modal-dialog modal-xxl modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header justify-content-between">
+                            <h4>Thông tin giao dịch</h4>
+                            <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
+                                class="fas fa-times" style="color: #464646"></i></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="container">
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradetype">Loại giao dịch</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradetype" placeholder="" name="txt-trade-type"
+                                    readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradeuser">Người thực hiện</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradeuser" placeholder="" name="txt-trade-user" 
+                                  readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradebalance">Số tiền giao dịch</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradebalance" placeholder="" name="txt-trade-balance"
+                                    readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradeprice">Số tiền cần trả</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradeprice" placeholder="" name="txt-trade-price"
+                                    readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradeDate">Ngày giao dịch</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradeDate" placeholder="" name="txt-trade-date" 
+                                  readonly>
+                                </div>
+                              </div>
+                              <!-- <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-traderoute">Hình thức giao dịch</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-traderoute" placeholder="" name="txt-trade-route"
+                                    readonly>
+                                </div> -->
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradestatus">Trạng thái giao dịch</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradestatus" placeholder=""  name="txt-trade-status" 
+                                  readonly>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" id="btn-confirmtrade" data-bs-dismiss="modal"
+                              class="nav-item btn btn-default">Xác nhận</button>
+                            <button type="button" id="btn-refusetrade" data-bs-dismiss="modal"
+                              class="nav-item btn btn-default">Từ chối</button>
+                            <!-- <button type="button" id="btn-delcourse" data-bs-dismiss="modal"
+                              class="nav-item btn btn-default">Cấm vĩnh viễn</button> -->
+                            <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
+                              style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
             <div class="tab-pane container fade" id="analytics">
               <div class="thongke">
                 <div class="filter-bar">
@@ -888,10 +1050,7 @@
                         <ul class="btn-group nav nav-pills " role="group"
                           aria-label="Basic checkbox toggle button group">
                           <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="pill" href="#trade">Giao dịch</a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="pill" href="#student">Học viên</a>
+                            <a class="nav-link active" data-bs-toggle="pill" href="#student">Học viên</a>
                           </li>
                           <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="pill" href="#expert">Chuyên gia</a>
@@ -901,81 +1060,11 @@
                           </li>
                         </ul>
                       </div>
-                      <div class="search-area">
-                        <button type="button" id="btn-search-tradeanalytics" class="btn nav-item" hidden>Tìm kiếm</button>
-                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="tab-content">
-                  <div class="tab-pane container active p-0" id="trade">
-                    <div class="thongkegiaodich">
-                      <div class="filter-bar">
-                        <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
-                          <div class="hstack gap-3 justify-content-between p-2">
-                            <div class="trade-type">
-                              <span class="">Loại giao dịch</span>
-                              <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                <input type="checkbox" class="btn-check" id="btnchecktrue-tradetype1-analytics"
-                                  autocomplete="off" checked>
-                                <label class="nav-item btn btn-outline-primary"
-                                  for="btnchecktrue-tradetype1-analytics">Mua khoá học</label>
-
-                                <input type="checkbox" class="btn-check" id="btnchecktrue-tradetype2-analytics"
-                                  autocomplete="off" checked>
-                                <label class="nav-item btn btn-outline-primary"
-                                  for="btnchecktrue-tradetype2-analytics">Duy trì tài khoản</label>
-                              </div>
-                            </div>
-                            <div>
-                              <span>Số tiền giao dịch</span>
-                              <input type="text" id="txtbalance-from">
-                              <span>-</span>
-                              <input type="text" id="txtbalance-to">
-                            </div>
-                          </div>
-                          <div class="hstack gap-3 justify-content-between p-2">
-                            <div class="userdatecreate">
-                              <span class="">Ngày giao dịch</span>
-                              <input type="date" id="datetrade-from">
-                              <span class="">-</span>
-                              <input type="date" id="datetrade-to">
-                            </div>
-                            <div class="trade-status">
-                              <span class="">Trạng thái</span>
-                              <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                <input type="checkbox" class="btn-check" id="btnchecktrue-tradestatus-analytics"
-                                  autocomplete="off" checked>
-                                <label class="nav-item btn btn-outline-primary"
-                                  for="btnchecktrue-tradestatus-analytics">Thành công</label>
-                                <input type="checkbox" class="btn-check" id="btncheckwait-tradestatus-analytics"
-                                  autocomplete="off" checked>
-                                <label class="nav-item btn btn-outline-primary"
-                                  for="btncheckwait-tradestatus-analytics">Đang chờ</label>
-                                <input type="checkbox" class="btn-check" id="btncheckfalse-tradestatus-analytics"
-                                  autocomplete="off" checked>
-                                <label class="nav-item btn btn-outline-primary"
-                                  for="btncheckfalse-tradestatus-analytics">Thất bại</label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="container manager">
-                        <div class="container hstack field-bar my-3 rounded-3 bg-white p-3 ">
-                          <!-- <div class="cell col">Mã giao dịch</div> -->
-                          <div class="cell col">Loại giao dịch</div>
-                          <div class="cell col">Số tiền giao dịch</div>
-                          <div class="cell col">Ngày giao dịch</div>
-                          <div class="cell col">Trạng thái giao dịch</div>
-                        </div>
-                        <div class="container data-view bg-white rounded-3 p-3">
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tab-pane container fade p-0" id="student">
+                  <div class="tab-pane container active p-0" id="student">
                     <div class="thongkehocvien">
                       <div class="filter-bar">
                         <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
@@ -1001,7 +1090,6 @@
                             </div>
                           </div>
                         </div>
-
                       </div>
                       <div class="container manager">
                         <div class="container hstack field-bar my-3 rounded-3 bg-white p-3">
@@ -1176,6 +1264,7 @@
   <script type="module" src="/js/admin/userManage.js"></script>
   <script type="module" src="/js/admin/courseManage.js"></script>
   <script type="module" src="/js/admin/categoryManage.js"></script>
+  <script type="module" src="/js/admin/tradeManage.js"></script>
   <script type="module" src="/js/admin/analytics.js"></script>
   <script type="module">
     import { Validator } from '/js/helpers/validator.js';

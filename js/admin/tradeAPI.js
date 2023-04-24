@@ -11,6 +11,16 @@ const tradeAPI = {
         }
         return axiosClient.get(url, {params});
     },
+    updateUser(params, token) {
+        const url = `/private/TradeDetail/${params.id}`;
+        const config = {
+          headers: {
+            'Content-Type' : 'application/json-patch+json',
+            'Authorization': `Bearer ${token}`,
+          }
+        }
+        return axiosClient.patch(url, params.patchDoc, config);
+      },
 }
 
 export default tradeAPI;

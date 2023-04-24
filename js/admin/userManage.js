@@ -245,15 +245,6 @@ const addAdmin = async() => {
 
 
 
-
-
-
-            
-
-
-            
-
-
         }
     })
 

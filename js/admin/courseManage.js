@@ -20,7 +20,7 @@ const createRecord = (data) => {
 
 
     setTextContent(record, '[data-id="courseName"]', data.name);
-    // setTextContent(record, '[data-id="category"]', data.category);
+    setTextContent(record, '[data-id="category"]', data.category);
     setTextContent(record, '[data-id="dateUpload"]', dateupload);
     setTextContent(record, '[data-id="courseStatus"]', data.status);
 

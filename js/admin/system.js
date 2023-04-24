@@ -55,26 +55,6 @@ import userAPI from "./userAPI";
   })
 
 
-  const thongke = document.querySelector('.thongke');
-  const pillgiaodich = thongke.querySelector('ul li:first-child');
-  const btnsearch = thongke.querySelector('button');
-  console.log(pillgiaodich);
-  console.log(btnsearch);
-  pillgiaodich.addEventListener('change', () => {
-    console.log(pillgiaodich);
-    if(pillgiaodich.classList.contains('active')) {
-      btnsearch.setAttribute('hidden');
-    } else {
-      btnsearch.removeAttribute('hidden');
-    }
-  })
-  
-
-
-
-
-
-
 })()
 
 

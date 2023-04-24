@@ -1,32 +1,11 @@
 import { setTextContent } from "../utils";
 import courseAPI from "./courseAPI";
 import userAPI from "./userAPI";
-import tradeAPI from "./tradeAPI";
 import systemAPI from "./system";
 
 const token = localStorage.getItem('token');
 
 
-const createRecord_Trade = (data) => {
-    if(!data) return;
-
-    const tradeRecord = document.getElementById('tradeAnalyticsRecord');
-    if(!tradeRecord) return;
-
-    const record = tradeRecord.content.cloneNode(true);
-    if(!record) return;
-
-    if(data.typeOfTrade == 0) setTextContent(record, '[data-id="typeoftrade-tradeanalytics"]', "Mua khoá học");
-    else if(data.typeOfTrade == 1) setTextContent(record, '[data-id="typeoftrade-tradeanalytics"]', "Phí tài khoản");
-    setTextContent(record, '[data-id="balance-tradeanalytics"]', data.balance);
-    const dateoftrade = new Date(data.dateOfTrade);
-    setTextContent(record, '[data-id="dateoftrade-tradeanalytics"]', dateoftrade.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
-    setTextContent(record, '[data-id="tradestatus-tradeanalytics"]', data.tradeStatus);
-
-
-    return record;
-
-}
 
 const createRecord_Student= (data) => {
     if(!data) return;
@@ -80,31 +59,6 @@ const createRecord_Course = (data) => {
 
 
 
-const getTrade = async(page) => {
-    const params = {
-        "_is_purchase" : document.getElementById('btnchecktrue-tradetype1-analytics').checked,
-        "_is_rent" : document.getElementById('btnchecktrue-tradetype2-analytics').checked,
-        "_is_success" : document.getElementById('btnchecktrue-tradestatus-analytics').checked,
-        "_is_pending" : document.getElementById('btncheckwait-tradestatus-analytics').checked,
-        "_is_failed" : document.getElementById('btncheckfalse-tradestatus-analytics').checked,
-        "_start_date" : document.getElementById('datetrade-from').value,    
-        "_end_date" : document.getElementById('datetrade-to').value,
-        "_start_balance" : document.getElementById('txtbalance-from').value,
-        "_end_balance" : document.getElementById('txtbalance-to').value,
-        "page" : page,
-    };
-    
-    const dataview = document.querySelector('.thongkegiaodich .data-view');
-    dataview.textContent = "";
-
-    const {data : {_data, _totalRows}} = await tradeAPI.getAllTradeDetailByFiltering(params, token);
-
-    console.log(_data);
-    systemAPI.renderRecord(_data, 'thongkegiaodich', createRecord_Trade);
-    systemAPI.renderPagination(_totalRows, 'thongkegiaodich', getTrade);
-
-
-}
 
 const getStudents = async(page) => {
     const params = {
@@ -174,6 +128,7 @@ const getCourses = async(page) => {
 }
 
 const setEventSearch = () => {
+
     const btnsearchstudent = document.getElementById('btn-search-studentanalytics');
     const btnsearchexpert = document.getElementById('btn-search-expertanalytics');
     const btnsearchcourse = document.getElementById('btn-search-courseanalytics');
@@ -196,8 +151,6 @@ const setEventSearch = () => {
     try {
 
         setEventSearch();
-
-        getTrade(1);
 
         getStudents(1);
         
