@@ -14,7 +14,7 @@ const courseAPI = {
         return axiosClient.get(url, {params});
     },
     updateCourse(params, token) {
-        const url = `/public/Course/${params.id}`;
+        const url = `/public/Course/Update-course-by-${params.id}`;
         const config = {
           headers: {
             'Content-Type' : 'application/json-patch+json',

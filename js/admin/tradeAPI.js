@@ -11,8 +11,8 @@ const tradeAPI = {
         }
         return axiosClient.get(url, {params});
     },
-    updateUser(params, token) {
-        const url = `/private/TradeDetail/${params.id}`;
+    updateTrade(params, token) {
+        const url = `/private/TradeDetail/Update-trade-by-${params.id}`;
         const config = {
           headers: {
             'Content-Type' : 'application/json-patch+json',

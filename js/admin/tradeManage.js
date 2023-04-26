@@ -14,7 +14,7 @@ const createRecord_Trade = (data) => {
     if(!record) return;
 
     if(data.typeOfTrade == 0) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Mua khoá học");
-    else if(data.typeOfTrade == 1) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Phí tài khoản");
+    else if(data.typeOfTrade == 1) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Duy trì tài khoản");
     setTextContent(record, '[data-id="balance-trademanage"]', data.balance);
     const dateoftrade = new Date(data.dateOfTrade);
     setTextContent(record, '[data-id="dateoftrade-trademanage"]', dateoftrade.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
@@ -22,15 +22,14 @@ const createRecord_Trade = (data) => {
     else if(data.tradeStatus == 0) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Đang chờ');
     else if(data.tradeStatus == -1) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Thất bại');
 
-    const detailtradetype = document.getElementById('detai-tradetype');
+    const detailtradetype = document.getElementById('detail-tradetype');
     const detailtradeuser = document.getElementById('detail-tradeuser');
     const detailtradebalance = document.getElementById('detail-tradebalance');
     const detailtradeprice = document.getElementById('detail-tradeprice');
-    const detailtradedate = document.getElementById('detailt-tradeDate');
+    const detailtradedate = document.getElementById('detail-tradeDate');
     const detailtradestatus = document.getElementById('detail-tradestatus');
     const btnconfirmtrade = document.getElementById('btn-confirmtrade');
     const btnrefusetrade = document.getElementById('btn-refusetrade');
-
 
     const iconinfo = record.getElementById('trademanage-iconinfo');
 
@@ -40,7 +39,7 @@ const createRecord_Trade = (data) => {
         detailtradeuser.value = data.username;
         detailtradebalance.value = data.balance;
         detailtradeprice.value = data.requiredBalance;
-        detailtradedate.value = data.dateOfTrade.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
+        detailtradedate.value = dateoftrade.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
         if(data.tradeStatus == 1) detailtradestatus.value = "Thành công";
         else if(data.tradeStatus == 0) detailtradestatus.value = "Đang chờ";
         else if(data.tradeStatus == -1) detailtradestatus.value = "Thất bại";
@@ -54,8 +53,8 @@ const createRecord_Trade = (data) => {
         }
 
         console.log(data);
-        btnconfirmtrade.value = data.id;
-        btnrefusetrade.value = data.id;
+        btnconfirmtrade.value = data.idTrade;
+        btnrefusetrade.value = data.idTrade;
     })
 
 
@@ -79,7 +78,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        await tradeAPI.updateUser(params, token);
+        if(await tradeAPI.updateTrade(params, token)) alert("Cập nhật thành công");
         getTrade(1);
     });
     btnrefusetrade.addEventListener('click', async (event) => {
@@ -93,7 +92,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        await tradeAPI.updateUser(params, token);
+        if(await tradeAPI.updateTrade(params, token)) alert("Cập nhật thành công");
         getTrade(1);
     });
     

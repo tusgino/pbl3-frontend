@@ -133,7 +133,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        await userAPI.updateUser(params, token);
+        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
         getUsers(1);
     })
     btnunbanacc.addEventListener('click', async(event) => {
@@ -147,7 +147,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        await userAPI.updateUser(params, token);
+        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
         getUsers(1);
     })
     btndelacc.addEventListener('click', async(event) => {
@@ -161,7 +161,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        await userAPI.updateUser(params, token);
+        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
         getUsers(1);
     })
     
