@@ -91,7 +91,7 @@
   <template id="tradeManageRecord">
     <div class="record row my-4">
       <div class="cell col" data-id="typeoftrade-trademanage">Mua khoá học</div>
-      <div class="cell col" data-id="balance-tradeamanage">500000</div>
+      <div class="cell col" data-id="balance-trademanage">500000</div>
       <div class="cell col" data-id="dateoftrade-trademanage">1/1/2023</div>
       <div class="cell col" data-id="tradestatus-trademanage">Thành công</div>
       <div class="cell col-1" id="trademanage-iconinfo"><i type="button" class="fas fa-info-circle"
@@ -199,7 +199,7 @@
                 Quản lí danh mục</a>
             </li>
             <li class="nav-item ">
-              <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#trademanager"><i class="fas fa-list"></i>
+              <a class="sidebaritem nav-link" data-bs-toggle="pill" href="#trademanager"><i class="fas fa-coins"></i>
                 Quản lí giao dịch</a>
             </li>
             <li class="nav-item">
@@ -215,25 +215,79 @@
             <div class="tab-pane container active" id="overview">
               <div class="overview">
 
-                <div class="container" style="display:flex;">
-                  <div class="col-8">
-                    <div class="row">
-                      <div class="cell bg-white p-2 vstack" style="border-radius: 1rem;">
-                        <span>Doanh thu hệ thống</span>
-                        <hr>
-                        <canvas id="SystemRevenue"></canvas>
+                <div class="container vstack" style="display:flex;">
+                  <div class="row">
+                    <div class="col-9">
+                      <div class="row">
+                        <div class="cell bg-white p-4 vstack" style="border-radius: 1rem;">
+                          <span id="systemrevenue-title" style="font-size: 1.8rem; color:#5271ff">Doanh thu hệ thống</span>
+                          <hr>
+                          <canvas id="SystemRevenue"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col gap-3">
+                      <div class="row">
+                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;"> 
+                          <span>Tổng doanh thu hiện tại</span>
+                          <span id="TotalRevenueCurrentYear">5000000</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                          <span>Doanh thu năm trước</span>
+                          <span>5000000</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                          <span>Chiết khấu trung bình</span>
+                          <span>17.8 %</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col">
-                    <div class="row">
-                      <div class="cell bg-white" style="height: 8rem; border-radius: 1rem;">
-                        hello world
+                  <hr>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="row">
+                        <div class="cell bg-white vstack p-4" style="border-radius: 1rem;">
+                          <span style="font-size: 1.8rem; color:#5271ff">Tổng quan người dùng</span>
+                          <hr>
+                          <canvas id="AllOfUsers"></canvas>
+                        </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="cell bg-white" style="height: 18rem; border-radius: 1rem;">
-                        <canvas id="AllOfUsers"></canvas>
+                    <div class="col">
+                      <div class="row">
+                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                          <span><i class="fas fa-users"></i> Lượng người dùng</span>
+                          <span id="totalusers">5000000</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                          <span class="title"><i class="fas fa-user-graduate"></i> Học viên tiêu biểu</span>
+                          <span id="pro-student" style="color:#00BFFF;">hd.roro</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                          <span><i class="fas fa-user-tie"></i>  Chuyên gia tiêu biểu</span>
+                          <span id="pro-expert" style="color:#00BFFF;">Mai Đăng Huân</span>
+                        </div>
+                      </div>
+                    </div>
+                      <div class="col">
+                        <div class="row">
+                            <div class="cell bg-white vstack p-4 m-2" style="border-radius: 0.7rem;">
+                              <span><i class="fas fa-users"></i> Thành viên mới</span>
+                              <hr>
+                              <div id="newuserpanel">
+
+                              </div>
+                            </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -321,7 +375,7 @@
                     </div>
                   </div>
                 </div> -->
-              </div>
+              
             </div>
             <div class="tab-pane container fade" id="usermanager-review">
               <div class="quanlinguoidung">
@@ -1072,7 +1126,23 @@
                   <div class="container bg-white"
                     style="border-radius: 10px 10px 0px 0px; width: 100%; padding:0.5rem;">
                     <div class=" hstack justify-content-between">
-                      <div class="object-role p-1 hstack">
+                      
+                      <div class="d-flex flex-wrap object-role p-1 hstack ">
+                        <!-- <span class="">Loại đối tượng</span>
+                        <ul class="d-flex nav nav-pills mb-0 text-center profile-tab nav-slider" data-toggle="slider-tab" id="profile-pills-tab" role="tablist">
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link show active" data-bs-toggle="tab" href="#student" role="tab" aria-selected="true">Student</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#expert" role="tab" aria-selected="false" tabindex="-1">Expert</a>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#course" role="tab" aria-selected="false" tabindex="-1">Course</a>
+                          </li>
+                          <div class="nav-slider-thumb position-absolute nav-link" style="padding: 0px; width: fit-content; height: fit-content; transform: translate3d(0px, 0px, 0px); transition: all 300ms ease-in-out 0s;" aria-selected="false" tabindex="-1" role="tab"><a class="nav-link active show" data-bs-toggle="tab" href="#student" role="tab" aria-selected="true"></a></div>
+                        </ul> -->
+
+
                         <span class="">Loại đối tượng</span>
                         <ul class="btn-group nav nav-pills " role="group"
                           aria-label="Basic checkbox toggle button group">

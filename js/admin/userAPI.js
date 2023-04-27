@@ -52,15 +52,24 @@ const userAPI = {
     };
     return axiosClient.get(url, config);
   },
-  getSystemRevenue(params, token) {
-    const url = '/private/User/Get-system-revenue';
+  getAllUsersByType(params, token) {
+    const url = `/private/User/Get-all-users-by-type`;
     const config = {
-      headers: {
+      headers : {
         'Authorization' : `Bearer ${token}`,
       },
-    }
+    };
     return axiosClient.get(url);
-  }
+  },
+  getNewUsers(params, token) {
+    const url = `/private/User/Get-new-users`;
+    const config = {
+      headers : {
+        'Authorization' : `Bearer ${token}`,
+      },
+    };
+    return axiosClient.get(url);
+  },
 }
 
 export default userAPI;
