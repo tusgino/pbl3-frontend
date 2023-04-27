@@ -215,7 +215,33 @@
             <div class="tab-pane container active" id="overview">
               <div class="overview">
 
-                <div class="container">
+                <div class="container" style="display:flex;">
+                  <div class="col-8">
+                    <div class="row">
+                      <div class="cell bg-white p-2 vstack" style="border-radius: 1rem;">
+                        <span>Doanh thu hệ thống</span>
+                        <hr>
+                        <canvas id="SystemRevenue"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="row">
+                      <div class="cell bg-white" style="height: 8rem; border-radius: 1rem;">
+                        hello world
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="cell bg-white" style="height: 18rem; border-radius: 1rem;">
+                        <canvas id="AllOfUsers"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <!-- <div class="container">
                   <div class="row float-content">
                     <div class="col container-rounded">
                       <ul>
@@ -294,7 +320,7 @@
                       </ul>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="tab-pane container fade" id="usermanager-review">
@@ -1258,10 +1284,12 @@
   </footer>
 
   <script type="module" src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script type="module" src="/js/main.js"></script>
   <script type="module" src="/js/home.js"></script>
   <script type="module" src="/js/admin/system.js"></script>
+  <script type="module" src="/js/admin/overview.js"></script>
   <script type="module" src="/js/admin/userManage.js"></script>
   <script type="module" src="/js/admin/courseManage.js"></script>
   <script type="module" src="/js/admin/categoryManage.js"></script>

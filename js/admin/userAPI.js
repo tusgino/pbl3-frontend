@@ -52,6 +52,15 @@ const userAPI = {
     };
     return axiosClient.get(url, config);
   },
+  getSystemRevenue(params, token) {
+    const url = '/private/User/Get-system-revenue';
+    const config = {
+      headers: {
+        'Authorization' : `Bearer ${token}`,
+      },
+    }
+    return axiosClient.get(url);
+  }
 }
 
 export default userAPI;
