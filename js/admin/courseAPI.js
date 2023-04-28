@@ -43,6 +43,24 @@ const courseAPI = {
         }
         return axiosClient.get(url, {params});
     },
+    getAverageFeePercent(params, token) {
+        const url = `/public/Course/Get-average-feepercent`;
+        const config = {
+            headers : {
+                'Authorization': `Bearer ${token}`,
+            }
+        }
+        return axiosClient.get(url);
+    },
+    getBestCourses(params, token) {
+        const url = `/public/Course/Get-best-courses`;
+        const config = {
+            headers : {
+                'Authorization': `Bearer ${token}`,
+            },
+        };
+        return axiosClient.get(url);
+    }
 }
 
 export default courseAPI;

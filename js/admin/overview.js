@@ -1,9 +1,10 @@
+import courseAPI from "./courseAPI";
 import tradeAPI from "./tradeAPI";
 import userAPI from "./userAPI";
 
 const token = localStorage.getItem('token')
 
-const SystemRevenue = (data) => {
+const SystemRevenue = async(data) => {
     const title = document.getElementById('systemrevenue-title');
     const now = new Date();
     console.log(now);
@@ -11,11 +12,41 @@ const SystemRevenue = (data) => {
     
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const revenue = [];
+    var totalrevenuecurrentyear = 0;
     data.forEach((element) => {
         // months.push(element.month);
         revenue.push(element.revenue);
+        totalrevenuecurrentyear += element.revenue;
     });
 
+
+    // tong doanh thu hien tai
+    {
+        const totalrevenue = document.getElementById('TotalRevenueCurrentYear');
+        totalrevenue.textContent = totalrevenuecurrentyear;
+    }
+    //
+
+    // ti le tang truong
+    {
+        const oldrevenue = document.getElementById('oldrevenue').textContent;
+        const growthrate = document.getElementById('growthrate');
+        growthrate.textContent =  Math.floor(totalrevenuecurrentyear/oldrevenue * 100)  + '%';
+    }
+
+    // chiet khau trung binh
+    {
+        const avgfee = document.getElementById('avg-fee');
+        avgfee.textContent = await courseAPI.getAverageFeePercent();
+    }
+
+    // khoa hoc tieu bieu
+    {
+        const procourse = document.getElementById('pro-course');
+        const data = await courseAPI.getBestCourses();
+        procourse.textContent = data[0];
+    }
+    //
     
 
 
@@ -46,6 +77,27 @@ const SystemRevenue = (data) => {
             }
         }
     });
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+    
 }
 
 const AllOfUsers = async (data) => {
@@ -102,17 +154,20 @@ const AllOfUsers = async (data) => {
         const params = {
             "page" : 1,
         };
-        console.log(await userAPI.getAllExpertsForAnalytics(params, token));
         const {data : {_data, _totalRows}} = await userAPI.getAllStudentsForAnalytics(params, token);
         console.log(_data)
         const prostudent = document.getElementById('pro-student');
-        var coursecount = 0;
-        _data.forEach((student) => {
-            if(student.finished_courses_count > coursecount) {
-                prostudent.textContent = student.student_name; 
-                coursecount = student.finished_courses_count;
-            }
+
+        _data.sort((a,b) => { b.finished_courses_count - a.finished_courses_count})
+        const data = _data.slice(0,4)
+        console.log(data)
+        data.forEach((student) => {
+            const liElement = document.createElement('li');
+            liElement.classList.add('mt-3')
+            liElement.innerHTML = `<i class="fas fa-graduation-cap"></i> ${student.student_name}`;
+            prostudent.appendChild(liElement)
         })
+
     }
     //
 
@@ -127,12 +182,15 @@ const AllOfUsers = async (data) => {
         };
         const {data : {_data, _totalRows}} = await userAPI.getAllExpertsForAnalytics(params, token);
         const proexpert = document.getElementById('pro-expert');
-        var revenuecount = 0;
-        _data.forEach((expert) => {
-            if(expert._revenue > revenuecount) {
-                proexpert.textContent = expert._expert_name;
-                revenuecount = expert._revenue;
-            }
+
+        _data.sort((a,b) => {b._revenue - a._revenue})
+        const data = _data.slice(0,4);
+
+        data.forEach((expert) => {
+            const liElement = document.createElement('li');
+            liElement.classList.add('mt-3')
+            liElement.innerHTML = `<i class="fab fa-black-tie"></i> ${expert._expert_name}`;
+            proexpert.appendChild(liElement)
         })
     }
     //

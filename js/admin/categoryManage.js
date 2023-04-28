@@ -23,9 +23,9 @@ const addCategory = async() => {
             const res = await categoryAPI.addCategory(params, token);
             
             if(res.message == "Trung") {
-                alert("Them that bai");
+                alert("Thêm thất bại");
             } else {
-                alert('Them thanh cong');
+                alert('Thêm thành công');
             }
             getCategories(1);
         }
@@ -124,8 +124,8 @@ const createRecord = (data) => {
 }
 const createCourseItem = (data) => {
     const li = document.createElement('li');
-    li.setAttribute('class', 'mt-2');
-    li.textContent = data;
+    li.setAttribute('class', 'mt-3');
+    li.innerHTML = `<i class="fas fa-book"></i> ${data}`;
     return li;
 }
 

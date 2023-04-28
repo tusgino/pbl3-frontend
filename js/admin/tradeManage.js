@@ -36,7 +36,7 @@ const createRecord_Trade = (data) => {
     iconinfo.addEventListener('click', () => {
         if(data.typeOfTrade == 0) detailtradetype.value = "Mua khoá học";
         else if(data.typeOfTrade == 1) detailtradetype.value = "Duy trì tài khoản";
-        detailtradeuser.value = data.username;
+        detailtradeuser.value = data.user.name;
         detailtradebalance.value = data.balance;
         detailtradeprice.value = data.requiredBalance;
         detailtradedate.value = dateoftrade.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');

@@ -167,22 +167,21 @@ const setEventHandlerAcc = () => {
     
 }
 
-const avatarHandle = async() => {
-    document.getElementById('file-upload').addEventListener('change', function (event) {
-        var file = event.target.files[0];
-        var fileReader = new FileReader();
+// const avatarHandle = async() => {
+//     document.getElementById('file-upload').addEventListener('change', function (event) {
+//         var file = event.target.files[0];
+//         var fileReader = new FileReader();
 
-        fileReader.onload = function (event) {
-            var imagePreview = document.getElementById('usermanager-addadmin').querySelector('.avatar');
-            // console.log(imagePreview)
-            imagePreview.src = event.target.result;
-        };
+//         fileReader.onload = function (event) {
+//             var imagePreview = document.getElementById('usermanager-addadmin').querySelector('.avatar');
+//             // console.log(imagePreview)
+//             imagePreview.src = event.target.result;
+//         };
 
-        fileReader.readAsDataURL(file);
-    });
-   
+//         fileReader.readAsDataURL(file);
+//     });
 
-}
+// }
 
 const clearFormHandle = async() => {
     const btnclearform = document.getElementById('btn-clear-form');
@@ -191,10 +190,10 @@ const clearFormHandle = async() => {
     const addadminform = document.getElementById('usermanager-addadmin');
     
     btnclearform.addEventListener('click', () => {
-        addadminform.querySelector('.avatar').src = "https://media.istockphoto.com/id/1307140502/vi/vec-to/vector-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-h%E1%BB%93-s%C6%A1-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-ch%C3%A2n-dung-avatar-logo-k%C3%BD-t%C3%AAn-ng%C6%B0%E1%BB%9Di-h%C3%ACnh-d%E1%BA%A1ng.jpg?s=612x612&w=0&k=20&c=yCpEW0XGq3LCgCn-0GupWknu4pIYxEm8CigGHnqVkQU=";
+        // addadminform.querySelector('.avatar').src = "https://media.istockphoto.com/id/1307140502/vi/vec-to/vector-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-h%E1%BB%93-s%C6%A1-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-ch%C3%A2n-dung-avatar-logo-k%C3%BD-t%C3%AAn-ng%C6%B0%E1%BB%9Di-h%C3%ACnh-d%E1%BA%A1ng.jpg?s=612x612&w=0&k=20&c=yCpEW0XGq3LCgCn-0GupWknu4pIYxEm8CigGHnqVkQU=";
         addadminform.querySelector('input[name="txt-admin-name"]').value = '';
-        // addadminform.querySelector('input[name="txt-admin-birth"]').value = '';
-        // addadminform.querySelector('input[name="txt-admin-phonenumber"]').value = '';
+        addadminform.querySelector('input[name="txt-admin-birth"]').value = '';
+        addadminform.querySelector('input[name="txt-admin-phonenumber"]').value = '';
         addadminform.querySelector('input[name="txt-admin-email"]').value = '';
         // addadminform.querySelector('input[name="txt-admin-banknumber"]').value = '';
         // addadminform.querySelector('input[name="txt-admin-bankname"]').value = '';
@@ -208,10 +207,51 @@ const clearFormHandle = async() => {
 
 }
 
+const addExpert = async(data) => {
+    const btnsearch = document.getElementById('btn-search-addexpert');
+    if(!btnsearch) return;
+
+
+    const namefield = document.getElementById('namefield');
+    const datefrom = document.getElementById('reg-date-from');
+    const dateto = document.getElementById('reg-date-to');
+    const nameexpert = document.getElementById('txtsearch-addexpert');
+    btnsearch.addEventListener('click', () => {
+
+    });
+
+
+    const expertname = document.querySelector('[name="txt-expert-name"]');
+    // const expertbirth = document.querySelector('[name="txt-expert-birth"]');
+    // const expertpn = document.querySelector('[name="txt-expert-pn"]');
+    // const expertidcard = document.querySelector('[name="txt-expert-idcard"]');
+    const expertemail = document.querySelector('[name="txt-expert-email"]');
+    // const expertdegree = document.querySelector('[name="txt-expert-degree"]');
+    
+    const btnaddexpert = document.getElementById('btn-add-expert');
+    const btnrefusexpert = document.getElementById('btn-refuseexpert');
+
+    btnaddexpert.addEventListener('click', () => {
+        const params = {
+            "Name" : expertname.value,
+            "Email": expertemail.value,
+            "TypeOfUser": 1,
+        };
+
+
+    })
+    
+    
+    
+    
+    
+}
+    
 const addAdmin = async() => {
     const btnaddadmin = document.getElementById('btn-add-admin');
     btnaddadmin.addEventListener('click', async () => {
         const addadminform = document.getElementById('usermanager-addadmin');
+        // const avatar = addadminform.querySelector('input[name="file-upload  "]').value;
         const name = addadminform.querySelector('input[name="txt-admin-name"]').value;
         const email = addadminform.querySelector('input[name="txt-admin-email"]').value;
         const password = addadminform.querySelector('input[name="txt-admin-password"]').value;
@@ -241,6 +281,7 @@ const addAdmin = async() => {
             
             } catch (error) {
                 //console.log(error);
+                alert("Đã tồn tại");
             }
 
 
@@ -254,10 +295,10 @@ const addAdmin = async() => {
 
 (async() => {    
     try {
-        avatarHandle();
+        // avatarHandle();
         clearFormHandle();
         addAdmin();
-
+        addExpert();
 
         setEventSearch();
         setEventHandlerAcc();

@@ -79,7 +79,8 @@ footer {
   bottom: 0px;
 }
 .container {
-  padding: 0px;
+  padding: 0rem;
+  border-radius: 1rem;
 }
 .cell {
   display: flex;
@@ -174,11 +175,16 @@ input {
   object-position: top;
 }
 
+#btn-add-expert,
+#btn-search-addexpert,
+#btn-add-admin,
 #btn-search-usermanage,
 #btn-search-coursemanage,
 #btn-form-addcategory,
+#btn-add-category,
 #btn-search-categorymanage,
 #btn-search-trademanage,
+#btn-confirmtrade,
 #btn-search-studentanalytics,
 #btn-search-expertanalytics,
 #btn-search-courseanalytics {
@@ -190,11 +196,6 @@ input {
   font-size: 16px;
 }
 
-#txtsearch-usermanage {
-  border: 0px;
-  font-size: 16px;
-  padding: 1.2rem 2rem;
-}
 .search-area {
   display: flex;
   align-items: center;
@@ -213,9 +214,14 @@ input[type="date"] {
   height: 40px;
   box-sizing: border-box;
 }
+
+#btn-refuseexpert,
 #btn-banacc,
 #btn-delacc,
-#deleteCategory {
+#btn-bancourse,
+#btn-delcourse,
+#deleteCategory,
+#btn-refusetrade {
   background-color: #ff0000;
   color: white;
   border-radius: 0.5rem;
@@ -230,7 +236,9 @@ input[type="date"] {
   padding: 0.5rem 1rem;
   font-size: 16px;
 }
-#btn-unbanacc {
+
+#btn-unbanacc,
+#btn-unbancourse {
   background-color: #38b6ff;
   color: white;
   border-radius: 0.5rem;
@@ -242,4 +250,44 @@ input[type="date"] {
 .btn:focus {
   outline: none;
   border: 0;
+}
+
+.btn-text-close {
+  border-color: lightgray;
+  background-color:lightgray; 
+  color:gray;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+}
+
+.btn-text-close:hover {
+  background-color: gray;
+  border-color : gray;
+}
+
+.search-area input {
+  padding:0.7rem;
+}
+
+.filter-bar > .container {
+  padding: 0.7rem;
+}
+
+.field-bar {
+  padding: 1rem;
+}
+
+.data-view {
+  padding: 1rem;
+}
+
+.thongke > .filter-bar > .container  {
+  border-radius: 1rem 1rem 0rem 0rem;
+}
+
+.thongkehocvien > .filter-bar > .container,
+.thongkechuyengia > .filter-bar > .container, 
+.thongkekhoahoc > .filter-bar > .container {
+  border-radius: 0rem 0rem 1rem 1rem;
 }

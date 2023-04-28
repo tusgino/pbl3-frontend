@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/styles/bootstrap/bootstrap.min.css">
 
   <!-- Font Awesome -->
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -68,6 +69,15 @@
       <div class="cell col-1" id="usermanage-iconinfo"><i type="button" class="fas fa-info-circle"
           data-bs-toggle="modal" data-bs-target="#Modal-studentinfo"></i></div>
     </div>
+  </template>
+  <template id="addExpertRequest">
+    <li class="container hstack justify-content-around bg-white border" type="button"
+      data-bs-toggle="modal" data-bs-target="#expertrequest"
+      style="border-color: #000000;border-radius: 1rem;padding:0.6rem;margin-left:3.2rem;width: 90%;">
+      <span data-id="expertName">Nguyễn Văn A</span>
+      <span data-id="expertField">Lĩnh vực A</span>
+      <span data-id="requestDate">1/1/1111</span>
+    </li>
   </template>
   <template id="courseManageRecord">
     <div class="record row my-4">
@@ -151,7 +161,7 @@
   <main>
     <div class="page-container flex">
       <section class="sidebar ">
-        <div class="p-2 d-flex flex-column flex-shrink-0 sidebar-item container-rounded" style="width: 300px; ">
+        <div class="p-2 d-flex flex-column flex-shrink-0 sidebar-item" style="width: 300px; ">
           <div class="d-flex align-items-center ms-4 mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <img  alt="avatar" class="avatar">
             <div class="user m-lg-3" style="font-size: 1.2rem;">
@@ -214,7 +224,6 @@
           <div class="tab-content">
             <div class="tab-pane container active" id="overview">
               <div class="overview">
-
                 <div class="container vstack" style="display:flex;">
                   <div class="row">
                     <div class="col-9">
@@ -229,27 +238,39 @@
                     <div class="col gap-3">
                       <div class="row">
                         <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;"> 
-                          <span>Tổng doanh thu hiện tại</span>
-                          <span id="TotalRevenueCurrentYear">5000000</span>
+                          <span><i class="fas fa-hand-holding-usd"></i> Doanh thu hiện tại</span>
+                          <span id="TotalRevenueCurrentYear"></span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
-                          <span>Doanh thu năm trước</span>
-                          <span>5000000</span>
+                          <span><i class="fas fa-hand-holding-usd"></i> Doanh thu năm trước</span>
+                          <span id="oldrevenue">5000000</span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
-                          <span>Chiết khấu trung bình</span>
-                          <span>17.8 %</span>
+                          <span><i class="fas fa-angle-double-up"></i> Tỉ lệ tăng trưởng</span>
+                          <span id="growthrate"></span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                          <span><i class="fas fa-percent"></i> Chiết khấu trung bình</span>
+                          <span id="avg-fee"></span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                          <span><i class="fas fa-book"></i> Khoá học tiêu biểu</span>
+                          <span id="pro-course"></span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <hr>
                   <div class="row">
-                    <div class="col-6">
+                    <div class="col-5">
                       <div class="row">
                         <div class="cell bg-white vstack p-4" style="border-radius: 1rem;">
                           <span style="font-size: 1.8rem; color:#5271ff">Tổng quan người dùng</span>
@@ -261,24 +282,24 @@
                     <div class="col">
                       <div class="row">
                         <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
-                          <span><i class="fas fa-users"></i> Lượng người dùng</span>
+                          <span><i class="fas fa-users"></i> Tổng lượng người dùng</span>
                           <span id="totalusers">5000000</span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
-                          <span class="title"><i class="fas fa-user-graduate"></i> Học viên tiêu biểu</span>
-                          <span id="pro-student" style="color:#00BFFF;">hd.roro</span>
+                          <span style="color:#5271ff;"><i class="fas fa-user-graduate"></i> Học viên tiêu biểu</span>
+                          <ul id="pro-student"></ul>
                         </div>
                       </div>
                       <div class="row">
                         <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
-                          <span><i class="fas fa-user-tie"></i>  Chuyên gia tiêu biểu</span>
-                          <span id="pro-expert" style="color:#00BFFF;">Mai Đăng Huân</span>
+                          <span  style="color:#5271ff;"><i class="fas fa-user-tie"></i>  Chuyên gia tiêu biểu</span>
+                          <ul id="pro-expert"></ul>
                         </div>
                       </div>
                     </div>
-                      <div class="col">
+                      <div class="col-3">
                         <div class="row">
                             <div class="cell bg-white vstack p-4 m-2" style="border-radius: 0.7rem;">
                               <span><i class="fas fa-users"></i> Thành viên mới</span>
@@ -292,95 +313,11 @@
                     </div>
                   </div>
                 </div>
-
-
-
-                <!-- <div class="container">
-                  <div class="row float-content">
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Số người dùng hệ thống</li>
-                        <li>500000</li>
-                      </ul>
-                    </div>
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Số khoá học có sẵn</li>
-                        <li>500000</li>
-                      </ul>
-                    </div>
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Doanh thu tháng</li>
-                        <li>500000</li>
-                      </ul>
-                    </div>
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Số người truy cập</li>
-                        <li>500000</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="row float-content">
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Học viên tiêu biểu</li>
-                        <li>Nguyễn Văn A</li>
-                      </ul>
-                    </div>
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Chuyên gia tiêu biểu</li>
-                        <li>Nguyễn Văn B</li>
-                      </ul>
-                    </div>
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Khoá học tiêu biểu</li>
-                        <li>ABC</li>
-                      </ul>
-                    </div>
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Số người truy cập</li>
-                        <li>500000</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="row float-content">
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Liên kết</li>
-                        <li><i class="fab fa-facebook-square"></i></li>
-                      </ul>
-                    </div>
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Liên kết</li>
-                        <li><i class="fab fa-youtube"></i></li>
-                      </ul>
-                    </div>
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Liên kết</li>
-                        <li><i class="fab fa-twitter-square"></i></li>
-                      </ul>
-                    </div>
-                    <div class="col container-rounded">
-                      <ul>
-                        <li>Số người truy cập</li>
-                        <li>500000</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div> -->
-              
             </div>
             <div class="tab-pane container fade" id="usermanager-review">
               <div class="quanlinguoidung">
                 <div class="filter-bar">
-                  <div class="container bg-white rounded-5 container-rounded" style="width:100%">
+                  <div class="container bg-white " style="width:100%">
                     <div class=" hstack justify-content-between p-2">
                       <div class="user-role ">
                         <span class="p-2">Loại người dùng</span>
@@ -396,7 +333,7 @@
                         </div>
                       </div>
                       <div class="search-area">
-                        <input type="text" id="txtsearch-usermanage">
+                        <input type="text" placeholder="Tên người dùng" id="txtsearch-usermanage">
                         <button type="button" id="btn-search-usermanage" class="btn nav-item">Tìm kiếm</button>
                       </div>
                     </div>
@@ -421,7 +358,7 @@
                   </div>
                 </div>
                 <div class="container manager">
-                  <div class="container hstack field-bar my-3 rounded-3 bg-white p-3 ">
+                  <div class="container hstack field-bar my-3 bg-white">
                     <div class="cell col-1"></div> <!--avatar-->
                     <!-- <div class="cell col">Mã người dùng</div> -->
                     <div class="cell col">Tên người dùng</div>
@@ -430,7 +367,7 @@
                     <div class="cell col">Trạng thái tài khoản</div>
                     <div class="cell col-1"></div> <!--icon information-->
                   </div>
-                  <div class="container data-view bg-white rounded-3 p-3 ">
+                  <div class="container data-view bg-white">
 
                   </div>
                   <!-- modal student informatino-->
@@ -535,151 +472,138 @@
               </div>
             </div>
             <div class="tab-pane container fade" id="usermanager-addexpert">
-              <div class="container bg-white p-3 pb-5">
-                <h2 style="position: relative; top:1rem;"><i class="fas fa-arrow-right fa-lg"></i> Thêm chuyên gia</h3>
-                  <h3 style="position: relative; top:2rem; left:1.5rem;">Yêu cầu tải khoản</h3>
-
-                  <ul class="flex-column" style="position: relative; top:2.5rem;">
-                    <li class="container hstack justify-content-around bg-white border p-3 m-2" type="button"
-                      data-bs-toggle="modal" data-bs-target="#requestinfo"
-                      style="border-color: #000000;border-radius: 1rem;">
-                      <span>Nguyễn Văn A</span>
-                      <span>Lĩnh vực A</span>
-                      <span>1/1/1111</span>
-                    </li>
-                    <li class="container hstack justify-content-around bg-white border p-3 m-2" type="button"
-                      data-bs-toggle="modal" data-bs-target="#requestinfo"
-                      style="border-color: #000000;border-radius: 1rem;">
-                      <span>Nguyễn Văn A</span>
-                      <span>Lĩnh vực A</span>
-                      <span>1/1/1111</span>
-                    </li>
-                    <li class="container hstack justify-content-around bg-white border p-3 m-2" type="button"
-                      data-bs-toggle="modal" data-bs-target="#requestinfo"
-                      style="border-color: #000000;border-radius: 1rem;">
-                      <span>Nguyễn Văn A</span>
-                      <span>Lĩnh vực A</span>
-                      <span>1/1/1111</span>
-                    </li>
-                  </ul>
-                  <div class="modal fade rounded-3" id="requestinfo" role="dialog">
-                    <div class="modal-dialog modal-xxl modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header justify-content-between">
-                          <h4>Thông tin người dùng</h4>
-                          <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
-                              class="fas fa-times" style="color: #464646"></i></button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="container">
-                            <div class="row justify-content-center my-2">
-                              <div class="col-2"></div>
-                              <div class="col-auto"><img
-                                  src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
-                                  alt="" class="avatar"></div>
-                              <div class="col-2"></div>
-                            </div>
-                            <div class="row justify-content-center my-2">
-
-                              <div class="col-5">Tên người dùng</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="Megumi" name="txt-user-name" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row justify-content-center my-2">
-
-                              <div class="col-5">Ngày sinh</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="1/1/2011" name="txt-user-birth" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row justify-content-center my-2">
-
-                              <div class="col-5">Số điện thoại</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="11111111" name="txt-user-pn" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row justify-content-center my-2">
-
-                              <div class="col-5">CCCD</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="11111111" name="txt-user-idcard" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row justify-content-center my-2">
-
-                              <div class="col-5">Email</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="megumikatou@gmail.com" name="txt-user-email" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row justify-content-center my-2">
-
-                              <div class="col-5">Số tài khoản</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="111111111" name="txt-user-datecreate" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row justify-content-center my-2">
-
-                              <div class="col-5">Tên ngân hàng</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="BankBank" name="txt-user-status" disabled>
-                              </div>
-
-                            </div>
-                            <div class="row justify-content-center my-2">
-
-                              <div class="col-5">Bằng cắp</div>
-                              <div class="col-auto">
-                                <input type="text" placeholder="BankBank" name="txt-user-status" disabled>
-                              </div>
-
-                            </div>
-                          </div>
-                        </div>
-                        <div class="modal-footer justify-content-center">
-                          <button type="button" class="nav-item btn btn-default">Từ chối</button>
-                          <button type="button" class="nav-item btn btn-default">Thêm tài khoản</button>
-                        </div>
+              <div class="container bg-white pb-3 vstack" style="display:flex; border-radius: 1.3rem;">
+                <h2 class="mt-1 p-3"><i class="fas fa-arrow-right fa-lg"></i> Thêm chuyên gia</h3>
+                <!-- <h3 style="position: relative; top:2rem; left:1.5rem;">Yêu cầu tải khoản</h3> -->
+                <div class="filter-bar">
+                  <div class="container bg-white" style="width:100%">
+                    <div class=" hstack justify-content-between p-2">
+                      <div class="">
+                        <input type="text" placeholder="Tên lĩnh vực" style="padding:0.5rem" id="namefield">
+                      </div>
+                      <div class="gap-2">
+                        <input type="text" id="req-date-from" placeholder="Từ ngày" style="padding:0.5rem" onfocus="(this.type='date')" onblur="(this.type='text')">
+                        <span> - </span>
+                        <input type="text" id="req-date-to" placeholder="Đến ngày" style="padding:0.5rem" onfocus="(this.type='date')" onblur="(this.type='text')">
+                      </div>
+                      <div class="search-area">
+                        <input type="text" placeholder="Tên chuyên gia" id="txtsearch-addexpert">
+                        <button type="button" id="btn-search-addexpert" class="btn nav-item">Tìm kiếm</button>
                       </div>
                     </div>
                   </div>
+                </div>
 
+                <ul class="flex-column">
+                  <li class="container hstack justify-content-around bg-white border" type="button"
+                    data-bs-toggle="modal" data-bs-target="#expertrequest"
+                    style="border-color: #000000;border-radius: 1rem;padding:0.6rem;margin-left:3.2rem;width: 90%;">
+                    <span>Nguyễn Văn A</span>
+                    <span>Lĩnh vực A</span>
+                    <span>1/1/1111</span>
+                  </li>
+                </ul>
+                <div class="modal fade rounded-3" id="expertrequest" role="dialog">
+                  <div class="modal-dialog modal-xxl modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header justify-content-between">
+                        <h4>Thông tin người dùng</h4>
+                        <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
+                            class="fas fa-times" style="color: #464646"></i></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="container">
+                          <div class="row justify-content-center my-2">
+                            <div class="col-2"></div>
+                            <div class="col-auto"><img
+                                src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
+                                alt="" class="avatar"></div>
+                            <div class="col-2"></div>
+                          </div>
+                          <div class="row justify-content-center my-2">
+                            <div class="col">Tên người dùng</div>
+                            <div class="col">
+                              <input type="text" placeholder="" name="txt-expert-name" readonly>
+                            </div>
+                          </div>
+                          <div class="row justify-content-center my-2">
+                            <div class="col">Ngày sinh</div>
+                            <div class="col">
+                              <input type="text" placeholder="" name="txt-expert-birth" readonly>
+                            </div>
+                          </div>
+                          <div class="row justify-content-center my-2">
+                            <div class="col">Số điện thoại</div>
+                            <div class="col">
+                              <input type="text" placeholder="" name="txt-expert-pn" readonly>
+                            </div>
+                          </div>
+                          <div class="row justify-content-center my-2">
+                            <div class="col">CCCD</div>
+                            <div class="col">
+                              <input type="text" placeholder="" name="txt-expert-idcard" readonly>
+                            </div>
+                          </div>
+                          <div class="row justify-content-center my-2">
+                            <div class="col">Email</div>
+                            <div class="col">
+                              <input type="text" placeholder="" name="txt-expert-email" readonly>
+                            </div>
+                          </div>
+                          <!-- <div class="row justify-content-center my-2">
+                            <div class="col">Số tài khoản</div>
+                            <div class="col">
+                              <input type="text" placeholder="" name="txt-expert-datecreate" readonly>
+                            </div>
+                          </div>
+                          <div class="row justify-content-center my-2">
+                            <div class="col">Tên ngân hàng</div>
+                            <div class="col">
+                              <input type="text" placeholder="" name="txt-expert-status" readonly>
+                            </div>
+                          </div> -->
+                          <div class="row justify-content-center my-2">
+                            <div class="col">Bằng cấp</div>
+                            <div class="col">
+                              <input type="text" placeholder="" name="txt-expert-degree" readonly>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer justify-content-center">
+                        <button type="button" id="btn-refuseexpert" class="nav-item btn btn-default">Từ chối</button>
+                        <button type="button" id="btn-add-expert" class="nav-item btn btn-default">Thêm tài khoản</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="tab-pane container fade" id="usermanager-addadmin">
-              <div class="container bg-white p-3 pb-5 ">
-                <h1 style="top:2rem;"><i class="fas fa-arrow-right fa-lg"></i> Thêm Admin</h1>
+              <div class="container bg-white pb-5 vstack" style="border-radius: 1.3rem;display:flex">
+                <span class="mt-2 p-3"><i class="fas fa-arrow-right fa-lg"></i> Thêm Admin</span>
                 <div class="container mt-3" style="display:grid; grid-template-columns: repeat(3,1fr);">
                   <div class="col cell">
-                    <input type="file" id="file-upload" name="file-upload" hidden>
+                    <!-- <input type="file" id="file-upload" name="file-upload" hidden> -->
                     <div>
                       <img src="https://media.istockphoto.com/id/1307140502/vi/vec-to/vector-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-h%E1%BB%93-s%C6%A1-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-ch%C3%A2n-dung-avatar-logo-k%C3%BD-t%C3%AAn-ng%C6%B0%E1%BB%9Di-h%C3%ACnh-d%E1%BA%A1ng.jpg?s=612x612&w=0&k=20&c=yCpEW0XGq3LCgCn-0GupWknu4pIYxEm8CigGHnqVkQU="
                         alt="avatar" class="avatar" style="width: 9rem;height: 9rem;">
-                      <label for="file-upload">
+                      <!-- <label for="file-upload">
                         <i class="fas fa-camera fa-lg"
                           style="color: #787878;position:relative; bottom: 0.7rem;right: 1.7rem; "></i>
-                      </label>
+                      </label> -->
                     </div>
                   </div>
                   <div class="col">
                     <div class="row">
                       <input type="text" placeholder="Tên người dùng" name="txt-admin-name">
                     </div>
-                    <!-- <div class="row">
-                      <input type="date" placeholder="Ngày sinh" name="txt-admin-birth">
+                    <div class="row">
+                      <input type="text" placeholder="Ngày sinh" onfocus="(this.type='date')" onblur="(this.type='text')" name="txt-admin-birth">
                     </div>
                     <div class="row">
                       <input type="text" placeholder="Số điện thoại" name="txt-admin-phonenumber">
-                    </div> -->
+                    </div>
                     <div class="row">
                       <input type="text" placeholder="Email" name="txt-admin-email">
                     </div>
@@ -700,7 +624,7 @@
                   </div>
                 </div>
                 <div class="mt-3 hstack justify-content-end gap-3" style="margin-right:10rem">
-                  <button class="nav-item btn" id="btn-clear-form">Xoá thông tin</button>
+                  <button class="btn-text-close nav-item btn" id="btn-clear-form">Xoá thông tin</button>
                   <button class="nav-item btn" id="btn-add-admin">Thêm Admin</button>
                 </div>
               </div>
@@ -708,14 +632,14 @@
             <div class="tab-pane container fade" id="coursemanager">
               <div class="quanlikhoahoc">
                 <div class="filter-bar ">
-                  <div class="container bg-white rounded-3 container-rounded" style="width:100%">
+                  <div class="container bg-white" style="width:100%">
                     <div class=" hstack justify-content-between p-2">
                       <div class="category ">
                         <span>Thể loại</span>
                         <input type="text" id="name-category">
                       </div>
                       <div class="search-area">
-                        <input type="text" id="txtsearch-coursemanage">
+                        <input type="text" placeholder="Tên khoá học" id="txtsearch-coursemanage">
                         <button type="button" id="btn-search-coursemanage" class="btn nav-item">Tìm kiếm</button>
                       </div>
 
@@ -745,14 +669,14 @@
                   </div>
                 </div>
                 <div class="container manager">
-                  <div class="container hstack field-bar my-3 rounded-3 bg-white p-3 ">
+                  <div class="container hstack field-bar my-3 bg-white">
                     <div class="cell col">Tên khoá học</div>
                     <div class="cell col">Thể loại</div>
                     <div class="cell col">Ngày đăng tải</div>
                     <div class="cell col">Trạng thái khoá học</div>
                     <div class="cell col-1"></div> <!--icon information-->
                   </div>
-                  <div class="container data-view bg-white rounded-3 p-3">
+                  <div class="container data-view bg-white">
 
                   </div>
                   <div class="modal fade rounded-3" id="Modal-courseinfo" role="dialog">
@@ -760,7 +684,7 @@
                       <div class="modal-content">
                         <div class="modal-header justify-content-between">
                           <h4>Thông tin khoá học</h4>
-                          <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
+                          <button type="button" class="close" data-bs-dismiss="modal" style="border:none;"><i
                               class="fas fa-times" style="color: #464646"></i></button>
                         </div>
                         <div class="modal-body">
@@ -846,8 +770,7 @@
                             class="nav-item btn btn-default">Bỏ lưu trữ</button>
                           <button type="button" id="btn-delcourse" data-bs-dismiss="modal"
                             class="nav-item btn btn-default">Cấm vĩnh viễn</button>
-                          <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
-                            style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
+                          <button type="button" class="btn-text-close nav-item btn btn-default " data-bs-dismiss="modal">Đóng</button>
                         </div>
                       </div>
                     </div>
@@ -858,7 +781,7 @@
             <div class="tab-pane container fade" id="categorymanager">
               <div class="quanlidanhmuc">
                 <div class="filter-bar">
-                  <div class="container bg-white rounded-3 hstack justify-content-between p-3 container-rounded"
+                  <div class="container bg-white hstack justify-content-between"
                     style="width:100%">
                     <div>
                       <button type="button" class="nav-item btn" data-bs-toggle="modal"
@@ -882,8 +805,7 @@
                             <div class="modal-footer">
                               <button type="button" class="nav-item btn btn-default form-submit" data-bs-dismiss="modal"
                                 id="btn-add-category">Thêm</button>
-                              <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
-                                style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
+                              <button type="button" class="btn-text-close nav-item btn btn-default" data-bs-dismiss="modal">Đóng</button>
                             </div>
                           </div>
                         </div>
@@ -914,20 +836,20 @@
                       </div>
                     </div>
                     <div class="search-area">
-                      <input type="text" id="txtsearch-categorymanage">
+                      <input type="text" placeholder="Tên danh mục" id="txtsearch-categorymanage">
                       <button type="button" id="btn-search-categorymanage" class="nav-item btn">Tìm kiếm</button>
                     </div>
 
                   </div>
                 </div>
-                <div class="container manager" style="width: 100%;">
-                  <div class="container hstack field-bar my-3 rounded-3 bg-white p-3">
+                <div class="container manager">
+                  <div class="container hstack field-bar my-3 bg-white p-3">
                     <input type="checkbox" id="checkbox-all" class="cell col-1">
                     <!-- <div class="cell col">Mã danh mục</div> -->
                     <div class="cell col">Tên danh mục</div>
                     <div class="cell col-1"></div>
                   </div>
-                  <div class="container data-view bg-white rounded-3 p-3">
+                  <div class="container data-view bg-white">
 
                   </div>
                 </div>
@@ -940,15 +862,21 @@
                             class="fas fa-times" style="color: #464646"></i></button>
                       </div>
                       <div class="modal-body">
-                        <span>Danh mục gồm những khoá học sau:</span>
+                        <span style="font-weight: 400; font-size: 1.3rem;">Mô tả danh mục</span>
+                        <p id="category-desc">Lorem ipsum dolor sit amet consectetur adipisicing 
+                          elit. Perspiciatis, explicabo minima blanditiis voluptatibus nobis dis
+                          tinctio iusto provident unde hic at, nostrum nihil atque placeat eveniet
+                           aspernatur impedit doloremque voluptates odit.</p>
+                        <hr>
+                        <span style="font-weight: 400; font-size: 1.3rem;">Danh mục gồm những khoá học sau:</span>
                         <ul class="ms-4 mt-2" id="categoryCourseList">
                           <li>Tên khoá học 1</li>
                           <li>Tên khoá học 2</li>
                         </ul>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
-                          style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
+                        <button type="button" class="btn-text-close nav-item btn btn-default" data-bs-dismiss="modal"
+                          >Đóng</button>
                       </div>
                     </div>
                   </div>
@@ -962,7 +890,7 @@
             <div class="tab-pane container fade" id="trademanager">
               <div class="quanligiaodich">
                   <div class="filter-bar">
-                    <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
+                    <div class="container bg-white">
                       <div class="hstack gap-3 justify-content-between p-2">
                         <div class="trade-type">
                           <span class="">Loại giao dịch</span>
@@ -1018,14 +946,14 @@
                     </div>
                   </div>
                   <div class="container manager">
-                    <div class="container hstack field-bar my-3 rounded-3 bg-white p-3 ">
+                    <div class="container hstack field-bar my-3 bg-white">
                       <div class="cell col">Loại giao dịch</div>
                       <div class="cell col">Số tiền giao dịch</div>
                       <div class="cell col">Ngày giao dịch</div>
                       <div class="cell col">Trạng thái giao dịch</div>
                       <div class="cell col-1"></div>
                     </div>
-                    <div class="container data-view bg-white rounded-3 p-3">
+                    <div class="container data-view bg-white">
 
                     </div>
                     <div class="modal fade rounded-3" id="Modal-tradeinfo" role="dialog">
@@ -1110,8 +1038,8 @@
                               class="nav-item btn btn-default">Từ chối</button>
                             <!-- <button type="button" id="btn-delcourse" data-bs-dismiss="modal"
                               class="nav-item btn btn-default">Cấm vĩnh viễn</button> -->
-                            <button type="button" class="nav-item btn btn-default" data-bs-dismiss="modal"
-                              style="border-color: lightgray;background-color:lightgray; color:gray">Đóng</button>
+                            <button type="button" class="btn-text-close nav-item btn btn-default" data-bs-dismiss="modal"
+                             >Đóng</button>
                           </div>
                           </div>
                       </div>
@@ -1123,26 +1051,9 @@
             <div class="tab-pane container fade" id="analytics">
               <div class="thongke">
                 <div class="filter-bar">
-                  <div class="container bg-white"
-                    style="border-radius: 10px 10px 0px 0px; width: 100%; padding:0.5rem;">
+                  <div class="container bg-white">
                     <div class=" hstack justify-content-between">
-                      
                       <div class="d-flex flex-wrap object-role p-1 hstack ">
-                        <!-- <span class="">Loại đối tượng</span>
-                        <ul class="d-flex nav nav-pills mb-0 text-center profile-tab nav-slider" data-toggle="slider-tab" id="profile-pills-tab" role="tablist">
-                          <li class="nav-item" role="presentation">
-                            <a class="nav-link show active" data-bs-toggle="tab" href="#student" role="tab" aria-selected="true">Student</a>
-                          </li>
-                          <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" href="#expert" role="tab" aria-selected="false" tabindex="-1">Expert</a>
-                          </li>
-                          <li class="nav-item" role="presentation">
-                            <a class="nav-link" data-bs-toggle="tab" href="#course" role="tab" aria-selected="false" tabindex="-1">Course</a>
-                          </li>
-                          <div class="nav-slider-thumb position-absolute nav-link" style="padding: 0px; width: fit-content; height: fit-content; transform: translate3d(0px, 0px, 0px); transition: all 300ms ease-in-out 0s;" aria-selected="false" tabindex="-1" role="tab"><a class="nav-link active show" data-bs-toggle="tab" href="#student" role="tab" aria-selected="true"></a></div>
-                        </ul> -->
-
-
                         <span class="">Loại đối tượng</span>
                         <ul class="btn-group nav nav-pills " role="group"
                           aria-label="Basic checkbox toggle button group">
@@ -1173,7 +1084,7 @@
                               <input type="text" id="txtcoursebuy-to">
                             </div>
                             <div class="search-area">
-                              <input type="text" id="txtsearch-studentanalytics">
+                              <input type="text" placeholder="Tên học viên" id="txtsearch-studentanalytics">
                               <button type="button" id="btn-search-studentanalytics" class="btn nav-item">Tìm
                                 kiếm</button>
                             </div>
@@ -1189,14 +1100,14 @@
                         </div>
                       </div>
                       <div class="container manager">
-                        <div class="container hstack field-bar my-3 rounded-3 bg-white p-3">
+                        <div class="container hstack field-bar my-3 bg-white p-3">
                           <!-- <div class="cell col">Mã học viên</div> -->
                           <div class="cell col">Tên học viên</div>
                           <div class="cell col">Số khoá học đã mua</div>
                           <div class="cell col">Số khoá học đã hoàn thành</div>
                         </div>
                         <!-- <div class="cell col-1"></div> icon information  -->
-                        <div class="container data-view bg-white rounded-3 p-3">
+                        <div class="container data-view bg-white">
 
                         </div>
                       </div>
@@ -1215,7 +1126,7 @@
                             </div>
 
                             <div class="search-area">
-                              <input type="text" id="txtsearch-expertanalytics">
+                              <input type="text" placeholder="Tên chuyên gia" id="txtsearch-expertanalytics">
                               <button type="button" id="btn-search-expertanalytics" class="btn nav-item">Tìm
                                 kiếm</button>
                             </div>
@@ -1231,14 +1142,14 @@
                         </div>
                       </div>
                       <div class="container manager">
-                        <div class="container hstack field-bar my-3 rounded-3 bg-white p-3">
+                        <div class="container hstack field-bar my-3 bg-white p-3">
                           <!-- <div class="cell col">Mã chuyên gia</div> -->
                           <div class="cell col">Tên chuyên gia</div>
                           <div class="cell col">Số khoá học đã đăng</div>
                           <div class="cell col">Doanh thu tháng trước</div>
                           <!-- <div class="cell col-1"></div> icon information  -->
                         </div>
-                        <div class="container data-view bg-white rounded-3 p-3">
+                        <div class="container data-view bg-white">
 
                         </div>
                       </div>
@@ -1257,7 +1168,7 @@
                               <input type="text" id="txtstudentreg-to">
                             </div>
                             <div class="search-area">
-                              <input type="text" id="txtsearch-courseanalytics">
+                              <input type="text" placeholder="Tên khoá học" id="txtsearch-courseanalytics">
                               <button type="button" id="btn-search-courseanalytics" class="btn nav-item">Tìm
                                 kiếm</button>
                             </div>
@@ -1288,14 +1199,14 @@
 
                       </div>
                       <div class="container manager">
-                        <div class="container hstack field-bar my-3 rounded-3 bg-white p-3">
+                        <div class="container hstack field-bar my-3 bg-white p-3">
                           <!-- <div class="cell col">Mã khoá học</div> -->
                           <div class="cell col">Tên khoá học</div>
                           <div class="cell col">Số học viên đăng kí</div>
                           <div class="cell col">Đánh giá</div>
                           <!-- <div class="cell col-1"></div> icon information  -->
                         </div>
-                        <div class="container data-view bg-white rounded-3 p-3">
+                        <div class="container data-view bg-white">
 
                         </div>
                       </div>
