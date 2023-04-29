@@ -114,7 +114,10 @@ const setEventSearch = () => {
     btnsearch.addEventListener('click', async() => {
         getUsers(1);
     })
-
+    const btnsearchex =  document.getElementById('btn-search-addexpert');
+    btnsearchex.addEventListener('click', () => {
+        getExpertRequest(1);
+    })
 }
 
 const setEventHandlerAcc = () => {
@@ -207,45 +210,147 @@ const clearFormHandle = async() => {
 
 }
 
-const addExpert = async(data) => {
-    const btnsearch = document.getElementById('btn-search-addexpert');
-    if(!btnsearch) return;
 
 
-    const namefield = document.getElementById('namefield');
-    const datefrom = document.getElementById('reg-date-from');
-    const dateto = document.getElementById('reg-date-to');
-    const nameexpert = document.getElementById('txtsearch-addexpert');
-    btnsearch.addEventListener('click', () => {
-
-    });
-
-
-    const expertname = document.querySelector('[name="txt-expert-name"]');
-    // const expertbirth = document.querySelector('[name="txt-expert-birth"]');
-    // const expertpn = document.querySelector('[name="txt-expert-pn"]');
-    // const expertidcard = document.querySelector('[name="txt-expert-idcard"]');
-    const expertemail = document.querySelector('[name="txt-expert-email"]');
-    // const expertdegree = document.querySelector('[name="txt-expert-degree"]');
+const createExpertRequestRecord = async(data) => {
     
+    // add request vao trong view 
+    const addExpertRecord = document.getElementById('addExpertRequest');
+
+    const record = addExpertRecord.content.cloneNode(true);
+
+    setTextContent(record, '[data-id="expertName"]', data.name);
+    setTextContent(record, '[data-id="expertField"]', data.field);
+    setTextContent(record, '[data-id="requestDate"]', data.requestDate);
+
+    const expertName = document.querySelector('[name="txt-expert-name"]');
+    const expertEmail = document.querySelector('[name="txt-expert-email"]');
+    //
+
+
+
+    
+    const btninfo = document.querySelector('#addExpertRequest li');
+
     const btnaddexpert = document.getElementById('btn-add-expert');
-    const btnrefusexpert = document.getElementById('btn-refuseexpert');
+    const btnrefuseexpet = document.getElementById('btn-refuseexpert');
+    
 
-    btnaddexpert.addEventListener('click', () => {
-        const params = {
-            "Name" : expertname.value,
-            "Email": expertemail.value,
-            "TypeOfUser": 1,
-        };
+    
+    btninfo.addEventListener('click', () => {
+        expertName.textContent = data.name;
+        expertEmail.textContent = data.email;
 
-
+        
+        btnaddexpert.value = data.id;
+        btnrefuseexpet.value = data.id;
+        
     })
     
-    
-    
+    return record;
     
     
 }
+
+const handleExpertRequest = async() => {
+    const btnaddexpert = document.getElementById('btn-add-expert');
+    const btnrefuseexpet = document.getElementById('btn-refuseexpert');
+
+    btnaddexpert.addEventListener('click', async() => {
+        try {
+            const request = await userAPI.getRequestByID({id : btnaddexpert.value}, token);
+            const data = {
+                "name" : request.name,
+                "username" : request.email,
+                "password" : request.password, 
+                "repassword" : request.rePassword, 
+                "typeOfUser" : 1, 
+            };
+            const res = await accountAPI.register(data, token);
+            if(res.success) {
+                await userAPI.deleteExpertRequest(request.id);
+                alert("Thêm thành công");
+            }
+        } catch (error) {
+            //alert("Thêm thấi bại");
+            console.log(error);
+        }
+    });
+
+    btnrefuseexpet.addEventListener('click', async() => {
+        try {
+            const res = await userAPI.deleteExpertRequest(btnrefuseexpet.value);
+            if(res.success) {
+                alert("Từ chối thành công");
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    })
+
+
+}
+
+const getExpertRequest = async(page) => {
+    const params = {
+        "_expert_name" : document.getElementById('txtsearch-addexpert').value,
+        "_field_name" : document.getElementById('namefield').value, 
+        "_date_request_from" : document.getElementById('req-date-from').value,
+        "_date_request_to" : document.getElementById('req-date-to').value,
+        "page" : page, 
+    }
+
+    const dataview = document.querySelector(".formthemexpert .data-view");
+    dataview.textContent = "";
+
+    const {data : {_data, _totalRows}} = await userAPI.getAllExpertRequest(params, token);
+
+    systemAPI.renderRecord(_data, 'formthemexpert', createExpertRequestRecord);
+    systemAPI.renderPagination(_totalRows, 'formthemxexpert', getExpertERequest);
+    
+    
+}
+
+
+// const addExpert = async(data) => {
+//     const btnsearch = document.getElementById('btn-search-addexpert');
+//     if(!btnsearch) return;
+
+
+//     const namefield = document.getElementById('namefield');
+//     const datefrom = document.getElementById('reg-date-from');
+//     const dateto = document.getElementById('reg-date-to');
+//     const nameexpert = document.getElementById('txtsearch-addexpert');
+//     btnsearch.addEventListener('click', () => {
+
+//     });
+
+
+//     const expertname = document.querySelector('[name="txt-expert-name"]');
+//     // const expertbirth = document.querySelector('[name="txt-expert-birth"]');
+//     // const expertpn = document.querySelector('[name="txt-expert-pn"]');
+//     // const expertidcard = document.querySelector('[name="txt-expert-idcard"]');
+//     const expertemail = document.querySelector('[name="txt-expert-email"]');
+//     // const expertdegree = document.querySelector('[name="txt-expert-degree"]');
+    
+//     const btnaddexpert = document.getElementById('btn-add-expert');
+//     const btnrefusexpert = document.getElementById('btn-refuseexpert');
+
+//     btnaddexpert.addEventListener('click', () => {
+//         const params = {
+//             "Name" : expertname.value,
+//             "Email": expertemail.value,
+//             "TypeOfUser": 1,
+//         };
+
+
+//     })
+    
+    
+    
+    
+    
+// }
     
 const addAdmin = async() => {
     const btnaddadmin = document.getElementById('btn-add-admin');
@@ -297,16 +402,34 @@ const addAdmin = async() => {
     try {
         // avatarHandle();
         clearFormHandle();
-        addAdmin();
-        addExpert();
-
+        // addExpert();
+        
         setEventSearch();
         setEventHandlerAcc();
+        handleExpertRequest();
+        addAdmin(); 
 
         getUsers(1);
+        getExpertRequest(1);
         
     } catch (error) {
         console.log(error);
     }
 
 })()
+
+const expertRequestAPI = {
+    async createExpertRequest (data) {
+
+        //add request vao db, them 1 id cho request o duoi BE
+        const _data = { 
+            "Name" : data.name, 
+            "Email" : data.email,
+            "Field" : data.field,
+            "RequestDay" : data.requestDate,
+        }
+        await userAPI.addExpertRequest(_data, token);
+        //
+    }
+}
+export default expertRequestAPI;
