@@ -75,7 +75,7 @@
       data-bs-toggle="modal" data-bs-target="#expertrequest"
       style="border-color: #000000;border-radius: 1rem;padding:0.6rem;margin-left:3.2rem;width: 90%;">
       <span data-id="expertName">Nguyễn Văn A</span>
-      <span data-id="expertField">Lĩnh vực A</span>
+      <!-- <span data-id="expertField">Lĩnh vực A</span> -->
       <span data-id="requestDate">1/1/1111</span>
     </li>
   </template>
@@ -495,7 +495,7 @@
                     </div>
                   </div>
   
-                  <ul class="flex-column data-view">
+                  <div class="flex-column data-view">
                     <li class="container hstack justify-content-around bg-white border" type="button"
                       data-bs-toggle="modal" data-bs-target="#expertrequest"
                       style="border-color: #000000;border-radius: 1rem;padding:0.6rem;margin-left:3.2rem;width: 90%;">
@@ -503,72 +503,94 @@
                       <span>Lĩnh vực A</span>
                       <span>1/1/1111</span>
                     </li>
-                  </ul>
+                  </div>
                   <div class="modal fade rounded-3" id="expertrequest" role="dialog">
-                    <div class="modal-dialog modal-xxl modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header justify-content-between">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
+                      <div class="modal-content" style="width: 55rem; height: 50rem;"> 
+                        <div class="modal-header justify-content-center">
                           <h4>Thông tin người dùng</h4>
-                          <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
-                              class="fas fa-times" style="color: #464646"></i></button>
+                          <!-- <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
+                              class="fas fa-times" style="color: #464646"></i></button> -->
                         </div>
-                        <div class="modal-body">
-                          <div class="container">
-                            <div class="row justify-content-center my-2">
-                              <div class="col-2"></div>
-                              <div class="col-auto"><img
-                                  src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
-                                  alt="" class="avatar"></div>
-                              <div class="col-2"></div>
-                            </div>
-                            <div class="row justify-content-center my-2">
-                              <div class="col">Tên người dùng</div>
-                              <div class="col">
-                                <input type="text" placeholder="" name="txt-expert-name" readonly>
+                        <div class="modal-body" >
+                          <div class="container hstack" style="display:flex">
+                            <div class="col vstack">
+                              <div class="row justify-content-center my-2">
+                                <div class="col-2"></div>
+                                <div class="col-auto"><img
+                                    src="https://avatar-ex-swe.nixcdn.com/playlist/2014/12/07/c/4/8/7/1417940179957_500.jpg"
+                                    alt="" class="avatar"></div>
+                                <div class="col-2"></div>
+                              </div>
+                              <div class="row justify-content-center my-2 hstack" style="display:flex">
+                                <div class="col">Tên người dùng</div>
+                                <div class="col">
+                                  <input type="text" name="txt-expert-name" readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2 hstack" style="display:flex">
+                                <div class="col">Ngày sinh</div>
+                                <div class="col">
+                                  <input type="text" name="txt-expert-birth" readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2 hstack" style="display:flex">
+                                <div class="col">Số điện thoại</div>
+                                <div class="col">
+                                  <input type="text" name="txt-expert-pn" readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2 hstack" style="display:flex">
+                                <div class="col">CCCD</div>
+                                <div class="col">
+                                  <input type="text" name="txt-expert-idcard" readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2 hstack" style="display:flex">
+                                <div class="col">Email</div>
+                                <div class="col">
+                                  <input type="text" name="txt-expert-email" readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2 hstack" style="display:flex">
+                                <div class="col">Số tài khoản</div>
+                                <div class="col">
+                                  <input type="text" name="txt-expert-banknumber" readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2 hstack" style="display:flex">
+                                <div class="col">Tên ngân hàng</div>
+                                <div class="col">
+                                  <input type="text" name="txt-expert-bankname" readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2 hstack">
+                                <div class="col">Bằng cấp</div>
+                                <div class="col">
+                                  <select class="form-control" name="txt-expert-degree">
+                                    <option value="default"> - Chọn bằng cấp - </option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <img id="degree-image"
+                                  src="https://plus.unsplash.com/premium_photo-1677474826931-eb70ec714d99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                                  alt="Degree image">
+                                <div class="degree-text">
+                                  <textarea name="degree-desc" id="degree-desc" placeholder="Mô tả bằng cấp"></textarea>
+                                </div>
                               </div>
                             </div>
-                            <div class="row justify-content-center my-2">
-                              <div class="col">Ngày sinh</div>
-                              <div class="col">
-                                <input type="text" placeholder="" name="txt-expert-birth" readonly>
+                            <hr>  
+                            <!-- <div class="col vstack">
+                              <div class="row justify-content-center my-2">
+                                <div class="bg-white">
+                                  <hr>
+                                  <hr>
+                                </div>
                               </div>
-                            </div>
-                            <div class="row justify-content-center my-2">
-                              <div class="col">Số điện thoại</div>
-                              <div class="col">
-                                <input type="text" placeholder="" name="txt-expert-pn" readonly>
-                              </div>
-                            </div>
-                            <div class="row justify-content-center my-2">
-                              <div class="col">CCCD</div>
-                              <div class="col">
-                                <input type="text" placeholder="" name="txt-expert-idcard" readonly>
-                              </div>
-                            </div>
-                            <div class="row justify-content-center my-2">
-                              <div class="col">Email</div>
-                              <div class="col">
-                                <input type="text" placeholder="" name="txt-expert-email" readonly>
-                              </div>
-                            </div>
-                            <!-- <div class="row justify-content-center my-2">
-                              <div class="col">Số tài khoản</div>
-                              <div class="col">
-                                <input type="text" placeholder="" name="txt-expert-datecreate" readonly>
-                              </div>
-                            </div>
-                            <div class="row justify-content-center my-2">
-                              <div class="col">Tên ngân hàng</div>
-                              <div class="col">
-                                <input type="text" placeholder="" name="txt-expert-status" readonly>
-                              </div>
+                              
                             </div> -->
-                            <div class="row justify-content-center my-2">
-                              <div class="col">Bằng cấp</div>
-                              <div class="col">
-                                <input type="text" placeholder="" name="txt-expert-degree" readonly>
-                              </div>
-                            </div>
                           </div>
                         </div>
                         <div class="modal-footer justify-content-center">

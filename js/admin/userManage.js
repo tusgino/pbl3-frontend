@@ -170,22 +170,6 @@ const setEventHandlerAcc = () => {
     
 }
 
-// const avatarHandle = async() => {
-//     document.getElementById('file-upload').addEventListener('change', function (event) {
-//         var file = event.target.files[0];
-//         var fileReader = new FileReader();
-
-//         fileReader.onload = function (event) {
-//             var imagePreview = document.getElementById('usermanager-addadmin').querySelector('.avatar');
-//             // console.log(imagePreview)
-//             imagePreview.src = event.target.result;
-//         };
-
-//         fileReader.readAsDataURL(file);
-//     });
-
-// }
-
 const clearFormHandle = async() => {
     const btnclearform = document.getElementById('btn-clear-form');
     if(!btnclearform) return;
@@ -210,7 +194,21 @@ const clearFormHandle = async() => {
 
 }
 
+const handleDegreeChange = async() => {
+    const selector = document.querySelector('[name="txt-expert-degree"]');
+    if(!selector) return;
 
+    const degreeimage = document.getElementById('degree-image');
+    const degreedesc = document.getElementById('degree-desc');
+
+    selector.addEventListener('change', () => {
+        const degree = selector.options[selector.selectedIndex];
+        degreeimage.src = degree.image;
+        degreedesc.textContent = degree.description;
+    });
+
+
+}
 
 const createExpertRequestRecord = async(data) => {
     
@@ -220,14 +218,20 @@ const createExpertRequestRecord = async(data) => {
     const record = addExpertRecord.content.cloneNode(true);
 
     setTextContent(record, '[data-id="expertName"]', data.name);
-    setTextContent(record, '[data-id="expertField"]', data.field);
+    // setTextContent(record, '[data-id="expertField"]', data.field);
     setTextContent(record, '[data-id="requestDate"]', data.requestDate);
 
-    const expertName = document.querySelector('[name="txt-expert-name"]');
-    const expertEmail = document.querySelector('[name="txt-expert-email"]');
     //
-
-
+    
+    
+    const expertname = document.querySelector('[name="txt-expert-name"]');
+    const expertdob = document.querySelector('[name="txt-expert-birth"]');
+    const expertphone = document.querySelector('[name="txt-expert-pn"]');
+    const expertidcard = document.querySelector('[name="txt-expert-idcard"]');
+    const expertemail = document.querySelector('[name="txt-expert-email"]');
+    const expertbanknumber = document.querySelector('[name="txt-expert-banknumber"]');
+    const expertbankname = document.querySelector('[name="txt-expert-bankname"]');
+    const expertdegree = document.querySelector('[name="txt-expert-degree"]');
 
     
     const btninfo = document.querySelector('#addExpertRequest li');
@@ -238,8 +242,18 @@ const createExpertRequestRecord = async(data) => {
 
     
     btninfo.addEventListener('click', () => {
-        expertName.textContent = data.name;
-        expertEmail.textContent = data.email;
+        expertname.textContent = data.name;
+        expertdob.textContent = data.dateOfBirth;
+        expertphone.textContent = data.phone;
+        expertidcard.textContent = data.idcard;
+        expertemail.textContent = data.email;
+        expertbanknumber.textContent = data.banknumber;
+        expertbankname.textContent = data.bankname;
+        data.degree.array.forEach( (element) => {
+            const option = document.createElement('option');
+            option.innerHTML = `${element.name}`;
+            expertdegree.appendChild(option);
+        });
 
         
         btnaddexpert.value = data.id;
@@ -293,10 +307,9 @@ const handleExpertRequest = async() => {
 
 const getExpertRequest = async(page) => {
     const params = {
-        "_expert_name" : document.getElementById('txtsearch-addexpert').value,
-        "_field_name" : document.getElementById('namefield').value, 
-        "_date_request_from" : document.getElementById('req-date-from').value,
-        "_date_request_to" : document.getElementById('req-date-to').value,
+        "_name" : document.getElementById('txtsearch-addexpert').value,
+        "_date_create_from" : document.getElementById('req-date-from').value,
+        "_date_create_to" : document.getElementById('req-date-to').value,
         "page" : page, 
     }
 
@@ -305,52 +318,16 @@ const getExpertRequest = async(page) => {
 
     const {data : {_data, _totalRows}} = await userAPI.getAllExpertRequest(params, token);
 
+    console.log(_data);
+
     systemAPI.renderRecord(_data, 'formthemexpert', createExpertRequestRecord);
-    systemAPI.renderPagination(_totalRows, 'formthemxexpert', getExpertERequest);
+    systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest);
     
     
 }
 
 
-// const addExpert = async(data) => {
-//     const btnsearch = document.getElementById('btn-search-addexpert');
-//     if(!btnsearch) return;
 
-
-//     const namefield = document.getElementById('namefield');
-//     const datefrom = document.getElementById('reg-date-from');
-//     const dateto = document.getElementById('reg-date-to');
-//     const nameexpert = document.getElementById('txtsearch-addexpert');
-//     btnsearch.addEventListener('click', () => {
-
-//     });
-
-
-//     const expertname = document.querySelector('[name="txt-expert-name"]');
-//     // const expertbirth = document.querySelector('[name="txt-expert-birth"]');
-//     // const expertpn = document.querySelector('[name="txt-expert-pn"]');
-//     // const expertidcard = document.querySelector('[name="txt-expert-idcard"]');
-//     const expertemail = document.querySelector('[name="txt-expert-email"]');
-//     // const expertdegree = document.querySelector('[name="txt-expert-degree"]');
-    
-//     const btnaddexpert = document.getElementById('btn-add-expert');
-//     const btnrefusexpert = document.getElementById('btn-refuseexpert');
-
-//     btnaddexpert.addEventListener('click', () => {
-//         const params = {
-//             "Name" : expertname.value,
-//             "Email": expertemail.value,
-//             "TypeOfUser": 1,
-//         };
-
-
-//     })
-    
-    
-    
-    
-    
-// }
     
 const addAdmin = async() => {
     const btnaddadmin = document.getElementById('btn-add-admin');
@@ -401,8 +378,9 @@ const addAdmin = async() => {
 (async() => {    
     try {
         // avatarHandle();
+
         clearFormHandle();
-        // addExpert();
+
         
         setEventSearch();
         setEventHandlerAcc();
@@ -426,7 +404,7 @@ const expertRequestAPI = {
             "Name" : data.name, 
             "Email" : data.email,
             "Field" : data.field,
-            "RequestDay" : data.requestDate,
+            "RequestDate" : data.requestDate,
         }
         await userAPI.addExpertRequest(_data, token);
         //

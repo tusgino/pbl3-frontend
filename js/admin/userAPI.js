@@ -70,46 +70,14 @@ const userAPI = {
     };
     return axiosClient.get(url);
   },
-  addExpertRequest (params, token) {
-    const url = `private/ExpertRequest/Add-expert-request`;
-    const config = {
-      headers : {
-        'Authorization' : `Bearer ${token}`,
-      },
-    };
-    return axiosClient.post(url, params);
-  },
   getAllExpertRequest (params,token) {
-    const url = `private/ExpertRequest/Get-all-expertrequest`;
+    const url = `private/User/Get-all-expert-requests`;
     const config = {
       headers : {
         'Authorization' : `Bearer ${token}`,
       },
     };
     return  axiosClient.get(url, params);
-  },
-  deleteExpertRequest(params, token) {
-    const url = `private/ExpertRequest/Delete-expertrequest`;
-    const config = {
-      headers : {
-          'Content-Type' : 'application/json-patch+json',
-          // 'Accept' : 'application/json',
-          'Authorization': `Bearer ${token}`,
-      },
-      data : params,
-    };
-    return axiosClient.delete(url, config);
-  },
-  getRequestByID(params, token) {
-    const url = `'private/ExpertRequest/Get-expertrequest-by-${params.id}`;
-    const config = {
-      headers : {
-          'Content-Type' : 'application/json-patch+json',
-          // 'Accept' : 'application/json',
-          'Authorization': `Bearer ${token}`,
-      },
-    };
-    return axiosClient.get(url); 
   },
 }
 
