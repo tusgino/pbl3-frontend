@@ -2,6 +2,7 @@ import { setTextContent, showModal } from "../utils";
 import userAPI from "./userAPI";
 import systemAPI from "./system";
 import accountAPI from "../api/accountAPI";
+import expertAPI from "../api/expertAPI";
 
 const token = localStorage.getItem('token');
 
@@ -85,7 +86,6 @@ const createRecord = (data) => {
     return record;
 }
 
-
 const getUsers = async(page) => {
     const params = {
         "_title_like" : document.getElementById('txtsearch-usermanage').value,
@@ -107,7 +107,6 @@ const getUsers = async(page) => {
     systemAPI.renderRecord(_data, 'quanlinguoidung', createRecord);
     systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers);
 }
-
 
 const setEventSearch = () => {
     const btnsearch = document.getElementById('btn-search-usermanage');
@@ -201,25 +200,39 @@ const handleDegreeChange = async() => {
     const degreeimage = document.getElementById('degree-image');
     const degreedesc = document.getElementById('degree-desc');
 
-    selector.addEventListener('change', () => {
-        const degree = selector.options[selector.selectedIndex];
-        degreeimage.src = degree.image;
-        degreedesc.textContent = degree.description;
+    console.log(degreeimage)
+    console.log(degreedesc)
+    selector.addEventListener('change', async() => {
+        const degreeid = selector.options[selector.selectedIndex].value;
+        console.log(degreeid)
+        const degree = await expertAPI.getDegreeByIDDgree(degreeid, token);
+        console.log(degree)
+        console.log(degree.data.image)
+        console.log(degree.data.description)
+        degreeimage.src = degree.data.image;
+        degreedesc.textContent = degree.data.description;
     });
 
 
 }
 
-const createExpertRequestRecord = async(data) => {
+const createExpertRequestRecord = (data) => {
     
+    if(!data) return;
+    console.log(data)
     // add request vao trong view 
     const addExpertRecord = document.getElementById('addExpertRequest');
+    if(!addExpertRecord) return;
 
+    console.log(addExpertRecord)
     const record = addExpertRecord.content.cloneNode(true);
-
+    if(!record) return;
+    
+    
     setTextContent(record, '[data-id="expertName"]', data.name);
-    // setTextContent(record, '[data-id="expertField"]', data.field);
-    setTextContent(record, '[data-id="requestDate"]', data.requestDate);
+    
+    const dateCreate = new Date(data.dateCreate);
+    setTextContent(record, '[data-id="requestDate"]', dateCreate.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
 
     //
     
@@ -233,34 +246,42 @@ const createExpertRequestRecord = async(data) => {
     const expertbankname = document.querySelector('[name="txt-expert-bankname"]');
     const expertdegree = document.querySelector('[name="txt-expert-degree"]');
 
-    
-    const btninfo = document.querySelector('#addExpertRequest li');
+    console.log(expertname)
+    const btninfo = record.querySelector('div');
 
     const btnaddexpert = document.getElementById('btn-add-expert');
     const btnrefuseexpet = document.getElementById('btn-refuseexpert');
     
-
+    console.log(btninfo)
+    const defaultoption = document.createElement('option');
+    defaultoption.value = 'default';
+    defaultoption.textContent = " - Chọn bằng cấp - ";
     
     btninfo.addEventListener('click', () => {
-        expertname.textContent = data.name;
-        expertdob.textContent = data.dateOfBirth;
-        expertphone.textContent = data.phone;
-        expertidcard.textContent = data.idcard;
-        expertemail.textContent = data.email;
-        expertbanknumber.textContent = data.banknumber;
-        expertbankname.textContent = data.bankname;
-        data.degree.array.forEach( (element) => {
+        expertname.value = data.name;
+        expertdob.value = data.dateOfBirth;
+        expertphone.value = data.phoneNumber;
+        expertidcard.value = data.idCard;
+        expertemail.value = data.email;
+        expertbanknumber.value = data.bankNumber;
+        expertbankname.value = data.bankName;
+        expertdegree.textContent = "";
+        expertdegree.appendChild(defaultoption)
+        data.degrees.forEach((element) => {
             const option = document.createElement('option');
-            option.innerHTML = `${element.name}`;
+            option.textContent = element.name;
+            option.value = element.idDegree; 
             expertdegree.appendChild(option);
+            console.log(expertdegree)
         });
 
         
-        btnaddexpert.value = data.id;
-        btnrefuseexpet.value = data.id;
+        btnaddexpert.value = data.idUser;
+        btnrefuseexpet.value = data.idUser;
         
     })
     
+
     return record;
     
     
@@ -268,41 +289,37 @@ const createExpertRequestRecord = async(data) => {
 
 const handleExpertRequest = async() => {
     const btnaddexpert = document.getElementById('btn-add-expert');
-    const btnrefuseexpet = document.getElementById('btn-refuseexpert');
+    const btnrefuseexpert = document.getElementById('btn-refuseexpert');
 
-    btnaddexpert.addEventListener('click', async() => {
-        try {
-            const request = await userAPI.getRequestByID({id : btnaddexpert.value}, token);
-            const data = {
-                "name" : request.name,
-                "username" : request.email,
-                "password" : request.password, 
-                "repassword" : request.rePassword, 
-                "typeOfUser" : 1, 
-            };
-            const res = await accountAPI.register(data, token);
-            if(res.success) {
-                await userAPI.deleteExpertRequest(request.id);
-                alert("Thêm thành công");
-            }
-        } catch (error) {
-            //alert("Thêm thấi bại");
-            console.log(error);
+    btnaddexpert.addEventListener('click', async(event) => {
+        const patch = [{
+            "operationType": 1,
+            "path": "/Status",
+            "op": "replace",
+            "value": 1,
+        }];
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
         }
-    });
-
-    btnrefuseexpet.addEventListener('click', async() => {
-        try {
-            const res = await userAPI.deleteExpertRequest(btnrefuseexpet.value);
-            if(res.success) {
-                alert("Từ chối thành công");
-            }
-        } catch (error) {
-            console.log(error);
-        }
+        if(await userAPI.updateUser(params, token)) alert("Thêm thành công");
+        getExpertRequest(1);
     })
-
-
+    
+    btnrefuseexpert.addEventListener('click', async(event) => {
+        const patch = [{
+            "operationType": 1,
+            "path": "/Status",
+            "op": "replace",
+            "value": -1,
+        }];
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        }
+        if(await userAPI.updateUser(params, token)) alert("Từ chối thành công");
+        getExpertRequest(1);
+    })
 }
 
 const getExpertRequest = async(page) => {
@@ -325,10 +342,7 @@ const getExpertRequest = async(page) => {
     
     
 }
-
-
-
-    
+ 
 const addAdmin = async() => {
     const btnaddadmin = document.getElementById('btn-add-admin');
     btnaddadmin.addEventListener('click', async () => {
@@ -379,15 +393,19 @@ const addAdmin = async() => {
     try {
         // avatarHandle();
 
-        clearFormHandle();
-
+        
         
         setEventSearch();
         setEventHandlerAcc();
-        handleExpertRequest();
-        addAdmin(); 
-
         getUsers(1);
+        
+        
+        
+        clearFormHandle();
+        addAdmin(); 
+        
+        handleDegreeChange();
+        handleExpertRequest();
         getExpertRequest(1);
         
     } catch (error) {

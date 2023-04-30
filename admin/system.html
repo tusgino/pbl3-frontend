@@ -61,7 +61,6 @@
       <div class="cell col-1" data-id="avatar"> <img
           src="https://media.istockphoto.com/id/1307140502/vi/vec-to/vector-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-h%E1%BB%93-s%C6%A1-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-ch%C3%A2n-dung-avatar-logo-k%C3%BD-t%C3%AAn-ng%C6%B0%E1%BB%9Di-h%C3%ACnh-d%E1%BA%A1ng.jpg?s=612x612&w=0&k=20&c=yCpEW0XGq3LCgCn-0GupWknu4pIYxEm8CigGHnqVkQU=" alt=""
           class="avatar"></div>
-      <!-- <div class="cell col">ad7389ad</div> -->
       <div class="cell col" data-id="userName"></div>
       <div class="cell col" data-id="userType"></div>
       <div class="cell col" data-id="dateCreate"></div>
@@ -71,17 +70,15 @@
     </div>
   </template>
   <template id="addExpertRequest">
-    <li class="container hstack justify-content-around bg-white border" type="button"
+    <div class="container hstack justify-content-around bg-white border" type="button"
       data-bs-toggle="modal" data-bs-target="#expertrequest"
-      style="border-color: #000000;border-radius: 1rem;padding:0.6rem;margin-left:3.2rem;width: 90%;">
+      style="border-color: #000000;border-radius: 1rem;padding:0.6rem;margin-left:3.2rem;margin-bottom: 1rem;width: 90%;">
       <span data-id="expertName">Nguyễn Văn A</span>
-      <!-- <span data-id="expertField">Lĩnh vực A</span> -->
       <span data-id="requestDate">1/1/1111</span>
-    </li>
+    </div>
   </template>
   <template id="courseManageRecord">
     <div class="record row my-4">
-      <!-- <div class="cell col">ad7389ad</div> -->
       <div class="cell col" data-id="courseName"></div>
       <div class="cell col" data-id="category"></div>
       <div class="cell col" data-id="dateUpload"></div>
@@ -495,7 +492,7 @@
                     </div>
                   </div>
   
-                  <div class="flex-column data-view">
+                  <div class="container data-view bg-white">
                     <li class="container hstack justify-content-around bg-white border" type="button"
                       data-bs-toggle="modal" data-bs-target="#expertrequest"
                       style="border-color: #000000;border-radius: 1rem;padding:0.6rem;margin-left:3.2rem;width: 90%;">
@@ -594,8 +591,8 @@
                           </div>
                         </div>
                         <div class="modal-footer justify-content-center">
-                          <button type="button" id="btn-refuseexpert" class="nav-item btn btn-default">Từ chối</button>
-                          <button type="button" id="btn-add-expert" class="nav-item btn btn-default">Thêm tài khoản</button>
+                          <button type="button" id="btn-refuseexpert" data-bs-dismiss="modal" class="nav-item btn btn-default">Từ chối</button>
+                          <button type="button" id="btn-add-expert" data-bs-dismiss="modal" class="nav-item btn btn-default">Thêm tài khoản</button>
                         </div>
                       </div>
                     </div>

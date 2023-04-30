@@ -27,7 +27,7 @@ export const expertAPI = {
         'Authorization': `Bearer ${token}`,
       },
     };
-    return axiosClient.get(url, config);
+    return axiosClient.get(url);
   },
   updateBanking(id, data, token) {
     const url = `/BankInfo/Update-BankInfo/${id}`;

@@ -77,7 +77,7 @@ const userAPI = {
         'Authorization' : `Bearer ${token}`,
       },
     };
-    return  axiosClient.get(url, params);
+    return  axiosClient.get(url, {params});
   },
 }
 
