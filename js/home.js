@@ -143,6 +143,10 @@ const renderUIRole = async (role, token) => {
         btn_login.addEventListener('click', () => {
           window.location.href = "/admin/system.html";
         })
+        if (avatar)
+          avatar.addEventListener('click', () => {
+            window.location.href = `/profile.html?id=${role.idUser}&page=profile`;
+          })
       }
       if (role.role == 'Student') {
         btn_login.textContent = 'Khu vực học tập';

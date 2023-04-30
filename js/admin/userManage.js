@@ -2,6 +2,7 @@ import { setTextContent, showModal } from "../utils";
 import userAPI from "./userAPI";
 import systemAPI from "./system";
 import accountAPI from "../api/accountAPI";
+import expertAPI from "../api/expertAPI";
 
 const token = localStorage.getItem('token');
 
@@ -18,9 +19,17 @@ const createRecord = (data) => {
     const avatar = record.querySelector('.avatar');
     // console.log(avatar)
     avatar.src = data.avatar;
+
+    const _datecreate = new Date(data.dateCreate);
+    const datecreate = _datecreate.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
+    const _dateofbirth = new Date(data.dateOfBirth);
+    const dateofbirth = _dateofbirth.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
+
+    
+
     setTextContent(record, '[data-id="userName"]', data.name);
     setTextContent(record, '[data-id="userType"]', data.typeOfUser);
-    setTextContent(record, '[data-id="dateCreate"]', data.dateCreate);
+    setTextContent(record, '[data-id="dateCreate"]', datecreate);
     setTextContent(record, '[data-id="userStatus"]', data.status);
     
     // const modalstudentinfo = document.getElementById('Modal-studentinfo');
@@ -43,14 +52,15 @@ const createRecord = (data) => {
     const iconinfo = record.getElementById('usermanage-iconinfo');
     // console.log(iconinfo);
     iconinfo.addEventListener('click', () => {
-        detailuseravatar.value = data.avatar;
+        detailuseravatar.src = data.avatar;
         detailusername.value = data.name;
         detailusertype.value = data.typeOfUser;
-        detailuserdob.value = data.dateOfBirth;
+        if(dateofbirth == 'Invalid Date') detailuserdob.value = data.dateOfBirth;
+        else detailuserdob.value = dateofbirth;
         detailuserpn.value = data.phoneNumber;
         detailuseridcard.value = data.idCard;
         detailuseremail.value = data.email;
-        detailuserdatecreate.value = data.dateCreate;
+        detailuserdatecreate.value = datecreate;
         detailuserstatus.value = data.status;
         if(data.typeOfUser == "Admin" || data.status == "Cấm vĩnh viễn") {
             btnbanacc.style.display = "none";
@@ -76,7 +86,6 @@ const createRecord = (data) => {
     return record;
 }
 
-
 const getUsers = async(page) => {
     const params = {
         "_title_like" : document.getElementById('txtsearch-usermanage').value,
@@ -99,13 +108,15 @@ const getUsers = async(page) => {
     systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers);
 }
 
-
 const setEventSearch = () => {
     const btnsearch = document.getElementById('btn-search-usermanage');
     btnsearch.addEventListener('click', async() => {
         getUsers(1);
     })
-
+    const btnsearchex =  document.getElementById('btn-search-addexpert');
+    btnsearchex.addEventListener('click', () => {
+        getExpertRequest(1);
+    })
 }
 
 const setEventHandlerAcc = () => {
@@ -124,7 +135,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        await userAPI.updateUser(params, token);
+        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
         getUsers(1);
     })
     btnunbanacc.addEventListener('click', async(event) => {
@@ -138,7 +149,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        await userAPI.updateUser(params, token);
+        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
         getUsers(1);
     })
     btndelacc.addEventListener('click', async(event) => {
@@ -152,27 +163,10 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        await userAPI.updateUser(params, token);
+        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
         getUsers(1);
     })
     
-}
-
-const avatarHandle = async() => {
-    document.getElementById('file-upload').addEventListener('change', function (event) {
-        var file = event.target.files[0];
-        var fileReader = new FileReader();
-
-        fileReader.onload = function (event) {
-            var imagePreview = document.getElementById('usermanager-addadmin').querySelector('.avatar');
-            // console.log(imagePreview)
-            imagePreview.src = event.target.result;
-        };
-
-        fileReader.readAsDataURL(file);
-    });
-   
-
 }
 
 const clearFormHandle = async() => {
@@ -182,10 +176,10 @@ const clearFormHandle = async() => {
     const addadminform = document.getElementById('usermanager-addadmin');
     
     btnclearform.addEventListener('click', () => {
-        addadminform.querySelector('.avatar').src = "https://media.istockphoto.com/id/1307140502/vi/vec-to/vector-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-h%E1%BB%93-s%C6%A1-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-ch%C3%A2n-dung-avatar-logo-k%C3%BD-t%C3%AAn-ng%C6%B0%E1%BB%9Di-h%C3%ACnh-d%E1%BA%A1ng.jpg?s=612x612&w=0&k=20&c=yCpEW0XGq3LCgCn-0GupWknu4pIYxEm8CigGHnqVkQU=";
+        // addadminform.querySelector('.avatar').src = "https://media.istockphoto.com/id/1307140502/vi/vec-to/vector-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-h%E1%BB%93-s%C6%A1-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-ch%C3%A2n-dung-avatar-logo-k%C3%BD-t%C3%AAn-ng%C6%B0%E1%BB%9Di-h%C3%ACnh-d%E1%BA%A1ng.jpg?s=612x612&w=0&k=20&c=yCpEW0XGq3LCgCn-0GupWknu4pIYxEm8CigGHnqVkQU=";
         addadminform.querySelector('input[name="txt-admin-name"]').value = '';
-        // addadminform.querySelector('input[name="txt-admin-birth"]').value = '';
-        // addadminform.querySelector('input[name="txt-admin-phonenumber"]').value = '';
+        addadminform.querySelector('input[name="txt-admin-birth"]').value = '';
+        addadminform.querySelector('input[name="txt-admin-phonenumber"]').value = '';
         addadminform.querySelector('input[name="txt-admin-email"]').value = '';
         // addadminform.querySelector('input[name="txt-admin-banknumber"]').value = '';
         // addadminform.querySelector('input[name="txt-admin-bankname"]').value = '';
@@ -199,10 +193,161 @@ const clearFormHandle = async() => {
 
 }
 
+const handleDegreeChange = async() => {
+    const selector = document.querySelector('[name="txt-expert-degree"]');
+    if(!selector) return;
+
+    const degreeimage = document.getElementById('degree-image');
+    const degreedesc = document.getElementById('degree-desc');
+
+    console.log(degreeimage)
+    console.log(degreedesc)
+    selector.addEventListener('change', async() => {
+        const degreeid = selector.options[selector.selectedIndex].value;
+        console.log(degreeid)
+        const degree = await expertAPI.getDegreeByIDDgree(degreeid, token);
+        console.log(degree)
+        console.log(degree.data.image)
+        console.log(degree.data.description)
+        degreeimage.src = degree.data.image;
+        degreedesc.textContent = degree.data.description;
+    });
+
+
+}
+
+const createExpertRequestRecord = (data) => {
+    
+    if(!data) return;
+    console.log(data)
+    // add request vao trong view 
+    const addExpertRecord = document.getElementById('addExpertRequest');
+    if(!addExpertRecord) return;
+
+    console.log(addExpertRecord)
+    const record = addExpertRecord.content.cloneNode(true);
+    if(!record) return;
+    
+    
+    setTextContent(record, '[data-id="expertName"]', data.name);
+    
+    const dateCreate = new Date(data.dateCreate);
+    setTextContent(record, '[data-id="requestDate"]', dateCreate.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
+
+    //
+    
+    
+    const expertname = document.querySelector('[name="txt-expert-name"]');
+    const expertdob = document.querySelector('[name="txt-expert-birth"]');
+    const expertphone = document.querySelector('[name="txt-expert-pn"]');
+    const expertidcard = document.querySelector('[name="txt-expert-idcard"]');
+    const expertemail = document.querySelector('[name="txt-expert-email"]');
+    const expertbanknumber = document.querySelector('[name="txt-expert-banknumber"]');
+    const expertbankname = document.querySelector('[name="txt-expert-bankname"]');
+    const expertdegree = document.querySelector('[name="txt-expert-degree"]');
+
+    console.log(expertname)
+    const btninfo = record.querySelector('div');
+
+    const btnaddexpert = document.getElementById('btn-add-expert');
+    const btnrefuseexpet = document.getElementById('btn-refuseexpert');
+    
+    console.log(btninfo)
+    const defaultoption = document.createElement('option');
+    defaultoption.value = 'default';
+    defaultoption.textContent = " - Chọn bằng cấp - ";
+    
+    btninfo.addEventListener('click', () => {
+        expertname.value = data.name;
+        expertdob.value = data.dateOfBirth;
+        expertphone.value = data.phoneNumber;
+        expertidcard.value = data.idCard;
+        expertemail.value = data.email;
+        expertbanknumber.value = data.bankNumber;
+        expertbankname.value = data.bankName;
+        expertdegree.textContent = "";
+        expertdegree.appendChild(defaultoption)
+        data.degrees.forEach((element) => {
+            const option = document.createElement('option');
+            option.textContent = element.name;
+            option.value = element.idDegree; 
+            expertdegree.appendChild(option);
+            console.log(expertdegree)
+        });
+
+        
+        btnaddexpert.value = data.idUser;
+        btnrefuseexpet.value = data.idUser;
+        
+    })
+    
+
+    return record;
+    
+    
+}
+
+const handleExpertRequest = async() => {
+    const btnaddexpert = document.getElementById('btn-add-expert');
+    const btnrefuseexpert = document.getElementById('btn-refuseexpert');
+
+    btnaddexpert.addEventListener('click', async(event) => {
+        const patch = [{
+            "operationType": 1,
+            "path": "/Status",
+            "op": "replace",
+            "value": 1,
+        }];
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        }
+        if(await userAPI.updateUser(params, token)) alert("Thêm thành công");
+        getExpertRequest(1);
+    })
+    
+    btnrefuseexpert.addEventListener('click', async(event) => {
+        const patch = [{
+            "operationType": 1,
+            "path": "/Status",
+            "op": "replace",
+            "value": -1,
+        }];
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        }
+        if(await userAPI.updateUser(params, token)) alert("Từ chối thành công");
+        getExpertRequest(1);
+    })
+}
+
+const getExpertRequest = async(page) => {
+    const params = {
+        "_name" : document.getElementById('txtsearch-addexpert').value,
+        "_date_create_from" : document.getElementById('req-date-from').value,
+        "_date_create_to" : document.getElementById('req-date-to').value,
+        "page" : page, 
+    }
+
+    const dataview = document.querySelector(".formthemexpert .data-view");
+    dataview.textContent = "";
+
+    const {data : {_data, _totalRows}} = await userAPI.getAllExpertRequest(params, token);
+
+    console.log(_data);
+
+    systemAPI.renderRecord(_data, 'formthemexpert', createExpertRequestRecord);
+    systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest);
+    
+    
+}
+ 
 const addAdmin = async() => {
     const btnaddadmin = document.getElementById('btn-add-admin');
     btnaddadmin.addEventListener('click', async () => {
         const addadminform = document.getElementById('usermanager-addadmin');
+        // const avatar = addadminform.querySelector('input[name="file-upload  "]').value;
         const name = addadminform.querySelector('input[name="txt-admin-name"]').value;
         const email = addadminform.querySelector('input[name="txt-admin-email"]').value;
         const password = addadminform.querySelector('input[name="txt-admin-password"]').value;
@@ -232,17 +377,9 @@ const addAdmin = async() => {
             
             } catch (error) {
                 //console.log(error);
+                alert("Đã tồn tại");
             }
 
-
-
-
-
-
-            
-
-
-            
 
 
         }
@@ -254,18 +391,41 @@ const addAdmin = async() => {
 
 (async() => {    
     try {
-        avatarHandle();
-        clearFormHandle();
-        addAdmin();
+        // avatarHandle();
 
-
+        
+        
         setEventSearch();
         setEventHandlerAcc();
-
         getUsers(1);
+        
+        
+        
+        clearFormHandle();
+        addAdmin(); 
+        
+        handleDegreeChange();
+        handleExpertRequest();
+        getExpertRequest(1);
         
     } catch (error) {
         console.log(error);
     }
 
 })()
+
+const expertRequestAPI = {
+    async createExpertRequest (data) {
+
+        //add request vao db, them 1 id cho request o duoi BE
+        const _data = { 
+            "Name" : data.name, 
+            "Email" : data.email,
+            "Field" : data.field,
+            "RequestDate" : data.requestDate,
+        }
+        await userAPI.addExpertRequest(_data, token);
+        //
+    }
+}
+export default expertRequestAPI;

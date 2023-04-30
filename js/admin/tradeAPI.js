@@ -11,6 +11,25 @@ const tradeAPI = {
         }
         return axiosClient.get(url, {params});
     },
+    updateTrade(params, token) {
+        const url = `/private/TradeDetail/Update-trade-by-${params.id}`;
+        const config = {
+          headers: {
+            'Content-Type' : 'application/json-patch+json',
+            'Authorization': `Bearer ${token}`,
+          }
+        }
+        return axiosClient.patch(url, params.patchDoc, config);
+      },
+      getSystemRevenue(params, token) {
+        const url = '/private/TradeDetail/Get-system-revenue';
+        const config = {
+          headers: {
+            'Authorization' : `Bearer ${token}`,
+          },
+        }
+        return axiosClient.get(url);
+      }
 }
 
 export default tradeAPI;
