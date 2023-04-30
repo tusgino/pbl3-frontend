@@ -47,6 +47,25 @@ export const expertAPI = {
       }
     }
     return axiosClient.post(url, params, config);
+  },
+  addDegree(data, token) {
+    const url = '/Degree/Add-degree';
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    };
+    return axiosClient.post(url, data, config);
+  },
+  updateDegree(id, data, token) {
+    const url = `/Degree/Update-degree/${id}`;
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json-patch+json',
+      }
+    }
+    return axiosClient.patch(url, data, config);
   }
 }
 

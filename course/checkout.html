@@ -101,17 +101,26 @@
             <h4 class="payment-name">Ví điện tử MOMO</h4>
             <p class="payment-status ">Bảo trì</p>
             <div class="payment-radio">
-              <input type="radio" id="radio-momo" class="payment-choose" name="payment-option">
+              <input type="radio" id="radio-momo" class="payment-choose" name="payment-option" data-id="1">
               <label for="radio-momo"></label>
             </div>
           </li>
           <li class="payment-item">
             <img src="/images/vnpay.png" alt="VNPAY" class="payment-image">
             <h4 class="payment-name">Quét VNpay QRcode</h4>
+            <p class="payment-status">Bảo trì</p>
+            <div class="payment-radio">
+              <input type="radio" id="radio-vnpay" class="payment-choose" name="payment-option" data-id="2">
+              <label for="radio-vnpay"></label>
+            </div>
+          </li>
+          <li class="payment-item">
+            <img src="/images/bank.png" alt="VNPAY" class="payment-image">
+            <h4 class="payment-name">Thanh toán NH thủ công</h4>
             <p class="payment-status active">Hoàn thành ngay</p>
             <div class="payment-radio">
-              <input type="radio" id="radio-vnpay" class="payment-choose" name="payment-option" checked>
-              <label for="radio-vnpay"></label>
+              <input type="radio" id="radio-bank" class="payment-choose" name="payment-option" data-id="3" checked>
+              <label for="radio-bank"></label>
             </div>
           </li>
         </ul>
@@ -144,6 +153,42 @@
     <div class="page-container">
       <button class="submit-course"><i class="fas fa-chevron-circle-right"></i> Hoàn tất đăng ký</button>
     </div>
+
+    <div class="modal fade" id="payment-info" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Thông tin chuyển khoản</h5>
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          </div>
+          <div class="modal-body">
+            <div class="body-left">
+              <div class="banking">
+                <p class="banking-name">Ngân hành: TP Bank</p>
+                <p class="banking-number">Số tài khoản: 20070358888</p>
+                <p class="banking-owner">Chủ tài khoản: NGUYEN DINH TU</p>
+                <p class="banking-branch">Chi nhánh: ĐÀ NẴNG</p>
+              </div>
+              <div class="purchase-content">
+                <p class="banking-amount">Số tiền: <span>1.234.232đ</span></p>
+                <div class="banking-content">
+                  <p class="content">Nội dung: <span>abcsadsd</span></p>
+                  <i class="far fa-copy banking-copy"></i>
+                </div>
+              </div>
+            </div>
+            <div class="body-right">
+              <img src="/images/qr.png" alt="mã QR TP Bank" class="qr">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Hủy</button>
+            <button type="button" class="btn btn-primary">Xác nhận</button>
+          </div>
+        </div>
+      </div>
+
   </main>
 
   <footer>

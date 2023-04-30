@@ -97,6 +97,10 @@ section.detail-form {
   cursor: pointer;
 }
 
+#file-drag.video-drag {
+  background-image: url(/images/upload-video.png);
+}
+
 /* Ảnh được hiển thị trong khung nhìn trước ảnh */
 #file-image {
   width: 100%;
@@ -104,6 +108,10 @@ section.detail-form {
   object-fit: cover;
   object-position: center;
   position: relative;
+}
+
+#file-video {
+  width: 890px;
 }
 
 /* Ẩn các phần tử không cần thiết ban đầu */
@@ -203,4 +211,21 @@ section.action {
   justify-content: center;
   align-items: center;
   column-gap: 3rem;
+}
+
+.progress-bar {
+  width: 890px;
+  height: 1.5rem;
+  border-radius: 10px;
+  background-color: #ccc;
+  margin-top: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress {
+  width: 0%;
+  height: 100%;
+  background-color: #1abc9c;
+  transition: width 0.5s ease-in-out;
 }

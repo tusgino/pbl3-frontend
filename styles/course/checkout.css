@@ -201,6 +201,9 @@ h1.checkout-title {
 .info-user .name {
   font-size: 1.8rem;
   padding-top: 1rem;
+  display: grid;
+  grid-template-columns: 5% 95%;
+  align-items: center;
 }
 
 .info-user i {
@@ -210,6 +213,9 @@ h1.checkout-title {
 .info-user .email {
   font-size: 1.8rem;
   padding-top: 1rem;
+  display: grid;
+  grid-template-columns: 5% 95%;
+  align-items: center;
 }
 
 .confirm .page-container {
@@ -230,4 +236,82 @@ button.submit-course {
   border: none;
   border-radius: 1.5rem;
   cursor: pointer;
+}
+
+.modal-title {
+  font-size: 3rem;
+  color: var(--title-color);
+  font-weight: 600;
+  margin: 1.5rem auto;
+  line-height: 1.4;
+}
+
+.modal-body {
+  font-size: 1.8rem;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.modal-body > * {
+  margin-bottom: 1rem;
+}
+
+.modal-header {
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+.qr {
+  width: calc(776px / 2);
+  height: calc(921px / 2);
+  margin: 0 auto;
+  object-fit: cover;
+  object-position: center;
+}
+.body-left {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  margin-left: 2rem;
+}
+
+.banking {
+  font-size: 2rem;
+}
+
+.banking > * {
+  margin-bottom: 2rem;
+}
+
+.banking-amount > span {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: #04ce9e;
+}
+
+.content > span {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #666666;
+}
+
+.banking-content {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.btn {
+  border: 0px;
+  color: #fff;
+}
+
+.btn:hover {
+  outline: none;
+  border: 0px;
+}
+
+.btn-danger:hover {
+  background-color: #ff4d4f;
 }

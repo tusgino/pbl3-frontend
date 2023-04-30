@@ -23,7 +23,7 @@ import { getValueForm, showModal } from "./utils";
     try {
       const res = await accountAPI.login(data);
       if (res.success) {
-        showModal('Đăng nhập thành công', 'Vui lòng đợi');
+        showModal('Đăng nhập thành công', 'Vui lòng đợi...');
         localStorage.setItem('token', res.data);
         // console.log(res.data);
         setTimeout(() => {

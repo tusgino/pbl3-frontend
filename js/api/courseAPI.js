@@ -18,6 +18,15 @@ const courseAPI = {
       },
     };
     return axiosClient.get(url, config);
+  },
+  addCourse(data, token) {
+    const url = '/public/Course/Add-course';
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    };
+    return axiosClient.post(url, data, config);
   }
   // create(data) {
   //   const url = '/posts';

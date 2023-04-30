@@ -46,10 +46,12 @@
       <h1 class="detail-title">Đăng tải khóa học</h1>
       <p class="detail-desc">Chuyên gia có thể thêm khóa học của mình</p>
       <section class="detail-form">
+
         <div class="detail-item detail-name">
           <label for="course-name" class="detail-label">Tên khóa học</label>
           <input type="text" name="name" id="course-name" placeholder="Tên khóa học">
         </div>
+
         <div class="detail-item course-desc">
           <label for="" class="detail-label">Mô tả</label>
           <div class="desc-content">
@@ -57,18 +59,24 @@
             <textarea name="desc" id="course-desc"></textarea>
           </div>
         </div>
+
         <div class="detail-item detail-category">
           <label for="course-category" class="detail-label">Danh mục</label>
           <select class="category-control" id="category">
             <option value="default"> - Chọn danh mục - </option>
-            <option value="1">Frontend</option>
-            <option value="2">Backend</option>
           </select>
         </div>
+
         <div class="detail-item detail-price">
           <label for="course-price" class="detail-label">Giá</label>
           <input type="text" name="price" id="course-price" placeholder="Giá tiền VNĐ">
         </div>
+
+        <div class="detail-item detail-discount">
+          <label for="course-discount" class="detail-label">Giảm giá</label>
+          <input type="text" name="discount" id="course-discount" placeholder="% giảm giá" value="0">
+        </div>
+
         <div class="detail-item detail-thumbnail">
           <label for="course-thumbnail" class="detail-label">Ảnh đại diện</label>
           <form id="file-upload-form" class="uploader">
@@ -84,6 +92,28 @@
             </label>
           </form>
         </div>
+
+        <div class="detail-item detail-video">
+          <label for="course-video" class="detail-label">Video đại diện</label>
+          <form id="file-upload-form" class="uploader">
+            <input id="video-upload" type="file" name="fileUpload" accept="video/*" hidden />
+            <label for="video-upload" id="file-drag" class="video-drag">
+              <div id="preview-container">
+                <video id="file-video" src="#" class="hidden" width="" controls></video>
+              </div>
+              <div id="start">
+                <div id="notvideo" class="hidden"></div>
+              </div>
+            </label>
+            <div class="progress-bar">
+              <div class="progress"></div>
+            </div>
+            <div class="message"></div>
+          </form>
+
+        </div>
+
+
         <div class="detail-item detail-status">
           <label for="course-status" class="detail-label">Trạng thái</label>
           <div class="status-content">
@@ -154,14 +184,6 @@
   <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
   <script type="module" src="/js/main.js"></script>
   <script type="module" src="/js/expert/main.js"></script>
-
-  <script>
-    ClassicEditor
-      .create(document.querySelector('#course-desc'))
-      .catch(error => {
-        console.error(error);
-      });
-  </script>
 </body>
 
 </html>

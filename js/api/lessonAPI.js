@@ -21,6 +21,17 @@ const lessonAPI = {
       },
     }
     return axiosClient.get(url, config);
+  },
+  updateStatus(params, token) {
+    const url = '/private/Lesson/change-status';
+    console.log(params);
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json-patch+json',
+      },
+    }
+    return axiosClient.post(url, params, config);
   }
 
 }

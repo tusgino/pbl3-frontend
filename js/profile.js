@@ -172,12 +172,16 @@ const handleSaveInfo = async (id) => {
       // console.log(res);
       const formName = document.querySelector('#name');
       if (!formName) return;
+
       const formEmail = document.querySelector('#email');
       if (!formEmail) return;
+
       const formPhone = document.querySelector('#phone');
       if (!formPhone) return;
+
       const formPassword = document.querySelector('#password');
       if (!formPassword) return;
+
       const data = [
         {
           "path": "name",

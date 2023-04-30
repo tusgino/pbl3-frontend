@@ -1,7 +1,7 @@
 import accountAPI from "./api/accountAPI";
 import courseAPI from "./api/courseAPI";
 import userAPI from "./api/userAPI";
-import { getPostList, setSrcContent, setTextContent } from "./utils";
+import { getPostList, setSrcContent, setTextContent, showNotication } from "./utils";
 
 const createCourseElement = (course) => {
   if (!course) return;
@@ -115,6 +115,9 @@ const renderUIRole = async (role, token) => {
   }
   try {
     const { data } = await userAPI.getByID(params, token);
+    if (window.location.pathname == '/') {
+      showNotication(`Chào mừng ${data.name} quay trở lại 🙌`);
+    }
     const avatar = document.querySelector('.nav-avatar');
     if (avatar) {
       avatar.src = data.avatar;

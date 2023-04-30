@@ -11,7 +11,7 @@ export const setSrcContent = (parent, selector, src) => {
   });
 }
 
-export const showNotication = (content) => {
+export const showNotication = (content, message = 'success') => {
   // const notification = document.querySelector('.notification');
   // const notificationContent = notification.querySelector('.notification-content');
   // const notificationProgress = document.querySelector('.notification-progress');
@@ -30,6 +30,10 @@ export const showNotication = (content) => {
   notification.appendChild(notificationProgress);
 
   document.body.appendChild(notification);
+
+  if (message == 'error') {
+    notification.classList.add('error');
+  }
 
 
   function showNotification(message) {
