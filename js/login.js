@@ -1,5 +1,5 @@
 import accountAPI from "./api/accountAPI";
-import { getValueForm, showModal } from "./utils";
+import { getValueForm, showModal, showNotication } from "./utils";
 
 
 (async () => {
@@ -32,6 +32,7 @@ import { getValueForm, showModal } from "./utils";
       }
     } catch (error) {
       console.log(error);
+      showNotication('Sai tài khoản hoặc mật khẩu!', 'error');
     }
 
   })
