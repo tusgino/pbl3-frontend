@@ -91,6 +91,35 @@ const setEventSearch = async() => {
     })
 }
 
+const setEventHandlerCategory = async() => {
+    const title = document.querySelector('.quanlidanhmuc .modal-body.vstack input');
+    const desc = document.getElementById('category-desc');
+
+    const btnsave = document.getElementById('btn-save-category');
+    btnsave.addEventListener('click', async(event) => {
+        const patch = [
+            {
+                "operation": 1,
+                "path": "/Name",
+                "op": "replace",
+                "value": title.value,
+            },
+            {
+                "operation": 1,
+                "path": "/Description",
+                "op": "replace",
+                "value": desc.value,
+            },
+        ]
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        };
+        if(await categoryAPI.updateCategory(params, token)) alert("Cập nhật thành công");
+        getCategories(1);
+    });
+}
+
 const createRecord = (data) => {
     if(!data) return;
     console.log(data);
@@ -109,12 +138,19 @@ const createRecord = (data) => {
         console.log(checkbox.value);
     })
 
+    const btnsave = document.getElementById('btn-save-category');
+
     const iconinfo = record.getElementById('categorymanage-iconinfo');
     
     iconinfo.addEventListener('click', async() => {
     
+        const title = document.querySelector('.quanlidanhmuc .modal-body.vstack input');
+        console.log(title)
+        console.log(data.name)
+        title.value = data.name;
+
         const desc = document.getElementById('category-desc');
-        desc.textContent = data.description;
+        desc.value = data.description;
 
         const ul = document.getElementById('categoryCourseList');
         ul.textContent = "";    
@@ -127,6 +163,8 @@ const createRecord = (data) => {
         courseList.forEach((course) => {
             ul.appendChild(createCourseItem(course));
         });
+
+        btnsave.value = data.idCategory;
     })
 
     return record;
@@ -144,6 +182,8 @@ const createCourseItem = (data) => {
         getCategories(1);
         
         setEventSearch();
+
+        setEventHandlerCategory();
         
         addCategory();
 

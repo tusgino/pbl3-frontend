@@ -373,7 +373,7 @@
 
                   </div>
                   <!-- modal student informatino-->
-                  <div class="modal fade rounded-3" id="Modal-studentinfo" role="dialog">
+                  <div class="modal fade" id="Modal-studentinfo" role="dialog">
                     <div class="modal-dialog modal-xxl modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header justify-content-between">
@@ -394,7 +394,7 @@
                                 <label for="detail-userName">Tên người dùng</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-userName" name="detail-userName" disabled>
+                                <input type="text" id="detail-userName" name="detail-userName" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
@@ -403,7 +403,7 @@
                               </div>
                               <div class="col">
                                 <input type="text" id="detail-userType" name="detail-userType" name="txt-user-role"
-                                  disabled>
+                                  readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
@@ -411,7 +411,7 @@
                                 <label for="detail-userdob">Ngày sinh</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-userdob" name="txt-user-birth" disabled>
+                                <input type="text" id="detail-userdob" name="txt-user-birth" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
@@ -419,7 +419,7 @@
                                 <label for="detail-userpn">Số điện thoại</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-userpn" name="txt-user-pn" disabled>
+                                <input type="text" id="detail-userpn" name="txt-user-pn" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
@@ -427,7 +427,7 @@
                                 <label for="detail-useridcard">CCCD</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-useridcard" name="txt-user-idcard" disabled>
+                                <input type="text" id="detail-useridcard" name="txt-user-idcard" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
@@ -435,7 +435,7 @@
                                 <label for="detail-useremail">Email</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-useremail" name="txt-user-email" disabled>
+                                <input type="text" id="detail-useremail" name="txt-user-email" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
@@ -443,7 +443,7 @@
                                 <label for="detail-userdatecreate">Ngày tạo tài khoản</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-userdatecreate" name="txt-user-datecreate" disabled>
+                                <input type="text" id="detail-userdatecreate" name="txt-user-datecreate" readonly>
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
@@ -451,7 +451,7 @@
                                 <label for="detail-userstatus">Trạng thái người dùng</label>
                               </div>
                               <div class="col">
-                                <input type="text" id="detail-userstatus" name="txt-user-status" disabled>
+                                <input type="text" id="detail-userstatus" name="txt-user-status" readonly>
                               </div>
                             </div>
                           </div>
@@ -496,7 +496,7 @@
                   <div class="container data-view bg-white">
                     
                   </div>
-                  <div class="modal fade rounded-3" id="expertrequest" role="dialog">
+                  <div class="modal fade" id="expertrequest" role="dialog">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
                       <div class="modal-content" style="width: 55rem; height: 50rem;"> 
                         <div class="modal-header justify-content-center">
@@ -685,7 +685,7 @@
                   <div class="container data-view bg-white">
 
                   </div>
-                  <div class="modal fade rounded-3" id="Modal-courseinfo" role="dialog">
+                  <div class="modal fade" id="Modal-courseinfo" role="dialog">
                     <div class="modal-dialog modal-xxl modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header justify-content-between">
@@ -755,7 +755,7 @@
                               </div>
                               <div class="col">
                                 <input type="text" id="detail-courseFee" placeholder="" name="txt-course-feepercent"
-                                  readonly>
+                                  >
                               </div>
                             </div>
                             <div class="row justify-content-center my-2">
@@ -776,6 +776,8 @@
                             class="nav-item btn btn-default">Bỏ lưu trữ</button>
                           <button type="button" id="btn-delcourse" data-bs-dismiss="modal"
                             class="nav-item btn btn-default">Cấm vĩnh viễn</button>
+                          <button type="button" id="btn-save-course" data-bs-dismiss="modal"
+                            class="nav-item btn btn-default">Lưu lại</button>
                           <button type="button" class="btn-text-close nav-item btn btn-default " data-bs-dismiss="modal">Đóng</button>
                         </div>
                       </div>
@@ -851,25 +853,26 @@
                   </div>
                 </div>
                 <div class="modal fade" id="Modal-category-info" role="dialog">
-                  <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h3 class="modal-title">Thông tin danh mục</h3>
                       </div>
-                      <div class="modal-body">
-                        <span style="font-weight: 400; font-size: 1.3rem;">Mô tả danh mục</span>
-                        <p id="category-desc" style="margin-top: 0.7rem;">Lorem ipsum dolor sit amet consectetur adipisicing 
-                          elit. Perspiciatis, explicabo minima blanditiis voluptatibus nobis dis
-                          tinctio iusto provident unde hic at, nostrum nihil atque placeat eveniet
-                           aspernatur impedit doloremque voluptates odit.</p>
+                      <div class="modal-body vstack" style="display:flex">
+                        <span style="font-weight: 400; font-size: 1.3rem;">Tên danh mục</span>
+                        <input style="margin-top: 0.7rem;" placeholder="Tên danh mục"></input>
                         <hr>
-                        <span style="font-weight: 400; font-size: 1.3rem;">Danh mục gồm những khoá học sau:</span>
+                        <span style="font-weight: 400; font-size: 1.3rem;">Mô tả danh mục</span>
+                        <textarea id="category-desc" style="margin-top: 0.7rem;height: 8rem;" placeholder="Mô tả danh mục"></textarea>
+                        <hr>
+                        <span style="font-weight: 400; font-size: 1.3rem;">Danh mục gồm những khoá học sau:</textarea>
                         <ul class="ms-4 mt-2" id="categoryCourseList">
-                          <li>Tên khoá học 1</li>
-                          <li>Tên khoá học 2</li>
+
                         </ul>
                       </div>
                       <div class="modal-footer">
+                        <button type="button" id="btn-save-category" data-bs-dismiss="modal"
+                              class="nav-item btn btn-default">Lưu lại</button>
                         <button type="button" class="btn-text-close nav-item btn btn-default" data-bs-dismiss="modal"
                           >Đóng</button>
                       </div>
@@ -948,7 +951,7 @@
                     <div class="container data-view bg-white">
 
                     </div>
-                    <div class="modal fade rounded-3" id="Modal-tradeinfo" role="dialog">
+                    <div class="modal fade" id="Modal-tradeinfo" role="dialog">
                       <div class="modal-dialog modal-xxl modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-header justify-content-between">

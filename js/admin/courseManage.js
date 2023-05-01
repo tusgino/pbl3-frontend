@@ -34,6 +34,7 @@ const createRecord = (data) => {
     const btnbancourse = document.getElementById('btn-bancourse');
     const btnunbancourse = document.getElementById('btn-unbancourse');
     const btndelcourse = document.getElementById('btn-delcourse');
+    const btnsavecourse = document.getElementById('btn-save-course');
 
     const iconinfo = record.getElementById('coursemanage-iconinfo');
 
@@ -63,6 +64,7 @@ const createRecord = (data) => {
         btnbancourse.value = data.id;
         btnunbancourse.value = data.id;
         btndelcourse.value = data.id;
+        btnsavecourse.value = data.id;
 
     })
     return record;
@@ -100,6 +102,7 @@ const setEventHandlerCourse = () => {
     const btnbancourse = document.getElementById('btn-bancourse');
     const btnunbancourse = document.getElementById('btn-unbancourse');
     const btndelcourse = document.getElementById('btn-delcourse');
+    const btnsavecourse = document.getElementById('btn-save-course');
 
     btnbancourse.addEventListener('click', async(event) => {
         const patch = [{
@@ -137,6 +140,23 @@ const setEventHandlerCourse = () => {
             "op": "replace",
             "value": -1,
         }];
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        };
+        if(await courseAPI.updateCourse(params, token)) alert("Cập nhật thành công");
+        getCourses(1);
+    });
+    btnsavecourse.addEventListener('click', async(event) => {
+        const courseFee = document.getElementById('detail-courseFee');
+        const patch = [
+            {
+                "operation": 1,
+                "path": "/FeePercent",
+                "op": "replace",
+                "value": courseFee.value,
+            }
+        ]
         const params = {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),

@@ -25,6 +25,16 @@ const categoryAPI = {
         }
         return axiosClient.get(url, {params});
     },
+    updateCategory(params, token) {
+        const url = `/private/Category/Update-category-by-${params.id}`;
+        const config = {
+          headers: {
+            'Content-Type' : 'application/json-patch+json',
+            // 'Authorization': `Bearer ${token}`,
+          }
+        }
+        return axiosClient.patch(url, params.patchDoc, config);
+    },
     deleteCategories (params, token) {
         const url = '/private/Category/Delete-categories';
         const config = {

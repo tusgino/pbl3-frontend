@@ -245,6 +245,9 @@ const createExpertRequestRecord = (data) => {
     const expertbanknumber = document.querySelector('[name="txt-expert-banknumber"]');
     const expertbankname = document.querySelector('[name="txt-expert-bankname"]');
     const expertdegree = document.querySelector('[name="txt-expert-degree"]');
+    const degreeimage = document.getElementById('degree-image');
+    const degreedesc = document.getElementById('degree-desc');
+
 
     console.log(expertname)
     const btninfo = record.querySelector('div');
@@ -266,7 +269,9 @@ const createExpertRequestRecord = (data) => {
         expertbanknumber.value = data.bankNumber;
         expertbankname.value = data.bankName;
         expertdegree.textContent = "";
-        expertdegree.appendChild(defaultoption)
+        expertdegree.appendChild(defaultoption);
+        degreeimage.src = "https://plus.unsplash.com/premium_photo-1677474826931-eb70ec714d99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
+        degreedesc.textContent = "";
         data.degrees.forEach((element) => {
             const option = document.createElement('option');
             option.textContent = element.name;

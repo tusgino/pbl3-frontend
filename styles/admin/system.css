@@ -187,10 +187,14 @@ input {
 #btn-search-addexpert,
 #btn-add-admin,
 #btn-search-usermanage,
+#btn-unbanacc,
 #btn-search-coursemanage,
+#btn-unbancourse,
+#btn-save-course,
 #btn-form-addcategory,
 #btn-add-category,
 #btn-search-categorymanage,
+#btn-save-category,
 #btn-search-trademanage,
 #btn-confirmtrade,
 #btn-search-studentanalytics,
@@ -203,6 +207,27 @@ input {
   border: 0px;
   font-size: 16px;
 }
+
+#btn-add-expert:hover,
+#btn-search-addexpert:hover,
+#btn-add-admin:hover,
+#btn-search-usermanage:hover,
+#btn-unbanacc:hover,
+#btn-search-coursemanage:hover,
+#btn-unbancourse:hover,
+#btn-save-course:hover,
+#btn-form-addcategory:hover,
+#btn-add-category:hover,
+#btn-search-categorymanage:hover,
+#btn-save-category:hover,
+#btn-search-trademanage:hover,
+#btn-confirmtrade:hover,
+#btn-search-studentanalytics:hover,
+#btn-search-expertanalytics:hover,
+#btn-search-courseanalytics:hover {
+  background-color: var(--primary-color);
+}
+
 
 .search-area {
   display: flex;
@@ -238,21 +263,22 @@ input[type="date"],
   border: 0px;
   font-size: 16px;
 }
+
+#btn-refuseexpert:hover,
+#btn-banacc:hover,
+#btn-delacc:hover,
+#btn-bancourse:hover,
+#btn-delcourse:hover,
+#form-delcategory:hover,
+#btn-refusetrade:hover{
+  background-color: #dd0000;
+}
+
 .btn-default {
   background-color: #f5f5f5;
   color: #000000;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  font-size: 16px;
-}
-
-#btn-unbanacc,
-#btn-unbancourse {
-  background-color: #38b6ff;
-  color: white;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  border: 0px;
   font-size: 16px;
 }
 
@@ -364,4 +390,21 @@ input[type="date"],
 
 .quanlidanhmuc .data-view .cell:nth-child(2) {
   justify-content: center;
+}
+
+.quanlidanhmuc textarea {
+  font-size: 1rem;  
+  padding: 1rem;
+  width: 29rem;
+  height: 30rem;
+  font-weight: 300;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border: 0px;
+  background-color: #ebebeb;
+  border-radius: 1rem;
+}
+
+.modal-content {
+  border-radius: 0.8rem;
 }
