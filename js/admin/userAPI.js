@@ -79,6 +79,24 @@ const userAPI = {
     };
     return  axiosClient.get(url, {params});
   },
+  getBestStudents (params, token) {
+    const url = 'private/User/Get-best-students';
+    const config = {
+      headers : {
+        'Authorization' : `Bearer ${token}`,
+      },
+    };
+    return  axiosClient.get(url);
+  },
+  getBestExperts (params, token) {
+    const url = 'private/User/Get-best-experts';
+    const config = {
+      headers : {
+        'Authorization' : `Bearer ${token}`,
+      },
+    };
+    return  axiosClient.get(url);
+  }
 }
 
 export default userAPI;

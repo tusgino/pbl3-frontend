@@ -16,9 +16,9 @@ const createRecord_Student= (data) => {
     const record = studentRecord.content.cloneNode(true);
     if(!record) return;
 
-    setTextContent(record, '[data-id="username-studentanalytics"]', data.student_name);
-    setTextContent(record, '[data-id="coursebuy-studentanalytics"]', data.purchased_courses_count);
-    setTextContent(record, '[data-id="coursefinish-studentanalytics"]', data.finished_courses_count);
+    setTextContent(record, '[data-id="username-studentanalytics"]', data.name);
+    setTextContent(record, '[data-id="coursebuy-studentanalytics"]', data.numOfPurchasedCourse);
+    setTextContent(record, '[data-id="coursefinish-studentanalytics"]', data.numOfFinishedCourse);
 
 
     return record;
@@ -33,9 +33,9 @@ const createRecord_Expert = (data) => {
     const record = expertRecord.content.cloneNode(true);
     if(!record) return;
 
-    setTextContent(record, '[data-id="username-expertanalytics"]', data._expert_name);
-    setTextContent(record, '[data-id="courseupload-expertanalytics"]', data._numOfUploadCourse);
-    setTextContent(record, '[data-id="revenue-expertanalytics"]', data._revenue);
+    setTextContent(record, '[data-id="username-expertanalytics"]', data.name);
+    setTextContent(record, '[data-id="courseupload-expertanalytics"]', data.numOfUploadedCourse);
+    setTextContent(record, '[data-id="revenue-expertanalytics"]', data.lastMonthRevenue);
 
     return record;
 }
@@ -57,9 +57,6 @@ const createRecord_Course = (data) => {
     return record;
 } 
 
-
-
-
 const getStudents = async(page) => {
     const params = {
         "_student_name_like" : document.getElementById('txtsearch-studentanalytics').value,
@@ -77,9 +74,7 @@ const getStudents = async(page) => {
 
     console.log(_data);
     systemAPI.renderRecord(_data, 'thongkehocvien', createRecord_Student);
-    systemAPI.renderPagination(_totalRows, 'thongkehocvien', getStudents);
-
-
+    systemAPI.renderPagination(_totalRows, 'thongkehocvien', getStudents, page);
 }
 
 const getExperts = async(page) => {
@@ -100,7 +95,7 @@ const getExperts = async(page) => {
 
     console.log(_data)
     systemAPI.renderRecord(_data, 'thongkechuyengia', createRecord_Expert);
-    systemAPI.renderPagination(_totalRows, 'thongkechuyengia', getExperts);
+    systemAPI.renderPagination(_totalRows, 'thongkechuyengia', getExperts, page);
 
 
 }
@@ -123,7 +118,7 @@ const getCourses = async(page) => {
 
     console.log(_data)
     systemAPI.renderRecord(_data, 'thongkekhoahoc', createRecord_Course);
-    systemAPI.renderPagination(_totalRows, 'thongkekhoahoc', getCourses);
+    systemAPI.renderPagination(_totalRows, 'thongkekhoahoc', getCourses, page);
 
 }
 
@@ -144,7 +139,6 @@ const setEventSearch = () => {
     btnsearchcourse.addEventListener('click', async() => {
         getCourses(1);
     })
-
 }
 
 (async() => {    

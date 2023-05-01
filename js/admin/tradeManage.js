@@ -122,7 +122,7 @@ const getTrade = async(page) => {
 
     console.log(_data);
     systemAPI.renderRecord(_data, 'quanligiaodich', createRecord_Trade);
-    systemAPI.renderPagination(_totalRows, 'quanligiaodich', getTrade);
+    systemAPI.renderPagination(_totalRows, 'quanligiaodich', getTrade, page);
 
 
 }

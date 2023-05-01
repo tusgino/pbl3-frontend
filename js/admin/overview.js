@@ -49,7 +49,6 @@ const SystemRevenue = async(data) => {
     //
     
 
-
     new Chart(document.getElementById('SystemRevenue'), 
     {
         type: 'line',
@@ -137,9 +136,6 @@ const AllOfUsers = async (data) => {
         }
     });   
 
-
-
-
     // tổng lượng người dùng
     var totalUsers = 0;
     data.forEach((element) => {
@@ -151,50 +147,33 @@ const AllOfUsers = async (data) => {
 
     // học viên tiêu biểu
     {
-        const params = {
-            "page" : 1,
-        };
-        const {data : {_data, _totalRows}} = await userAPI.getAllStudentsForAnalytics(params, token);
-        console.log(_data)
+        const beststudents  = await userAPI.getBestStudents({}, token);
+        console.log(beststudents);
         const prostudent = document.getElementById('pro-student');
 
-        _data.sort((a,b) => { b.finished_courses_count - a.finished_courses_count})
-        const data = _data.slice(0,4)
-        console.log(data)
-        data.forEach((student) => {
+        beststudents.forEach((student) => {
             const liElement = document.createElement('li');
             liElement.classList.add('mt-3')
-            liElement.innerHTML = `<i class="fas fa-graduation-cap"></i> ${student.student_name}`;
+            liElement.innerHTML = `<i class="fas fa-graduation-cap"></i> ${student.name}`;
             prostudent.appendChild(liElement)
         })
-
     }
     //
 
-    
-    
-
-
     // chuyên gia tiêu biểu
     {
-        const params = {
-            "page" : 1,
-        };
-        const {data : {_data, _totalRows}} = await userAPI.getAllExpertsForAnalytics(params, token);
+        const bestexperts = await userAPI.getBestExperts({}, token);
+        
         const proexpert = document.getElementById('pro-expert');
 
-        _data.sort((a,b) => {b._revenue - a._revenue})
-        const data = _data.slice(0,4);
-
-        data.forEach((expert) => {
+        bestexperts.forEach((expert) => {
             const liElement = document.createElement('li');
             liElement.classList.add('mt-3')
-            liElement.innerHTML = `<i class="fab fa-black-tie"></i> ${expert._expert_name}`;
+            liElement.innerHTML = `<i class="fab fa-black-tie"></i> ${expert.name}`;
             proexpert.appendChild(liElement)
         })
     }
     //
-
 
     // new users
     {
@@ -211,12 +190,6 @@ const AllOfUsers = async (data) => {
         newuserspanel.appendChild(ulElement);
     }
     //
-
-
-
-
-
-
 }
 
 
@@ -228,10 +201,5 @@ const AllOfUsers = async (data) => {
     const users = await userAPI.getAllUsersByType();
     console.log(users);
     AllOfUsers(users);
-    
-    
-    
 
-
-    
 })()

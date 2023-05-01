@@ -17,8 +17,6 @@ const createRecord = (data) => {
     const _dateupload = new Date(data.dateUpload);
     const dateupload = _dateupload.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
 
-
-
     setTextContent(record, '[data-id="courseName"]', data.name);
     setTextContent(record, '[data-id="category"]', data.category);
     setTextContent(record, '[data-id="dateUpload"]', dateupload);
@@ -36,8 +34,6 @@ const createRecord = (data) => {
     const btnbancourse = document.getElementById('btn-bancourse');
     const btnunbancourse = document.getElementById('btn-unbancourse');
     const btndelcourse = document.getElementById('btn-delcourse');
-
-
 
     const iconinfo = record.getElementById('coursemanage-iconinfo');
 
@@ -70,7 +66,6 @@ const createRecord = (data) => {
 
     })
     return record;
-
 }
 
 
@@ -91,7 +86,7 @@ const getCourses = async(page) => {
     const {data : {_data, _totalRows}} = await courseAPI.getAllCoursesByFiltering(params, token);
 
     systemAPI.renderRecord(_data, 'quanlikhoahoc', createRecord);
-    systemAPI.renderPagination(_totalRows, 'quanlikhoahoc', getCourses);
+    systemAPI.renderPagination(_totalRows, 'quanlikhoahoc', getCourses, page);
 }
 
 const setEventSearch = () => {
@@ -149,7 +144,6 @@ const setEventHandlerCourse = () => {
         if(await courseAPI.updateCourse(params, token)) alert("Cập nhật thành công");
         getCourses(1);
     })
-
 }
 
 (async() => {    
@@ -157,7 +151,6 @@ const setEventHandlerCourse = () => {
 
         setEventSearch();
         setEventHandlerCourse();
-
         getCourses(1);
         
     } catch (error) {

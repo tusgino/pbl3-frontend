@@ -30,22 +30,26 @@ const addCategory = async() => {
             getCategories(1);
         }
     })
-
-    
 }
 
 const deleteCategories = async() => {
     const modaldel = document.getElementById('Modal-delcategory');
-    const btnmodaldel = modaldel.querySelector('.close');
+    const btnmodaldel = document.getElementById('form-delcategory');
     const dataview = document.querySelector('.quanlidanhmuc .data-view');
     const checkboxes = dataview.getElementsByClassName('checkbox-category')
 
-    btnmodaldel.addEventListener('click', () => {
-        if(checkboxes.length == 0) {
-            alert("Chưa chọn cái nào");
-            return;
-        }
-    })
+    // btnmodaldel.addEventListener('click', () => {
+    //     var check = false;
+    //     checkboxes.forEach((checkbox) => {
+    //         if(checkbox.value == true) {
+    //             check = true;
+    //         }
+    //     })
+    //     if(check == false) {
+    //         alert("Chưa chọn cái nào");
+    //         return;
+    //     }
+    // })
 
     const btndel = document.getElementById('btn-del-category');
     if(!btndel) return;
@@ -77,7 +81,7 @@ const getCategories = async(page) => {
     
     const { data : {_data, _totalRows}} = await categoryAPI.getAllCategory(params, token);
     systemAPI.renderRecord(_data, 'quanlidanhmuc', createRecord);
-    systemAPI.renderPagination(_totalRows, 'quanlidanhmuc', getCategories);
+    systemAPI.renderPagination(_totalRows, 'quanlidanhmuc', getCategories, page);
 };
 
 const setEventSearch = async() => {
@@ -89,6 +93,8 @@ const setEventSearch = async() => {
 
 const createRecord = (data) => {
     if(!data) return;
+    console.log(data);
+
     const categoryManageRecord = document.getElementById('categoryManageRecord')
     if(!categoryManageRecord) return;
 
@@ -107,6 +113,9 @@ const createRecord = (data) => {
     
     iconinfo.addEventListener('click', async() => {
     
+        const desc = document.getElementById('category-desc');
+        desc.textContent = data.description;
+
         const ul = document.getElementById('categoryCourseList');
         ul.textContent = "";    
     
@@ -122,6 +131,7 @@ const createRecord = (data) => {
 
     return record;
 }
+
 const createCourseItem = (data) => {
     const li = document.createElement('li');
     li.setAttribute('class', 'mt-3');

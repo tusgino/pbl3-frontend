@@ -48,12 +48,11 @@ main {
   font-size: 1.8rem;
   color: var(--title-color);
 }
-.container-rounded {
-  border-radius: 10px;
-  padding: 5px;
-  /* margin:5px; */
-  width: fit-content;
+
+input {
+  padding : 5px;
 }
+
 input[type="text"],
 input[type="date"] {
   width: 15rem;
@@ -67,7 +66,7 @@ input[type="date"] {
 .container .row {
   margin: 5px;
 }
-.overview .float-content .container-rounded {
+.overview .float-content  {
   background-color: white;
   width: 210px;
   padding: 10px;
@@ -75,7 +74,7 @@ input[type="date"] {
   text-align: center;
   gap: 3px;
 }
-.overview .float-content .container-rounded > ul > li {
+.overview .float-content > ul > li {
   margin: 10px 0px;
 }
 footer {
@@ -95,16 +94,24 @@ footer {
   /*this centers the text vertically*/
   align-items: center;
 }
+
+.record .cell:nth-child(2) {
+  justify-content: left; 
+}
+
+
 .form {
   width: 100%;
   align-self: center;
 }
+
 .form-group {
   display: flex;
   /* margin-bottom: 2rem; */
   flex-direction: column;
   position: relative;
 }
+
 .form-label,
 .form-message {
   text-align: left;
@@ -123,6 +130,7 @@ footer {
 .form-group.invalid .form-message {
   color: #ff0000;
 }
+
 .modal-title {
   font-size: 1.5rem;
   font-weight: 500;
@@ -143,6 +151,7 @@ a:hover > i {
 .nav-item {
   padding: 0 0.5rem;
 }
+
 .nav-item > a {
   height: 3rem;
   display: flex;
@@ -167,11 +176,6 @@ input {
 
 .modal-body .col {
   display: flex;
-
-  /*this centers the text horizontally*/
-  
-
-  /*this centers the text vertically*/
   align-items: center;  
 }
 
@@ -225,7 +229,7 @@ input[type="date"],
 #btn-delacc,
 #btn-bancourse,
 #btn-delcourse,
-#deleteCategory,
+#form-delcategory,
 #btn-refusetrade {
   background-color: #ff0000;
   color: white;
@@ -283,6 +287,14 @@ input[type="date"],
   padding: 1rem;
 }
 
+.field-bar .cell {
+  padding : 0px 12px;
+}
+
+.field-bar .cell:nth-child(2) {
+  justify-content: left;
+}
+
 .data-view {
   padding: 1rem;
 }
@@ -338,4 +350,18 @@ input[type="date"],
   outline: none;
   transition: all 0.3s;
   width :15rem;
+}
+
+/* .pagination .page-item:focus {
+  background-color: var(--primary-color);
+  border: none;
+} */
+
+
+.quanlidanhmuc .field-bar .cell:nth-child(2) {
+  justify-content: center;
+}
+
+.quanlidanhmuc .data-view .cell:nth-child(2) {
+  justify-content: center;
 }

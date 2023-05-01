@@ -105,7 +105,7 @@ const getUsers = async(page) => {
     const {data : {_data, _totalRows}} = await userAPI.getAllUsersByFiltering(params, token);
     
     systemAPI.renderRecord(_data, 'quanlinguoidung', createRecord);
-    systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers);
+    systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers, page);
 }
 
 const setEventSearch = () => {
@@ -330,15 +330,15 @@ const getExpertRequest = async(page) => {
         "page" : page, 
     }
 
-    const dataview = document.querySelector(".formthemexpert .data-view");
-    dataview.textContent = "";
+    // const dataview = document.querySelector(".formthemexpert .data-view");
+    // dataview.textContent = "";
 
     const {data : {_data, _totalRows}} = await userAPI.getAllExpertRequest(params, token);
 
     console.log(_data);
 
     systemAPI.renderRecord(_data, 'formthemexpert', createExpertRequestRecord);
-    systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest);
+    systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest, page);
     
     
 }
@@ -414,18 +414,18 @@ const addAdmin = async() => {
 
 })()
 
-const expertRequestAPI = {
-    async createExpertRequest (data) {
+// const expertRequestAPI = {
+//     async createExpertRequest (data) {
 
-        //add request vao db, them 1 id cho request o duoi BE
-        const _data = { 
-            "Name" : data.name, 
-            "Email" : data.email,
-            "Field" : data.field,
-            "RequestDate" : data.requestDate,
-        }
-        await userAPI.addExpertRequest(_data, token);
-        //
-    }
-}
-export default expertRequestAPI;
+//         //add request vao db, them 1 id cho request o duoi BE
+//         const _data = { 
+//             "Name" : data.name, 
+//             "Email" : data.email,
+//             "Field" : data.field,
+//             "RequestDate" : data.requestDate,
+//         }
+//         await userAPI.addExpertRequest(_data, token);
+//         //
+//     }
+// }
+// export default expertRequestAPI;

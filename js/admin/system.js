@@ -28,8 +28,6 @@ import userAPI from "./userAPI";
     console.log(error);
   }
 
-
-
   const checkBox = document.getElementById('checkbox-all');
   if (!checkBox) return;
 
@@ -39,7 +37,6 @@ import userAPI from "./userAPI";
       checkBox.checked = event.target.checked;
     });
   })
-
 
   const sidebaritems = document.querySelectorAll('.sidebaritem');
   if(!sidebaritems) return;
@@ -53,16 +50,16 @@ import userAPI from "./userAPI";
       sidebaritem.className += ' active'
     });
   })
-
-
 })()
-
 
 const systemAPI = {
     renderRecord (list, view, func) {
-      if(!Array.isArray(list) || list.length === 0) return;
       const dataview = document.querySelector(`.${view} .data-view`);
+      dataview.textContent = "";
       if(!dataview) return;
+      if(!Array.isArray(list) || list.length === 0) return;
+      
+      if(list.length == 0) { dataview.textContent = "Không tìm thấy";}
 
       list.forEach((item) => {
           const record = func(item);
@@ -72,32 +69,31 @@ const systemAPI = {
       })
   },
 
-    createPage (data, func) {
+    createPage (pagenum, func) {
         const liElement = document.createElement('li');
         liElement.classList.add("page-item");
-        liElement.classList.add("btn");
-
-        liElement.textContent = data;
-
+        
+        liElement.innerHTML = `<span class="page-link">${pagenum}</span>`
+        
         liElement.addEventListener('click', async() => {
-            func(data);
+            func(pagenum);
         })
-        // console.log(liElement);
         return liElement;
     },
 
-    renderPagination (totalRows, view, func) {
+    renderPagination (totalRows, view, func, pagechosen) {
       const ulElement = document.createElement('ul');
       ulElement.classList.add("pagination");
       ulElement.classList.add("justify-content-center");
       ulElement.classList.add("gap-2");
       const totalPage = Math.ceil(totalRows / 10);
       for(let i = 1; i <= totalPage; ++i) {
-          ulElement.appendChild(systemAPI.createPage(i, func));
+          const liElement = systemAPI.createPage(i, func);
+          if(i == pagechosen) liElement.classList.add('active');
+          ulElement.appendChild(liElement);
       }
       const dataview = document.querySelector(`.${view} .data-view`);
       dataview.appendChild(ulElement);
-      // console.log(ulElement);
   },
 
 }
