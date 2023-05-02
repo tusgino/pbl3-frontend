@@ -1,4 +1,4 @@
-import { setTextContent, showModal } from "../utils";
+import { setTextContent, showModal, showNotication } from "../utils";
 import userAPI from "./userAPI";
 import systemAPI from "./system";
 import accountAPI from "../api/accountAPI";
@@ -135,7 +135,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
+        if(await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
         getUsers(1);
     })
     btnunbanacc.addEventListener('click', async(event) => {
@@ -149,7 +149,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
+        if(await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
         getUsers(1);
     })
     btndelacc.addEventListener('click', async(event) => {
@@ -163,7 +163,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
+        if(await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
         getUsers(1);
     })
     
@@ -301,7 +301,7 @@ const handleExpertRequest = async() => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) alert("Thêm thành công");
+        if(await userAPI.updateUser(params, token)) showNotication("Thêm thành công");
         getExpertRequest(1);
     })
     
@@ -316,7 +316,7 @@ const handleExpertRequest = async() => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) alert("Từ chối thành công");
+        if(await userAPI.updateUser(params, token)) showNotication("Từ chối thành công");
         getExpertRequest(1);
     })
 }
@@ -353,7 +353,7 @@ const addAdmin = async() => {
         const repassword = addadminform.querySelector('input[name="txt-admin-repassword"]').value;
 
         if(name == '' || email == '' || password == '' || repassword == '') {
-            alert("Thieu thong tin");
+            showNotication("Thiếu thông tin", 'error');
             return;
         }
         if(confirm('Xác nhận thêm?')) {
@@ -368,17 +368,14 @@ const addAdmin = async() => {
                 }
                 const res = await accountAPI.register(data);
                 if(res.success) {
-                    alert("Them admin thanh cong");
+                    showNotication("Thêm Admin thành công");
                 }
             } catch (error) {
                 //console.log(error);
-                alert("Đã tồn tại");
+                showNotication("Đã tồn tại", 'error');
             }
         }
     })
-
-
-
 }
 
 (async() => {    

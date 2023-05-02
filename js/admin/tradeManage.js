@@ -1,4 +1,4 @@
-import { setTextContent } from "../utils";
+import { setTextContent, showModal, showNotication } from "../utils";
 import tradeAPI from "./tradeAPI";
 import systemAPI from "./system";
 
@@ -78,7 +78,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        if(await tradeAPI.updateTrade(params, token)) alert("Cập nhật thành công");
+        if(await tradeAPI.updateTrade(params, token)) showNotication("Cập nhật thành công");
         getTrade(1);
     });
     btnrefusetrade.addEventListener('click', async (event) => {
@@ -92,7 +92,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        if(await tradeAPI.updateTrade(params, token)) alert("Cập nhật thành công");
+        if(await tradeAPI.updateTrade(params, token)) showNotication("Cập nhật thành công");
         getTrade(1);
     });
     

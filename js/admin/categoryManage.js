@@ -1,4 +1,4 @@
-import { getValueForm, setTextContent, showModal } from "../utils";
+import { setTextContent, showModal, showNotication } from "../utils";
 import categoryAPI from "./categoryAPI";    
 import courseAPI from "./courseAPI";
 import systemAPI  from "./system";
@@ -23,9 +23,9 @@ const addCategory = async() => {
             const res = await categoryAPI.addCategory(params, token);
             
             if(res.message == "Trung") {
-                alert("Thêm thất bại");
+                showNotication("Thêm thất bại", 'error');
             } else {
-                alert('Thêm thành công');
+                showNotication('Thêm thành công');
             }
             getCategories(1);
         }
@@ -46,7 +46,7 @@ const deleteCategories = async() => {
     //         }
     //     })
     //     if(check == false) {
-    //         alert("Chưa chọn cái nào");
+    //         showNotication("Chưa chọn cái nào", error);
     //         return;
     //     }
     // })
@@ -115,7 +115,7 @@ const setEventHandlerCategory = async() => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        if(await categoryAPI.updateCategory(params, token)) alert("Cập nhật thành công");
+        if(await categoryAPI.updateCategory(params, token)) showNotication("Cập nhật thành công");
         getCategories(1);
     });
 }

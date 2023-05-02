@@ -1,4 +1,4 @@
-import { setTextContent } from "../utils";
+import { setTextContent, showModal, showNotication } from "../utils";
 import courseAPI from "./courseAPI";
 import systemAPI from "./system";
 
@@ -116,7 +116,7 @@ const setEventHandlerCourse = () => {
             patchDoc : JSON.stringify(patch),
         };
         console.log(params)
-        if(await courseAPI.updateCourse(params, token)) alert("Cập nhật thành công");
+        if(await courseAPI.updateCourse(params, token)) showNotication("Cập nhật thành công");
         getCourses(1);
     })
     btnunbancourse.addEventListener('click', async(event) => {
@@ -130,7 +130,7 @@ const setEventHandlerCourse = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        if(await courseAPI.updateCourse(params, token)) alert("Cập nhật thành công");
+        if(await courseAPI.updateCourse(params, token)) showNotication("Cập nhật thành công");
         getCourses(1);
     })
     btndelcourse.addEventListener('click', async(event) => {
@@ -144,7 +144,7 @@ const setEventHandlerCourse = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        if(await courseAPI.updateCourse(params, token)) alert("Cập nhật thành công");
+        if(await courseAPI.updateCourse(params, token)) showNotication("Cập nhật thành công");
         getCourses(1);
     });
     btnsavecourse.addEventListener('click', async(event) => {
@@ -161,7 +161,7 @@ const setEventHandlerCourse = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        if(await courseAPI.updateCourse(params, token)) alert("Cập nhật thành công");
+        if(await courseAPI.updateCourse(params, token)) showNotication("Cập nhật thành công");
         getCourses(1);
     })
 }

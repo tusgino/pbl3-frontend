@@ -15,10 +15,6 @@ main {
   margin-top: 3rem;
 }
 
-.navbar-collapse ul {
-  display: none;
-}
-
 .page-container {
   display: flex;
   flex-direction: row;
@@ -255,6 +251,7 @@ input[type="date"],
 #btn-bancourse,
 #btn-delcourse,
 #form-delcategory,
+#btn-del-category,
 #btn-refusetrade {
   background-color: #ff0000;
   color: white;
@@ -270,6 +267,7 @@ input[type="date"],
 #btn-bancourse:hover,
 #btn-delcourse:hover,
 #form-delcategory:hover,
+#btn-del-category:hover,
 #btn-refusetrade:hover{
   background-color: #dd0000;
 }
