@@ -5,11 +5,12 @@ const tradeAPI = {
     getAllTradeDetailByFiltering(params, token) {
         const url = '/private/TradeDetail/Get-all-tradedetail-by-filtering';
         const config = {
+          params,
             headers : {
                 'Authorization' : `Bearer ${token}`,        
             }
         }
-        return axiosClient.get(url, {params});
+        return axiosClient.get(url, config);
     },
     updateTrade(params, token) {
         const url = `/private/TradeDetail/Update-trade-by-${params.id}`;
@@ -24,11 +25,12 @@ const tradeAPI = {
       getSystemRevenue(params, token) {
         const url = '/private/TradeDetail/Get-system-revenue';
         const config = {
+          params,
           headers: {
             'Authorization' : `Bearer ${token}`,
           },
         }
-        return axiosClient.get(url);
+        return axiosClient.get(url, config);
       }
 }
 

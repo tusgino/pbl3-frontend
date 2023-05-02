@@ -37,13 +37,13 @@ const SystemRevenue = async(data) => {
     // chiet khau trung binh
     {
         const avgfee = document.getElementById('avg-fee');
-        avgfee.textContent = await courseAPI.getAverageFeePercent();
+        avgfee.textContent = await courseAPI.getAverageFeePercent({}, token);
     }
 
     // khoa hoc tieu bieu
     {
         const procourse = document.getElementById('pro-course');
-        const data = await courseAPI.getBestCourses();
+        const data = await courseAPI.getBestCourses({}, token);
         procourse.textContent = data[0];
     }
     //
@@ -194,11 +194,11 @@ const AllOfUsers = async (data) => {
 
 
 (async() => {
-    const revenue = await tradeAPI.getSystemRevenue();
+    const revenue = await tradeAPI.getSystemRevenue({}, token);
     console.log(revenue)
     SystemRevenue(revenue);
 
-    const users = await userAPI.getAllUsersByType();
+    const users = await userAPI.getAllUsersByType({}, token);
     console.log(users);
     AllOfUsers(users);
 

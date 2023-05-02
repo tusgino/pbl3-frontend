@@ -236,7 +236,7 @@ const createExpertRequestRecord = (data) => {
 
     //
     
-    
+    const expertavatar = document.querySelector('[name="txt-expert-avatar"]');
     const expertname = document.querySelector('[name="txt-expert-name"]');
     const expertdob = document.querySelector('[name="txt-expert-birth"]');
     const expertphone = document.querySelector('[name="txt-expert-pn"]');
@@ -261,6 +261,7 @@ const createExpertRequestRecord = (data) => {
     defaultoption.textContent = " - Chọn bằng cấp - ";
     
     btninfo.addEventListener('click', () => {
+        expertavatar.src = data.avatar;
         expertname.value = data.name;
         expertdob.value = data.dateOfBirth;
         expertphone.value = data.phoneNumber;
@@ -278,18 +279,11 @@ const createExpertRequestRecord = (data) => {
             option.value = element.idDegree; 
             expertdegree.appendChild(option);
             console.log(expertdegree)
-        });
-
-        
+        });   
         btnaddexpert.value = data.idUser;
-        btnrefuseexpet.value = data.idUser;
-        
+        btnrefuseexpet.value = data.idUser;  
     })
-    
-
     return record;
-    
-    
 }
 
 const handleExpertRequest = async() => {
@@ -376,17 +370,10 @@ const addAdmin = async() => {
                 if(res.success) {
                     alert("Them admin thanh cong");
                 }
-                
-            
-            
-            
             } catch (error) {
                 //console.log(error);
                 alert("Đã tồn tại");
             }
-
-
-
         }
     })
 
@@ -398,13 +385,9 @@ const addAdmin = async() => {
     try {
         // avatarHandle();
 
-        
-        
         setEventSearch();
         setEventHandlerAcc();
         getUsers(1);
-        
-        
         
         clearFormHandle();
         addAdmin(); 
@@ -418,19 +401,3 @@ const addAdmin = async() => {
     }
 
 })()
-
-// const expertRequestAPI = {
-//     async createExpertRequest (data) {
-
-//         //add request vao db, them 1 id cho request o duoi BE
-//         const _data = { 
-//             "Name" : data.name, 
-//             "Email" : data.email,
-//             "Field" : data.field,
-//             "RequestDate" : data.requestDate,
-//         }
-//         await userAPI.addExpertRequest(_data, token);
-//         //
-//     }
-// }
-// export default expertRequestAPI;
