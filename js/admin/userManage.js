@@ -3,12 +3,13 @@ import userAPI from "./userAPI";
 import systemAPI from "./system";
 import accountAPI from "../api/accountAPI";
 import expertAPI from "../api/expertAPI";
+import { ReloadOverview } from "./overview";
 
 const token = localStorage.getItem('token');
 
 const createRecord = (data) => {
     if(!data) return;
-    // console.log(data)   
+    console.log(data)   
 
     const userManageRecord = document.getElementById('userManageRecord')
     if(!userManageRecord) return;
@@ -303,6 +304,7 @@ const handleExpertRequest = async() => {
         }
         if(await userAPI.updateUser(params, token)) showNotication("Thêm thành công");
         getExpertRequest(1);
+        ReloadOverview();
     })
     
     btnrefuseexpert.addEventListener('click', async(event) => {
@@ -318,6 +320,7 @@ const handleExpertRequest = async() => {
         }
         if(await userAPI.updateUser(params, token)) showNotication("Từ chối thành công");
         getExpertRequest(1);
+        ReloadOverview();
     })
 }
 
@@ -338,8 +341,6 @@ const getExpertRequest = async(page) => {
 
     systemAPI.renderRecord(_data, 'formthemexpert', createExpertRequestRecord);
     systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest, page);
-    
-    
 }
  
 const addAdmin = async() => {
@@ -370,6 +371,7 @@ const addAdmin = async() => {
                 if(res.success) {
                     showNotication("Thêm Admin thành công");
                 }
+                ReloadOverview();
             } catch (error) {
                 //console.log(error);
                 showNotication("Đã tồn tại", 'error');

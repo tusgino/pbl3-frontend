@@ -1,6 +1,7 @@
 import { setTextContent, showModal, showNotication } from "../utils";
 import categoryAPI from "./categoryAPI";    
 import courseAPI from "./courseAPI";
+import { ReloadCourse } from "./courseManage";
 import systemAPI  from "./system";
 
 const token = localStorage.getItem('token');
@@ -64,6 +65,7 @@ const deleteCategories = async() => {
         console.log(list);
         await categoryAPI.deleteCategories(list, token);
         getCategories(1);
+        ReloadCourse();
     })
 }
 
@@ -117,6 +119,7 @@ const setEventHandlerCategory = async() => {
         };
         if(await categoryAPI.updateCategory(params, token)) showNotication("Cập nhật thành công");
         getCategories(1);
+        ReloadCourse();
     });
 }
 

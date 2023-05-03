@@ -1,3 +1,4 @@
+import { setEventHandlerChart } from "./analytics";
 import courseAPI from "./courseAPI";
 import tradeAPI from "./tradeAPI";
 import userAPI from "./userAPI";
@@ -19,6 +20,38 @@ const SystemRevenue = async(data) => {
         totalrevenuecurrentyear += element.revenue;
     });
 
+
+    var systemrevenuechart = Chart.getChart('SystemRevenue');
+    if(systemrevenuechart != null) systemrevenuechart.destroy();
+    systemrevenuechart = new Chart(document.getElementById('SystemRevenue'), 
+    {
+        type: 'line',
+        data: {
+            labels: months,
+            datasets: [{
+                label: 'Doanh thu',
+                data: revenue,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                beginAtZero: true   
+                },
+            },
+            datasets : {
+                label: screenLeft,
+            },
+        }
+    });
+
+    //set toggle icon
+    {
+        const toggleicon = document.getElementById('toggle-chart-systemrevenue');
+        toggleicon.value = revenue;
+        setEventHandlerChart('SystemRevenue','toggle-chart-systemrevenue')
+    }
 
     // tong doanh thu hien tai
     {
@@ -48,54 +81,6 @@ const SystemRevenue = async(data) => {
     }
     //
     
-
-    new Chart(document.getElementById('SystemRevenue'), 
-    {
-        type: 'line',
-        data: {
-            labels: months,
-            datasets: [{
-                label: 'Doanh thu hệ thống',
-                data: revenue,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                beginAtZero: true
-                }
-            },
-            datasets : {
-                label: screenLeft,
-            },
-            plugins : {
-                legend : {
-                    display : false,
-                }
-            }
-        }
-    });
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
     
 }
 
@@ -103,7 +88,9 @@ const AllOfUsers = async (data) => {
     
     const typesofuser = ['Quản trị viên', 'Chuyên gia', 'Học viên'];
 
-    new Chart(document.getElementById('AllOfUsers'),
+    var allofuserschart = Chart.getChart('AllOfUsers');
+    if(allofuserschart != null) allofuserschart.destroy();
+    allofuserschart = new Chart(document.getElementById('AllOfUsers'),
     {
         type: 'doughnut',
         data: {
@@ -150,7 +137,7 @@ const AllOfUsers = async (data) => {
         const beststudents  = await userAPI.getBestStudents({}, token);
         console.log(beststudents);
         const prostudent = document.getElementById('pro-student');
-
+        prostudent.textContent = "";
         beststudents.forEach((student) => {
             const liElement = document.createElement('li');
             liElement.classList.add('mt-3')
@@ -165,7 +152,7 @@ const AllOfUsers = async (data) => {
         const bestexperts = await userAPI.getBestExperts({}, token);
         
         const proexpert = document.getElementById('pro-expert');
-
+        proexpert.textContent = "";
         bestexperts.forEach((expert) => {
             const liElement = document.createElement('li');
             liElement.classList.add('mt-3')
@@ -178,7 +165,10 @@ const AllOfUsers = async (data) => {
     // new users
     {
         const newuserspanel = document.getElementById('newuserpanel');
+        newuserspanel.textContent = "";
+
         const newusers = await userAPI.getNewUsers({}, token);
+
         const ulElement = document.createElement('ul');
         ulElement.classList.add('vstack');
         ulElement.classList.add('gap-4');
@@ -203,3 +193,14 @@ const AllOfUsers = async (data) => {
     AllOfUsers(users);
 
 })()
+
+export const ReloadOverview = async() => {
+    const revenue = await tradeAPI.getSystemRevenue({}, token);
+    console.log(revenue)
+    SystemRevenue(revenue);
+
+    const users = await userAPI.getAllUsersByType({}, token);
+    console.log(users);
+    AllOfUsers(users);
+}
+

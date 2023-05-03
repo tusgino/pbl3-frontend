@@ -27,15 +27,62 @@ const createRecord_Student= (data) => {
 const createRecord_Expert = (data) => {
     if(!data) return;
     
+    console.log(data)
     const expertRecord = document.getElementById('expertAnalyticsRecord');
     if(!expertRecord) return;
 
     const record = expertRecord.content.cloneNode(true);
     if(!record) return;
 
+    const currrentDate = new Date();
+
     setTextContent(record, '[data-id="username-expertanalytics"]', data.name);
     setTextContent(record, '[data-id="courseupload-expertanalytics"]', data.numOfUploadedCourse);
-    setTextContent(record, '[data-id="revenue-expertanalytics"]', data.lastMonthRevenue);
+    setTextContent(record, '[data-id="revenue-expertanalytics"]', data.currentYearRevenue[currrentDate.getMonth() - 1]);
+
+    
+    const iconinfo = record.getElementById('expertanalytics-iconinfo');
+    
+    // const revenue = userAPI.getExpertRevenueByID(data.id);
+    // console.log(revenue)
+    
+    iconinfo.addEventListener('click', async() => {
+        var myChart = Chart.getChart('ExpertRevenueAnalytics');
+
+        if(myChart != null) myChart.destroy();
+
+        myChart = new Chart(document.getElementById('ExpertRevenueAnalytics'),
+        {
+            type: 'bar',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                datasets: [
+                    {
+                        label: "Doanh thu",
+                        data: data.currentYearRevenue,
+                        borderWidth: 1
+                    },
+                ]
+            },
+            options: {  
+                scales: {
+                    y: {
+                    beginAtZero: true,
+                    },
+                },
+                datasets : {
+                    label: screenLeft,
+                    screen : {
+                        display : true,
+                    }
+                },
+            }
+        });  
+        
+        const toggleicon = document.getElementById('toggle-chart-expertanalytics');
+        toggleicon.value = data.currentYearRevenue;
+    })
+
 
     return record;
 }
@@ -141,17 +188,67 @@ const setEventSearch = () => {
     })
 }
 
+export const setEventHandlerChart = (chartID, toggleID) => {
+
+    const toggleicon = document.getElementById(`${toggleID}`);
+    toggleicon.addEventListener('click', () => {
+        var myChart = Chart.getChart(chartID);
+        console.log(myChart);
+        myChart.destroy();
+        console.log(toggleicon.value)
+        const config = {
+            type: 'bar',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                datasets: [
+                    {
+                        label: "Doanh thu",
+                        data: toggleicon.value,
+                        borderWidth: 1
+                    },
+                ]
+            },
+            options: {  
+                scales: {
+                    y: {
+                    beginAtZero: true,
+                    },
+                },
+                datasets : {
+                    label: screenLeft,
+                    screen : {
+                        display : true,
+                    }
+                },
+            }
+        };
+        
+        const iconchart = toggleicon.querySelector('i');
+
+        if(iconchart.classList.contains('fa-chart-bar')) {
+            config.type = 'bar';
+            toggleicon.innerHTML = `<i class="fas fa-chart-line fa-lg"></i>`;
+        } else if(iconchart.classList.contains('fa-chart-line')) {
+            config.type = 'line';            
+            toggleicon.innerHTML = `<i class="fas fa-chart-bar fa-lg"></i>`;
+        }
+        myChart = new Chart(document.getElementById(`${chartID}`), config);
+    })
+}
+
 (async() => {    
     try {
 
-        setEventSearch();
-
+        
         getStudents(1);
         
         getExperts(1);
         
         getCourses(1);
+        
+        setEventSearch();
 
+        setEventHandlerChart('ExpertRevenueAnalytics', 'toggle-chart-expertanalytics');
 
     } catch (error) {
         console.log(error);

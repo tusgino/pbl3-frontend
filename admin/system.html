@@ -122,7 +122,8 @@
       <div class="cell col" data-id="username-expertanalytics">Megumi</div>
       <div class="cell col" data-id="courseupload-expertanalytics">10</div>
       <div class="cell col" data-id="revenue-expertanalytics">500000</div>
-      <!-- <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#Modal-analytics-studentinfo"></i></div> -->
+      <div class="cell col-1" id="expertanalytics-iconinfo"><i type="button" class="fas fa-info-circle" 
+        data-bs-toggle="modal" data-bs-target="#Modal-analytics-expertinfo"></i></div>
     </div>
   </template>
   <template id="courseAnalyticsRecord">
@@ -241,7 +242,10 @@
                     <div class="col-9">
                       <div class="row">
                         <div class="cell bg-white p-4 vstack" style="border-radius: 1rem;">
-                          <span id="systemrevenue-title" style="font-size: 1.8rem; color:#5271ff">Doanh thu hệ thống</span>
+                          <div class="justify-content-between" style="display:flex; width:100%">
+                            <span id="systemrevenue-title" style="font-size: 1.8rem; color:#5271ff; margin-left:10rem">Doanh thu hệ thống</span>
+                            <span id="toggle-chart-systemrevenue"><i class="fas fa-chart-bar fa-lg"></i></span>  
+                          </div>
                           <hr>
                           <canvas id="SystemRevenue"></canvas>
                         </div>
@@ -1010,13 +1014,13 @@
                                   <input type="text" id="detail-tradeDate" placeholder="17-3-2023" name="txt-trade-date" readonly>
                                 </div>
                               </div>
-                              <!-- <div class="row justify-content-center my-2">
+                              <div class="row justify-content-center my-2">
                                 <div class="col">
                                   <label for="detail-traderoute">Hình thức giao dịch</label>
                                 </div>
                                 <div class="col">
                                   <input type="text" id="detail-traderoute" placeholder="" name="txt-trade-route" readonly>
-                                </div> -->
+                                </div>
                               </div>
                               <div class="row justify-content-center my-2">
                                 <div class="col">
@@ -1027,7 +1031,7 @@
                                 </div>
                               </div>
                             </div>
-                          
+                          </div>
                           <div class="modal-footer">
                             <button type="button" id="btn-confirmtrade" data-bs-dismiss="modal"
                               class="nav-item btn btn-default">Xác nhận</button>
@@ -1036,7 +1040,7 @@
                             <button type="button" class="btn-text-close nav-item btn btn-default" data-bs-dismiss="modal"
                              >Đóng</button>
                           </div>
-                          </div>
+                        </div>
                       </div>
                     </div>
                 </div>   
@@ -1137,11 +1141,30 @@
                           <div class="cell col-1"></div>
                           <div class="cell col">Tên chuyên gia</div>
                           <div class="cell col">Số khoá học đã đăng</div>
-                          <div class="cell col">Doanh thu tháng trước</div>
-                          <!-- <div class="cell col-1"></div> icon information  -->
+                          <div class="cell col">Doanh thu tháng này</div>
+                          <div class="cell col-1"></div>
                         </div>
                         <div class="container data-view bg-white">
 
+                        </div>
+                        <div class="modal fade" id="Modal-analytics-expertinfo" role="dialog">
+                          <div class="modal-dialog modal-xl modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header justify-content-between">
+                                <h4>Doanh thu chuyên gia</h4>
+                                <span id="toggle-chart-expertanalytics"><i class="fas fa-chart-line fa-lg"></i></span>
+                              </div>
+                              <div class="modal-body">
+                                <div class="container">
+                                  <canvas id="ExpertRevenueAnalytics"></canvas>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn-text-close nav-item btn btn-default" data-bs-dismiss="modal"
+                                 >Đóng</button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1165,7 +1188,7 @@
                           </div>
                           <div class=" hstack justify-content-between gap-3 p-2">
                             <div class="gap-3 hstack">
-                              <span>Đánh giá</span>
+                              <span style="width:280px">Đánh giá</span>
                               <i class="fas fa-star" style="color: #ffff00;"></i>
                               <select class="form-select" id="rate-from">
                                 <option value="1" selected>1</option>

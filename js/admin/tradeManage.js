@@ -1,6 +1,7 @@
 import { setTextContent, showModal, showNotication } from "../utils";
 import tradeAPI from "./tradeAPI";
 import systemAPI from "./system";
+import { ReloadOverview } from "./overview";
 
 const token = localStorage.getItem('token');
 
@@ -80,6 +81,7 @@ const setEventHandlerAcc = () => {
         };
         if(await tradeAPI.updateTrade(params, token)) showNotication("Cập nhật thành công");
         getTrade(1);
+        ReloadOverview();
     });
     btnrefusetrade.addEventListener('click', async (event) => {
         const patch = [{
@@ -94,10 +96,8 @@ const setEventHandlerAcc = () => {
         };
         if(await tradeAPI.updateTrade(params, token)) showNotication("Cập nhật thành công");
         getTrade(1);
+        ReloadOverview();
     });
-    
-    
-    
 }
 
 

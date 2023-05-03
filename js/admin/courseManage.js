@@ -1,5 +1,6 @@
 import { setTextContent, showModal, showNotication } from "../utils";
 import courseAPI from "./courseAPI";
+import {ReloadOverview } from "./overview";
 import systemAPI from "./system";
 
 const token = localStorage.getItem('token');
@@ -163,6 +164,7 @@ const setEventHandlerCourse = () => {
         };
         if(await courseAPI.updateCourse(params, token)) showNotication("Cập nhật thành công");
         getCourses(1);
+        ReloadOverview();
     })
 }
 
@@ -178,3 +180,7 @@ const setEventHandlerCourse = () => {
     }
 
 })()
+
+export const ReloadCourse = () => {
+    getCourses(1);
+}
