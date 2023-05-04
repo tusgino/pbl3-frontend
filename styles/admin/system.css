@@ -376,12 +376,6 @@ input[type="date"],
   width :15rem;
 }
 
-/* .pagination .page-item:focus {
-  background-color: var(--primary-color);
-  border: none;
-} */
-
-
 .quanlidanhmuc .field-bar .cell:nth-child(2) {
   justify-content: center;
 }
