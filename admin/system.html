@@ -70,7 +70,7 @@
     </div>
   </template>
   <template id="addExpertRequest">
-    <div class="container hstack justify-content-around bg-white border" type="button"
+    <div class="infor-node container hstack justify-content-around bg-white border" type="button"
       data-bs-toggle="modal" data-bs-target="#expertrequest"
       style="border-color: #000000;border-radius: 1rem;padding:0.6rem;margin-left:3.2rem;margin-bottom: 1rem;width: 90%;">
       <span data-id="expertName">Nguyễn Văn A</span>
@@ -131,9 +131,27 @@
       <div class="cell col-1"></div>
       <div class="cell col" data-id="coursename-courseanalytics">ABC</div>
       <div class="cell col" data-id="regusercount-courseanalytics">100</div>
-      <div class="cell col" data-id="rate-courseanalytics">5</div>
-      <!-- <div class="cell col-1"><i type="button" class="fas fa-info-circle" data-bs-toggle="modal" data-bs-target="#Modal-analytics-studentinfo"></i></div> -->
+      <div class="cell col" data-id="rate-courseanalytics"></div>
+      <div class="cell col-1" id="courseanalytics-iconinfo"><i type="button" class="fas fa-info-circle" 
+        data-bs-toggle="modal" data-bs-target="#Modal-analytics-courseinfo"></i></div>
     </div>
+  </template>
+  <template id="pagination">
+    <div class="pagination">
+      <button class="first-page" disabled>
+        <i class="fas fa-angle-double-left"></i>
+      </button>
+      <button class="prev-page" disabled>
+        <i class="fas fa-angle-left"></i>
+      </button>
+      <div data-id="pagination"></div>
+      <button class="next-page">
+        <i class="fas fa-angle-right"></i>
+      </button>
+      <button class="last-page">
+        <i class="fas fa-angle-double-right"></i>
+      </button>
+    </div>   
   </template>
   
   <header>
@@ -174,7 +192,7 @@
   <main>
     <div class="page-container flex">
       <section class="sidebar ">
-        <div class="p-2 d-flex flex-column flex-shrink-0 sidebar-item" style="width: 320px; ">
+        <div class="p-2 d-flex flex-column flex-shrink-0 sidebar-item border" style="width: 320px; border-radius: 1rem;">
           <div class="d-flex align-items-center ms-4 mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <img  alt="avatar" class="avatar">
             <div class="user m-lg-3 gap-2" style="font-size: 1.2rem">
@@ -238,13 +256,13 @@
             <div class="tab-pane container active" id="overview">
               <div class="overview">
                 <div class="container vstack" style="display:flex;">
-                  <div class="row">
+                  <div class="row" name="tongquangiaodich">
                     <div class="col-9">
                       <div class="row">
-                        <div class="cell bg-white p-4 vstack" style="border-radius: 1rem;">
+                        <div class="infor-node cell bg-white p-4 vstack" style="border-radius: 1rem;">
                           <div class="justify-content-between" style="display:flex; width:100%">
-                            <span id="systemrevenue-title" style="font-size: 1.8rem; color:#5271ff; margin-left:10rem">Doanh thu hệ thống</span>
-                            <span id="toggle-chart-systemrevenue"><i class="fas fa-chart-bar fa-lg"></i></span>  
+                            <span id="systemrevenue-title" style="font-size: 1.8rem; color:#5271ff; margin-left:20%">Doanh thu hệ thống</span>
+                            <span id="toggle-chart-systemrevenue"><i class="fas fa-chart-line fa-lg"></i></span>  
                           </div>
                           <hr>
                           <canvas id="SystemRevenue"></canvas>
@@ -253,42 +271,42 @@
                     </div>
                     <div class="col gap-3">
                       <div class="row">
-                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;"> 
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2"> 
                           <span><i class="fas fa-hand-holding-usd"></i> Doanh thu hiện tại</span>
                           <span id="TotalRevenueCurrentYear"></span>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2">
                           <span><i class="fas fa-hand-holding-usd"></i> Doanh thu năm trước</span>
-                          <span id="oldrevenue">5000000</span>
+                          <span id="LastYearRevenue"></span>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2">
                           <span><i class="fas fa-angle-double-up"></i> Tỉ lệ tăng trưởng</span>
                           <span id="growthrate"></span>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
-                          <span><i class="fas fa-percent"></i> Chiết khấu trung bình</span>
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2">
+                          <span><i class="fas fa-balance-scale-right"></i> Chiết khấu trung bình</span>
                           <span id="avg-fee"></span>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
-                          <span><i class="fas fa-book"></i> Khoá học tiêu biểu</span>
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2">
+                          <span><i class="fas fa-book"></i> Doanh thu cao nhất</span>
                           <span id="pro-course"></span>
                         </div>
                       </div>
                     </div>
                   </div>
                   <hr>
-                  <div class="row">
+                  <div class="row" name="tongquannguoidung">
                     <div class="col-5">
                       <div class="row">
-                        <div class="cell bg-white vstack p-4" style="border-radius: 1rem;">
+                        <div class="infor-node cell bg-white vstack p-4" style="border-radius: 1rem;">
                           <span style="font-size: 1.8rem; color:#5271ff">Tổng quan người dùng</span>
                           <hr>
                           <canvas id="AllOfUsers"></canvas>
@@ -297,43 +315,102 @@
                     </div>
                     <div class="col">
                       <div class="row">
-                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
                           <span><i class="fas fa-users"></i> Tổng lượng người dùng</span>
                           <span id="totalusers">5000000</span>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
                           <span style="color:#5271ff;"><i class="fas fa-user-graduate"></i> Học viên tiêu biểu</span>
                           <ul id="pro-student"></ul>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
                           <span  style="color:#5271ff;"><i class="fas fa-user-tie"></i>  Chuyên gia tiêu biểu</span>
                           <ul id="pro-expert"></ul>
                         </div>
                       </div>
                     </div>
-                      <div class="col-3">
-                        <div class="row">
-                            <div class="cell bg-white vstack p-4 m-2" style="border-radius: 0.7rem;">
-                              <span><i class="fas fa-users"></i> Thành viên mới</span>
-                              <hr>
-                              <div id="newuserpanel">
+                    <div class="col-3">
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack p-4 m-2" style="border-radius: 0.7rem;">
+                          <span><i class="fas fa-users"></i> Thành viên mới</span>
+                          <hr>
+                          <div id="newuserpanel">
 
-                              </div>
-                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                          <span><i class="fas fa-users"></i> Tỉ lệ học viên</span>
+                          <span id="studentrate">60%</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2" style="border-radius: 0.7rem;">
+                          <span><i class="fas fa-users"></i> Tỉ lệ chuyên gia</span>
+                          <span id="expertrate">20%</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row" name="tongquankhoahoc">
+                    <div class="col-9">
+                      <div class="row">
+                        <div class="infor-node cell bg-white p-4 vstack" style="border-radius: 1rem;">
+                          <div class="justify-content-between" style="display:flex; width:100%">
+                            <span id="OverviewCourse-title" style="font-size: 1.8rem; color:#5271ff; margin-left:30%">Tổng quan khoá học</span>
+                            <span id="toggle-chart-overviewcourse"><i class="fas fa-chart-line fa-lg"></i></span>  
+                          </div>
+                          <hr>
+                          <canvas id="OverviewCourse"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col gap-3">
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2"> 
+                          <span><i class="fas fa-book"></i> Tống số khoá học</span>
+                          <span id="TotalCourse"></span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2">
+                          <span><i class="fas fa-book"></i> Trung bình đăng tải</span>
+                          <span id="AvgUploadByMonth"></span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2">
+                          <span><i class="fas fa-book"></i> Nhiều lượt mua nhất</span>
+                          <span id="BestSales"></span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2">
+                          <span><i class="fas fa-user-tie"></i> Đăng tải nhiều nhất</span>
+                          <span id="MostUpload"></span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 p-4 m-2">
+                          <span><i class="far fa-smile"></i> Đánh giá trung bình</span>
+                          <span id="avg-rate"></span>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
             <div class="tab-pane container fade" id="usermanager-review">
               <div class="quanlinguoidung">
                 <div class="filter-bar">
-                  <div class="container bg-white " style="width:100%">
+                  <div class="container bg-white border" style="width:100%">
                     <div class=" hstack justify-content-between p-2">
                       <div class="user-role ">
                         <span class="p-2">Loại người dùng</span>
@@ -361,7 +438,7 @@
                         <input type="text" placeholder="Đến ngày" style="padding:0.5rem" onfocus="(this.type='date')" onblur="(this.type='text')" id="datecreate-to">
                       </div>
                       <div class="user-status ">
-                        <span class="p-2">Trạng thái tài khoản</span>
+                        <span class="p-2">Trạng thái</span>
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                           <input type="checkbox" class="btn-check" id="btncheckactive" autocomplete="off" checked>
                           <label class="nav-item btn btn-outline-primary" for="btncheckactive">Hoạt động</label>
@@ -374,7 +451,7 @@
                   </div>
                 </div>
                 <div class="container manager">
-                  <div class="container hstack field-bar my-3 bg-white">
+                  <div class="container hstack field-bar my-3 bg-white border">
                     <div class="cell col-1"></div> <!--avatar-->
                     <div class="cell col">Tên người dùng</div>
                     <div class="cell col">Loại người dùng</div>
@@ -382,7 +459,7 @@
                     <div class="cell col">Trạng thái tài khoản</div>
                     <div class="cell col-1"></div> <!--icon information-->
                   </div>
-                  <div class="container data-view bg-white">
+                  <div class="container data-view bg-white border">
 
                   </div>
                   <!-- modal student informatino-->
@@ -390,7 +467,7 @@
                     <div class="modal-dialog modal-xxl modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header justify-content-between">
-                          <h4>Thông tin người dùng</h4>
+                          <h4 class="modal-title">Thông tin người dùng</h4>
                           <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
                               class="fas fa-times" style="color: #464646"></i></button>
                         </div>
@@ -488,7 +565,7 @@
             </div>
             <div class="tab-pane container fade" id="usermanager-addexpert">
               <div class="formthemexpert">
-                <div class="container bg-white pb-3 vstack" style="display:flex; border-radius: 1.3rem;">
+                <div class="container bg-white pb-3 vstack border" style="display:flex; border-radius: 1.3rem;">
                   <h2 class="mt-1 p-3"><i class="fas fa-arrow-right fa-lg"></i> Thêm chuyên gia</h3>
                   <!-- <h3 style="position: relative; top:2rem; left:1.5rem;">Yêu cầu tải khoản</h3> -->
                   <div class="filter-bar">
@@ -598,7 +675,8 @@
               </div>
             </div>
             <div class="tab-pane container fade" id="usermanager-addadmin">
-              <div class="container bg-white pb-5 vstack" style="border-radius: 1.3rem;display:flex">
+              <div class="formthemadmin">
+                <div class="container bg-white pb-5 vstack border" style="border-radius: 1.3rem;display:flex">
                 <span class="mt-2 p-3"><i class="fas fa-arrow-right fa-lg"></i> Thêm Admin</span>
                 <div class="container mt-3" style="display:grid; grid-template-columns: repeat(3,1fr);">
                   <div class="col cell">
@@ -645,12 +723,13 @@
                   <button class="btn-text-close nav-item btn" id="btn-clear-form">Xoá thông tin</button>
                   <button class="nav-item btn" id="btn-add-admin">Thêm Admin</button>
                 </div>
+                </div>
               </div>
             </div>
             <div class="tab-pane container fade" id="coursemanager">
               <div class="quanlikhoahoc">
                 <div class="filter-bar ">
-                  <div class="container bg-white" style="width:100%">
+                  <div class="container bg-white border" style="width:100%">
                     <div class=" hstack justify-content-between p-2">
                       <div class="category ">
                         <span>Thể loại</span>
@@ -670,7 +749,7 @@
                         <input type="text" placeholder="Đến ngày" style="padding:0.5rem" onfocus="(this.type='date')" onblur="(this.type='text')" id="dateupload-to">
                       </div>
                       <div class="course-status">
-                        <span class="">Trạng thái khoá học</span>
+                        <span class="">Trạng thái</span>
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                           <input type="checkbox" class="btn-check" id="btnchecktrue-coursestatus-manager"
                             autocomplete="off" checked>
@@ -687,7 +766,7 @@
                   </div>
                 </div>
                 <div class="container manager">
-                  <div class="container hstack field-bar my-3 bg-white">
+                  <div class="container hstack field-bar my-3 bg-white border">
                     <div class="cell col-1"></div>
                     <div class="cell col">Tên khoá học</div>
                     <div class="cell col">Thể loại</div>
@@ -695,14 +774,14 @@
                     <div class="cell col">Trạng thái khoá học</div>
                     <div class="cell col-1"></div> <!--icon information-->
                   </div>
-                  <div class="container data-view bg-white">
+                  <div class="container data-view bg-white border">
 
                   </div>
                   <div class="modal fade" id="Modal-courseinfo" role="dialog">
                     <div class="modal-dialog modal-xxl modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header justify-content-between">
-                          <h4>Thông tin khoá học</h4>
+                          <h4 class="modal-title">Thông tin khoá học</h4>
                           <button type="button" class="close" data-bs-dismiss="modal" style="border:none;"><i
                               class="fas fa-times" style="color: #464646"></i></button>
                         </div>
@@ -802,7 +881,7 @@
             <div class="tab-pane container fade" id="categorymanager">
               <div class="quanlidanhmuc">
                 <div class="filter-bar">
-                  <div class="container bg-white hstack justify-content-between" style="width:100%">
+                  <div class="container bg-white hstack justify-content-between border" style="width:100%">
                     <div>
                       <button type="button" class="nav-item btn" data-bs-toggle="modal"
                         data-bs-target="#Modal-addcategory" id="btn-form-addcategory">Thêm danh mục</button>
@@ -856,12 +935,12 @@
                   </div>
                 </div>
                 <div class="container manager">
-                  <div class="container hstack field-bar my-3 bg-white p-3">
+                  <div class="container hstack field-bar my-3 bg-white p-3 border">
                     <input type="checkbox" id="checkbox-all" class="cell col-1">
                     <div class="cell col">Tên danh mục</div>
                     <div class="cell col-1"></div>
                   </div>
-                  <div class="container data-view bg-white">
+                  <div class="container data-view bg-white border">
 
                   </div>
                 </div>
@@ -897,7 +976,7 @@
             <div class="tab-pane container fade" id="trademanager">
               <div class="quanligiaodich">
                   <div class="filter-bar">
-                    <div class="container bg-white">
+                    <div class="container bg-white border">
                       <div class="hstack gap-3 justify-content-between p-2">
                         <div class="trade-type">
                           <span class="">Loại giao dịch</span>
@@ -953,7 +1032,7 @@
                     </div>
                   </div>
                   <div class="container manager">
-                    <div class="container hstack field-bar my-3 bg-white">
+                    <div class="container hstack field-bar my-3 bg-white border">
                       <div class="cell col-1"></div>
                       <div class="cell col">Loại giao dịch</div>
                       <div class="cell col">Số tiền giao dịch</div>
@@ -961,14 +1040,29 @@
                       <div class="cell col">Trạng thái giao dịch</div>
                       <div class="cell col-1"></div>
                     </div>
-                    <div class="container data-view bg-white">
+                    <div class="container data-view bg-white border">
 
                     </div>
+                    <!-- <div class="pagination" hidden>
+                      <button class="first-page" disabled>
+                        <i class="fas fa-angle-double-left"></i>
+                      </button>
+                      <button class="prev-page" disabled>
+                        <i class="fas fa-angle-left"></i>
+                      </button>
+                      <div data-id="pagination"></div>
+                      <button class="next-page">
+                        <i class="fas fa-angle-right"></i>
+                      </button>
+                      <button class="last-page">
+                        <i class="fas fa-angle-double-right"></i>
+                      </button>
+                    </div>                 -->
                     <div class="modal fade" id="Modal-tradeinfo" role="dialog">
                       <div class="modal-dialog modal-xxl modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-header justify-content-between">
-                            <h4>Thông tin giao dịch</h4>
+                            <h4 class="modal-title">Thông tin giao dịch</h4>
                             <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
                                 class="fas fa-times" style="color: #464646"></i></button>
                           </div>
@@ -1019,7 +1113,7 @@
                                   <label for="detail-traderoute">Hình thức giao dịch</label>
                                 </div>
                                 <div class="col">
-                                  <input type="text" id="detail-traderoute" placeholder="" name="txt-trade-route" readonly>
+                                  <input type="text" id="detail-traderoute" placeholder="Thủ công" name="txt-trade-route" readonly>
                                 </div>
                               </div>
                               <div class="row justify-content-center my-2">
@@ -1073,13 +1167,13 @@
                   <div class="tab-pane container active p-0" id="student">
                     <div class="thongkehocvien">
                       <div class="filter-bar">
-                        <div class="container bg-white" style="border-radius: 0px 0px 10px 10px">
+                        <div class="container bg-white">
                           <div class=" hstack justify-content-between gap-3 p-2">
                             <div>
                               <span>Số khoá học đã mua</span>
-                              <input type="text" placeholder="Số lượng từ" id="txtcoursebuy-from">
+                              <input type="text" placeholder="Giá trị từ" id="txtcoursebuy-from">
                               <span>-</span>
-                              <input type="text" placeholder="Số lượng đến" id="txtcoursebuy-to">
+                              <input type="text" placeholder="Giá trị đến" id="txtcoursebuy-to">
                             </div>
                             <div class="search-area">
                               <input type="text" placeholder="Tên học viên" id="txtsearch-studentanalytics">
@@ -1089,23 +1183,23 @@
                           <div class=" hstack justify-content-start gap-3 p-2">
                             <div class="gap-2">
                               <span>Số khoá học đã hoàn thành</span>
-                              <input type="text" placeholder="Số lượng từ" id="txtcoursefinish-from">
+                              <input type="text" placeholder="Giá trị từ" id="txtcoursefinish-from">
                               <span>-</span>
-                              <input type="text" placeholder="Số lượng đến" id="txtcoursefinish-to">
+                              <input type="text" placeholder="Giá trị đến" id="txtcoursefinish-to">
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="container manager">
-                        <div class="container hstack field-bar my-3 bg-white p-3">
+                        <div class="container hstack field-bar my-3 bg-white p-3 border">
                           <div class="cell col-1"></div>
                           <div class="cell col">Tên học viên</div>
                           <div class="cell col">Số khoá học đã mua</div>
                           <div class="cell col">Số khoá học đã hoàn thành</div>
                         </div>
                         <!-- <div class="cell col-1"></div> icon information  -->
-                        <div class="container data-view bg-white">
-
+                        <div class="container data-view bg-white border">
+ 
                         </div>
                       </div>
                     </div>
@@ -1117,9 +1211,9 @@
                           <div class=" hstack justify-content-between gap-3 p-2">
                             <div>
                               <span>Số khoá học đã đăng</span>
-                              <input type="text" placeholder="Số lượng từ" id="txtcourseupload-from">
+                              <input type="text" placeholder="Giá trị từ" id="txtcourseupload-from">
                               <span>-</span>
-                              <input type="text" placeholder="Số lượng đến" id="txtcourseupload-to">
+                              <input type="text" placeholder="Giá trị đến" id="txtcourseupload-to">
                             </div>
                             <div class="search-area">
                               <input type="text" placeholder="Tên chuyên gia" id="txtsearch-expertanalytics">
@@ -1137,26 +1231,70 @@
                         </div>
                       </div>
                       <div class="container manager">
-                        <div class="container hstack field-bar my-3 bg-white p-3">
+                        <div class="container hstack field-bar my-3 bg-white p-3 border">
                           <div class="cell col-1"></div>
                           <div class="cell col">Tên chuyên gia</div>
                           <div class="cell col">Số khoá học đã đăng</div>
                           <div class="cell col">Doanh thu tháng này</div>
                           <div class="cell col-1"></div>
                         </div>
-                        <div class="container data-view bg-white">
+                        <div class="container data-view bg-white border">
 
                         </div>
                         <div class="modal fade" id="Modal-analytics-expertinfo" role="dialog">
                           <div class="modal-dialog modal-xl modal-dialog-centered">
                             <div class="modal-content">
                               <div class="modal-header justify-content-between">
-                                <h4>Doanh thu chuyên gia</h4>
-                                <span id="toggle-chart-expertanalytics"><i class="fas fa-chart-line fa-lg"></i></span>
+                                <h4 class="modal-title">Phân tích chuyên gia</h4>
                               </div>
                               <div class="modal-body">
-                                <div class="container">
-                                  <canvas id="ExpertRevenueAnalytics"></canvas>
+                                <div class="container hstack gap-3">
+                                  <div class="col-9 infor-node">
+                                    <div class="row p-2">
+                                      <div class="justify-content-between" style="display: flex;">
+                                        <span class="modal-title-2">Doanh thu chuyên gia</span>
+                                        <div class="icon-group">
+                                          <!-- <span id="toggle-object-courseanalytics" style="margin: 0px 10px;"><i class="fas fa-money-check-alt fa-lg"></i></span> -->
+                                          <span id="toggle-chart-expertanalytics"><i class="fas fa-chart-line fa-lg"></i></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row-10">
+                                      <canvas id="ExpertRevenueAnalytics"></canvas>
+                                    </div>
+                                  </div>
+                                  <div class="col-3 vstack gap-3">
+                                    <div class="row">
+                                      <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                                        <span>Tổng doanh thu trong năm</span>
+                                        <span data-id="revyear">500 VND</span>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                                        <span>Trung bình doanh thu tháng</span>
+                                        <span data-id="avg-rev">500 học viên/tháng</span>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                                        <span>Số khoá học đă đăng</span>
+                                        <span data-id="uploadcourse">500</span>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                                        <span>Nhiều lượt mua nhất</span>
+                                        <span data-id="bestSales">500</span>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                                        <span>Tổng số lượt mua</span>
+                                        <span data-id="totalsales"></span>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                               <div class="modal-footer">
@@ -1176,9 +1314,9 @@
                           <div class=" hstack justify-content-between gap-3 p-2">
                             <div>
                               <span>Số học viên đăng kí</span>
-                              <input type="text" placeholder="Số lượng từ" id="txtstudentreg-from">
+                              <input type="text" placeholder="Giá trị từ" id="txtstudentreg-from">
                               <span>-</span>
-                              <input type="text" placeholder="Số lượng đến" id="txtstudentreg-to">
+                              <input type="text" placeholder="Giá trị đến" id="txtstudentreg-to">
                             </div>
                             <div class="search-area">
                               <input type="text" placeholder="Tên khoá học" id="txtsearch-courseanalytics">
@@ -1191,6 +1329,7 @@
                               <span style="width:280px">Đánh giá</span>
                               <i class="fas fa-star" style="color: #ffff00;"></i>
                               <select class="form-select" id="rate-from">
+                                <option value="0">Chưa đánh giá</option>
                                 <option value="1" selected>1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -1210,15 +1349,84 @@
                         </div>
                       </div>
                       <div class="container manager">
-                        <div class="container hstack field-bar my-3 bg-white p-3">
+                        <div class="container hstack field-bar my-3 bg-white p-3 border">
                           <div class="cell col-1"></div>
-                          <div class="cell col">Tên khoá học</div>
-                          <div class="cell col">Số học viên đăng kí</div>
-                          <div class="cell col">Đánh giá</div>
-                          <!-- <div class="cell col-1"></div> icon information  -->
+                          <div class="cell col gap-2"><span>Tên khoá học</span> 
+                            <!-- <i class="fas fa-sort fa-lg" value="1" id="btn-sort-coursename-courseanalytics"></i> -->
+                          </div>
+                          <div class="cell col gap-2"><span>Số học viên đăng kí</span>
+                             <!-- <i class="fas fa-sort fa-lg" value="0" id="btn-sort-reguser-courseanalytics"></i> -->
+                            </div>
+                          <div class="cell col gap-2"><span>Đánh giá</span> 
+                            <!-- <i class="fas fa-sort fa-lg" value="0" id="btn-sort-rate-courseanalytics"></i> -->
+                          </div>
+                          <div class="cell col-1"></div>
                         </div>
-                        <div class="container data-view bg-white">
+                        <div class="container data-view bg-white border">
 
+                        </div>
+                        <div class="modal fade" id="Modal-analytics-courseinfo" role="dialog">
+                          <div class="modal-dialog modal-xl modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header justify-content-between">
+                                <h4 class="modal-title">Phân tích khoá học</h4>
+                              </div>
+                              <div class="modal-body">
+                                <div class="container hstack gap-3">
+                                  <div class="col-9 infor-node">
+                                    <div class="row p-2">
+                                      <div class="justify-content-between" style="display: flex;">
+                                        <span class="modal-title-2">Số lượng học viên đăng kí</span>
+                                        <div class="icon-group">
+                                          <span id="toggle-object-courseanalytics" style="margin: 0px 10px;"><i class="fas fa-money-check-alt fa-lg"></i></span>
+                                          <span id="toggle-chart-courseanalytics"><i class="fas fa-chart-line fa-lg"></i></span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row-10">
+                                      <canvas id="CourseAnalytics"></canvas>
+                                    </div>
+                                  </div>
+                                  <div class="col-3 vstack gap-3">
+                                    <div class="row">
+                                      <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                                        <span>Tổng số học viên đăng kí</span>
+                                        <span data-id="total-reg">500 học viên</span>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                                        <span>Trung bình học viên đăng kí</span>
+                                        <span data-id="avg-reg">500 học viên/tháng</span>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                                        <span>Doanh thu trong năm</span>
+                                        <span data-id="revyear">500</span>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                                        <span>Trung bình doanh thu</span>
+                                        <span data-id="avg-rev">500</span>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                                        <span>Đánh giá khoá học</span>
+                                        <span data-id="rate"></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn-text-close nav-item btn btn-default" data-bs-dismiss="modal"
+                                 >Đóng</button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

@@ -2,7 +2,7 @@ import { setTextContent, showModal, showNotication } from "../utils";
 import categoryAPI from "./categoryAPI";    
 import courseAPI from "./courseAPI";
 import { ReloadCourse } from "./courseManage";
-import systemAPI  from "./system";
+import systemAPI from "./system";
 
 const token = localStorage.getItem('token');
 
@@ -83,7 +83,9 @@ const getCategories = async(page) => {
     
     const { data : {_data, _totalRows}} = await categoryAPI.getAllCategory(params, token);
     systemAPI.renderRecord(_data, 'quanlidanhmuc', createRecord);
-    systemAPI.renderPagination(_totalRows, 'quanlidanhmuc', getCategories, page);
+    // systemAPI.renderPagination(_totalRows, 'quanlidanhmuc', getCategories, page);
+    systemAPI.renderPaginationNew(_totalRows, 'quanlidanhmuc', getCategories, page);
+    
 };
 
 const setEventSearch = async() => {

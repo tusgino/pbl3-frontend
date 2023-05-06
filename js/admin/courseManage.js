@@ -89,7 +89,8 @@ const getCourses = async(page) => {
     const {data : {_data, _totalRows}} = await courseAPI.getAllCoursesByFiltering(params, token);
 
     systemAPI.renderRecord(_data, 'quanlikhoahoc', createRecord);
-    systemAPI.renderPagination(_totalRows, 'quanlikhoahoc', getCourses, page);
+    // systemAPI.renderPagination(_totalRows, 'quanlikhoahoc', getCourses, page);
+    systemAPI.renderPaginationNew(_totalRows, 'quanlikhoahoc', getCourses, page);
 }
 
 const setEventSearch = () => {

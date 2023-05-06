@@ -65,6 +65,26 @@ const courseAPI = {
             },
         };
         return axiosClient.get(url, config);
+    },
+    getNumOfCourseByMonth(params, token) {
+        const url = `public/Course/Get-num-of-uploaded-course-by-month`;
+        const config = {
+            params,
+            headers:{
+                'Authorization': `Bearer ${token}`,
+            },
+        };
+        return axiosClient.get(url, config);
+    },
+    getOverviewCourse(params, token) {
+        const url = `public/Course/Overview-course`;
+        const config = {
+            params,
+            headers : {
+                'Authorization': `Bearer ${token}`,
+            },
+        };
+        return axiosClient.get(url, config);
     }
 }
 

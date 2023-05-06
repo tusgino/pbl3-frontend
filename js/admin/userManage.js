@@ -106,7 +106,8 @@ const getUsers = async(page) => {
     const {data : {_data, _totalRows}} = await userAPI.getAllUsersByFiltering(params, token);
     
     systemAPI.renderRecord(_data, 'quanlinguoidung', createRecord);
-    systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers, page);
+    // systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers, page);
+    systemAPI.renderPaginationNew(_totalRows, 'quanlinguoidung', getUsers, page);
 }
 
 const setEventSearch = () => {
@@ -340,7 +341,8 @@ const getExpertRequest = async(page) => {
     console.log(_data);
 
     systemAPI.renderRecord(_data, 'formthemexpert', createExpertRequestRecord);
-    systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest, page);
+    // systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest, page);
+    systemAPI.renderPaginationNew(_totalRows, 'formthemexpert', getExpertRequest, page);
 }
  
 const addAdmin = async() => {

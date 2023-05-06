@@ -2,6 +2,7 @@ import { setTextContent, showModal, showNotication } from "../utils";
 import tradeAPI from "./tradeAPI";
 import systemAPI from "./system";
 import { ReloadOverview } from "./overview";
+import { ReloadAnalytics } from "./analytics";
 
 const token = localStorage.getItem('token');
 
@@ -82,6 +83,7 @@ const setEventHandlerAcc = () => {
         if(await tradeAPI.updateTrade(params, token)) showNotication("Cập nhật thành công");
         getTrade(1);
         ReloadOverview();
+        ReloadAnalytics();
     });
     btnrefusetrade.addEventListener('click', async (event) => {
         const patch = [{
@@ -97,6 +99,7 @@ const setEventHandlerAcc = () => {
         if(await tradeAPI.updateTrade(params, token)) showNotication("Cập nhật thành công");
         getTrade(1);
         ReloadOverview();
+        ReloadAnalytics();
     });
 }
 
@@ -122,9 +125,8 @@ const getTrade = async(page) => {
 
     console.log(_data);
     systemAPI.renderRecord(_data, 'quanligiaodich', createRecord_Trade);
-    systemAPI.renderPagination(_totalRows, 'quanligiaodich', getTrade, page);
-
-
+    // systemAPI.renderPagination(_t    otalRows, 'quanligiaodich', getTrade, page);
+    systemAPI.renderPaginationNew(_totalRows, 'quanligiaodich', getTrade, page)
 }
 
 const setEventSearch = () => {
