@@ -66,7 +66,7 @@ export const expertAPI = {
       }
     }
     return axiosClient.patch(url, data, config);
-  }
+  },
 }
 
 export default expertAPI;

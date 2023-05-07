@@ -27,7 +27,26 @@ const courseAPI = {
       },
     };
     return axiosClient.post(url, data, config);
-  }
+  },
+  updateCourse(id, data, token) {
+    const url = `/public/Course/Update-course-by-${id}`;
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json-patch+json',
+      }
+    }
+    return axiosClient.patch(url, data, config);
+  },
+  getInfoCourse(idCourse, token) {
+    const url = `/Chapter/Get-chapters-by-IdCourse/${idCourse}`;
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    };
+    return axiosClient.get(url, config);
+  },
   // create(data) {
   //   const url = '/posts';
   //   return axiosClient.post(url, data);
@@ -41,30 +60,5 @@ const courseAPI = {
   //   return axiosClient.delete(url);
   // },
 }
-
-
-
-// const courseAPI = {
-//   getAll(params) {
-//     const url = '/posts';
-//     return axiosClient.get(url, { params });
-//   },
-//   getByID(id) {
-//     const url = `/posts/${id}`;
-//     return axiosClient.get(url);
-//   },
-//   create(data) {
-//     const url = '/posts';
-//     return axiosClient.post(url, data);
-//   },
-//   update(data) {
-//     const url = `/posts/${data.id}`;
-//     return axiosClient.patch(url, data);
-//   },
-//   remove(id) {
-//     const url = `/posts/${id}`;
-//     return axiosClient.delete(url);
-//   },
-// }
 
 export default courseAPI;

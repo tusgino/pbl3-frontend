@@ -32,7 +32,35 @@ const lessonAPI = {
       },
     }
     return axiosClient.post(url, params, config);
-  }
+  },
+  addLesson(data, token) {
+    const url = '/private/Lesson/add-lesson';
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    };
+    return axiosClient.post(url, data, config);
+  },
+  // updateQuiz(id, data, token) {
+  //   const url = `/Quiz/Update/${id}`;
+  //   const config = {
+  //     headers: {
+  //       'Authorization': `Bearer ${token}`,
+  //       'Content-Type': 'application/json-patch+json',
+  //     }
+  //   };
+  //   return axiosClient.patch(url, data, config);
+  // },
+  // deleteQuiz(id, token) {
+  //   const url = `/Quiz/${id}`;
+  //   const config = {
+  //     headers: {
+  //       'Authorization': `Bearer ${token}`,
+  //     }
+  //   };
+  //   return axiosClient.delete(url, config);
+  // }
 
 }
 

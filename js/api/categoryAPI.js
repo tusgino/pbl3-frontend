@@ -1,9 +1,14 @@
 import axiosClient from "./axiosClient";
 
 export const categoryAPI = {
-  getAll(params) {
+  getAll(params, token) {
     const url = '/private/Category/Get-all-categories';
-    return axiosClient.get(url, { params });
+    return axiosClient.get(url, {
+      params,
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 }
 

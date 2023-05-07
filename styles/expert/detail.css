@@ -82,7 +82,8 @@ section.detail-form {
   outline: none;
 }
 
-#file-drag {
+#file-drag,
+#video-drag {
   width: 80%;
   height: calc(88.8rem * 9 / 16);
   display: flex;
@@ -97,7 +98,7 @@ section.detail-form {
   cursor: pointer;
 }
 
-#file-drag.video-drag {
+#video-drag.video-drag {
   background-image: url(/images/upload-video.png);
 }
 
@@ -114,9 +115,29 @@ section.detail-form {
   width: 890px;
 }
 
+.video-hidden {
+  margin-top: 1rem;
+  position: relative;
+  height: 3rem;
+}
+
+.video-icon {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  color: var(--secondary-color);
+  cursor: pointer;
+  font-size: 2.4rem;
+}
+
+.video-icon:hover {
+  color: #404040;
+}
+
 /* Ẩn các phần tử không cần thiết ban đầu */
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .status-content {
@@ -200,7 +221,7 @@ input:focus + .design {
   cursor: pointer;
 }
 
-.detail-chapter {
+.detail-lesson {
   display: flex;
   justify-content: center;
   align-items: center;

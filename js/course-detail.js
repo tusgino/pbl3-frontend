@@ -2,14 +2,14 @@ import courseAPI from "./api/courseAPI";
 import { setSrcContent, setTextContent, toVND } from "./utils";
 
 
-const rederCourse = (course, id) => {
+const rederCourse = (course, category, user, id) => {
   if (!course) return;
   console.log(course);
-  setTextContent(document, '.hero-title', course.title);
+  setTextContent(document, '.hero-title', course.courseName);
   setTextContent(document, '.price-discount', ` Tiết kiệm -${course.discount}%`);
   setTextContent(document, '.price-old', toVND(course.price));
   setTextContent(document, '.price-new', toVND(course.price - course.price * course.discount / 100));
-  setTextContent(document, '.hero-author>span', course.author);
+  setTextContent(document, '.hero-author>span', user.name);
   const videoElement = document.querySelector('.hero-video');
   videoElement.innerHTML = ''
   const videoNew = document.createElement('video');
@@ -42,9 +42,13 @@ const rederCourse = (course, id) => {
     // console.log(courseId);
     if (!courseId)
       window.location.href = '/index.html';
-    const course = await courseAPI.getByID({ id: courseId });
+    // const { course, category, user } = await courseAPI.getByID({ id: courseId });
+    const { data } = await courseAPI.getByID({ id: courseId });
+    console.log(data);
+    // console.log(res);
     // console.log(course.data);
-    rederCourse(course.data, courseId);
+    // console.log(data.course);
+    rederCourse(data, data.category, data.user, courseId);
   } catch (error) {
     console.log('Failed', error);
   }

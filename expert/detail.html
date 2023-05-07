@@ -97,7 +97,7 @@
           <label for="course-video" class="detail-label">Video đại diện</label>
           <form id="file-upload-form" class="uploader">
             <input id="video-upload" type="file" name="fileUpload" accept="video/*" hidden />
-            <label for="video-upload" id="file-drag" class="video-drag">
+            <label for="video-upload" id="video-drag" class="video-drag">
               <div id="preview-container">
                 <video id="file-video" src="#" class="hidden" width="" controls></video>
               </div>
@@ -105,12 +105,14 @@
                 <div id="notvideo" class="hidden"></div>
               </div>
             </label>
+            <div class="video-hidden">
+              <i class="fas fa-eye-slash video-icon"></i>
+            </div>
             <div class="progress-bar">
               <div class="progress"></div>
             </div>
             <div class="message"></div>
           </form>
-
         </div>
 
 
@@ -129,7 +131,7 @@
             </label>
           </div>
         </div>
-        <div class="detail-chapter">
+        <div class="detail-lesson">
           <button class="btn btn-add">Thêm bài giảng</button>
         </div>
       </section>
