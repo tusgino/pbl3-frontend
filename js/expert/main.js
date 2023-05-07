@@ -154,8 +154,12 @@ const handleSave = async (searchParams, editor) => {
       console.log(dataNew);
       const res = await courseAPI.addCourse(dataNew, token);
       console.log(res);
+      // console.log(res);
       if (res.success) {
         document.querySelector('.detail-lesson').classList.remove('hidden');
+        document.querySelector('.detail-lesson .btn-add').addEventListener('click', () => {
+          window.location = '/expert/edit.html?id=' + res.data;
+        });
       }
     } catch (error) {
       console.log(error);

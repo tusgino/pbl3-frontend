@@ -164,6 +164,7 @@ const renderUIRole = async (role, token) => {
     if (namePurchase && emailPurchase) {
       namePurchase.value = data.name;
       emailPurchase.value = data.email;
+      emailPurchase.dataset.idUser = data.idUser;
       namePurchase.setAttribute('disabled', '');
       emailPurchase.setAttribute('disabled', '');
     }

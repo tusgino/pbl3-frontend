@@ -48,6 +48,7 @@ const renderCourse = async (searchParams) => {
 const handleSubmit = (searchParams) => {
   const idCourse = searchParams.get('id');
   const email = searchParams.get('email');
+  const idUser = searchParams.get('idUser');
 
 
   // console.log(idCourse);
@@ -87,6 +88,9 @@ const handleSubmit = (searchParams) => {
     // console.log(res);
 
     // console.log(data);
+  });
+  document.querySelector('#payment-info .btn-primary').addEventListener('click', () => {
+    window.location = `/profile.html?id=${idUser}&page=learning`
   });
   // console.log(payment.dataset.id);
 

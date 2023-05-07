@@ -237,6 +237,10 @@ h4.degree-title {
   background-size: 30%;
 }
 
+.hidden {
+  display: none;
+}
+
 #degree-image {
   width: 40rem;
   height: 30rem;

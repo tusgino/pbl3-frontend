@@ -646,6 +646,9 @@ const handleLesson = (editor) => {
       console.log(res);
       if (res.success) {
         showNotication('Thêm khóa học thành công');
+        setTimeout(() => {
+          window.location = location;
+        }, 1500);
       }
     } catch (error) {
       console.log(error);

@@ -30,7 +30,8 @@ const rederCourse = (course, category, user, id) => {
       e.preventDefault();
       const email = document.getElementById('email-purchase').value;
       const name = document.getElementById('name-purchase').value;
-      window.location.href = `/course/checkout.html?id=${id}&email=${email}&name=${name}`
+      const idUser = document.getElementById('email-purchase').dataset.idUser;
+      window.location.href = `/course/checkout.html?id=${id}&email=${email}&name=${name}&idUser=${idUser}`
     })
   }
 }

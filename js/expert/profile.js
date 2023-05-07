@@ -285,6 +285,9 @@ const renderUIProfile = (profile) => {
   const formPassword = document.querySelector('#password');
   if (!formPassword) return;
   formPassword.value = "*******";
+  if (profile.status !== 1) {
+    document.querySelector('.save-info.create-course').classList.add('hidden');
+  }
   handleBanking(profile.idBankAccount);
   handleEmptyBanking(profile.idUser, profile.idBankAccount);
   handleDegree(profile.idUser);
@@ -301,6 +304,7 @@ const handleProfile = async (searchParams) => {
       id: idUser,
     }
     const { data } = await userAPI.getByID(params, token);
+    console.log(data);
     renderUIProfile(data);
     handleSaveInfo(idUser);
   } catch (error) {
