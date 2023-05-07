@@ -1,5 +1,6 @@
-import { setTextContent } from "../utils";
+import { setTextContent, showModal, showNotication } from "../utils";
 import courseAPI from "./courseAPI";
+import {ReloadOverview } from "./overview";
 import systemAPI from "./system";
 
 const token = localStorage.getItem('token');
@@ -16,8 +17,6 @@ const createRecord = (data) => {
 
     const _dateupload = new Date(data.dateUpload);
     const dateupload = _dateupload.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
-
-
 
     setTextContent(record, '[data-id="courseName"]', data.name);
     setTextContent(record, '[data-id="category"]', data.category);
@@ -36,8 +35,7 @@ const createRecord = (data) => {
     const btnbancourse = document.getElementById('btn-bancourse');
     const btnunbancourse = document.getElementById('btn-unbancourse');
     const btndelcourse = document.getElementById('btn-delcourse');
-
-
+    const btnsavecourse = document.getElementById('btn-save-course');
 
     const iconinfo = record.getElementById('coursemanage-iconinfo');
 
@@ -67,10 +65,10 @@ const createRecord = (data) => {
         btnbancourse.value = data.id;
         btnunbancourse.value = data.id;
         btndelcourse.value = data.id;
+        btnsavecourse.value = data.id;
 
     })
     return record;
-
 }
 
 
@@ -91,7 +89,8 @@ const getCourses = async(page) => {
     const {data : {_data, _totalRows}} = await courseAPI.getAllCoursesByFiltering(params, token);
 
     systemAPI.renderRecord(_data, 'quanlikhoahoc', createRecord);
-    systemAPI.renderPagination(_totalRows, 'quanlikhoahoc', getCourses);
+    // systemAPI.renderPagination(_totalRows, 'quanlikhoahoc', getCourses, page);
+    systemAPI.renderPaginationNew(_totalRows, 'quanlikhoahoc', getCourses, page);
 }
 
 const setEventSearch = () => {
@@ -105,6 +104,7 @@ const setEventHandlerCourse = () => {
     const btnbancourse = document.getElementById('btn-bancourse');
     const btnunbancourse = document.getElementById('btn-unbancourse');
     const btndelcourse = document.getElementById('btn-delcourse');
+    const btnsavecourse = document.getElementById('btn-save-course');
 
     btnbancourse.addEventListener('click', async(event) => {
         const patch = [{
@@ -118,7 +118,7 @@ const setEventHandlerCourse = () => {
             patchDoc : JSON.stringify(patch),
         };
         console.log(params)
-        if(await courseAPI.updateCourse(params, token)) alert("Cập nhật thành công");
+        if(await courseAPI.updateCourse(params, token)) showNotication("Cập nhật thành công");
         getCourses(1);
     })
     btnunbancourse.addEventListener('click', async(event) => {
@@ -132,7 +132,7 @@ const setEventHandlerCourse = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        if(await courseAPI.updateCourse(params, token)) alert("Cập nhật thành công");
+        if(await courseAPI.updateCourse(params, token)) showNotication("Cập nhật thành công");
         getCourses(1);
     })
     btndelcourse.addEventListener('click', async(event) => {
@@ -146,10 +146,27 @@ const setEventHandlerCourse = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        if(await courseAPI.updateCourse(params, token)) alert("Cập nhật thành công");
+        if(await courseAPI.updateCourse(params, token)) showNotication("Cập nhật thành công");
         getCourses(1);
+    });
+    btnsavecourse.addEventListener('click', async(event) => {
+        const courseFee = document.getElementById('detail-courseFee');
+        const patch = [
+            {
+                "operation": 1,
+                "path": "/FeePercent",
+                "op": "replace",
+                "value": courseFee.value,
+            }
+        ]
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        };
+        if(await courseAPI.updateCourse(params, token)) showNotication("Cập nhật thành công");
+        getCourses(1);
+        ReloadOverview();
     })
-
 }
 
 (async() => {    
@@ -157,7 +174,6 @@ const setEventHandlerCourse = () => {
 
         setEventSearch();
         setEventHandlerCourse();
-
         getCourses(1);
         
     } catch (error) {
@@ -165,3 +181,7 @@ const setEventHandlerCourse = () => {
     }
 
 })()
+
+export const ReloadCourse = () => {
+    getCourses(1);
+}

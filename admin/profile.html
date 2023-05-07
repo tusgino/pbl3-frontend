@@ -25,27 +25,29 @@
   <!-- Internal CSS -->
   <link rel="stylesheet" href="/styles/reset.css">
   <link rel="stylesheet" href="/styles/main.css">
-  <link rel="stylesheet" href="/styles/coursepost.css">
-  <link rel="stylesheet" href="/styles/courses.css">
-
+  <link rel="stylesheet" href="/styles/home.css">
+  <link rel="stylesheet" href="/styles/profile.css">
 </head>
 
 <body>
 
-  <template id="courseTemplate">
-    <li class="course-item">
-      <img
-        src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-        alt="" class="course-image" data-id="thumbnail">
-      <h4 class="course-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
-      <div class="course-info">
-        <div class="course-author">
+  <template id="learningTemplate">
+    <li class="learning-item">
+      <div class="learning-thumbnail">
+        <img
+          src="https://images.unsplash.com/photo-1537884944318-390069bb8665?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          alt="" class="learning-image" data-id="thumbnail">
+      </div>
+      <div class="learning-info">
+        <h4 class="learning-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit.
+        </h4>
+        <div class="learning-author">
           <img
             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
             alt="" data-id="avatar">
           <span data-id="name">Nguyễn Văn B</span>
         </div>
-        <span class="course-tag">Đang thịnh hành🔥</span>
       </div>
     </li>
   </template>
@@ -56,14 +58,15 @@
         <a class="navbar-brand" href="/index.html">
           <img src="/images/logo.png" alt="" width="122" height="70">
         </a>
-        <!-- <form class="d-flex">
+        <form class="d-flex">
           <input class="form-control me-2 text-search" type="search" placeholder="Tìm khóa học,..." aria-label="Search">
           <button class="btn btn-search" type="submit"><i class="fas fa-search"></i></button>
-        </form> -->
+        </form>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="#"> <i class="fas fa-list-alt" style="color: #38b6ff;"></i> Khóa học</a>
+              <a class="nav-link" href="/course.html"> <i class="fas fa-list-alt" style="color: #38b6ff;"></i> Khóa
+                học</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Hỗ trợ</a>
@@ -89,48 +92,76 @@
   </header>
 
   <main>
-    <section class="search">
-      <div class="page-container">
-        <h1 class="search-title"><span>Chào Bạn👋</span> Hôm nay, bạn muốn học gì?</h1>
-        <div class="input-group search-box">
-          <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-          <input type="text" id="title-course" class="form-control" placeholder="Tìm khóa học..." aria-label="Username"
-            aria-describedby="basic-addon1">
-        </div>
-        <div class="search-tag">
-          <ul class="search-list">
-            <li class="search-item active">
-              <i class="fas fa-hashtag"></i>
-              <span>MMO</span>
-            </li>
-            <li class="search-item">
-              <i class="fas fa-hashtag"></i>
-              <span>Facebook</span>
-            </li>
-            <li class="search-item">
-              <i class="fas fa-hashtag"></i>
-              <span>SEO</span>
-            </li>
-            <li class="search-item">
-              <i class="fas fa-hashtag"></i>
-              <span>Frontend</span>
+    <div class="page-container">
+      <section class="sidebar ">
+        <div class="d-flex flex-column flex-shrink-0 sidebar-item container-rounded" style="width: 300px; ">
+          <div
+            class="d-flex align-items-center ms-4 mt-5 mb-md-2 me-md-auto link-dark text-decoration-none sidebar-container">
+            <img
+              src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+              alt="" class="avatar">
+            <div class="user m-lg-3">
+              <span class="user-name">Nguyễn Đình Tú</span>
+              <span class="user-desc">Admin tại THH</span>
+            </div>
+          </div>
+          <ul class="nav nav-pills flex-column" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-bs-toggle="pill" href="#info" id="info-tab"><i
+                  class="far fa-user item-icon"></i>
+                <span>Thông tin cá nhân</span></a>
             </li>
           </ul>
         </div>
-      </div>
-    </section>
-    <section class="courses">
-      <div class="page-container">
-        <div class="courses-container vstack">
-          <!-- <ul id="list-courses">
-          </ul> -->
+      </section>
+      <section class="dashboard" style="width:100%;min-height: 80vh;">
+        <div class="container p-0">
+          <div class="tab-content">
+            <div class="tab-pane container active" id="info">
+              <div class="info">
+                <div class="heading">
+                  <h1>Thông tin cá nhân</h1>
+                  <p class="desc">Cập nhật đầy đủ thông tin của bạn để hoạt động tốt hơn trên THH</p>
+                </div>
+                <div class="info-container">
+                  <div class="info-content">
+                    <div class="info-avatar">
+                      <form id="file-upload-form" class="uploader">
+                        <input id="file-upload" type="file" name="fileUpload" hidden />
+                        <label for="file-upload" id="file-drag">
+                          <img id="file-image" src="#" alt="Preview" class="hidden">
+                          <div id="start">
+                            <div id="notimage" class="hidden"></div>
+                          </div>
+                          <div id="response" class="hidden">
+                            <div id="messages"></div>
+                          </div>
+                        </label>
+                      </form>
+                    </div>
+                    <div class="info-form">
+                      <input type="text" name="name" id="name">
+                      <input type="text" name="phone" id="phone">
+                      <input type="password" name="password" id="password">
+                      <input type="email" name="email" id="email" disabled>
+                    </div>
+                  </div>
+                  <hr>
+                  <button class="save-info">Lưu lại</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
+    <div id="loading-overlay" class="hidden">
+      <div id="loading-spinner"></div>
+      <div id="loading-message">Đang tải lên...</div>
+    </div>
   </main>
 
   <footer>
-
     <div class="introduce-contrainer">
       <div class="introduce-list">
         <div class="introduce-item">
@@ -170,12 +201,10 @@
         </div>
   </footer>
 
-  <script type="module" src="/js/bootstrap/bootstrap.bundle.min.js"></script>
-
-
+  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
   <script type="module" src="/js/main.js"></script>
   <script type="module" src="/js/home.js"></script>
-  <script type="module" src="/js/searchcourse.js"></script>
+  <script type="module" src="/js/profile.js"></script>
 </body>
 
 </html>

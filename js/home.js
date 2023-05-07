@@ -145,7 +145,7 @@ const renderUIRole = async (role, token) => {
         })
         if (avatar)
           avatar.addEventListener('click', () => {
-            window.location.href = `/profile.html?id=${role.idUser}&page=profile`;
+            window.location.href = `/admin/profile.html?id=${role.idUser}&page=profile`;
           })
       }
       if (role.role == 'Student') {

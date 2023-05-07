@@ -1,14 +1,15 @@
-import { setTextContent, showModal } from "../utils";
+import { setTextContent, showModal, showNotication } from "../utils";
 import userAPI from "./userAPI";
 import systemAPI from "./system";
 import accountAPI from "../api/accountAPI";
 import expertAPI from "../api/expertAPI";
+import { ReloadOverview } from "./overview";
 
 const token = localStorage.getItem('token');
 
 const createRecord = (data) => {
     if(!data) return;
-    // console.log(data)   
+    console.log(data)   
 
     const userManageRecord = document.getElementById('userManageRecord')
     if(!userManageRecord) return;
@@ -105,7 +106,8 @@ const getUsers = async(page) => {
     const {data : {_data, _totalRows}} = await userAPI.getAllUsersByFiltering(params, token);
     
     systemAPI.renderRecord(_data, 'quanlinguoidung', createRecord);
-    systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers);
+    // systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers, page);
+    systemAPI.renderPaginationNew(_totalRows, 'quanlinguoidung', getUsers, page);
 }
 
 const setEventSearch = () => {
@@ -135,7 +137,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
+        if(await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
         getUsers(1);
     })
     btnunbanacc.addEventListener('click', async(event) => {
@@ -149,7 +151,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
+        if(await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
         getUsers(1);
     })
     btndelacc.addEventListener('click', async(event) => {
@@ -163,7 +165,7 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) alert("Cập nhật thành công");
+        if(await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
         getUsers(1);
     })
     
@@ -236,7 +238,7 @@ const createExpertRequestRecord = (data) => {
 
     //
     
-    
+    const expertavatar = document.querySelector('[name="txt-expert-avatar"]');
     const expertname = document.querySelector('[name="txt-expert-name"]');
     const expertdob = document.querySelector('[name="txt-expert-birth"]');
     const expertphone = document.querySelector('[name="txt-expert-pn"]');
@@ -245,6 +247,9 @@ const createExpertRequestRecord = (data) => {
     const expertbanknumber = document.querySelector('[name="txt-expert-banknumber"]');
     const expertbankname = document.querySelector('[name="txt-expert-bankname"]');
     const expertdegree = document.querySelector('[name="txt-expert-degree"]');
+    const degreeimage = document.getElementById('degree-image');
+    const degreedesc = document.getElementById('degree-desc');
+
 
     console.log(expertname)
     const btninfo = record.querySelector('div');
@@ -258,6 +263,7 @@ const createExpertRequestRecord = (data) => {
     defaultoption.textContent = " - Chọn bằng cấp - ";
     
     btninfo.addEventListener('click', () => {
+        expertavatar.src = data.avatar;
         expertname.value = data.name;
         expertdob.value = data.dateOfBirth;
         expertphone.value = data.phoneNumber;
@@ -266,25 +272,20 @@ const createExpertRequestRecord = (data) => {
         expertbanknumber.value = data.bankNumber;
         expertbankname.value = data.bankName;
         expertdegree.textContent = "";
-        expertdegree.appendChild(defaultoption)
+        expertdegree.appendChild(defaultoption);
+        degreeimage.src = "https://plus.unsplash.com/premium_photo-1677474826931-eb70ec714d99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80";
+        degreedesc.textContent = "";
         data.degrees.forEach((element) => {
             const option = document.createElement('option');
             option.textContent = element.name;
             option.value = element.idDegree; 
             expertdegree.appendChild(option);
             console.log(expertdegree)
-        });
-
-        
+        });   
         btnaddexpert.value = data.idUser;
-        btnrefuseexpet.value = data.idUser;
-        
+        btnrefuseexpet.value = data.idUser;  
     })
-    
-
     return record;
-    
-    
 }
 
 const handleExpertRequest = async() => {
@@ -302,8 +303,9 @@ const handleExpertRequest = async() => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) alert("Thêm thành công");
+        if(await userAPI.updateUser(params, token)) showNotication("Thêm thành công");
         getExpertRequest(1);
+        ReloadOverview();
     })
     
     btnrefuseexpert.addEventListener('click', async(event) => {
@@ -317,8 +319,9 @@ const handleExpertRequest = async() => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) alert("Từ chối thành công");
+        if(await userAPI.updateUser(params, token)) showNotication("Từ chối thành công");
         getExpertRequest(1);
+        ReloadOverview();
     })
 }
 
@@ -330,17 +333,16 @@ const getExpertRequest = async(page) => {
         "page" : page, 
     }
 
-    const dataview = document.querySelector(".formthemexpert .data-view");
-    dataview.textContent = "";
+    // const dataview = document.querySelector(".formthemexpert .data-view");
+    // dataview.textContent = "";
 
     const {data : {_data, _totalRows}} = await userAPI.getAllExpertRequest(params, token);
 
     console.log(_data);
 
     systemAPI.renderRecord(_data, 'formthemexpert', createExpertRequestRecord);
-    systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest);
-    
-    
+    // systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest, page);
+    systemAPI.renderPaginationNew(_totalRows, 'formthemexpert', getExpertRequest, page);
 }
  
 const addAdmin = async() => {
@@ -354,7 +356,7 @@ const addAdmin = async() => {
         const repassword = addadminform.querySelector('input[name="txt-admin-repassword"]').value;
 
         if(name == '' || email == '' || password == '' || repassword == '') {
-            alert("Thieu thong tin");
+            showNotication("Thiếu thông tin", 'error');
             return;
         }
         if(confirm('Xác nhận thêm?')) {
@@ -369,37 +371,24 @@ const addAdmin = async() => {
                 }
                 const res = await accountAPI.register(data);
                 if(res.success) {
-                    alert("Them admin thanh cong");
+                    showNotication("Thêm Admin thành công");
                 }
-                
-            
-            
-            
+                ReloadOverview();
             } catch (error) {
                 //console.log(error);
-                alert("Đã tồn tại");
+                showNotication("Đã tồn tại", 'error');
             }
-
-
-
         }
     })
-
-
-
 }
 
 (async() => {    
     try {
         // avatarHandle();
 
-        
-        
         setEventSearch();
         setEventHandlerAcc();
         getUsers(1);
-        
-        
         
         clearFormHandle();
         addAdmin(); 
@@ -413,19 +402,3 @@ const addAdmin = async() => {
     }
 
 })()
-
-const expertRequestAPI = {
-    async createExpertRequest (data) {
-
-        //add request vao db, them 1 id cho request o duoi BE
-        const _data = { 
-            "Name" : data.name, 
-            "Email" : data.email,
-            "Field" : data.field,
-            "RequestDate" : data.requestDate,
-        }
-        await userAPI.addExpertRequest(_data, token);
-        //
-    }
-}
-export default expertRequestAPI;

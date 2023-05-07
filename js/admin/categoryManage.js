@@ -1,7 +1,8 @@
-import { getValueForm, setTextContent, showModal } from "../utils";
+import { setTextContent, showModal, showNotication } from "../utils";
 import categoryAPI from "./categoryAPI";    
 import courseAPI from "./courseAPI";
-import systemAPI  from "./system";
+import { ReloadCourse } from "./courseManage";
+import systemAPI from "./system";
 
 const token = localStorage.getItem('token');
 
@@ -23,29 +24,33 @@ const addCategory = async() => {
             const res = await categoryAPI.addCategory(params, token);
             
             if(res.message == "Trung") {
-                alert("Thêm thất bại");
+                showNotication("Thêm thất bại", 'error');
             } else {
-                alert('Thêm thành công');
+                showNotication('Thêm thành công');
             }
             getCategories(1);
         }
     })
-
-    
 }
 
 const deleteCategories = async() => {
     const modaldel = document.getElementById('Modal-delcategory');
-    const btnmodaldel = modaldel.querySelector('.close');
+    const btnmodaldel = document.getElementById('form-delcategory');
     const dataview = document.querySelector('.quanlidanhmuc .data-view');
     const checkboxes = dataview.getElementsByClassName('checkbox-category')
 
-    btnmodaldel.addEventListener('click', () => {
-        if(checkboxes.length == 0) {
-            alert("Chưa chọn cái nào");
-            return;
-        }
-    })
+    // btnmodaldel.addEventListener('click', () => {
+    //     var check = false;
+    //     checkboxes.forEach((checkbox) => {
+    //         if(checkbox.value == true) {
+    //             check = true;
+    //         }
+    //     })
+    //     if(check == false) {
+    //         showNotication("Chưa chọn cái nào", error);
+    //         return;
+    //     }
+    // })
 
     const btndel = document.getElementById('btn-del-category');
     if(!btndel) return;
@@ -60,6 +65,7 @@ const deleteCategories = async() => {
         console.log(list);
         await categoryAPI.deleteCategories(list, token);
         getCategories(1);
+        ReloadCourse();
     })
 }
 
@@ -77,7 +83,9 @@ const getCategories = async(page) => {
     
     const { data : {_data, _totalRows}} = await categoryAPI.getAllCategory(params, token);
     systemAPI.renderRecord(_data, 'quanlidanhmuc', createRecord);
-    systemAPI.renderPagination(_totalRows, 'quanlidanhmuc', getCategories);
+    // systemAPI.renderPagination(_totalRows, 'quanlidanhmuc', getCategories, page);
+    systemAPI.renderPaginationNew(_totalRows, 'quanlidanhmuc', getCategories, page);
+    
 };
 
 const setEventSearch = async() => {
@@ -87,8 +95,40 @@ const setEventSearch = async() => {
     })
 }
 
+const setEventHandlerCategory = async() => {
+    const title = document.querySelector('.quanlidanhmuc .modal-body.vstack input');
+    const desc = document.getElementById('category-desc');
+
+    const btnsave = document.getElementById('btn-save-category');
+    btnsave.addEventListener('click', async(event) => {
+        const patch = [
+            {
+                "operation": 1,
+                "path": "/Name",
+                "op": "replace",
+                "value": title.value,
+            },
+            {
+                "operation": 1,
+                "path": "/Description",
+                "op": "replace",
+                "value": desc.value,
+            },
+        ]
+        const params = {
+            id : event.target.value,
+            patchDoc : JSON.stringify(patch),
+        };
+        if(await categoryAPI.updateCategory(params, token)) showNotication("Cập nhật thành công");
+        getCategories(1);
+        ReloadCourse();
+    });
+}
+
 const createRecord = (data) => {
     if(!data) return;
+    console.log(data);
+
     const categoryManageRecord = document.getElementById('categoryManageRecord')
     if(!categoryManageRecord) return;
 
@@ -103,10 +143,20 @@ const createRecord = (data) => {
         console.log(checkbox.value);
     })
 
+    const btnsave = document.getElementById('btn-save-category');
+
     const iconinfo = record.getElementById('categorymanage-iconinfo');
     
     iconinfo.addEventListener('click', async() => {
     
+        const title = document.querySelector('.quanlidanhmuc .modal-body.vstack input');
+        console.log(title)
+        console.log(data.name)
+        title.value = data.name;
+
+        const desc = document.getElementById('category-desc');
+        desc.value = data.description;
+
         const ul = document.getElementById('categoryCourseList');
         ul.textContent = "";    
     
@@ -118,10 +168,13 @@ const createRecord = (data) => {
         courseList.forEach((course) => {
             ul.appendChild(createCourseItem(course));
         });
+
+        btnsave.value = data.idCategory;
     })
 
     return record;
 }
+
 const createCourseItem = (data) => {
     const li = document.createElement('li');
     li.setAttribute('class', 'mt-3');
@@ -134,6 +187,8 @@ const createCourseItem = (data) => {
         getCategories(1);
         
         setEventSearch();
+
+        setEventHandlerCategory();
         
         addCategory();
 
