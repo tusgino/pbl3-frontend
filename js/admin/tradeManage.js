@@ -1,6 +1,7 @@
 import { setTextContent, showModal, showNotication } from "../utils";
 import tradeAPI from "./tradeAPI";
 import systemAPI from "./system";
+import userAPI from "./userAPI";
 import { ReloadOverview } from "./overview";
 import { ReloadAnalytics } from "./analytics";
 
@@ -80,7 +81,20 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        if(await tradeAPI.updateTrade(params, token)) showNotication("Cập nhật thành công");
+        if(await tradeAPI.updateTrade(params, token)) {
+            const trade = await tradeAPI.getTradeByID({id: event.target.value}, token);
+            if(!trade) return;
+
+            console.log(trade);
+            console.log(trade.idUser)
+            const data = {
+                idUser : trade.idUser,
+                subject : "Thông báo từ THH Online Course",
+                body : "Giao dịch của bạn đã được xác nhận thành công",
+            }
+            userAPI.sendMail(data, token);
+            showNotication("Cập nhật thành công");
+        }
         getTrade(1);
         ReloadOverview();
         ReloadAnalytics();
@@ -96,7 +110,15 @@ const setEventHandlerAcc = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        if(await tradeAPI.updateTrade(params, token)) showNotication("Cập nhật thành công");
+        if(await tradeAPI.updateTrade(params, token)) {
+            const data = {
+                idUser : event.target.value,
+                subject : "Thông báo từ THH Online Course",
+                body : "Giao dịch của bạn đã bị từ chối",
+            }
+            userAPI.sendMail(data, token);
+            showNotication("Cập nhật thành công");
+        }
         getTrade(1);
         ReloadOverview();
         ReloadAnalytics();
