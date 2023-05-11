@@ -192,6 +192,10 @@ const checkToken = async () => {
   }
 }
 
+const renderExpert = () => {
+
+}
+
 (async () => {
   checkToken();
   getPosts();

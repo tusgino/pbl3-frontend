@@ -194,24 +194,35 @@ const renderDashboard = async (idLesson) => {
   const nextButton = document.querySelector('.next');
   nextButton.classList.add('hidden');
   const liElement = document.querySelector(`[data-id="${idLesson}"]`);
+  document.querySelector('.quiz').classList.add('hidden');
   if (liElement.dataset.status === '1') {
     nextButton.classList.remove('hidden');
   }
   // console.log(player.currentTime);
-  document.querySelector('.quiz').classList.add('hidden');
   let check = 1;
   player.on('timeupdate', () => {
     // console.log(player.currentTime);
     // console.log(player.duration);
+    // if (liElement.dataset.status === '1') {
+    //   check = 0;
+    //   if (data.quizzes.length > 0) {
+    //     renderQuiz(data.quizzes);
+    //     if (document.querySelector('.quiz').classList.contains('hidden'))
+    //       document.querySelector('.quiz').classList.remove('hidden');
+    //   }
+    //   return;
+    // }
     if (check) {
       console.log(player.currentTime / player.duration, "-", data.duration / 100);
       if (player.currentTime / player.duration >= data.duration / 100) {
-        nextButton.classList.remove('hidden');
+        if (nextButton.classList.contains('hidden'))
+          nextButton.classList.remove('hidden');
         liElement.dataset.status = '1';
 
         if (data.quizzes.length > 0) {
           renderQuiz(data.quizzes);
-          document.querySelector('.quiz').classList.remove('hidden');
+          if (document.querySelector('.quiz').classList.contains('hidden'))
+            document.querySelector('.quiz').classList.remove('hidden');
         }
         else {
         }

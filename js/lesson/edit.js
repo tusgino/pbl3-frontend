@@ -403,6 +403,7 @@ const handleImageChange = () => {
       const imagePreview = document.getElementById('file-image');
       imagePreview.dataset.image = image.contentLink;
       console.log(image.contentLink);
+      showNotication('Ảnh đã được tải lên');
     } catch (error) {
       console.log(error);
     }
