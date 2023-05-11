@@ -303,7 +303,15 @@ const handleExpertRequest = async() => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) showNotication("Thêm thành công");
+        if(await userAPI.updateUser(params, token)) {
+            const data = {
+                idUser : event.target.value,
+                subject : "Thông báo từ THH Online Course",
+                body : "Tài khoản của bạn đã xác nhận thành công",
+            }
+            userAPI.sendMail(data, token);
+            showNotication("Thêm thành công");
+        }
         getExpertRequest(1);
         ReloadOverview();
     })
@@ -319,7 +327,15 @@ const handleExpertRequest = async() => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) showNotication("Từ chối thành công");
+        if(await userAPI.updateUser(params, token)) {
+            const data = {
+                idUser : event.target.value,
+                subject : "Thông báo từ THH Online Course",
+                body : "Thông tin tài khoản của bạn không hợp lệ",
+            }
+            userAPI.sendMail(data, token);
+            showNotication("Từ chối thành công");
+        }
         getExpertRequest(1);
         ReloadOverview();
     })

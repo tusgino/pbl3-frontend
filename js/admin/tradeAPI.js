@@ -31,6 +31,15 @@ const tradeAPI = {
           },
         }
         return axiosClient.get(url, config);
+      },
+      getTradeByID(params, token) {
+        const url = `private/TradeDetail/Get-trade-by-id-${params.id}`;
+        const config = {
+          headers: {
+            'Authorization' : `Bearer ${token}`,
+          },
+        };
+        return axiosClient.get(url, config);
       }
 }
 

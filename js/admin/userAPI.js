@@ -112,6 +112,15 @@ const userAPI = {
       },
     };
     return  axiosClient.get(url, config);
+  },
+  sendMail(params, token) {
+    const url = 'private/User/Send-mail';
+    const config = {
+      headers : {
+        'Authorization' : `Bearer ${token}`,
+      },
+    };
+    return axiosClient.post(url, params, config);
   }
 }
 
