@@ -1,0 +1,261 @@
+@import url(/styles/variables.css);
+html {
+  font-size: 62.5%;
+}
+
+a {
+  color: black;
+}
+
+.dashboard-container {
+  display: flex;
+  width: 100%;
+}
+
+.navbar {
+  border-radius: 0px;
+  max-width: 100%;
+}
+
+.navbar a {
+  color: var(--secondary-color);
+}
+
+.go-back {
+  font-size: 1.8rem;
+}
+
+.tab.active {
+  width: 20%;
+  background-color: #fff;
+  /* min-height: 100vh; */
+}
+
+.content {
+  width: 80%;
+}
+
+.tab-heading {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #000;
+  padding: 3rem 1rem 2.4rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tab-heading .title {
+  font-size: 2rem;
+  color: var(--title-color);
+}
+
+.tab-heading .expand {
+  cursor: pointer;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.expand > i {
+  color: var(--primary-color);
+  font-size: 2.4rem;
+}
+
+.item-heading {
+  background-color: #ebf3fb;
+  padding: 2rem 2rem;
+  font-size: 1.6rem;
+  color: var(--title-color);
+  font-weight: 500;
+}
+
+.lesson-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-list > a {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+  padding: 1.5rem 2rem;
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+
+.lesson-list > a:not(:last-child) {
+  border-bottom: 0.5px solid #eeeeee;
+}
+
+.lesson-list > a.active {
+  background-color: #ecefff;
+}
+
+section.video {
+  padding: 5rem 5rem;
+}
+
+section.control {
+  background-color: #fff;
+  padding: 7rem 5rem;
+  margin-left: 1rem;
+  border-radius: 2rem;
+}
+
+.control .title {
+  font-size: 3.2rem;
+  font-weight: 500;
+  color: var(--title-color);
+  margin-bottom: 2rem;
+}
+
+.control .next {
+  display: flex;
+  padding: 1rem 2rem;
+  background-color: var(--secondary-color);
+  color: #fff;
+  border-radius: 1rem;
+  width: 24rem;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.control .next > i {
+  font-size: 3rem;
+}
+
+.control .next > span {
+  font-size: 2.4rem;
+}
+
+.control a:hover > i {
+  transform: rotate(0);
+}
+
+.desc {
+  font-size: 2rem;
+  font-weight: 200;
+  padding-left: 5rem;
+  padding-right: 4rem;
+}
+
+.desc a {
+  color: var(--secondary-color);
+}
+
+.hidden {
+  display: none !important;
+}
+
+a:hover > i {
+  transform: rotate(0);
+}
+
+.fa-check-circle {
+  color: #04ce9e;
+}
+
+.quiz-item {
+  max-width: 890px;
+}
+
+.quiz-item .question-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin-bottom: 2rem;
+}
+
+.quiz-title {
+  font-size: 3.2rem;
+  font-weight: 500;
+  color: var(--title-color);
+  margin-bottom: 2rem;
+}
+
+.quiz-item .question-title {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--title-color);
+  margin-bottom: 2rem;
+}
+
+.quiz {
+  padding: 0 5rem;
+}
+
+.quiz-item {
+  padding-bottom: 2rem;
+}
+
+.quiz-item input {
+  display: none;
+}
+
+.quiz-item label {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+  padding: 1rem 4rem;
+  font-size: 1.8rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.quiz-item label.correct {
+  color: #04ce9e;
+}
+
+.quiz-item label.incorrect {
+  color: #ff4d4f;
+}
+
+.quiz-item label::after {
+  content: "";
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--secondary-color);
+  position: absolute;
+  left: 0;
+}
+.quiz-item label.correct::after {
+  border: 1px solid #04ce9e;
+  background-color: #04ce9e;
+}
+.quiz-item label.incorrect::after {
+  border: 1px solid #ff4d4f;
+}
+
+.quiz-item input[type="radio"]:checked + label::after {
+  background-color: var(--secondary-color);
+}
+.quiz-item input[type="radio"]:checked + label.correct::after {
+  background-color: #04ce9e;
+}
+.quiz-item input[type="radio"]:checked + label.incorrect::after {
+  background-color: #ff4d4f;
+}
+
+.btn-quiz {
+  padding: 1rem 2rem;
+  background-color: var(--secondary-color);
+  color: #fff;
+  border-radius: 1rem;
+  width: 24rem;
+  margin-bottom: 2rem;
+  transform: translateX(30rem);
+}
+.answer-title {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--title-color);
+  margin-bottom: 2rem;
+}
+
+.answer-list {
+  padding-left: 2rem;
+}

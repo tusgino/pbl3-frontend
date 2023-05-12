@@ -1,5 +1,5 @@
 import accountAPI from "./api/accountAPI";
-import { getValueForm, showModal } from "./utils";
+import { getValueForm, showModal, showNotication } from "./utils";
 
 
 (async () => {
@@ -23,7 +23,7 @@ import { getValueForm, showModal } from "./utils";
     try {
       const res = await accountAPI.login(data);
       if (res.success) {
-        showModal('Đăng nhập thành công', 'Vui lòng đợi');
+        showModal('Đăng nhập thành công', 'Vui lòng đợi...');
         localStorage.setItem('token', res.data);
         // console.log(res.data);
         setTimeout(() => {
@@ -32,6 +32,7 @@ import { getValueForm, showModal } from "./utils";
       }
     } catch (error) {
       console.log(error);
+      showNotication('Sai tài khoản hoặc mật khẩu!', 'error');
     }
 
   })

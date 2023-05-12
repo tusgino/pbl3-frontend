@@ -1,7 +1,7 @@
 import accountAPI from "./api/accountAPI";
 import courseAPI from "./api/courseAPI";
 import userAPI from "./api/userAPI";
-import { getPostList, setSrcContent, setTextContent } from "./utils";
+import { getPostList, setSrcContent, setTextContent, showNotication } from "./utils";
 
 const createCourseElement = (course) => {
   if (!course) return;
@@ -20,7 +20,6 @@ const createCourseElement = (course) => {
   setSrcContent(liElement, '[data-id="avatar"]', course.avatarUser);
 
   liElement.firstElementChild?.addEventListener('click', () => {
-    console.log('hello');
     window.location.assign(`/course/detail.html?id=${course.id}`);
   })
 
@@ -99,8 +98,8 @@ const getPosts = async () => {
       _limit: 9,
     };
     const { data: { data, pagination } } = await courseAPI.getAll(params);
-    console.log(data);
-    console.log(pagination);
+    // console.log(data);
+    // console.log(pagination);
     renderCourse(data);
     renderPagination(pagination);
   } catch (error) {
@@ -116,6 +115,9 @@ const renderUIRole = async (role, token) => {
   }
   try {
     const { data } = await userAPI.getByID(params, token);
+    if (window.location.pathname == '/') {
+      showNotication(`Chào mừng ${data.name} quay trở lại 🙌`);
+    }
     const avatar = document.querySelector('.nav-avatar');
     if (avatar) {
       avatar.src = data.avatar;
@@ -123,30 +125,48 @@ const renderUIRole = async (role, token) => {
     if (btn_login) {
       if (role.role == 'Expert') {
         btn_login.textContent = 'Quản lí khóa học';
+        btn_login.addEventListener('click', () => {
+          window.location.href = `/expert/index.html?id=${role.idUser}&page=courses`;
+        });
         const order = document.querySelector('.nav-order');
+        console.log('hello');
         if (order) {
-          console.log('hello');
           order.style.display = 'none';
         }
+        if (avatar)
+          avatar.addEventListener('click', () => {
+            window.location.href = `/expert/index.html?id=${role.idUser}&page=profile`;
+          })
       }
       if (role.role == 'Admin') {
         btn_login.textContent = 'Quản lí hệ thống';
         btn_login.addEventListener('click', () => {
           window.location.href = "/admin/system.html";
         })
+        if (avatar)
+          avatar.addEventListener('click', () => {
+            window.location.href = `/admin/profile.html?id=${role.idUser}&page=profile`;
+          })
       }
       if (role.role == 'Student') {
         btn_login.textContent = 'Khu vực học tập';
         btn_login.addEventListener('click', () => {
           window.location.href = `/profile.html?id=${role.idUser}&page=learning`;
         });
+        if (avatar)
+          avatar.addEventListener('click', () => {
+            window.location.href = `/profile.html?id=${role.idUser}&page=profile`;
+          })
       }
     }
-    const btn_profile = document.querySelector(".nav-avatar");
-    if (btn_profile) {
-      btn_profile.addEventListener('click', () => {
-        window.location.href = `/profile.html?id=${role.idUser}&page=profile`;
-      })
+    const namePurchase = document.getElementById('name-purchase');
+    const emailPurchase = document.getElementById('email-purchase');
+    if (namePurchase && emailPurchase) {
+      namePurchase.value = data.name;
+      emailPurchase.value = data.email;
+      emailPurchase.dataset.idUser = data.idUser;
+      namePurchase.setAttribute('disabled', '');
+      emailPurchase.setAttribute('disabled', '');
     }
   } catch (error) {
     console.log(error);
@@ -170,6 +190,10 @@ const checkToken = async () => {
   } catch (error) {
     console.log(error);
   }
+}
+
+const renderExpert = () => {
+
 }
 
 (async () => {

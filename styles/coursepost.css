@@ -41,6 +41,7 @@
   height: 25px;
   object-fit: cover;
   border-radius: 50%;
+  object-position: top;
 }
 
 .course-author > span {

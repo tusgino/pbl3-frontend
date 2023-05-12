@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/vite.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Courses</title>
+  <link rel="shortcut icon" href="images/logo.png" type="image/png">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/styles/bootstrap/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Use font Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+
+  <!-- Internal CSS -->
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/expert/edit.css">
+  <link rel="stylesheet" href="/styles/ckeditor/styles.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/index.html">
+          <img src="/images/logo.png" alt="" width="122" height="70">
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <template id="quiz-template">
+      <li class="quiz-item">
+        <h4 class="item-heading">Câu 1: ABCD</h4>
+        <div class="action item-action">
+          <i type="button" class="fas fa-edit action-edit"></i>
+          <i type="button" class="fas fa-trash-alt action-remove"></i>
+        </div>
+      </li>
+    </template>
+    <div class="page-container">
+      <h1 class="detail-title">Chỉnh sửa bài giảng</h1>
+      <p class="detail-desc"></p>
+      <section class="detail-form">
+        <div class="detail-item lesson-chapter">
+          <label for="course-chapter" class="detail-label">Chương</label>
+          <select class="select-control chapter-control" id="chapter">
+            <option value="default"> - Chọn chương học - </option>
+          </select>
+          <div class="action chapter-action">
+            <button data-bs-target="#chapterModal"><i class="fas fa-edit action-edit"></i></button>
+            <button><i class="fas fa-trash-alt action-remove"></i></button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#chapterModal"><i
+                class="fas fa-plus action-add"></i></button>
+          </div>
+        </div>
+
+        <div class="detail-item lesson-detail">
+          <label for="course-lesson" class="detail-label">Bài giảng</label>
+          <select class="select-control lesson-control" id="lesson">
+            <option value="default"> - Chọn bài giảng - </option>
+          </select>
+          <div class="action lesson-action">
+            <!-- <button type="button"><i class="fas fa-edit action-edit"></i></button> -->
+            <button><i class="fas fa-trash-alt action-remove"></i></button>
+            <button><i class="fas fa-plus action-add"></i></button>
+          </div>
+        </div>
+        <div class="lesson-content hidden ">
+          <div class="detail-item detail-name">
+            <label for="lesson-name" class="detail-label">Tên bài học</label>
+            <input type="text" name="name" id="lesson-name" placeholder="Tên bài học">
+          </div>
+
+          <div class="detail-item detail-video">
+            <label for="lesson-video" class="detail-label">Video bài giảng</label>
+            <form id="file-upload-form" class="uploader">
+              <input id="video-upload" type="file" name="fileUpload" accept="video/*" hidden />
+              <label for="video-upload" id="video-drag" class="video-drag">
+                <div id="preview-container">
+                  <video id="file-video" src="#" class="hidden" width="" controls></video>
+                </div>
+                <div id="start">
+                  <div id="notvideo" class="hidden"></div>
+                </div>
+              </label>
+              <div class="progress-bar">
+                <div class="progress"></div>
+              </div>
+              <div class="message"></div>
+            </form>
+            <div class="action video-action">
+              <label for="video-upload">
+                <i class="fas fa-wrench video-edit"></i>
+              </label>
+            </div>
+          </div>
+
+          <div class="detail-item detail-duration">
+            <label for="lesson-duration" class="detail-label">Thời lượng bài học(%)</label>
+            <input type="text" name="duration" id="lesson-duration" placeholder="Đơn vị %">
+          </div>
+
+          <div class="detail-item lesson-desc">
+            <label for="" class="detail-label">Mô tả</label>
+            <div class="desc-content">
+              <label for="lesson-desc">Thêm mô tả cho bài giảng</label>
+              <textarea name="desc" id="lesson-desc"></textarea>
+            </div>
+          </div>
+          <div class="detail-item lesson-quiz">
+            <label for="" class="detail-label">Danh sách câu hỏi</label>
+            <div class="quiz-container">
+              <ul class="quiz-list">
+                <!-- <li class="quiz-item">
+                  <h4 class="item-heading">Câu 1: ABCD</h4>
+                  <div class="action item-action">
+                    <button type="button"><i class="fas fa-edit action-edit"></i></button>
+                    <button><i class="fas fa-trash-alt action-remove"></i></button>
+                  </div>
+                </li>
+                <li class="quiz-item">
+                  <h4 class="item-heading">Câu 2: ABCD</h4>
+                  <div class="action item-action">
+                    <button type="button"><i class="fas fa-edit action-edit"></i></button>
+                    <button><i class="fas fa-trash-alt action-remove"></i></button>
+                  </div>
+                </li>
+                <li class="quiz-item">
+                  <h4 class="item-heading">Câu 3: ABCD</h4>
+                  <div class="action item-action">
+                    <button type="button"><i class="fas fa-edit action-edit"></i></button>
+                    <button><i class="fas fa-trash-alt action-remove"></i></button>
+                  </div>
+                </li> -->
+              </ul>
+            </div>
+            <div class="action quiz-action">
+              <button data-bs-target="#quizModal"><i class="fas fa-plus action-add"></i></button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="btn-action">
+        <button class="btn btn-save hidden">Lưu</button>
+        <button class="btn btn-cancel">Hủy</button>
+      </section>
+    </div>
+
+
+    <div class="modal fade" id="chapterModal" tabindex="-1" aria-labelledby="chapterModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="chapterModalLabel">Chương</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+              data-bs-target="#chapterModal"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="chapter-name" class="col-form-label">Tên Chương: </label>
+                <input type="text" class="form-control" id="chapter-name">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-modal btn-save" data-bs-target="#chapterModal">Lưu</button>
+            <button type="button" class="btn-modal btn-cancel" data-bs-dismiss="modal"
+              data-bs-target="#chapterModal">Hủy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmModalLabel">Xác nhận xóa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Bạn có chắc chắn muốn xóa không?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-modal btn-save" data-bs-dismiss="modal">Hủy</button>
+            <button type="button" class="btn-modal btn-cancel">Xác nhận</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal quiz -->
+
+    <div class="modal fade" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="quizModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="quiz-question" class="col-form-label">Câu hỏi:</label>
+                <input type="text" class="form-control" id="quiz-question">
+              </div>
+              <div class="mb-3">
+                <label for="quiz-image" class="image-label mb-2">Sử dụng hình ảnh</label>
+                <form id="file-upload-form" class="uploader">
+                  <input id="file-upload" type="file" name="fileUpload" hidden />
+                  <label for="file-upload" id="file-drag">
+                    <img id="file-image" src="#" alt="Preview" class="hidden">
+                    <div id="start">
+                      <div id="notimage" class="hidden"></div>
+                    </div>
+                    <div id="response" class="hidden">
+                      <div id="messages"></div>
+                    </div>
+                  </label>
+                </form>
+              </div>
+              <div class="mb-3">
+                <label for="quiz-answer-a" class="col-form-label">Đáp án A:</label>
+                <input type="text" class="form-control" id="quiz-answer-a">
+              </div>
+              <div class="mb-3">
+                <label for="quiz-answer-b" class="col-form-label">Đáp án B:</label>
+                <input type="text" class="form-control" id="quiz-answer-b">
+              </div>
+              <div class="mb-3">
+                <label for="quiz-answer-c" class="col-form-label">Đáp án C:</label>
+                <input type="text" class="form-control" id="quiz-answer-c">
+              </div>
+              <div class="mb-3">
+                <label for="quiz-answer-d" class="col-form-label">Đáp án D:</label>
+                <input type="text" class="form-control" id="quiz-answer-d">
+              </div>
+              <div class="mb-3">
+                <label for="quiz-answer-correct" class="col-form-label">Đáp án đúng:</label>
+                <!-- <input type="text" class="form-control" id="quiz-answer-correct"> -->
+                <select name="quiz-answer-correct" id="quiz-answer-correct">
+                  <option value="1">Đáp án A</option>
+                  <option value="2">Đáp án B</option>
+                  <option value="3">Đáp án C</option>
+                  <option value="4">Đáp án D</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn-modal btn-save">Lưu</button>
+            <button type="button" class="btn-modal btn-cancel" data-bs-dismiss="modal">Hủy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="introduce-contrainer">
+      <div class="introduce-list">
+        <div class="introduce-item">
+          <img src="/images/logo.png" alt="" class="info-logo">
+          <ul class="list-info">
+            <li class="info-item">Email: pbl3@thh.com</li>
+            <li class="info-item">Hotline: 0123456789</li>
+            <li class="info-item">Giờ làm việc 8h30-18h từ thứ 2 tới thứ 6.</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Địa chỉ</h4>
+          <ul class="list-info">
+            <li class="info-item">54 Nguyễn Lương Bằng, Liên Chiểu, Đà Nẵng</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Hướng dẫn</h4>
+          <ul class="list-info">
+            <li class="info-item">Giới thiệu</li>
+            <li class="info-item">Chính sách</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Khám phá</h4>
+          <ul class="list-info">
+            <li class="info-item">Solution</li>
+          </ul>
+        </div>
+        <div class="introduce-item">
+          <h4 class="info-header">Liên kết</h4>
+          <ul class="list-social">
+            <li class="social-item"><i class="fab fa-facebook-square"></i></i></li>
+            <li class="social-item"><i class="fab fa-youtube"></i></li>
+            <li class="social-item"><i class="fab fa-twitter-square"></i></li>
+          </ul>
+        </div>
+  </footer>
+
+  <script src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+  <!-- <script type="module" src="/js/main.js"></script> -->
+  <script type="module" src="/js/lesson/edit.js"></script>
+</body>
+
+</html>

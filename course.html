@@ -94,7 +94,7 @@
         <h1 class="search-title"><span>Chào Bạn👋</span> Hôm nay, bạn muốn học gì?</h1>
         <div class="input-group search-box">
           <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
-          <input type="text" class="form-control" placeholder="Tìm khóa học..." aria-label="Username"
+          <input type="text" id="title-course" class="form-control" placeholder="Tìm khóa học..." aria-label="Username"
             aria-describedby="basic-addon1">
         </div>
         <div class="search-tag">
@@ -121,11 +121,10 @@
     </section>
     <section class="courses">
       <div class="page-container">
-        <div class="courses-container">
-          <ul id="list-courses">
-          </ul>
+        <div class="courses-container vstack">
+          <!-- <ul id="list-courses">
+          </ul> -->
         </div>
-        <button class="course-more">Xem thêm...</button>
       </div>
     </section>
   </main>
@@ -176,6 +175,7 @@
 
   <script type="module" src="/js/main.js"></script>
   <script type="module" src="/js/home.js"></script>
+  <script type="module" src="/js/searchcourse.js"></script>
 </body>
 
 </html>

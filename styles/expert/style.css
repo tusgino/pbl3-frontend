@@ -1,5 +1,5 @@
 @import url(/styles/variables.css);
-html{
+html {
   font-size: 62.5%;
 }
 
@@ -29,13 +29,14 @@ html{
   align-items: stretch;
 }
 
-.degree-item { 
+.degree-item {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  align-items: center;
+  padding: 1.8rem 1rem;
   background-color: #fff;
   margin: 1.5rem 1rem;
-
+  border-radius: 1rem;
 }
 
 .degree-item > h4 {
@@ -50,14 +51,12 @@ html{
   cursor: pointer;
 }
 
-
-
 .degree-item > i:hover {
   opacity: 50%;
 }
 
 .degree-container {
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   border-radius: 1rem;
   padding-top: 4rem;
   height: 70rem;
@@ -68,10 +67,12 @@ html{
   justify-content: space-between;
   padding-left: 2rem;
   padding-right: 7rem;
+  margin: 2rem 0;
 }
 
 .degree-heading > h3 {
   font-size: 2.5rem;
+  /* margin: 2rem 0; */
 }
 
 .degree-heading > i {
@@ -79,8 +80,6 @@ html{
   color: var(--primary-color);
   cursor: pointer;
 }
-
-
 
 .degree-heading > i:hover {
   opacity: 50%;
@@ -90,8 +89,7 @@ html{
   margin-top: 0;
   left: 0;
   transform: translateX(0);
-} 
-
+}
 
 .save-info {
   margin-top: 3rem;
@@ -99,12 +97,18 @@ html{
 
 .modal-content {
   width: auto;
+  border-radius: 1rem;
 }
 
 .degree-title {
-  font-size: 2rem;
+  font-size: 2.8rem;
+  font-weight: 500;
   text-align: center;
   color: var(--primary-color);
+  margin-top: 3rem;
+}
+h4.degree-title {
+  margin-top: 0;
 }
 
 .degree-info {
@@ -124,9 +128,11 @@ html{
   font-size: 2rem;
   padding: 1rem;
   width: 40rem;
+  height: 5rem;
   font-weight: 700;
-  
-  
+  border: 0px;
+  background-color: #ebebeb;
+  border-radius: 1rem;
 }
 
 .degree-text > textarea {
@@ -134,9 +140,12 @@ html{
   padding: 1rem;
   width: 40rem;
   height: 30rem;
-  margin-top: 3rem;
   font-weight: 300;
-  padding-top: 3rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border: 0px;
+  background-color: #ebebeb;
+  border-radius: 1rem;
 }
 
 .degree-text > input:focus {
@@ -160,6 +169,7 @@ html{
   text-align: center;
   color: var(--primary-color);
   font-weight: 700;
+  margin-top: 4rem;
 }
 
 .bankinfo-info {
@@ -170,15 +180,27 @@ html{
 
 .bankinfo-info > input {
   font-size: 2rem;
-  padding: 1rem;
   width: 60rem;
   font-weight: 400;
-  margin-top: 4rem;
+  margin-top: 3rem;
   border-radius: 1rem;
+  border: 0px;
+  background-color: #ebebeb;
+  padding: 1.5rem 2rem;
 }
 
 .save-info.create-course {
-  margin-left: 10rem;
+  margin-top: 10rem;
 }
 
+#degree-image {
+  width: 40rem;
+  height: 30rem;
+  object-fit: cover;
+  border-radius: 1rem;
+  object-position: center;
+}
 
+.hidden {
+  display: none;
+}

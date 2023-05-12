@@ -1,4 +1,5 @@
 @import url(variables.css);
+@import url(notification.css);
 * {
   padding: 0;
   margin: 0;
@@ -149,6 +150,7 @@ ul {
   border-radius: 10px;
   padding-right: 40px;
   margin-left: 20px;
+  font-size: 1.6rem;
 }
 
 .nav-link {

@@ -161,6 +161,10 @@ html {
   text-decoration: none;
 }
 
+.modal-content {
+  border-radius: 1rem;
+}
+
 .modal-title {
   font-size: 2.5rem;
   font-weight: 500;

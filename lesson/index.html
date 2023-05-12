@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/images/logo.png" type="image/png">
+  <title>Thông tin khóa học</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="/styles/bootstrap/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Use font Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Slick slider -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+  <!-- Internal CSS -->
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/lesson/main.css">
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.4/plyr.css">
+
+</head>
+
+<template id="video-template">
+  <video id="player" playsinline controls>
+    <source src="https://drive.google.com/uc?id=11W6_VgvRY1gs_Ptv0RQuZCUUCVxVG1aj&export=download" type="video/mp4"
+      class="video-src">
+  </video>
+</template>
+
+<template id="content-lesson">
+  <div class="lesson-container">
+    <section class="video">
+    </section>
+    <section class="desc"></section>
+    <section class="quiz">
+      <h3 class="quiz-title">Bài tập</h3>
+      <div class="quiz-list">
+      </div>
+      <div class="quiz-action">
+        <button class="btn btn-quiz">Nộp bài</button>
+      </div>
+    </section>
+    <section class="control">
+      <h3 class="title">Bài 1: Giới thiệu khóa học</h3>
+      <a href="" class="next"><i class="far fa-arrow-alt-circle-right"></i>
+        <span>Bài tiếp theo</span></a>
+    </section>
+  </div>
+</template>
+
+<template id="lesson-template">
+  <a href="" class="lesson-item"><i class="fas fa-play-circle"></i> <i class="fas fa-check-circle hidden"></i> <span
+      class="lesson-name">Bài 1: Giới thiệu
+      khóa
+      học</span></a>
+</template>
+
+<template id="quiz-template">
+  <div class="quiz-item">
+    <h4 class="question-title"></h4>
+    <img src="" class="question-image" alt="">
+    <h5 class="answer-title">Câu trả lời của bạn là: </h5>
+    <div class="answer-list">
+      <div class="answer-item">
+        <input type="radio" name="" id="answer1" value="1">
+        <label for="answer1">Đáp án 1</label>
+      </div>
+      <div class="answer-item">
+        <input type="radio" name="" id="answer2" value="2">
+        <label for="answer2">Đáp án 2</label>
+      </div>
+      <div class="answer-item">
+        <input type="radio" name="" id="answer3" value="3">
+        <label for="answer3">Đáp án 3</label>
+      </div>
+      <div class="answer-item">
+        <input type="radio" name="" id="answer4" value="4">
+        <label for="answer4">Đáp án 4</label>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<template id="tab-template">
+  <div class="tab-item">
+    <h3 class="item-heading" data-id="title"></h3>
+    <div class="lesson-list">
+    </div>
+  </div>
+</template>
+
+<body>
+  <div class="dashboard-container">
+    <div class="tab active">
+      <div class="tab-heading">
+        <h2 class="title">Nội dung khóa học</h2>
+        <!-- <div class="expand">
+          <i class="far fa-arrow-alt-circle-left"></i>
+          <span>Mở rộng</span>
+        </div> -->
+      </div>
+      <div class="tab-list">
+      </div>
+    </div>
+    <div class="content">
+      <header>
+        <nav class="navbar navbar-expand-lg ">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/index.html">
+              <img src="/images/logo.png" alt="" width="122" height="70">
+            </a>
+            <a href="/expert/index.html" class="go-back"><i class="fas fa-th-large"></i> Trở về dashboard</a>
+          </div>
+        </nav>
+      </header>
+      <main id="main">
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="/js/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.plyr.io/3.6.4/plyr.js"></script>
+  <script type="module" src="/js/main.js"></script>
+  <script type="module" src="/js/home.js"></script>
+  <script type="module" src="/js/lesson/main.js"></script>
+
+</body>
+
+</html>
