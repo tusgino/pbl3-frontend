@@ -183,7 +183,7 @@ const systemAPI = {
     };
 
     const dataview = document.querySelector(`.${view} .data-view`);
-    dataview.appendChild(paginationbar);
+    if(totalRows !== 0) dataview.appendChild(paginationbar);
 
     pg.onclick = (e) => {
       const ele = e.target;
