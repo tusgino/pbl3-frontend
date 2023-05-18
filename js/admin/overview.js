@@ -13,12 +13,11 @@ const SystemRevenue = async(data) => {
     title.textContent = `Doanh thu hệ thống năm ${now.getFullYear()} (VND)`;
     
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const revenue = [];
+    const revenue = [0,0,0,0,0,0,0,0,0,0,0,0];
     var totalrevenuecurrentyear = 0;
     var lastyearrevenue = 5000000;
     data.forEach((element) => {
-        // months.push(element.month);
-        revenue.push(element.revenue);
+        revenue[element.month - 1] = element.revenue;
         totalrevenuecurrentyear += element.revenue;
     });
 
