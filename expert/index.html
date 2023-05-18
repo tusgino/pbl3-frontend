@@ -33,7 +33,18 @@
 </head>
 
 <body>
-
+  <template id="tradeManageRecord">
+    <div class="record row my-4">
+      <div class="cell col-1"></div>
+      <div class="cell col" data-id="typeoftrade-trademanage">Mua khoá học</div>
+      <div class="cell col" data-id="balance-trademanage">500000</div>
+      <div class="cell col" data-id="requiredbalance-trademanage">500000</div>
+      <div class="cell col" data-id="dateoftrade-trademanage">1/1/2023</div>
+      <div class="cell col" data-id="tradestatus-trademanage">Thành công</div>
+      <!-- <div class="cell col-1" id="trademanage-iconinfo"><i type="button" class="fas fa-info-circle"
+        data-bs-toggle="modal" data-bs-target="#Modal-tradeinfo"></i></div> -->
+    </div>
+  </template>
   <template id="degree-template">
     <li class="degree-item" data-degree="default">
       <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -92,6 +103,12 @@
                   class="fas fa-th-large item-icon"></i>
                 <span>Quản lí khóa học</span></a>
             </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="pill" href="#statictics" id="statistic-tab"><i
+                  class="far fa-chart-bar item-icon"></i>
+                <span>Thống kê</span></a>
+            </li>
           </ul>
         </div>
       </section>
@@ -110,7 +127,9 @@
                       <form id="file-upload-form" class="uploader">
                         <input id="file-upload" type="file" name="fileUpload" hidden />
                         <label for="file-upload" id="file-drag">
-                          <img id="file-image" src="#" alt="Preview" class="hidden">
+                          <img id="file-image"
+                            src="https://images.unsplash.com/photo-1681493908252-e10acef5a3d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt="Preview" class="hidden">
                           <div id="start">
                             <div id="notimage" class="hidden"></div>
                           </div>
@@ -162,6 +181,161 @@
                   <ul class="learning-list">
                   </ul>
                   <button class="save-info create-course">Đăng tải khoá học</button>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane container active" id="statictics">
+              <div class="info">
+                <div class="heading">
+                  <h1>Thống kê</h1>
+                  <p class="desc">Thống kê toàn bộ doanh thu của bạn</p>
+                </div>
+                <div class="info-container">
+                  <div class="container hstack gap-3">
+                    <div class="col-9 infor-node">
+                      <div class="row p-2">
+                        <div class="justify-content-between" style="display: flex;">
+                          <span class="modal-title-2">Doanh thu chuyên gia</span>
+                          <div class="icon-group">
+                            <!-- <span id="toggle-object-courseanalytics" style="margin: 0px 10px;"><i class="fas fa-money-check-alt fa-lg"></i></span> -->
+                            <span id="toggle-chart-expertanalytics"><i class="fas fa-chart-line fa-lg"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row-10">
+                        <canvas id="ExpertRevenueAnalytics"></canvas>
+                      </div>
+                    </div>
+                    <div class="col-3 vstack gap-3">
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                          <span>Tổng doanh thu trong năm</span>
+                          <span data-id="revyear">500 VND</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                          <span>Trung bình doanh thu tháng</span>
+                          <span data-id="avg-rev">500 học viên/tháng</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                          <span>Số khoá học đă đăng</span>
+                          <span data-id="uploadcourse">500</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                          <span>Nhiều lượt mua nhất</span>
+                          <span data-id="bestSales">500</span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="infor-node cell bg-white vstack gap-2 border p-3">
+                          <span>Tổng số lượt mua</span>
+                          <span data-id="totalsales">1</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="container manager">
+                    <div class="container hstack field-bar my-3 bg-white border">
+                      <div class="cell col-1"></div>
+                      <div class="cell col">Loại giao dịch</div>
+                      <div class="cell col">Số tiền giao dịch</div>
+                      <div class="cell col">Số tiền cần trả</div>
+                      <div class="cell col">Ngày giao dịch</div>
+                      <div class="cell col">Trạng thái giao dịch</div>
+                      <!-- <div class="cell col-1"></div> -->
+                    </div>
+                    <div class="container data-view bg-white border">
+
+                    </div>
+                    <div class="modal fade" id="Modal-tradeinfo" role="dialog">
+                      <div class="modal-dialog modal-xxl modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header justify-content-between">
+                            <h4 class="modal-title">Thông tin giao dịch</h4>
+                            <button type="button" class="close " data-bs-dismiss="modal" style="border:none;"><i
+                                class="fas fa-times" style="color: #464646"></i></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="container">
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradetype">Loại giao dịch</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradetype" placeholder="Mua khoá học"
+                                    name="txt-trade-type" readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradeuser">Người thực hiện</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradeuser" placeholder="Nguyễn Văn Trường Sơn"
+                                    name="txt-trade-user" readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradebalance">Số tiền giao dịch</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradebalance" placeholder="670000"
+                                    name="txt-trade-balance" readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradeprice">Số tiền cần trả</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradeprice" placeholder="670000" name="txt-trade-price"
+                                    readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradeDate">Ngày giao dịch</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradeDate" placeholder="17-3-2023" name="txt-trade-date"
+                                    readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-traderoute">Hình thức giao dịch</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-traderoute" placeholder="Thủ công"
+                                    name="txt-trade-route" readonly>
+                                </div>
+                              </div>
+                              <div class="row justify-content-center my-2">
+                                <div class="col">
+                                  <label for="detail-tradestatus">Trạng thái giao dịch</label>
+                                </div>
+                                <div class="col">
+                                  <input type="text" id="detail-tradestatus" placeholder="Đang chờ"
+                                    name="txt-trade-status" readonly>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn-text-close nav-item btn btn-default"
+                              data-bs-dismiss="modal">Đóng</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -283,6 +457,7 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script type="module" src="/js/helpers/slick.js"></script>
   <script type="module" src="/js/main.js"></script>

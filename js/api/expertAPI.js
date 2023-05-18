@@ -67,6 +67,24 @@ export const expertAPI = {
     }
     return axiosClient.patch(url, data, config);
   },
+  expertAnalytics (id, token) {
+    const url = `/private/User/Statistics-experts-by-${id}`;
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    }
+    return axiosClient.get(url, config);
+  },
+  getRentByIdExpert(id, token) {
+    const url = `/private/TradeDetail/Get-rents-by-${id}`;
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    }
+    return axiosClient.get(url, config);
+  }
 }
 
 export default expertAPI;

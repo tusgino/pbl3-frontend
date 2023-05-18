@@ -190,55 +190,7 @@ h4.degree-title {
 }
 
 .save-info.create-course {
-  margin-top: 3rem;
-}
-
-.modal-action {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 1rem;
-  background-color: #fff;
-  margin: 1.5rem 1rem;
-}
-
-.modal-action > button {
-  width: 30rem;
-  left: 0;
-  transform: translateX(0);
-}
-
-.modal.show .modal-dialog {
-  transform: translateX(-25%);
-}
-
-#degree-modal .modal-footer * {
-  transform: translateX(-20rem);
-}
-
-.degree-avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#degree-drag {
-  width: 40rem;
-  height: 30rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ebebeb;
-  cursor: pointer;
-  border-radius: 1rem;
-  border: 2px dashed #787878;
-  background-image: url(/images/upload.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 30%;
-}
-
-.hidden {
-  display: none;
+  margin-top: 10rem;
 }
 
 #degree-image {
@@ -251,4 +203,20 @@ h4.degree-title {
 
 .hidden {
   display: none;
+}
+
+/* statistics */
+.infor-node, .thongkekhoahoc .infor-node {
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+
+.infor-node {
+  background-color: #fff;
+  margin-left: 2rem;
+  text-align: center;
+  padding: 0.2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
