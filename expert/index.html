@@ -33,7 +33,18 @@
 </head>
 
 <body>
-
+  <template id="tradeManageRecord">
+    <div class="record row my-4">
+      <div class="cell col-1"></div>
+      <div class="cell col" data-id="typeoftrade-trademanage">Mua khoá học</div>
+      <div class="cell col" data-id="balance-trademanage">500000</div>
+      <div class="cell col" data-id="requiredbalance-trademanage">500000</div>
+      <div class="cell col" data-id="dateoftrade-trademanage">1/1/2023</div>
+      <div class="cell col" data-id="tradestatus-trademanage">Thành công</div>
+      <!-- <div class="cell col-1" id="trademanage-iconinfo"><i type="button" class="fas fa-info-circle"
+        data-bs-toggle="modal" data-bs-target="#Modal-tradeinfo"></i></div> -->
+    </div>
+  </template>
   <template id="degree-template">
     <li class="degree-item" data-degree="default">
       <h4 class="degree-title" data-id="title">Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -228,34 +239,20 @@
                       </div>
                     </div>
                   </div>
-
+                  <hr>
                   <div class="container manager">
                     <div class="container hstack field-bar my-3 bg-white border">
                       <div class="cell col-1"></div>
                       <div class="cell col">Loại giao dịch</div>
                       <div class="cell col">Số tiền giao dịch</div>
+                      <div class="cell col">Số tiền cần trả</div>
                       <div class="cell col">Ngày giao dịch</div>
                       <div class="cell col">Trạng thái giao dịch</div>
-                      <div class="cell col-1"></div>
+                      <!-- <div class="cell col-1"></div> -->
                     </div>
                     <div class="container data-view bg-white border">
 
                     </div>
-                    <!-- <div class="pagination" hidden>
-                                        <button class="first-page" disabled>
-                                          <i class="fas fa-angle-double-left"></i>
-                                        </button>
-                                        <button class="prev-page" disabled>
-                                          <i class="fas fa-angle-left"></i>
-                                        </button>
-                                        <div data-id="pagination"></div>
-                                        <button class="next-page">
-                                          <i class="fas fa-angle-right"></i>
-                                        </button>
-                                        <button class="last-page">
-                                          <i class="fas fa-angle-double-right"></i>
-                                        </button>
-                                      </div>                 -->
                     <div class="modal fade" id="Modal-tradeinfo" role="dialog">
                       <div class="modal-dialog modal-xxl modal-dialog-centered">
                         <div class="modal-content">
@@ -460,6 +457,7 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script type="module" src="/js/helpers/slick.js"></script>
   <script type="module" src="/js/main.js"></script>
