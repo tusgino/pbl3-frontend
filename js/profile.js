@@ -126,14 +126,16 @@ const renderLearningUI = async (courses, profileId) => {
   if (!ulElement) return;
   const token = localStorage.getItem('token');
   courses.forEach(async (course) => {
-    const params = {
-      idCourse: course.id,
-      idUser: profileId,
+    if (course.statusPurchase) {
+      const params = {
+        idCourse: course.id,
+        idUser: profileId,
+      }
+      const { data } = await lessonAPI.getAllLesson(params, token);
+      const liElement = createCourse(course, profileId, data.chapters);
+      if (liElement)
+        ulElement.appendChild(liElement);
     }
-    const { data } = await lessonAPI.getAllLesson(params, token);
-    const liElement = createCourse(course, profileId, data.chapters);
-    if (liElement)
-      ulElement.appendChild(liElement);
   })
 }
 
