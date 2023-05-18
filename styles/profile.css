@@ -338,3 +338,40 @@ a:hover > i {
 .value {
   font-size: 1.8rem;
 }
+
+.trade-heading,
+.trade-item {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  font-size: 1.8rem;
+}
+
+.trade-heading {
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.trade-item {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.item-status.success {
+  color: #4caf50;
+}
+
+.item-status.pending {
+  color: #ff9800;
+}
+.item-status.error {
+  color: #f44336;
+}
+
+.heading-name {
+  margin-left: 1rem;
+}

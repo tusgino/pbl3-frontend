@@ -59,6 +59,14 @@
     </li>
   </template>
 
+  <template id="tradeTemplate">
+    <li class="trade-item">
+      <p class="item-name" data-id="name">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+      <p class="item-time" data-id="time">20/05/2023</p>
+      <p class="item-status" data-id="status">Hoàn thành</p>
+    </li>
+  </template>
+
   <header>
     <nav class="navbar navbar-expand-lg ">
       <div class="container-fluid">
@@ -123,6 +131,11 @@
                   class="fas fa-th-large item-icon"></i>
                 <span>Khu vực học tập</span></a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="pill" href="#trade" id="trade-tab"><i
+                  class="fas fa-shopping-cart item-icon"></i>
+                <span>Tra cứu giao dịch</span></a>
+            </li>
           </ul>
         </div>
       </section>
@@ -177,6 +190,29 @@
                 </div>
                 <div class="learning-courses">
                   <ul class="learning-list">
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane container fade" id="trade">
+              <div class="learning-container">
+                <div class="heading">
+                  <h1>Tra cứu giao dịch</h1>
+                  <p class="desc">Tổng hợp giao dịch của bạn sẽ ở đây</p>
+                </div>
+                <div class="learning-search">
+                  <div class="search-form">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Tìm kiếm..." class="search-input">
+                  </div>
+                </div>
+                <div class="trade-courses">
+                  <ul class="trade-list">
+                    <li class="trade-heading">
+                      <p class="heading-name">Tên khóa học</p>
+                      <p class="heading-time">Thời gian</p>
+                      <p class="heading-status">Trạng thái</p>
+                    </li>
                   </ul>
                 </div>
               </div>

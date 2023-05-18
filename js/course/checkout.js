@@ -58,6 +58,7 @@ const handleSubmit = (searchParams) => {
     const res = await purchaseAPI.purchaseStudent(data, token);
     console.log(res);
   }
+  const paymentModal = new bootstrap.Modal(document.getElementById('payment-info'));
 
   document.querySelector('.submit-course').addEventListener('click', () => {
     const payment = document.querySelector('input[name="payment-option"]:checked');
@@ -66,23 +67,9 @@ const handleSubmit = (searchParams) => {
       return;
     }
 
-    const token = localStorage.getItem('token');
 
-    const data = {
-      idCourse,
-      email,
-      "typeOfPurchase": 3,
-    }
 
-    console.log(data);
-    const paymentModal = new bootstrap.Modal(document.getElementById('payment-info'));
     paymentModal.show();
-
-
-    showNotication('Đăng kí thành công, vui lòng thanh toán');
-
-    submitPurchase(data, token);
-
 
     // const res = purchaseAPI.purchaseStudent(data, token);
 
@@ -91,7 +78,19 @@ const handleSubmit = (searchParams) => {
     // console.log(data);
   });
   document.querySelector('#payment-info .btn-primary').addEventListener('click', () => {
-    window.location = `/profile.html?id=${idUser}&page=learning`
+    const token = localStorage.getItem('token');
+
+    const data = {
+      idCourse,
+      email,
+      "typeOfPurchase": 3,
+    }
+    submitPurchase(data, token);
+    showNotication('Đăng kí thành công, vui lòng thanh toán');
+
+    paymentModal.hide();
+
+    // window.location = `/profile.html?id=${idUser}&page=learning`
   });
   // console.log(payment.dataset.id);
 

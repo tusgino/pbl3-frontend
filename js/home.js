@@ -95,7 +95,7 @@ const getPosts = async () => {
   try {
     const params = {
       _page: 1,
-      _limit: 9,
+      _limit: 6,
     };
     const { data: { data, pagination } } = await courseAPI.getAll(params);
     // console.log(data);

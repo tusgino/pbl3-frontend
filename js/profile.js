@@ -137,6 +137,34 @@ const renderLearningUI = async (courses, profileId) => {
   })
 }
 
+const renderTradeUI = (data) => {
+
+  const ulElement = document.querySelector('.trade-list');
+  data.forEach(course => {
+    // console.log(course);
+    const tradeTemplate = document.getElementById('tradeTemplate');
+    if (!tradeTemplate) return;
+    const tradeElement = tradeTemplate.content.cloneNode(true);
+    if (!tradeElement) return;
+    setTextContent(tradeElement, '[data-id="name"]', course.title);
+    const dateConvert = new Date(course.datePurchase);
+    const day = String(dateConvert.getDate()).padStart(2, '0');
+    const month = String(dateConvert.getMonth() + 1).padStart(2, '0');
+    const year = dateConvert.getFullYear();
+    const date = `${day}/${month}/${year}`;
+    setTextContent(tradeElement, '[data-id="time"]', date);
+    if (course?.statusPurchase === 1) {
+      tradeElement.querySelector('.item-status').classList.add('success');
+      setTextContent(tradeElement, '[data-id="status"]', 'Hoàn thành');
+    }
+    else {
+      tradeElement.querySelector('.item-status').classList.add('pending');
+      setTextContent(tradeElement, '[data-id="status"]', 'Đang chờ xử lý');
+    }
+    ulElement.appendChild(tradeElement);
+  });
+}
+
 const handleLearning = async () => {
   try {
     const searchParams = new URLSearchParams(window.location.search);
@@ -150,12 +178,14 @@ const handleLearning = async () => {
     const { data } = await courseAPI.getByIDUser(params, token);
     console.log(data);
     renderLearningUI(data, profileId);
+    renderTradeUI(data);
     // console.log(res);
     // renderLearningUI(res.data);
   } catch (error) {
     console.log('Failed', error);
   }
 }
+
 
 const updateNotAvatar = async (id) => {
   const loadingOverlay = document.getElementById('loading-overlay');

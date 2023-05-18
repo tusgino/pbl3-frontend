@@ -290,6 +290,7 @@ const renderUIProfile = (profile) => {
   formPassword.value = "*******";
   if (profile.status !== 1) {
     document.querySelector('.save-info.create-course').classList.add('hidden');
+    document.querySelector('.warning').classList.remove('hidden');
   }
   handleBanking(profile.idBankAccount);
   handleEmptyBanking(profile.idUser, profile.idBankAccount);
@@ -322,13 +323,18 @@ const renderUI = (searchParams) => {
     const info = document.getElementById('info');
     const tabDashboard = document.getElementById('learning-tab');
     const dashboard = document.getElementById('learning');
+    const tabStatistic = document.getElementById('statistic-tab');
+    const statistic = document.getElementById('statictics');
 
     dashboard.classList.add('fade');
+    // tabStatistic.classList.add('fade');
     tabInfo.classList.add('active');
     info.classList.add('active');
 
     tabDashboard.classList.remove('active');
     dashboard.classList.remove('active');
+    tabStatistic.classList.remove('active');
+    statistic.classList.remove('active');
     info.classList.remove('fade');
   }
 
@@ -337,16 +343,24 @@ const renderUI = (searchParams) => {
     const info = document.getElementById('info');
     const tabDashboard = document.getElementById('learning-tab');
     const dashboard = document.getElementById('learning');
+    const tabStatistic = document.getElementById('statistic-tab');
+    const statistic = document.getElementById('statictics');
+
 
 
     tabDashboard.classList.add('active');
     dashboard.classList.add('active');
     info.classList.add('fade');
+    // tabStatistic.classList.add('fade');
 
     dashboard.classList.remove('fade');
     tabInfo.classList.remove('active');
     info.classList.remove('active');
+    tabStatistic.classList.remove('active');
+    statistic.classList.remove('active');
   }
+
+
 }
 
 const updateNotAvatar = async (id) => {
@@ -451,6 +465,7 @@ const renderCourse = (course, idUser) => {
   const courseElement = courseTemplate.content.cloneNode(true);
   setTextContent(courseElement, '[data-id="title"]', course.title);
   setSrcContent(courseElement, '[data-id="thumbnail"]', course.thumbnail);
+  setTextContent(courseElement, '[data-id="number"] .number', course.numberOfLearner);
   courseElement.firstElementChild?.addEventListener('click', () => {
     window.location.href = `/expert/detail.html?idUser=${idUser}&id=${course.id}`;
   });
@@ -477,6 +492,7 @@ const handleCourses = async (searchParams) => {
   };
   try {
     const { data } = await courseAPI.getByIDUser(params, token);
+    console.log(data);
     renderCourseList(data, idUser);
     document.querySelector('.create-course').addEventListener('click', () => {
       window.location.href = `/expert/detail.html?idUser=${idUser}`;
@@ -486,55 +502,53 @@ const handleCourses = async (searchParams) => {
   }
 }
 
-const handleExpertStatictiss = async(searchParams) => {
+const handleExpertStatictiss = async (searchParams) => {
   const idUser = searchParams.get('id');
   if (!idUser)
     window.location.href = '/index.html';
   try {
 
-    ////////////////// xu li thong ke
-    
     console.log(idUser)
     const expertAnalytics = await expertAPI.expertAnalytics(idUser, token);
     console.log(expertAnalytics)
     console.log(expertAnalytics.currentYearRevenue)
     var myChart = Chart.getChart('ExpertRevenueAnalytics');
 
-    if(myChart != null) myChart.destroy();
+    if (myChart != null) myChart.destroy();
 
     myChart = new Chart(document.getElementById('ExpertRevenueAnalytics'),
-    {
+      {
         type: 'bar',
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-            datasets: [
-                {
-                    label: "Doanh thu theo tháng",
-                    data: expertAnalytics.currentYearRevenue,
-                    borderWidth: 1
-                },
-            ]
+          labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+          datasets: [
+            {
+              label: "Doanh thu theo tháng",
+              data: expertAnalytics.currentYearRevenue,
+              borderWidth: 1
+            },
+          ]
         },
-        options: {  
-            scales: {
-                y: {
-                beginAtZero: true,
-                },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
             },
-            datasets : {
-                label: screenLeft,
-                screen : {
-                    display : true,
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false,
-                }
+          },
+          datasets: {
+            label: screenLeft,
+            screen: {
+              display: true,
             }
+          },
+          plugins: {
+            legend: {
+              display: false,
+            }
+          }
         }
-    });  
-    
+      });
+
     const toggleicon = document.getElementById('toggle-chart-expertanalytics');
     toggleicon.value = expertAnalytics.currentYearRevenue;
     toggleicon.label = 'Doanh thu theo tháng';
@@ -544,48 +558,48 @@ const handleExpertStatictiss = async(searchParams) => {
       myChart.destroy();
       console.log(toggleicon.value)
       const config = {
-          type: 'bar',
-          data: {
-              labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-              datasets: [
-                  {
-                      label: toggleicon.label,
-                      data: toggleicon.value,
-                      borderWidth: 1
-                  },
-              ]
+        type: 'bar',
+        data: {
+          labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+          datasets: [
+            {
+              label: toggleicon.label,
+              data: toggleicon.value,
+              borderWidth: 1
+            },
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
           },
-          options: {  
-              scales: {
-                  y: {
-                  beginAtZero: true,
-                  },
-              },
-              datasets : {
-                  label: screenLeft,
-                  screen : {
-                      display : true,
-                  }
-              },
-              plugins: {
-                  legend: {
-                      display: false,
-                  }
-              }
+          datasets: {
+            label: screenLeft,
+            screen: {
+              display: true,
+            }
+          },
+          plugins: {
+            legend: {
+              display: false,
+            }
           }
+        }
       };
-      
+
       const iconchart = toggleicon.querySelector('i');
 
-      if(iconchart.classList.contains('fa-chart-bar')) {
-          config.type = 'bar';
-          toggleicon.innerHTML = `<i class="fas fa-chart-line fa-lg"></i>`;
-      } else if(iconchart.classList.contains('fa-chart-line')) {
-          config.type = 'line';            
-          toggleicon.innerHTML = `<i class="fas fa-chart-bar fa-lg"></i>`;
+      if (iconchart.classList.contains('fa-chart-bar')) {
+        config.type = 'bar';
+        toggleicon.innerHTML = `<i class="fas fa-chart-line fa-lg"></i>`;
+      } else if (iconchart.classList.contains('fa-chart-line')) {
+        config.type = 'line';
+        toggleicon.innerHTML = `<i class="fas fa-chart-bar fa-lg"></i>`;
       }
       myChart = new Chart(document.getElementById(`${'ExpertRevenueAnalytics'}`), config);
-  })
+    })
 
 
     const revyear = document.querySelector('#statictics [data-id="revyear"]');
@@ -596,19 +610,19 @@ const handleExpertStatictiss = async(searchParams) => {
 
     var revbyyear = 0;
     expertAnalytics.currentYearRevenue.forEach((amount) => {
-        revbyyear += amount;
+      revbyyear += amount;
     })
     revyear.textContent = revbyyear + " VND";
 
-    avgrev.textContent = Math.round(revbyyear/12) + " VND";
+    avgrev.textContent = Math.round(revbyyear / 12) + " VND";
 
     uploadcourse.textContent = expertAnalytics.numOfUploadedCourse + " khoá";
 
     bestsale.textContent = expertAnalytics.bestSalesCourse;
 
     totalsales.textContent = expertAnalytics.totalSales;
-  
-    
+
+
   } catch (error) {
     console.log(error)
   }
@@ -621,25 +635,25 @@ const createRecordTrade = (data) => {
   if (!idUser)
     window.location.href = '/index.html';
   const tradeRecord = document.getElementById('tradeManageRecord');
-  if(!tradeRecord) return;
+  if (!tradeRecord) return;
 
   const record = tradeRecord.content.cloneNode(true);
-  if(!record) return;
+  if (!record) return;
 
-  if(data.typeOfTrade == 0) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Mua khoá học");
-  else if(data.typeOfTrade == 1) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Duy trì tài khoản");
+  if (data.typeOfTrade == 0) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Mua khoá học");
+  else if (data.typeOfTrade == 1) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Duy trì tài khoản");
   setTextContent(record, '[data-id="balance-trademanage"]', data.balance);
   setTextContent(record, '[data-id="requiredbalance-trademanage"]', data.requiredBalance);
   const dateoftrade = new Date(data.dateOfTrade);
-  setTextContent(record, '[data-id="dateoftrade-trademanage"]', dateoftrade.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
-  if(data.tradeStatus == 1) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Thành công');
-  else if(data.tradeStatus == 0) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Đang chờ');
-  else if(data.tradeStatus == -1) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Thất bại');  
+  setTextContent(record, '[data-id="dateoftrade-trademanage"]', dateoftrade.toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
+  if (data.tradeStatus == 1) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Thành công');
+  else if (data.tradeStatus == 0) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Đang chờ');
+  else if (data.tradeStatus == -1) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Thất bại');
 
   return record;
 }
 
-const getTrade = async(page) => {
+const getTrade = async (page) => {
   const searchParams = new URLSearchParams(window.location.search);
   const idUser = searchParams.get('id');
   if (!idUser)

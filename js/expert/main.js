@@ -102,13 +102,19 @@ const handleSave = async (searchParams, editor) => {
     }
 
     const price = getValueForm(detailForm, '#course-price');
-    if (!parseInt(price)) {
+    if (!parseInt(price) || parseInt(price) < 0) {
       showNotication('Vui lòng nhập giá tiền', 'error');
       return;
     }
 
     const description = await editor.getData();
+
+
     const discount = getValueForm(detailForm, '#course-discount');
+    if (!parseInt(discount) || parseInt(discount) < 0) {
+      showNotication('Vui lòng nhập giảm giá', 'error');
+      return;
+    }
 
     const status = getStatusValue('status');
 

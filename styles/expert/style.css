@@ -206,11 +206,11 @@ h4.degree-title {
 }
 
 /* statistics */
-.infor-node, .thongkekhoahoc .infor-node {
-    font-weight: 400;
-    font-size: 1.2rem;
+.infor-node,
+.thongkekhoahoc .infor-node {
+  font-weight: 400;
+  font-size: 1.2rem;
 }
-
 
 .infor-node {
   background-color: #fff;
@@ -219,4 +219,33 @@ h4.degree-title {
   padding: 0.2rem;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.manager {
+  font-size: 1.8rem;
+}
+
+.manager .data-view {
+  margin-top: 1rem;
+}
+
+.infor-node {
+  font-size: 1.8rem;
+}
+
+.warning {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: rgb(214, 11, 11);
+}
+
+#statictics .heading {
+  margin-bottom: 2rem;
+}
+
+.learning-number {
+  font-size: 1.8rem;
+}
+
+.number {
+  color: var(--primary-color);
 }
