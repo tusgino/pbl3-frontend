@@ -89,14 +89,27 @@ const handleSave = async (searchParams, editor) => {
   if (!btnSave) return;
   btnSave.onclick = async () => {
     const idCategory = getValueForm(detailForm, '#category');
-    const courseName = getValueForm(detailForm, '#course-name');
-    const price = getValueForm(detailForm, '#course-price');
-    // const description = getDescriptionValue();
-    // Get the editor instance
-    // Get the formatted HTML content from the editor
-    const description = await editor.getData();
 
+    if (idCategory === 'default') {
+      showNotication('Vui lòng chọn danh mục', 'error');
+      return;
+    }
+
+    const courseName = getValueForm(detailForm, '#course-name');
+    if (courseName === '') {
+      showNotication('Vui lòng nhập tên khóa học', 'error');
+      return;
+    }
+
+    const price = getValueForm(detailForm, '#course-price');
+    if (!parseInt(price)) {
+      showNotication('Vui lòng nhập giá tiền', 'error');
+      return;
+    }
+
+    const description = await editor.getData();
     const discount = getValueForm(detailForm, '#course-discount');
+
     const status = getStatusValue('status');
 
     // Handle Image and Video upload

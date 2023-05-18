@@ -17,7 +17,7 @@ const renderCourse = async (searchParams) => {
   console.log(data);
   const course = document.querySelector('.course-info');
   const confirm = document.querySelector('.confirm');
-  setTextContent(course, '.course-title', data.title);
+  setTextContent(course, '.course-title', data.courseName);
   setTextContent(course, '.price-old', toVND(data.price));
   setTextContent(course, '.price-new', toVND(data.price - data.price * data.discount / 100));
   setTextContent(confirm, '.price-old', toVND(data.price));
@@ -74,6 +74,7 @@ const handleSubmit = (searchParams) => {
       "typeOfPurchase": 3,
     }
 
+    console.log(data);
     const paymentModal = new bootstrap.Modal(document.getElementById('payment-info'));
     paymentModal.show();
 

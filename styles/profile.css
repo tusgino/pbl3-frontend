@@ -328,3 +328,13 @@ a:hover > i {
   flex-direction: column;
   justify-content: space-around;
 }
+
+.progress {
+  width: 20rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+}
+
+.value {
+  font-size: 1.8rem;
+}

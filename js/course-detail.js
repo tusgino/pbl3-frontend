@@ -1,8 +1,9 @@
 import courseAPI from "./api/courseAPI";
+import lessonAPI from "./api/lessonAPI";
 import { setSrcContent, setTextContent, toVND } from "./utils";
 
 
-const rederCourse = (course, category, user, id) => {
+const renderCourse = (course, category, user, id) => {
   if (!course) return;
   console.log(course);
   setTextContent(document, '.hero-title', course.courseName);
@@ -36,6 +37,23 @@ const rederCourse = (course, category, user, id) => {
   }
 }
 
+const checkCourse = async (searchParams) => {
+  const idUser = document.getElementById('email-purchase').dataset.idUser;
+  const idCourse = searchParams.get('id');
+  const params = {
+    id: idUser,
+  }
+  const token = localStorage.getItem('token');
+  const { data } = await courseAPI.getByIDUser(params, token);
+  console.log(data);
+  data.forEach(course => {
+    if (course.id === idCourse) {
+      window.location.href = `/lesson/index.html?id=${idUser}&course=${idCourse}`;
+      return;
+    }
+  });
+}
+
 (async () => {
   try {
     const searchParams = new URLSearchParams(window.location.search);
@@ -43,13 +61,10 @@ const rederCourse = (course, category, user, id) => {
     // console.log(courseId);
     if (!courseId)
       window.location.href = '/index.html';
-    // const { course, category, user } = await courseAPI.getByID({ id: courseId });
     const { data } = await courseAPI.getByID({ id: courseId });
     console.log(data);
-    // console.log(res);
-    // console.log(course.data);
-    // console.log(data.course);
-    rederCourse(data, data.category, data.user, courseId);
+    checkCourse(searchParams, data);
+    renderCourse(data, data.category, data.user, courseId);
   } catch (error) {
     console.log('Failed', error);
   }

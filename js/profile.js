@@ -1,4 +1,5 @@
 import courseAPI from "./api/courseAPI";
+import lessonAPI from "./api/lessonAPI";
 import uploadAPI from "./api/uploadAPI";
 import userAPI from "./api/userAPI";
 import { setSrcContent, setTextContent } from "./utils";
@@ -62,19 +63,55 @@ const handleProfile = async () => {
   }
 }
 
-const createCourse = (course, profileId) => {
+const createCourse = (course, profileId, chapters) => {
   if (!course) return;
   const liTemplate = document.getElementById('learningTemplate');
   if (!liTemplate) return;
   const liElement = liTemplate.content.cloneNode(true);
   if (!liElement) return;
 
+  let countCourses = 0;
+  let countCoursed = 0;
+
+  if (chapters.length !== 0) {
+    chapters.forEach(chapter => {
+      // console.log(chapter);
+      if (chapter.lessons.length !== 0) {
+        // console.log(chapter.lessons);
+        chapter.lessons.forEach(lesson => {
+          countCourses++;
+          if (lesson.status === 1) {
+            countCoursed++;
+          }
+        })
+      }
+    })
+  }
+
+  // console.log(countCoursed);
+  // console.log(countCourses);
+  console.log(`${countCoursed}/${countCourses}`);
+
+  const percent = (countCoursed / countCourses) * 100;
+  console.log(percent);
+
+  setTextContent(liElement, '.value .learned', countCoursed);
+  setTextContent(liElement, '.value .total', countCourses);
+
+  const progressBar = liElement.querySelector('.progress-bar');
+  if (progressBar) {
+    progressBar.style.width = `${percent}%`;
+    progressBar.setAttribute('aria-valuenow', countCoursed);
+    progressBar.setAttribute('aria-valuemax', countCourses);
+
+  }
+
   setSrcContent(liElement, '[data-id="thumbnail"]', course?.thumbnail);
   setTextContent(liElement, '[data-id="title"]', course?.title);
   setTextContent(liElement, '[data-id="name"]', course?.nameUser);
   setSrcContent(liElement, '[data-id="avatar"]', course?.avatarUser);
 
-  console.log(course);
+  // console.log(course);
   liElement.firstElementChild?.addEventListener('click', (e) => {
     // e.preventDefault();
     window.location.href = `/lesson/index.html?id=${profileId}&course=${course?.id}`;
@@ -87,8 +124,14 @@ const renderLearningUI = async (courses, profileId) => {
   if (!Array.isArray(courses) || courses.length === 0) return;
   const ulElement = document.querySelector('.learning-list');
   if (!ulElement) return;
-  courses.forEach(course => {
-    const liElement = createCourse(course, profileId);
+  const token = localStorage.getItem('token');
+  courses.forEach(async (course) => {
+    const params = {
+      idCourse: course.id,
+      idUser: profileId,
+    }
+    const { data } = await lessonAPI.getAllLesson(params, token);
+    const liElement = createCourse(course, profileId, data.chapters);
     if (liElement)
       ulElement.appendChild(liElement);
   })
@@ -169,7 +212,7 @@ const handleSaveInfo = async (id) => {
     if (!token) return;
     try {
       const res = await uploadAPI.uploadImage(formData, token);
-      // console.log(res);
+      console.log(res);
       const formName = document.querySelector('#name');
       if (!formName) return;
 
