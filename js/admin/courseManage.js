@@ -74,12 +74,12 @@ const createRecord = (data) => {
 
 const getCourses = async(page) => {
     const params = {
-        "_title_like" : document.getElementById('txtsearch-coursemanage').value,
-        "_category_name" : document.getElementById('name-category').value,
-        "_start_upload_day" : document.getElementById('dateupload-from').value, 
-        "_end_upload_day" : document.getElementById('dateupload-to').value,
-        "_status_active" : document.getElementById('btnchecktrue-coursestatus-manager').checked,
-        "_status_store" : document.getElementById('btncheckfalse-coursestatus-manager').checked,
+        "title_like" : document.getElementById('txtsearch-coursemanage').value,
+        "category_name" : document.getElementById('name-category').value,
+        "start_upload_day" : document.getElementById('dateupload-from').value, 
+        "end_upload_day" : document.getElementById('dateupload-to').value,
+        "status_active" : document.getElementById('btnchecktrue-coursestatus-manager').checked,
+        "status_store" : document.getElementById('btncheckfalse-coursestatus-manager').checked,
         "page" : page,
     };
 

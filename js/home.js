@@ -66,21 +66,23 @@ const initMoreCourse = () => {
   buttonMore.addEventListener('click', async () => {
     const ulElement = getPostList();
     if (!ulElement) return;
+    
+    const page = Number(++ulElement.dataset.page);
+    const limit = 6;
+    const totalPage = Number(ulElement.dataset.totalPage);
 
-    const _page = Number(ulElement.dataset.page) + 1;
-    const _limit = 9;
-    const _totalPage = Number(ulElement.dataset.totalPage);
-
-    if (_page > _totalPage) return;
-
+    if (page > totalPage) return;
+    
     try {
       const params = {
-        _page,
-        _limit,
+        page,
+        limit
       };
-      const { data, pagination } = await courseAPI.getAll(params);
-      renderPagination(pagination);
+      console.log(params)
+      const { data: { data, pagination } } = await courseAPI.getAll(params);
       renderCourse(data);
+      renderPagination(pagination);
+      console.log(data)
     } catch (error) {
       console.log('Error from get posts', error);
     }
@@ -94,8 +96,8 @@ const getPosts = async () => {
 
   try {
     const params = {
-      _page: 1,
-      _limit: 6,
+      page: 1,
+      limit: 6,
     };
     const { data: { data, pagination } } = await courseAPI.getAll(params);
     // console.log(data);

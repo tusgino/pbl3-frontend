@@ -89,14 +89,14 @@ const createRecord = (data) => {
 
 const getUsers = async(page) => {
     const params = {
-        "_title_like" : document.getElementById('txtsearch-usermanage').value,
-        "_is_student" : document.getElementById("btncheckstudent").checked, 
-        "_is_expert" : document.getElementById('btncheckexpert').checked,
-        "_is_admin" : document.getElementById('btncheckadmin').checked,
-        "_start_date_create" : document.getElementById('datecreate-from').value,
-        "_end_date_create" : document.getElementById('datecreate-to').value,
-        "_status_active" : document.getElementById('btncheckactive').checked, 
-        "_status_banned" : document.getElementById('btncheckbanned').checked,
+        "title_like" : document.getElementById('txtsearch-usermanage').value,
+        "start_date_create" : document.getElementById('datecreate-from').value,
+        "end_date_create" : document.getElementById('datecreate-to').value,
+        "status_active" : document.getElementById('btncheckactive').checked, 
+        "status_banned" : document.getElementById('btncheckbanned').checked,
+        "is_student" : document.getElementById("btncheckstudent").checked, 
+        "is_expert" : document.getElementById('btncheckexpert').checked,
+        "is_admin" : document.getElementById('btncheckadmin').checked,
         "page" : page,
     };
 
@@ -104,7 +104,7 @@ const getUsers = async(page) => {
     dataview.textContent = "";
 
     const {data : {_data, _totalRows}} = await userAPI.getAllUsersByFiltering(params, token);
-    
+    console.log(await userAPI.getAllUsersByFiltering(params, token));
     systemAPI.renderRecord(_data, 'quanlinguoidung', createRecord);
     // systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers, page);
     systemAPI.renderPaginationNew(_totalRows, 'quanlinguoidung', getUsers, page);
@@ -343,9 +343,9 @@ const handleExpertRequest = async() => {
 
 const getExpertRequest = async(page) => {
     const params = {
-        "_name" : document.getElementById('txtsearch-addexpert').value,
-        "_date_create_from" : document.getElementById('req-date-from').value,
-        "_date_create_to" : document.getElementById('req-date-to').value,
+        "name" : document.getElementById('txtsearch-addexpert').value,
+        "date_create_from" : document.getElementById('req-date-from').value,
+        "date_create_to" : document.getElementById('req-date-to').value,
         "page" : page, 
     }
 
