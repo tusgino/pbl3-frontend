@@ -19,8 +19,29 @@ const createCourseElement = (course) => {
   setSrcContent(liElement, '[data-id="thumbnail"]', course.thumbnail);
   setSrcContent(liElement, '[data-id="avatar"]', course.avatarUser);
 
-  liElement.firstElementChild?.addEventListener('click', () => {
-    window.location.assign(`/course/detail.html?id=${course.id}`);
+  liElement.firstElementChild?.addEventListener('click', async (event) => {
+    event.preventDefault()
+    const token = localStorage.getItem('token');
+    const idCourse = course.id
+    const idUser = localStorage.getItem('idUser')
+    const params = {
+      id: idUser,
+    }
+    console.log(params);
+    const { data } = await courseAPI.getByIDUser(params, token);
+    console.log(data);
+    if (data.length !== 0) {
+      data.forEach(course => {
+        if (course.id === idCourse) {
+          console.log("Hello");
+          window.location.href = `/lesson/index.html?id=${idUser}&course=${idCourse}`;
+          return;
+        }
+      });
+    }
+    else {
+      window.location.assign(`/course/detail.html?id=${course.id}`);
+    }
   })
 
   return liElement;
@@ -28,11 +49,14 @@ const createCourseElement = (course) => {
 
 const renderCourse = (courseList) => {
 
+  // console.log(typeof (courseList));
+  // console.log(courseList.length);
   if (!Array.isArray(courseList) || courseList.length === 0) return;
   const ulElement = getPostList();
   if (!ulElement) return;
   courseList.forEach((course) => {
     const liElement = createCourseElement(course);
+    // console.log(liElement);
     if (liElement) {
       ulElement.appendChild(liElement);
     }
@@ -68,9 +92,11 @@ const initMoreCourse = () => {
     if (!ulElement) return;
 
     const _page = Number(ulElement.dataset.page) + 1;
-    const _limit = 9;
+    const _limit = 6;
     const _totalPage = Number(ulElement.dataset.totalPage);
 
+    console.log(_page);
+    console.log(_totalPage);
     if (_page > _totalPage) return;
 
     try {
@@ -78,9 +104,10 @@ const initMoreCourse = () => {
         _page,
         _limit,
       };
-      const { data, pagination } = await courseAPI.getAll(params);
-      renderPagination(pagination);
+      const { data: { data, pagination } } = await courseAPI.getAll(params);
+      console.log(data);
       renderCourse(data);
+      renderPagination(pagination);
     } catch (error) {
       console.log('Error from get posts', error);
     }
@@ -113,6 +140,7 @@ const renderUIRole = async (role, token) => {
   const params = {
     id: role.idUser,
   }
+  localStorage.setItem('idUser', role.idUser)
   try {
     const { data } = await userAPI.getByID(params, token);
     if (window.location.pathname == '/') {
@@ -162,11 +190,11 @@ const renderUIRole = async (role, token) => {
     const namePurchase = document.getElementById('name-purchase');
     const emailPurchase = document.getElementById('email-purchase');
     if (namePurchase && emailPurchase) {
+      emailPurchase.setAttribute('disabled', '');
+      namePurchase.setAttribute('disabled', '');
       namePurchase.value = data.name;
       emailPurchase.value = data.email;
       emailPurchase.dataset.idUser = data.idUser;
-      namePurchase.setAttribute('disabled', '');
-      emailPurchase.setAttribute('disabled', '');
     }
   } catch (error) {
     console.log(error);

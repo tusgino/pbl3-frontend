@@ -37,23 +37,6 @@ const renderCourse = (course, category, user, id) => {
   }
 }
 
-const checkCourse = async (searchParams) => {
-  const idUser = document.getElementById('email-purchase').dataset.idUser;
-  const idCourse = searchParams.get('id');
-  const params = {
-    id: idUser,
-  }
-  const token = localStorage.getItem('token');
-  const { data } = await courseAPI.getByIDUser(params, token);
-  console.log(data);
-  data.forEach(course => {
-    if (course.id === idCourse) {
-      window.location.href = `/lesson/index.html?id=${idUser}&course=${idCourse}`;
-      return;
-    }
-  });
-}
-
 (async () => {
   try {
     const searchParams = new URLSearchParams(window.location.search);
@@ -63,7 +46,6 @@ const checkCourse = async (searchParams) => {
       window.location.href = '/index.html';
     const { data } = await courseAPI.getByID({ id: courseId });
     console.log(data);
-    checkCourse(searchParams, data);
     renderCourse(data, data.category, data.user, courseId);
   } catch (error) {
     console.log('Failed', error);

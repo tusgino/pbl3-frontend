@@ -91,3 +91,8 @@
   justify-content: center;
   align-items: center;
 }
+
+.pagination .page-item {
+  cursor: pointer;
+  font-size: 1.6rem;
+}

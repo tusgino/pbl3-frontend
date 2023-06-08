@@ -8,31 +8,31 @@ import { ReloadOverview } from "./overview";
 const token = localStorage.getItem('token');
 
 const createRecord = (data) => {
-    if(!data) return;
-    console.log(data)   
+    if (!data) return;
+    console.log(data)
 
     const userManageRecord = document.getElementById('userManageRecord')
-    if(!userManageRecord) return;
+    if (!userManageRecord) return;
 
     const record = userManageRecord.content.cloneNode(true);
-    if(!record) return;
+    if (!record) return;
 
     const avatar = record.querySelector('.avatar');
     // console.log(avatar)
     avatar.src = data.avatar;
 
     const _datecreate = new Date(data.dateCreate);
-    const datecreate = _datecreate.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
+    const datecreate = _datecreate.toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
     const _dateofbirth = new Date(data.dateOfBirth);
-    const dateofbirth = _dateofbirth.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
+    const dateofbirth = _dateofbirth.toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
 
-    
+
 
     setTextContent(record, '[data-id="userName"]', data.name);
     setTextContent(record, '[data-id="userType"]', data.typeOfUser);
     setTextContent(record, '[data-id="dateCreate"]', datecreate);
     setTextContent(record, '[data-id="userStatus"]', data.status);
-    
+
     // const modalstudentinfo = document.getElementById('Modal-studentinfo');
     const detailuseravatar = document.getElementById('detail-userAvatar');
     const detailusername = document.getElementById('detail-userName');
@@ -45,7 +45,7 @@ const createRecord = (data) => {
     const detailuserstatus = document.getElementById('detail-userstatus');
     const btnbanacc = document.getElementById('btn-banacc');
     const btnunbanacc = document.getElementById('btn-unbanacc');
-    const btndelacc= document.getElementById('btn-delacc');
+    const btndelacc = document.getElementById('btn-delacc');
 
 
     //const detailstudentinfo = document.getElementById("Modal-studentinfo")
@@ -56,18 +56,18 @@ const createRecord = (data) => {
         detailuseravatar.src = data.avatar;
         detailusername.value = data.name;
         detailusertype.value = data.typeOfUser;
-        if(dateofbirth == 'Invalid Date') detailuserdob.value = data.dateOfBirth;
+        if (dateofbirth == 'Invalid Date') detailuserdob.value = data.dateOfBirth;
         else detailuserdob.value = dateofbirth;
         detailuserpn.value = data.phoneNumber;
         detailuseridcard.value = data.idCard;
         detailuseremail.value = data.email;
         detailuserdatecreate.value = datecreate;
         detailuserstatus.value = data.status;
-        if(data.typeOfUser == "Admin" || data.status == "Cấm vĩnh viễn") {
+        if (data.typeOfUser == "Admin" || data.status == "Cấm vĩnh viễn") {
             btnbanacc.style.display = "none";
             btndelacc.style.display = "none";
             btnunbanacc.style.display = "none";
-        } else if(data.status == "Hoạt động") {
+        } else if (data.status == "Hoạt động") {
             btnbanacc.style.display = "block";
             btndelacc.style.display = "none";
             btnunbanacc.style.display = "none";
@@ -76,35 +76,35 @@ const createRecord = (data) => {
             btndelacc.style.display = "block";
             btnbanacc.style.display = "none";
         }
-        console.log(data);   
-        
+        console.log(data);
+
         btnbanacc.value = data.id;
         btnunbanacc.value = data.id;
         btndelacc.value = data.id;
     })
-    
-    
+
+
     return record;
 }
 
-const getUsers = async(page) => {
+const getUsers = async (page) => {
     const params = {
-        "_title_like" : document.getElementById('txtsearch-usermanage').value,
-        "_is_student" : document.getElementById("btncheckstudent").checked, 
-        "_is_expert" : document.getElementById('btncheckexpert').checked,
-        "_is_admin" : document.getElementById('btncheckadmin').checked,
-        "_start_date_create" : document.getElementById('datecreate-from').value,
-        "_end_date_create" : document.getElementById('datecreate-to').value,
-        "_status_active" : document.getElementById('btncheckactive').checked, 
-        "_status_banned" : document.getElementById('btncheckbanned').checked,
-        "page" : page,
+        "_title_like": document.getElementById('txtsearch-usermanage').value,
+        "_is_student": document.getElementById("btncheckstudent").checked,
+        "_is_expert": document.getElementById('btncheckexpert').checked,
+        "_is_admin": document.getElementById('btncheckadmin').checked,
+        "_start_date_create": document.getElementById('datecreate-from').value,
+        "_end_date_create": document.getElementById('datecreate-to').value,
+        "_status_active": document.getElementById('btncheckactive').checked,
+        "_status_banned": document.getElementById('btncheckbanned').checked,
+        "page": page,
     };
 
     const dataview = document.querySelector(".quanlinguoidung .data-view");
     dataview.textContent = "";
 
-    const {data : {_data, _totalRows}} = await userAPI.getAllUsersByFiltering(params, token);
-    
+    const { data: { _data, _totalRows } } = await userAPI.getAllUsersByFiltering(params, token);
+
     systemAPI.renderRecord(_data, 'quanlinguoidung', createRecord);
     // systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers, page);
     systemAPI.renderPaginationNew(_totalRows, 'quanlinguoidung', getUsers, page);
@@ -112,10 +112,10 @@ const getUsers = async(page) => {
 
 const setEventSearch = () => {
     const btnsearch = document.getElementById('btn-search-usermanage');
-    btnsearch.addEventListener('click', async() => {
+    btnsearch.addEventListener('click', async () => {
         getUsers(1);
     })
-    const btnsearchex =  document.getElementById('btn-search-addexpert');
+    const btnsearchex = document.getElementById('btn-search-addexpert');
     btnsearchex.addEventListener('click', () => {
         getExpertRequest(1);
     })
@@ -124,9 +124,9 @@ const setEventSearch = () => {
 const setEventHandlerAcc = () => {
     const btnbanacc = document.getElementById('btn-banacc');
     const btnunbanacc = document.getElementById('btn-unbanacc');
-    const btndelacc= document.getElementById('btn-delacc');
+    const btndelacc = document.getElementById('btn-delacc');
 
-    btnbanacc.addEventListener('click', async(event) => {
+    btnbanacc.addEventListener('click', async (event) => {
         const patch = [{
             "operationType": 1,
             "path": "/Status",
@@ -134,13 +134,13 @@ const setEventHandlerAcc = () => {
             "value": 0,
         }];
         const params = {
-            id : event.target.value,
-            patchDoc : JSON.stringify(patch),
+            id: event.target.value,
+            patchDoc: JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
+        if (await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
         getUsers(1);
     })
-    btnunbanacc.addEventListener('click', async(event) => {
+    btnunbanacc.addEventListener('click', async (event) => {
         const patch = [{
             "operationType": 1,
             "path": "/Status",
@@ -148,13 +148,13 @@ const setEventHandlerAcc = () => {
             "value": 1,
         }];
         const params = {
-            id : event.target.value,
-            patchDoc : JSON.stringify(patch),
+            id: event.target.value,
+            patchDoc: JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
+        if (await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
         getUsers(1);
     })
-    btndelacc.addEventListener('click', async(event) => {
+    btndelacc.addEventListener('click', async (event) => {
         const patch = [{
             "operationType": 1,
             "path": "/Status",
@@ -162,21 +162,21 @@ const setEventHandlerAcc = () => {
             "value": -1,
         }];
         const params = {
-            id : event.target.value,
-            patchDoc : JSON.stringify(patch),
+            id: event.target.value,
+            patchDoc: JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
+        if (await userAPI.updateUser(params, token)) showNotication("Cập nhật thành công");
         getUsers(1);
     })
-    
+
 }
 
-const clearFormHandle = async() => {
+const clearFormHandle = async () => {
     const btnclearform = document.getElementById('btn-clear-form');
-    if(!btnclearform) return;
+    if (!btnclearform) return;
 
     const addadminform = document.getElementById('usermanager-addadmin');
-    
+
     btnclearform.addEventListener('click', () => {
         // addadminform.querySelector('.avatar').src = "https://media.istockphoto.com/id/1307140502/vi/vec-to/vector-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-h%E1%BB%93-s%C6%A1-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-ch%C3%A2n-dung-avatar-logo-k%C3%BD-t%C3%AAn-ng%C6%B0%E1%BB%9Di-h%C3%ACnh-d%E1%BA%A1ng.jpg?s=612x612&w=0&k=20&c=yCpEW0XGq3LCgCn-0GupWknu4pIYxEm8CigGHnqVkQU=";
         addadminform.querySelector('input[name="txt-admin-name"]').value = '';
@@ -187,24 +187,24 @@ const clearFormHandle = async() => {
         // addadminform.querySelector('input[name="txt-admin-bankname"]').value = '';
         addadminform.querySelector('input[name="txt-admin-password"]').value = '';
         addadminform.querySelector('input[name="txt-admin-repassword"]').value = '';
-        
-    
+
+
 
     })
 
 
 }
 
-const handleDegreeChange = async() => {
+const handleDegreeChange = async () => {
     const selector = document.querySelector('[name="txt-expert-degree"]');
-    if(!selector) return;
+    if (!selector) return;
 
     const degreeimage = document.getElementById('degree-image');
     const degreedesc = document.getElementById('degree-desc');
 
     console.log(degreeimage)
     console.log(degreedesc)
-    selector.addEventListener('change', async() => {
+    selector.addEventListener('change', async () => {
         const degreeid = selector.options[selector.selectedIndex].value;
         console.log(degreeid)
         const degree = await expertAPI.getDegreeByIDDgree(degreeid, token);
@@ -219,25 +219,25 @@ const handleDegreeChange = async() => {
 }
 
 const createExpertRequestRecord = (data) => {
-    
-    if(!data) return;
+
+    if (!data) return;
     console.log(data)
     // add request vao trong view 
     const addExpertRecord = document.getElementById('addExpertRequest');
-    if(!addExpertRecord) return;
+    if (!addExpertRecord) return;
 
     console.log(addExpertRecord)
     const record = addExpertRecord.content.cloneNode(true);
-    if(!record) return;
-    
-    
+    if (!record) return;
+
+
     setTextContent(record, '[data-id="expertName"]', data.name);
-    
+
     const dateCreate = new Date(data.dateCreate);
-    setTextContent(record, '[data-id="requestDate"]', dateCreate.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
+    setTextContent(record, '[data-id="requestDate"]', dateCreate.toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
 
     //
-    
+
     const expertavatar = document.querySelector('[name="txt-expert-avatar"]');
     const expertname = document.querySelector('[name="txt-expert-name"]');
     const expertdob = document.querySelector('[name="txt-expert-birth"]');
@@ -256,12 +256,12 @@ const createExpertRequestRecord = (data) => {
 
     const btnaddexpert = document.getElementById('btn-add-expert');
     const btnrefuseexpet = document.getElementById('btn-refuseexpert');
-    
+
     console.log(btninfo)
     const defaultoption = document.createElement('option');
     defaultoption.value = 'default';
     defaultoption.textContent = " - Chọn bằng cấp - ";
-    
+
     btninfo.addEventListener('click', () => {
         expertavatar.src = data.avatar;
         expertname.value = data.name;
@@ -278,21 +278,21 @@ const createExpertRequestRecord = (data) => {
         data.degrees.forEach((element) => {
             const option = document.createElement('option');
             option.textContent = element.name;
-            option.value = element.idDegree; 
+            option.value = element.idDegree;
             expertdegree.appendChild(option);
             console.log(expertdegree)
-        });   
+        });
         btnaddexpert.value = data.idUser;
-        btnrefuseexpet.value = data.idUser;  
+        btnrefuseexpet.value = data.idUser;
     })
     return record;
 }
 
-const handleExpertRequest = async() => {
+const handleExpertRequest = async () => {
     const btnaddexpert = document.getElementById('btn-add-expert');
     const btnrefuseexpert = document.getElementById('btn-refuseexpert');
 
-    btnaddexpert.addEventListener('click', async(event) => {
+    btnaddexpert.addEventListener('click', async (event) => {
         const patch = [{
             "operationType": 1,
             "path": "/Status",
@@ -300,14 +300,62 @@ const handleExpertRequest = async() => {
             "value": 1,
         }];
         const params = {
-            id : event.target.value,
-            patchDoc : JSON.stringify(patch),
+            id: event.target.value,
+            patchDoc: JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) {
+        if (await userAPI.updateUser(params, token)) {
             const data = {
-                idUser : event.target.value,
-                subject : "Thông báo từ THH Online Course",
-                body : "Tài khoản của bạn đã xác nhận thành công",
+                idUser: event.target.value,
+                subject: "Thông báo từ THH Online Course",
+                body: `<!DOCTYPE html>
+                        <html>
+
+                        <head>
+                        <meta charset="UTF-8">
+                        <title>Confirmation Email</title>
+                        <style>
+                            /* CSS styles */
+                            body {
+                            font-family: Arial, sans-serif;
+                            background-color: #f5f5f5;
+                            padding: 20px;
+                            }
+
+                            .container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            background-color: #ffffff;
+                            padding: 20px;
+                            border-radius: 5px;
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                            }
+
+                            .header {
+                            text-align: center;
+                            margin-bottom: 20px;
+                            color: #5271ff;
+                            }
+
+                            .content {
+                            line-height: 1.6;
+                            text-align: center;
+                            }
+                        </style>
+                        </head>
+
+                        <body>
+                        <div class="container">
+                            <div class="header">
+                            <h1>Email thông báo</h1>
+                            </div>
+                            <div class="content">
+                            <p>Tài khoản của bạn đã được xác nhận thành công</p>
+                            </div>
+                        </div>
+                        </body>
+
+                        </html>
+                        `,
             }
             userAPI.sendMail(data, token);
             showNotication("Thêm thành công");
@@ -315,8 +363,8 @@ const handleExpertRequest = async() => {
         getExpertRequest(1);
         ReloadOverview();
     })
-    
-    btnrefuseexpert.addEventListener('click', async(event) => {
+
+    btnrefuseexpert.addEventListener('click', async (event) => {
         const patch = [{
             "operationType": 1,
             "path": "/Status",
@@ -324,14 +372,62 @@ const handleExpertRequest = async() => {
             "value": -1,
         }];
         const params = {
-            id : event.target.value,
-            patchDoc : JSON.stringify(patch),
+            id: event.target.value,
+            patchDoc: JSON.stringify(patch),
         }
-        if(await userAPI.updateUser(params, token)) {
+        if (await userAPI.updateUser(params, token)) {
             const data = {
-                idUser : event.target.value,
-                subject : "Thông báo từ THH Online Course",
-                body : "Thông tin tài khoản của bạn không hợp lệ",
+                idUser: event.target.value,
+                subject: "Thông báo từ THH Online Course",
+                body: `<!DOCTYPE html>
+                        <html>
+
+                        <head>
+                        <meta charset="UTF-8">
+                        <title>Confirmation Email</title>
+                        <style>
+                            /* CSS styles */
+                            body {
+                            font-family: Arial, sans-serif;
+                            background-color: #f5f5f5;
+                            padding: 20px;
+                            }
+
+                            .container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            background-color: #ffffff;
+                            padding: 20px;
+                            border-radius: 5px;
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                            }
+
+                            .header {
+                            text-align: center;
+                            margin-bottom: 20px;
+                            color: #ff0000;
+                            }
+
+                            .content {
+                            line-height: 1.6;
+                            text-align: center;
+                            }
+                        </style>
+                        </head>
+
+                        <body>
+                        <div class="container">
+                            <div class="header">
+                            <h1>Email thông báo</h1>
+                            </div>
+                            <div class="content">
+                            <p>Tài khoản của bạn đã không hợp lệ!</p>
+                            </div>
+                        </div>
+                        </body>
+
+                        </html>
+                        `,
             }
             userAPI.sendMail(data, token);
             showNotication("Từ chối thành công");
@@ -341,18 +437,18 @@ const handleExpertRequest = async() => {
     })
 }
 
-const getExpertRequest = async(page) => {
+const getExpertRequest = async (page) => {
     const params = {
-        "_name" : document.getElementById('txtsearch-addexpert').value,
-        "_date_create_from" : document.getElementById('req-date-from').value,
-        "_date_create_to" : document.getElementById('req-date-to').value,
-        "page" : page, 
+        "_name": document.getElementById('txtsearch-addexpert').value,
+        "_date_create_from": document.getElementById('req-date-from').value,
+        "_date_create_to": document.getElementById('req-date-to').value,
+        "page": page,
     }
 
     // const dataview = document.querySelector(".formthemexpert .data-view");
     // dataview.textContent = "";
 
-    const {data : {_data, _totalRows}} = await userAPI.getAllExpertRequest(params, token);
+    const { data: { _data, _totalRows } } = await userAPI.getAllExpertRequest(params, token);
 
     console.log(_data);
 
@@ -360,8 +456,8 @@ const getExpertRequest = async(page) => {
     // systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest, page);
     systemAPI.renderPaginationNew(_totalRows, 'formthemexpert', getExpertRequest, page);
 }
- 
-const addAdmin = async() => {
+
+const addAdmin = async () => {
     const btnaddadmin = document.getElementById('btn-add-admin');
     btnaddadmin.addEventListener('click', async () => {
         const addadminform = document.getElementById('usermanager-addadmin');
@@ -371,22 +467,22 @@ const addAdmin = async() => {
         const password = addadminform.querySelector('input[name="txt-admin-password"]').value;
         const repassword = addadminform.querySelector('input[name="txt-admin-repassword"]').value;
 
-        if(name == '' || email == '' || password == '' || repassword == '') {
+        if (name == '' || email == '' || password == '' || repassword == '') {
             showNotication("Thiếu thông tin", 'error');
             return;
         }
-        if(confirm('Xác nhận thêm?')) {
+        if (confirm('Xác nhận thêm?')) {
 
             try {
                 const data = {
-                    "name" : name,
-                    "username" : email,
-                    "password" : password, 
-                    "repassword" : repassword, 
-                    "typeOfUser" : 0, 
+                    "name": name,
+                    "username": email,
+                    "password": password,
+                    "repassword": repassword,
+                    "typeOfUser": 0,
                 }
                 const res = await accountAPI.register(data);
-                if(res.success) {
+                if (res.success) {
                     showNotication("Thêm Admin thành công");
                 }
                 ReloadOverview();
@@ -398,21 +494,21 @@ const addAdmin = async() => {
     })
 }
 
-(async() => {    
+(async () => {
     try {
         // avatarHandle();
 
         setEventSearch();
         setEventHandlerAcc();
         getUsers(1);
-        
+
         clearFormHandle();
-        addAdmin(); 
-        
+        addAdmin();
+
         handleDegreeChange();
         handleExpertRequest();
         getExpertRequest(1);
-        
+
     } catch (error) {
         console.log(error);
     }
