@@ -50,6 +50,8 @@
         <div class="detail-item detail-name">
           <label for="course-name" class="detail-label">Tên khóa học</label>
           <input type="text" name="name" id="course-name" placeholder="Tên khóa học">
+          <p></p>
+          <p class="message"></p>
         </div>
 
         <div class="detail-item course-desc">
@@ -65,19 +67,25 @@
           <select class="category-control" id="category">
             <option value="default"> - Chọn danh mục - </option>
           </select>
+          <p></p>
+          <p class="message"></p>
         </div>
 
         <div class="detail-item detail-price">
           <label for="course-price" class="detail-label">Giá</label>
-          <input type="text" name="price" id="course-price" placeholder="Giá tiền VNĐ">
+          <input type="number" name="price" id="course-price" placeholder="Giá tiền VNĐ">
+          <p></p>
+          <p class="message"></p>
         </div>
 
         <div class="detail-item detail-discount">
           <label for="course-discount" class="detail-label">Giảm giá</label>
-          <input type="text" name="discount" id="course-discount" placeholder="% giảm giá" value="0">
+          <input type="number" name="discount" id="course-discount" placeholder="% giảm giá" value="0">
+          <p></p>
+          <p class="message"></p>
         </div>
 
-        <div class="detail-item detail-thumbnail">
+        <div class="detail-item detail-thumbnail ">
           <label for="course-thumbnail" class="detail-label">Ảnh đại diện</label>
           <form id="file-upload-form" class="uploader">
             <input id="file-upload" type="file" name="fileUpload" hidden />
@@ -91,9 +99,11 @@
               </div>
             </label>
           </form>
+          <p></p>
+          <p class="message"></p>
         </div>
 
-        <div class="detail-item detail-video">
+        <div class="detail-item detail-video ">
           <label for="course-video" class="detail-label">Video đại diện</label>
           <form id="file-upload-form" class="uploader">
             <input id="video-upload" type="file" name="fileUpload" accept="video/*" hidden />
@@ -113,6 +123,8 @@
             </div>
             <div class="message"></div>
           </form>
+          <p></p>
+          <p class="message"></p>
         </div>
 
 

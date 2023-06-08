@@ -250,3 +250,26 @@ section.action {
   background-color: #1abc9c;
   transition: width 0.5s ease-in-out;
 }
+
+.message {
+  color: #ff0000;
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-top: 1rem;
+}
+
+.detail-item.message > input {
+  border: 1px solid #ff0000;
+}
+
+.detail-item.message > select {
+  border: 1px solid #ff0000;
+}
+
+.detail-item.message #file-drag {
+  border: 2px dashed #ff0000;
+}
+
+.detail-item.message #video-drag {
+  border: 2px dashed #ff0000;
+}

@@ -58,9 +58,12 @@
       <section class="detail-form">
         <div class="detail-item lesson-chapter">
           <label for="course-chapter" class="detail-label">Chương</label>
-          <select class="select-control chapter-control" id="chapter">
-            <option value="default"> - Chọn chương học - </option>
-          </select>
+          <div class="select">
+            <select class="select-control chapter-control" id="chapter">
+              <option value="default"> - Chọn chương học - </option>
+            </select>
+            <p class="message"></p>
+          </div>
           <div class="action chapter-action">
             <button data-bs-target="#chapterModal"><i class="fas fa-edit action-edit"></i></button>
             <button><i class="fas fa-trash-alt action-remove"></i></button>
@@ -69,11 +72,14 @@
           </div>
         </div>
 
+
         <div class="detail-item lesson-detail">
           <label for="course-lesson" class="detail-label">Bài giảng</label>
-          <select class="select-control lesson-control" id="lesson">
-            <option value="default"> - Chọn bài giảng - </option>
-          </select>
+          <div class="select">
+            <select class="select-control lesson-control" id="lesson">
+              <option value="default"> - Chọn bài giảng - </option>
+            </select>
+          </div>
           <div class="action lesson-action">
             <!-- <button type="button"><i class="fas fa-edit action-edit"></i></button> -->
             <button><i class="fas fa-trash-alt action-remove"></i></button>
@@ -81,9 +87,11 @@
           </div>
         </div>
         <div class="lesson-content hidden ">
-          <div class="detail-item detail-name">
+          <div class="detail-item detail-name detail-lesson">
             <label for="lesson-name" class="detail-label">Tên bài học</label>
             <input type="text" name="name" id="lesson-name" placeholder="Tên bài học">
+            <p></p>
+            <p class="message"></p>
           </div>
 
           <div class="detail-item detail-video">
@@ -110,9 +118,11 @@
             </div>
           </div>
 
-          <div class="detail-item detail-duration">
+          <div class="detail-item detail-duration detail-lesson">
             <label for="lesson-duration" class="detail-label">Thời lượng bài học(%)</label>
-            <input type="text" name="duration" id="lesson-duration" placeholder="Đơn vị %">
+            <input type="number" name="duration" id="lesson-duration" placeholder="Đơn vị %">
+            <p></p>
+            <p class="message"></p>
           </div>
 
           <div class="detail-item lesson-desc">

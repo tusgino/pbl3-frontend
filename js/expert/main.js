@@ -18,6 +18,7 @@ const handleImageChange = () => {
 
     fileReader.readAsDataURL(file);
     document.getElementById('file-drag').style.border = "0px";
+    clearError('.detail-thumbnail')
   });
 }
 
@@ -53,6 +54,7 @@ const handleVideoChange = () => {
 
     fileReader.readAsDataURL(file);
     document.querySelector('#video-drag').style.border = "0px";
+    clearError('.detail-video')
   });
 };
 
@@ -78,6 +80,60 @@ const fillCategory = async () => {
   }
 }
 
+const setError = (error, message) => {
+  const Element = document.querySelector(error);
+  if (!Element) return
+
+  Element.classList.add('message')
+
+  Element.querySelector('.message').innerText = message
+}
+
+const clearError = (error) => {
+  const Element = document.querySelector(error);
+  if (!Element) return
+
+  if (Element.classList.contains('message')) {
+    Element.classList.remove('message')
+    Element.querySelector('.message').innerText = ''
+  }
+
+}
+
+const handleChange = () => {
+  const changeName = document.querySelector('.detail-name input')
+  const changePrice = document.querySelector('.detail-price input')
+  const changeDiscount = document.querySelector('.detail-discount input')
+  const changeCategory = document.querySelector('.detail-category select')
+
+  if (!changeName) return
+  if (!changePrice) return
+  if (!changeDiscount) return
+  if (!changeCategory) return
+
+  console.log(changeName);
+
+  changeName.addEventListener('input', () => {
+    clearError('.detail-name')
+  })
+
+  changeName.addEventListener('change', () => {
+    clearError('.detail-name')
+  })
+
+  changePrice.addEventListener('change', () => {
+    clearError('.detail-price')
+  })
+
+  changeDiscount.addEventListener('change', () => {
+    clearError('.detail-discount')
+  })
+
+  changeCategory.addEventListener('change', () => {
+    clearError('.detail-category')
+  })
+}
+
 const handleSave = async (searchParams, editor) => {
   const token = localStorage.getItem('token');
   if (!token) return;
@@ -90,21 +146,31 @@ const handleSave = async (searchParams, editor) => {
   btnSave.onclick = async () => {
     const idCategory = getValueForm(detailForm, '#category');
 
+    let count = 0
+
     if (idCategory === 'default') {
-      showNotication('Vui lòng chọn danh mục', 'error');
-      return;
+      count++
+      setError('.detail-category', 'Vui lòng chọn danh mục khóa học')
+      // return;
     }
 
     const courseName = getValueForm(detailForm, '#course-name');
     if (courseName === '') {
-      showNotication('Vui lòng nhập tên khóa học', 'error');
-      return;
+      count++
+      setError('.detail-name', 'Vui lòng nhập tên khóa học')
+      // return;
     }
 
     const price = getValueForm(detailForm, '#course-price');
     if (!parseInt(price) || parseInt(price) < 0) {
-      showNotication('Vui lòng nhập giá tiền', 'error');
-      return;
+      count++
+      setError('.detail-price', 'Vui lòng nhập giá tiền')
+      // return;
+    }
+    if (parseInt(price) < 0) {
+      count++
+      setError('.detail-price', 'Vui lòng nhập giá tiền lớn hơn 0')
+      // return;
     }
 
     const description = await editor.getData();
@@ -112,8 +178,15 @@ const handleSave = async (searchParams, editor) => {
 
     const discount = getValueForm(detailForm, '#course-discount');
     if (!parseInt(discount) || parseInt(discount) < 0) {
-      showNotication('Vui lòng nhập giảm giá', 'error');
-      return;
+      count++
+      setError('.detail-discount', 'Vui lòng nhập giảm giá')
+      // return;
+    }
+    if (parseInt(discount) < 0) {
+
+      count++
+      setError('.detail-discount', 'Vui lòng nhập giảm giá lớn hơn 0')
+      // return;
     }
 
     const status = getStatusValue('status');
@@ -125,9 +198,18 @@ const handleSave = async (searchParams, editor) => {
     if (!videoInput) return;
     const file = fileInput.files[0];
     const video = videoInput.files[0];
-    if (!file || !video) {
-      showNotication('Vui lòng tải ảnh và Video', 'error');
+    if (!file) {
+      count++
+      setError('.detail-thumbnail', 'Vui lòng tải ảnh');
     }
+    if (!video) {
+      count++
+      setError('.detail-video', 'Vui lòng tải video');
+    }
+
+    if (count > 0)
+      return
+
     const formData = new FormData();
     const formVideo = new FormData();
 
@@ -341,6 +423,7 @@ const fillFormCourse = async (searchParams, editor) => {
     });
   handleImageChange();
   handleVideoChange();
+  handleChange();
   fillCategory();
   const searchParams = new URLSearchParams(window.location.search);
   if (searchParams.get('id')) {

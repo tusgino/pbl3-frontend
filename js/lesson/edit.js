@@ -80,6 +80,41 @@ const handleAddChapter = (idCourse, chapters, token) => {
 }
 
 
+const setError = (error, message) => {
+  const Element = document.querySelector(error);
+  if (!Element) return
+
+  Element.classList.add('message')
+
+  Element.querySelector('.message').innerText = message
+}
+
+const clearError = (error) => {
+  const Element = document.querySelector(error);
+  if (!Element) return
+
+  if (Element.classList.contains('message')) {
+    Element.classList.remove('message')
+    Element.querySelector('.message').innerText = ''
+  }
+
+}
+
+const handleChange = () => {
+  const changeName = document.querySelector('.detail-name')
+  const changeDuration = document.querySelector('.detail-duration')
+
+  changeName.addEventListener('input', () => {
+    clearError('.detail-name')
+  })
+
+  changeDuration.addEventListener('input', () => {
+    clearError('.detail-duration')
+  })
+
+}
+
+
 const handleClickEvent = (editor) => {
   // Edit Chapter
   const editChapterBtn = document.querySelector('.chapter-action .action-edit');
@@ -122,6 +157,7 @@ const handleClickEvent = (editor) => {
   });
 
   document.querySelector('#confirmModal .btn-cancel').addEventListener('click', async () => {
+
     if (document.querySelector('#confirmModal').dataset.idQuiz) {
       try {
         const res = await quizAPI.deleteQuiz(document.querySelector('#confirmModal').dataset.idQuiz, token);
@@ -129,6 +165,26 @@ const handleClickEvent = (editor) => {
           confirmModal.hide();
           showNotication('Xóa bài tập thành công!');
           document.querySelector('#confirmModal').dataset.idQuiz = '';
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      finally {
+        confirmModal.hide();
+        setTimeout(() => {
+          window.location = location;
+        }, 1500);
+      }
+      return;
+    }
+
+    if (document.querySelector('#confirmModal').dataset.idLesson) {
+      try {
+        const res = await lessonAPI.deleteLesson(document.querySelector('#confirmModal').dataset.idLesson, token);
+        if (res.success) {
+          confirmModal.hide();
+          showNotication('Xóa bài giảng thành công!');
+          document.querySelector('#confirmModal').dataset.idLesson = '';
         }
       } catch (error) {
         console.log(error);
@@ -209,9 +265,9 @@ const handleClickEvent = (editor) => {
       return;
     }
     const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+    document.getElementById('confirmModal').dataset.idLesson = document.querySelector('.lesson-content').dataset.id;
     confirmModal.show();
   });
-
 }
 
 const renderInfo = async (searchParams, editor) => {
@@ -230,6 +286,7 @@ const renderInfo = async (searchParams, editor) => {
       chapters.appendChild(option);
     })
   }
+
   handleAddChapter(idCourse, chapters, token);
 
   const lessons = document.getElementById('lesson');
@@ -268,8 +325,11 @@ const renderInfo = async (searchParams, editor) => {
     const { data } = await lessonAPI.getLessonByID(lessons.value, token);
     console.log(data);
     document.getElementById('lesson-name').value = data.title;
+    lessonContent.dataset.title = data.title;
     document.getElementById('lesson-duration').value = data.duration;
+    lessonContent.dataset.duration = data.duration;
     editor.setData(data.desc);
+    lessonContent.dataset.description = data.desc;
     const video = document.getElementById('file-video');
     document.getElementById('video-upload').value = null;
     const progressBar = document.querySelector('.progress');
@@ -277,6 +337,7 @@ const renderInfo = async (searchParams, editor) => {
     document.querySelector('.message').textContent = ''
     video.src = data.video;
     video.dataset.video = data.video;
+    lessonContent.dataset.video = data.video
     document.querySelector('.lesson-content').dataset.id = lessons.value;
     if (video.classList.contains('hidden')) {
       video.classList.remove('hidden');
@@ -595,37 +656,104 @@ const handleQuiz = (data) => {
 
 
 const handleLesson = (editor) => {
+
   const addLessonBtn = document.querySelector('.btn-action .btn-save');
   const chapter = document.getElementById('chapter');
   const lessons = document.getElementById('lesson');
+  let count = 0;
   addLessonBtn.addEventListener('click', async () => {
 
+    const token = localStorage.getItem('token');
+    if (!token) {
+      showNotication('Vui lòng đăng nhập', 'error');
+      return;
+    }
     if (chapter.value === 'default') {
       showNotication('Vui lòng chọn chương', 'error');
-      return;
+      // return;
+      count++
     }
 
     if (!document.getElementById('lesson-name').value) {
-      showNotication('Vui lòng nhập tên bài học', 'error');
-      return;
+      // showNotication('Vui lòng nhập tên bài học', 'error');
+      setError('.detail-name', 'Vui lòng nhập tên bài học')
+      // return;
+      count++
     }
 
     if (!document.getElementById('file-video').dataset.video) {
       showNotication('Vui lòng chọn video', 'error');
-      return;
+      // return;
+      count++
     }
 
     if (!parseInt(document.getElementById('lesson-duration').value)) {
-      showNotication('Vui lòng nhập thời lượng bài học', 'error');
-      return;
+      // showNotication('Vui lòng nhập thời lượng bài học', 'error');
+      setError('.detail-duration', 'Vui lòng nhập thời lượng bài học')
+      // return;
+      count++
     }
 
+    if (count > 0)
+      return
     const idLesson = document.querySelector('.lesson-content').dataset.id;
 
     if (idLesson) {
-      showNotication('update');
+      // showNotication('update');
+      // return;
+      // Update lesson
+      const dataNew = []
+
+      if (document.getElementById('lesson-name').value !== document.querySelector('.lesson-content').dataset.title) {
+        dataNew.push({
+          "op": "replace",
+          "path": "Title",
+          "value": document.getElementById('lesson-name').value,
+        });
+      }
+
+      if (editor.getData() !== document.querySelector('.lesson-content').dataset.description) {
+        dataNew.push({
+          "op": "replace",
+          "path": "Description",
+          "value": editor.getData(),
+        });
+      }
+
+      if (document.getElementById('file-video').dataset.video !== document.querySelector('.lesson-content').dataset.video) {
+        dataNew.push({
+          "op": "replace",
+          "path": "Video",
+          "value": document.getElementById('file-video').dataset.video,
+        });
+      }
+
+      if (parseInt(document.getElementById('lesson-duration').value) !== parseInt(document.querySelector('.lesson-content').dataset.duration)) {
+        dataNew.push({
+          "op": "replace",
+          "path": "Duration",
+          "value": parseInt(document.getElementById('lesson-duration').value),
+        });
+      }
+
+      if (dataNew.length > 0) {
+        try {
+          const res = await lessonAPI.updateLesson(idLesson, dataNew, token);
+          console.log(res);
+          if (res.success) {
+            showNotication('Cập nhật bài giảng thành công');
+            setTimeout(() => {
+              window.location = location;
+            }, 1500);
+          }
+        } catch (error) {
+          console.log(error);
+          showNotication('Vui lòng thử lại', 'error');
+        }
+      }
       return;
     }
+
 
     const lesson = {
       idChapter: chapter.value,
@@ -636,17 +764,13 @@ const handleLesson = (editor) => {
       duration: parseInt(document.getElementById('lesson-duration').value),
     }
     // console.log(lesson);
-    const token = localStorage.getItem('token');
-    if (!token) {
-      showNotication('Vui lòng đăng nhập', 'error');
-      return;
-    }
+
     console.log(lesson);
     try {
       const res = await lessonAPI.addLesson(lesson, token);
       console.log(res);
       if (res.success) {
-        showNotication('Thêm khóa học thành công');
+        showNotication('Thêm bài giảng thành công');
         setTimeout(() => {
           window.location = location;
         }, 1500);
@@ -671,4 +795,5 @@ const handleLesson = (editor) => {
   handleImageChange();
   renderInfo(searchParams, editor);
   handleLesson(editor);
+  handleChange();
 })()

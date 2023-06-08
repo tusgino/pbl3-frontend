@@ -210,3 +210,43 @@ ul {
   font-size: 50px;
   color: var(--primary-color);
 }
+
+/* CSS cho màn hình loading */
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Màu nền đen với độ mờ */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Đảm bảo màn hình loading luôn nằm trên cùng */
+}
+
+#loading-spinner {
+  /* Thêm kiểu cho spinner, ví dụ sử dụng CSS animation */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  border-top-color: #3498db; /* Màu sắc cho spinner */
+  animation: spin 1s infinite linear; /* Thêm animation cho spinner */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#loading-message {
+  margin-top: 16px;
+  color: #fff;
+}
+
+.hidden {
+  display: none !important;
+}

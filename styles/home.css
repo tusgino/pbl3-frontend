@@ -36,6 +36,8 @@
   display: block;
   margin: 55px auto;
 
+  object-position: top;
+
   -moz-box-shadow: 0px 6px 5px #ccc;
   -webkit-box-shadow: 0px 6px 5px #ccc;
   box-shadow: 0px 6px 5px #ccc;

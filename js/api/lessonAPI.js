@@ -42,6 +42,26 @@ const lessonAPI = {
     };
     return axiosClient.post(url, data, config);
   },
+  deleteLesson(id, token) {
+    const url = `/private/Lesson/${id}`;
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    };
+    return axiosClient.delete(url, config);
+  },
+  updateLesson(id, data, token) {
+    const url = `/private/Lesson/update-lesson/${id}`;
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json-patch+json',
+      }
+    }
+    return axiosClient.patch(url, data, config);
+  },
+
   // updateQuiz(id, data, token) {
   //   const url = `/Quiz/Update/${id}`;
   //   const config = {

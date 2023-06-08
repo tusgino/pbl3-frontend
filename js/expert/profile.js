@@ -643,7 +643,7 @@ const createRecordTrade = (data) => {
   if (data.typeOfTrade == 0) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Mua khoá học");
   else if (data.typeOfTrade == 1) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Duy trì tài khoản");
   setTextContent(record, '[data-id="balance-trademanage"]', data.balance);
-  setTextContent(record, '[data-id="requiredbalance-trademanage"]', data.requiredBalance);
+  setTextContent(record, '[data-id="requiredbalance-trademanage"]', data.balance);
   const dateoftrade = new Date(data.dateOfTrade);
   setTextContent(record, '[data-id="dateoftrade-trademanage"]', dateoftrade.toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
   if (data.tradeStatus == 1) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Thành công');
