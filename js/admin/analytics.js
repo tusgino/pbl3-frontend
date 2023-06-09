@@ -5,8 +5,6 @@ import systemAPI from "./system";
 
 const token = localStorage.getItem('token');
 
-
-
 const createRecord_Student= (data) => {
     if(!data) return;
 
@@ -20,14 +18,12 @@ const createRecord_Student= (data) => {
     setTextContent(record, '[data-id="coursebuy-studentanalytics"]', data.numOfPurchasedCourse);
     setTextContent(record, '[data-id="coursefinish-studentanalytics"]', data.numOfFinishedCourse);
 
-
     return record;
 }
 
 const createRecord_Expert = (data) => {
     if(!data) return;
-    
-    console.log(data)
+
     const expertRecord = document.getElementById('expertAnalyticsRecord');
     if(!expertRecord) return;
 
@@ -43,8 +39,6 @@ const createRecord_Expert = (data) => {
     
     const iconinfo = record.getElementById('expertanalytics-iconinfo');
     
-    // const revenue = userAPI.getExpertRevenueByID(data.id);
-    // console.log(revenue)
     
     iconinfo.addEventListener('click', async() => {
         var myChart = Chart.getChart('ExpertRevenueAnalytics');
@@ -108,19 +102,15 @@ const createRecord_Expert = (data) => {
         bestsale.textContent = data.bestSalesCourse;
 
         totalsales.textContent = data.totalSales;
-
-
-
+        
+        console.log(data)
     })
-
 
     return record;
 }
 
 const createRecord_Course = (data) => {
     if(!data) return;
-    console.log(data)
-    console.log(data.reg_users_by_month)
 
     const courseRecord = document.getElementById('courseAnalyticsRecord');
     if(!courseRecord) return;
@@ -146,7 +136,6 @@ const createRecord_Course = (data) => {
     const ratezone = record.querySelector('[data-id="rate-courseanalytics"]');
     ratezone.appendChild(stars);
     
-
     const iconinfo = record.getElementById('courseanalytics-iconinfo');
     
     iconinfo.addEventListener('click', async() => {
@@ -209,8 +198,7 @@ const createRecord_Course = (data) => {
             totalregyear += amount;
         })
         const currentDate = new Date();
-        console.log(totalregyear)
-        console.log(currentDate.getMonth())
+
         avgreg.textContent = Math.round(totalregyear/(currentDate.getMonth() + 1)) + " học viên/tháng"
         
         var totalrevyear = 0;
@@ -223,11 +211,8 @@ const createRecord_Course = (data) => {
 
         rate.textContent = "";
         rate.appendChild(stars.cloneNode(true))
-        
-        
-        
+        console.log(data)
     })
-    
 
     return record;
 } 
@@ -236,12 +221,12 @@ const getStudents = async(page) => {
     const params = {
         "student_name_like" : document.getElementById('txtsearch-studentanalytics').value,
         "start_purchase_course" : document.getElementById('txtcoursebuy-from').value,
-        "end_purchase_course" : document.getElementById('txtcoursebuy-to').value,
-        "start_finish_course" : document.getElementById('txtcoursefinish-from').value,
-        "end_finish_course" : document.getElementById('txtcoursefinish-to').value,
+        "start_purchase_course" : !isNaN(parseInt(document.getElementById('txtcoursebuy-from').value)) ? document.getElementById('txtcoursebuy-from').value : (document.getElementById('txtcoursebuy-from').value == "" ? document.getElementById('txtcoursebuy-from').value : 99999999),
+        "end_purchase_course" : !isNaN(parseInt(document.getElementById('txtcoursebuy-to').value)) ? document.getElementById('txtcoursebuy-to').value : (document.getElementById('txtcoursebuy-to').value == "" ? document.getElementById('txtcoursebuy-to').value : -1),
+        "start_finish_course" : !isNaN(parseInt(document.getElementById('txtcoursefinish-from').value)) ? document.getElementById('txtcoursefinish-from').value : (document.getElementById('txtcoursefinish-from').value == "" ? document.getElementById('txtcoursefinish-from').value : 99999999),
+        "end_finish_course" : !isNaN(parseInt(document.getElementById('txtcoursefinish-to').value)) ? document.getElementById('txtcoursefinish-to').value : (document.getElementById('txtcoursefinish-to').value == "" ? document.getElementById('txtcoursefinish-to').value : -1),
         "page" : page,
     };
-    
     const dataview = document.querySelector('.thongkehocvien .data-view');
     dataview.textContent = "";
 
@@ -253,19 +238,17 @@ const getStudents = async(page) => {
     //     else return 1;
     // })
 
-    console.log(_data);
     systemAPI.renderRecord(_data, 'thongkehocvien', createRecord_Student);
-    // systemAPI.renderPagination(_totalRows, 'thongkehocvien', getStudents, page);
-    systemAPI.renderPaginationNew(_totalRows, 'thongkehocvien', getStudents, page);
+    systemAPI.renderPagination(_totalRows, 'thongkehocvien', getStudents, page);
 }
 
 const getExperts = async(page) => {
     const params = {
         "expert_name" : document.getElementById('txtsearch-expertanalytics').value,
-        "start_upload_course" : document.getElementById('txtcourseupload-from').value,
-        "end_upload_course" : document.getElementById('txtcourseupload-to').value,
-        "start_revenue" : document.getElementById('txtrevenue-from').value,
-        "end_revenue" : document.getElementById('txtrevenue-to').value,
+        "start_upload_course" : !isNaN(parseInt(document.getElementById('txtcourseupload-from').value)) ? document.getElementById('txtcourseupload-from').value : (document.getElementById('txtcourseupload-from').value == "" ? document.getElementById('txtcourseupload-from').value : 99999999),
+        "end_upload_course" : !isNaN(parseInt(document.getElementById('txtcourseupload-to').value)) ? document.getElementById('txtcourseupload-to').value : (document.getElementById('txtcourseupload-to').value == "" ? document.getElementById('txtcourseupload-to').value : -1),
+        "start_revenue" : !isNaN(parseInt(document.getElementById('txtrevenue-from').value)) ? document.getElementById('txtrevenue-from').value : (document.getElementById('txtrevenue-from').value == "" ? document.getElementById('txtrevenue-from').value : 999999999999),
+        "end_revenue" : !isNaN(parseInt(document.getElementById('txtrevenue-to').value)) ? document.getElementById('txtrevenue-to').value : (document.getElementById('txtrevenue-to').value == "" ? document.getElementById('txtrevenue-to').value : -1),
         "page" : page,
     };
     
@@ -280,18 +263,16 @@ const getExperts = async(page) => {
     //     else return 1;
     // })
 
-    console.log(_data)
     systemAPI.renderRecord(_data, 'thongkechuyengia', createRecord_Expert);
-    // systemAPI.renderPagination(_totalRows, 'thongkechuyengia', getExperts, page);
-    systemAPI.renderPaginationNew(_totalRows, 'thongkechuyengia', getExperts, page);
+    systemAPI.renderPagination(_totalRows, 'thongkechuyengia', getExperts, page);
 
 }
 
 const getCourses = async(page) => {
     const params = {
         "title_like" : document.getElementById('txtsearch-courseanalytics').value,
-        "start_reg_user" : document.getElementById('txtstudentreg-from').value,
-        "end_reg_user" : document.getElementById('txtstudentreg-to').value,
+        "start_reg_user" : !isNaN(parseInt(document.getElementById('txtstudentreg-from').value)) ? document.getElementById('txtstudentreg-from').value : (document.getElementById('txtstudentreg-from').value == "" ? document.getElementById('txtstudentreg-from').value : 99999999),
+        "end_reg_user" : !isNaN(parseInt(document.getElementById('txtstudentreg-to').value)) ? document.getElementById('txtstudentreg-to').value : (document.getElementById('txtstudentreg-to').value == "" ? document.getElementById('txtstudentreg-to').value : -1),
         "start_rate" : document.getElementById('rate-from').value,
         "end_rate" : document.getElementById('rate-to').value,
         "page" : page,
@@ -301,11 +282,8 @@ const getCourses = async(page) => {
 
     //_data.sort(sortFunction)
 
-    console.log(_data)
     systemAPI.renderRecord(_data, 'thongkekhoahoc', createRecord_Course);
-    // systemAPI.renderPagination(_totalRows, 'thongkekhoahoc', getCourses, page);
-    systemAPI.renderPaginationNew(_totalRows, 'thongkekhoahoc', getCourses, page);
-
+    systemAPI.renderPagination(_totalRows, 'thongkekhoahoc', getCourses, page);
 }
 
 
@@ -315,8 +293,6 @@ const setEventSearch = () => {
     btnsearchstudent.addEventListener('click', async() => {
         getStudents(1);
     })
-    
-
 
     const btnsearchexpert = document.getElementById('btn-search-expertanalytics');
     btnsearchexpert.addEventListener('click', async() => {
@@ -411,7 +387,6 @@ const setSwapChart = async(chartID, toggleID) => {
     const toggleicon = document.getElementById(toggleID);
     toggleicon.addEventListener('click', () => {
         var myChart = Chart.getChart(chartID);
-        console.log(myChart);
         myChart.destroy();
 
         const config = {
@@ -475,8 +450,6 @@ const setSwapChart = async(chartID, toggleID) => {
         myChart = new Chart(document.getElementById(`${chartID}`), config);
     })
 
-    
-    
 }
 
 export const setEventHandlerChart = (chartID, toggleID) => {
@@ -484,9 +457,7 @@ export const setEventHandlerChart = (chartID, toggleID) => {
     const toggleicon = document.getElementById(`${toggleID}`);
     toggleicon.addEventListener('click', () => {
         var myChart = Chart.getChart(chartID);
-        console.log(myChart);
         myChart.destroy();
-        console.log(toggleicon.value)
         const config = {
             type: 'bar',
             data: {
@@ -534,23 +505,14 @@ export const setEventHandlerChart = (chartID, toggleID) => {
 
 (async() => {    
     try {
-
-        
         getStudents(1);
-        
         getExperts(1);
-        
         getCourses(1);
-        
         setEventSearch();
 
         //setEventSort();
-
         // setEventHandlerChart('ExpertRevenueAnalytics', 'toggle-chart-expertanalytics', 'Doanh thu theo tháng');
-
-
         setSwapChart('CourseAnalytics', 'toggle-object-courseanalytics');
-
         setEventHandlerChart('ExpertRevenueAnalytics', 'toggle-chart-expertanalytics');
         setEventHandlerChart('CourseAnalytics', 'toggle-chart-courseanalytics');
 
@@ -562,8 +524,6 @@ export const setEventHandlerChart = (chartID, toggleID) => {
 
 export const ReloadAnalytics = () => {
     getStudents(1);
-        
     getExperts(1);
-    
     getCourses(1);
 }

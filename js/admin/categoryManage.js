@@ -34,23 +34,8 @@ const addCategory = async() => {
 }
 
 const deleteCategories = async() => {
-    const modaldel = document.getElementById('Modal-delcategory');
-    const btnmodaldel = document.getElementById('form-delcategory');
     const dataview = document.querySelector('.quanlidanhmuc .data-view');
     const checkboxes = dataview.getElementsByClassName('checkbox-category')
-
-    // btnmodaldel.addEventListener('click', () => {
-    //     var check = false;
-    //     checkboxes.forEach((checkbox) => {
-    //         if(checkbox.value == true) {
-    //             check = true;
-    //         }
-    //     })
-    //     if(check == false) {
-    //         showNotication("Chưa chọn cái nào", error);
-    //         return;
-    //     }
-    // })
 
     const btndel = document.getElementById('btn-del-category');
     if(!btndel) return;
@@ -62,7 +47,6 @@ const deleteCategories = async() => {
                 list.push(checkboxes[i].value);
             }
         }
-        console.log(list);
         await categoryAPI.deleteCategories(list, token);
         getCategories(1);
         ReloadCourse();
@@ -77,14 +61,11 @@ const getCategories = async(page) => {
         "_title_like" : document.getElementById('txtsearch-categorymanage').value,
         "page" : page,
     };
-
-    const dataview = document.querySelector(".quanlidanhmuc .data-view");
-    dataview.textContent = "";
     
     const { data : {_data, _totalRows}} = await categoryAPI.getAllCategory(params, token);
+  
     systemAPI.renderRecord(_data, 'quanlidanhmuc', createRecord);
-    // systemAPI.renderPagination(_totalRows, 'quanlidanhmuc', getCategories, page);
-    systemAPI.renderPaginationNew(_totalRows, 'quanlidanhmuc', getCategories, page);
+    systemAPI.renderPagination(_totalRows, 'quanlidanhmuc', getCategories, page);
     
 };
 
@@ -127,7 +108,6 @@ const setEventHandlerCategory = async() => {
 
 const createRecord = (data) => {
     if(!data) return;
-    console.log(data);
 
     const categoryManageRecord = document.getElementById('categoryManageRecord')
     if(!categoryManageRecord) return;
@@ -148,10 +128,7 @@ const createRecord = (data) => {
     const iconinfo = record.getElementById('categorymanage-iconinfo');
     
     iconinfo.addEventListener('click', async() => {
-    
         const title = document.querySelector('.quanlidanhmuc .modal-body.vstack input');
-        console.log(title)
-        console.log(data.name)
         title.value = data.name;
 
         const desc = document.getElementById('category-desc');
@@ -164,12 +141,12 @@ const createRecord = (data) => {
             id : data.idCategory,
         }
         const courseList = await courseAPI.getAllCoursesByCategoryID(params, token);
-        console.log(courseList);
         courseList.forEach((course) => {
             ul.appendChild(createCourseItem(course));
         });
 
         btnsave.value = data.idCategory;
+        console.log(data)
     })
 
     return record;
