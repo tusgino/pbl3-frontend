@@ -59,11 +59,7 @@ const createRecord_Trade = (data) => {
         btnconfirmtrade.value = data.idTrade;
         btnrefusetrade.value = data.idTrade;
     })
-
-
-
     return record;
-
 }
 
 const setEventHandlerAcc = () => {
@@ -84,9 +80,6 @@ const setEventHandlerAcc = () => {
         if(await tradeAPI.updateTrade(params, token)) {
             const trade = await tradeAPI.getTradeByID({id: event.target.value}, token);
             if(!trade) return;
-
-            console.log(trade);
-            console.log(trade.idUser)
             const data = {
                 idUser : trade.idUser,
                 subject : "Thông báo từ THH Online Course",
@@ -128,27 +121,22 @@ const setEventHandlerAcc = () => {
 
 const getTrade = async(page) => {
     const params = {
-        "_is_purchase" : document.getElementById('btnchecktrue-tradetype1').checked,
-        "_is_rent" : document.getElementById('btnchecktrue-tradetype2').checked,
-        "_is_success" : document.getElementById('btnchecktrue-tradestatus').checked,
-        "_is_pending" : document.getElementById('btncheckwait-tradestatus').checked,
-        "_is_failed" : document.getElementById('btncheckfalse-tradestatus').checked,
-        "_start_date" : document.getElementById('datetrade-from').value,    
-        "_end_date" : document.getElementById('datetrade-to').value,
-        "_start_balance" : document.getElementById('txtbalance-from').value,
-        "_end_balance" : document.getElementById('txtbalance-to').value,
+        "is_purchase" : document.getElementById('btnchecktrue-tradetype1').checked,
+        "is_rent" : document.getElementById('btnchecktrue-tradetype2').checked,
+        "is_success" : document.getElementById('btnchecktrue-tradestatus').checked,
+        "is_pending" : document.getElementById('btncheckwait-tradestatus').checked,
+        "is_failed" : document.getElementById('btncheckfalse-tradestatus').checked,
+        "start_date" : document.getElementById('datetrade-from').value,    
+        "end_date" : document.getElementById('datetrade-to').value,
+        "start_balance" : !isNaN(parseInt(document.getElementById('txtbalance-from').value)) ? document.getElementById('txtbalance-from').value : (document.getElementById('txtbalance-from').value == "" ? document.getElementById('txtbalance-from').value : 999999999999999),
+        "end_balance" : !isNaN(parseInt(document.getElementById('txtbalance-to').value)) ? document.getElementById('txtbalance-to').value : (document.getElementById('txtbalance-to').value == "" ? document.getElementById('txtbalance-to').value : 0),
         "page" : page,
     };
-    
-    const dataview = document.querySelector('.quanligiaodich .data-view');
-    dataview.textContent = "";
 
     const {data : {_data, _totalRows}} = await tradeAPI.getAllTradeDetailByFiltering(params, token);
 
-    console.log(_data);
     systemAPI.renderRecord(_data, 'quanligiaodich', createRecord_Trade);
-    // systemAPI.renderPagination(_t    otalRows, 'quanligiaodich', getTrade, page);
-    systemAPI.renderPaginationNew(_totalRows, 'quanligiaodich', getTrade, page)
+    systemAPI.renderPagination(_totalRows, 'quanligiaodich', getTrade, page)
 }
 
 const setEventSearch = () => {
@@ -164,7 +152,6 @@ const setEventSearch = () => {
         setEventSearch();
     
         setEventHandlerAcc();
-
 
         getTrade(1);
 

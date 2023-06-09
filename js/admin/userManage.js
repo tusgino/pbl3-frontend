@@ -9,7 +9,7 @@ const token = localStorage.getItem('token');
 
 const createRecord = (data) => {
     if(!data) return;
-    console.log(data)   
+    
 
     const userManageRecord = document.getElementById('userManageRecord')
     if(!userManageRecord) return;
@@ -18,7 +18,6 @@ const createRecord = (data) => {
     if(!record) return;
 
     const avatar = record.querySelector('.avatar');
-    // console.log(avatar)
     avatar.src = data.avatar;
 
     const _datecreate = new Date(data.dateCreate);
@@ -47,11 +46,8 @@ const createRecord = (data) => {
     const btnunbanacc = document.getElementById('btn-unbanacc');
     const btndelacc= document.getElementById('btn-delacc');
 
-
-    //const detailstudentinfo = document.getElementById("Modal-studentinfo")
-    // console.log(detailstudentinfo)
     const iconinfo = record.getElementById('usermanage-iconinfo');
-    // console.log(iconinfo);
+
     iconinfo.addEventListener('click', () => {
         detailuseravatar.src = data.avatar;
         detailusername.value = data.name;
@@ -76,13 +72,12 @@ const createRecord = (data) => {
             btndelacc.style.display = "block";
             btnbanacc.style.display = "none";
         }
-        console.log(data);   
-        
+        console.log(data);
+
         btnbanacc.value = data.id;
         btnunbanacc.value = data.id;
         btndelacc.value = data.id;
     })
-    
     
     return record;
 }
@@ -100,14 +95,10 @@ const getUsers = async(page) => {
         "page" : page,
     };
 
-    const dataview = document.querySelector(".quanlinguoidung .data-view");
-    dataview.textContent = "";
-
     const {data : {_data, _totalRows}} = await userAPI.getAllUsersByFiltering(params, token);
-    console.log(await userAPI.getAllUsersByFiltering(params, token));
+
     systemAPI.renderRecord(_data, 'quanlinguoidung', createRecord);
-    // systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers, page);
-    systemAPI.renderPaginationNew(_totalRows, 'quanlinguoidung', getUsers, page);
+    systemAPI.renderPagination(_totalRows, 'quanlinguoidung', getUsers, page);
 }
 
 const setEventSearch = () => {
@@ -187,12 +178,7 @@ const clearFormHandle = async() => {
         // addadminform.querySelector('input[name="txt-admin-bankname"]').value = '';
         addadminform.querySelector('input[name="txt-admin-password"]').value = '';
         addadminform.querySelector('input[name="txt-admin-repassword"]').value = '';
-        
-    
-
     })
-
-
 }
 
 const handleDegreeChange = async() => {
@@ -202,31 +188,21 @@ const handleDegreeChange = async() => {
     const degreeimage = document.getElementById('degree-image');
     const degreedesc = document.getElementById('degree-desc');
 
-    console.log(degreeimage)
-    console.log(degreedesc)
     selector.addEventListener('change', async() => {
         const degreeid = selector.options[selector.selectedIndex].value;
-        console.log(degreeid)
         const degree = await expertAPI.getDegreeByIDDgree(degreeid, token);
-        console.log(degree)
-        console.log(degree.data.image)
-        console.log(degree.data.description)
         degreeimage.src = degree.data.image;
         degreedesc.textContent = degree.data.description;
     });
-
-
 }
 
 const createExpertRequestRecord = (data) => {
-    
     if(!data) return;
-    console.log(data)
+
     // add request vao trong view 
     const addExpertRecord = document.getElementById('addExpertRequest');
     if(!addExpertRecord) return;
 
-    console.log(addExpertRecord)
     const record = addExpertRecord.content.cloneNode(true);
     if(!record) return;
     
@@ -235,7 +211,6 @@ const createExpertRequestRecord = (data) => {
     
     const dateCreate = new Date(data.dateCreate);
     setTextContent(record, '[data-id="requestDate"]', dateCreate.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
-
     //
     
     const expertavatar = document.querySelector('[name="txt-expert-avatar"]');
@@ -250,14 +225,11 @@ const createExpertRequestRecord = (data) => {
     const degreeimage = document.getElementById('degree-image');
     const degreedesc = document.getElementById('degree-desc');
 
-
-    console.log(expertname)
     const btninfo = record.querySelector('div');
 
     const btnaddexpert = document.getElementById('btn-add-expert');
     const btnrefuseexpet = document.getElementById('btn-refuseexpert');
     
-    console.log(btninfo)
     const defaultoption = document.createElement('option');
     defaultoption.value = 'default';
     defaultoption.textContent = " - Chọn bằng cấp - ";
@@ -280,8 +252,8 @@ const createExpertRequestRecord = (data) => {
             option.textContent = element.name;
             option.value = element.idDegree; 
             expertdegree.appendChild(option);
-            console.log(expertdegree)
         });   
+        console.log(data);
         btnaddexpert.value = data.idUser;
         btnrefuseexpet.value = data.idUser;  
     })
@@ -349,16 +321,10 @@ const getExpertRequest = async(page) => {
         "page" : page, 
     }
 
-    // const dataview = document.querySelector(".formthemexpert .data-view");
-    // dataview.textContent = "";
-
     const {data : {_data, _totalRows}} = await userAPI.getAllExpertRequest(params, token);
 
-    console.log(_data);
-
     systemAPI.renderRecord(_data, 'formthemexpert', createExpertRequestRecord);
-    // systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest, page);
-    systemAPI.renderPaginationNew(_totalRows, 'formthemexpert', getExpertRequest, page);
+    systemAPI.renderPagination(_totalRows, 'formthemexpert', getExpertRequest, page);
 }
  
 const addAdmin = async() => {
@@ -416,5 +382,4 @@ const addAdmin = async() => {
     } catch (error) {
         console.log(error);
     }
-
 })()

@@ -4,10 +4,14 @@ import userAPI from "./userAPI";
 
 const systemAPI = {
   renderRecord (list, view, func) {
+    console.log(list)
     const dataview = document.querySelector(`.${view} .data-view`);
     dataview.textContent = "";
     if(!dataview) return;
-    if(!Array.isArray(list) || list.length === 0) return;
+    if(!Array.isArray(list) || list.length === 0) {
+      dataview.innerHTML = `<h2 style="text-align:center">Không tìm thấy đối tượng thoả mãn</h2>`;
+      return;
+    }
     
     if(list.length == 0) { dataview.textContent = "Không tìm thấy";}
 
@@ -33,77 +37,6 @@ const systemAPI = {
   },
 
   renderPagination (totalRows, view, func, pagechosen) {
-    const ulElement = document.createElement('ul');
-    ulElement.classList.add("pagination");
-    ulElement.classList.add("justify-content-center");
-    ulElement.classList.add("gap-2");
-    const totalPage = Math.ceil(totalRows / 10);
-
-
-    // if(totalRows > 0) {
-    //   const previousElement = document.createElement('li');
-    //   previousElement.classList.add("page-item");
-
-    //   previousElement.innerHTML = `<span class="page-link"><i class="fas fa-chevron-left"></i></span>`;
-      
-    //   previousElement.addEventListener('click', () => {
-    //     const currentpage = ulElement.querySelector('.active');
-    //     const previouspage = currentpage.previousElementSibling;
-
-    //     if(currentpage.value != 1) {
-    //       currentpage.classList.remove('active');
-    //       previouspage.classList.add('active');
-    //     }
-    //     func(previouspage.value);
-
-    //   })
-
-    //   ulElement.appendChild(previousElement);
-    // }
-
-    for(let i = 1; i <= totalPage; ++i) {
-        const liElement = systemAPI.createPage(i, func);
-        if(i == pagechosen) liElement.classList.add('active');
-        ulElement.appendChild(liElement);
-    }
-
-    // if(totalPage > 5) {
-    //     const liElement = document.createElement('li');
-    //     liElement.classList.add('page-item');
-    //     liElement.innerHTML = `<span class="page-link"><i class="fas fa-ellipsis-h"></i></span>`;
-    //     ulElement.appendChild(liElement)
-    // }
-    
-    // if(totalRows > 0) {
-    //   const nextElement = document.createElement('li');
-    //   nextElement.classList.add("page-item");
-
-    //   nextElement.innerHTML = `<span class="page-link"><i class="fas fa-chevron-right"></i></span>`;
-      
-    //   nextElement.addEventListener('click', () => {
-    //     const currentpage = ulElement.querySelector('.active');
-    //     const nextpage = currentpage.nextElementSibling;
-
-    //     if(currentpage.value != totalPage) {
-    //       currentpage.classList.remove('active');
-    //       nextpage.classList.add('active');
-
-    //       func(nextpage.value)
-    //     } 
-        
-    //   })
-      
-    //   ulElement.appendChild(nextElement);
-    // }
-
-    // const dataview = document.querySelector(`.${view} .data-view`);
-    // dataview.appendChild(ulElement);
-
-
-
-  },
-
-  renderPaginationNew (totalRows, view, func, pagechosen) {
     const paginationtemplate = document.getElementById('pagination');
     if(!paginationtemplate) return;
 
@@ -235,7 +168,7 @@ const systemAPI = {
         btnPrevPg.disabled = false;
         btnFirstPg.disabled = false;
       }
-      console.log(valuePage)
+      //console.log(valuePage)
       pagination();
     }
     function handleButtonLeft() {

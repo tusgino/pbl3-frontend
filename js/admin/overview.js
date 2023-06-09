@@ -9,7 +9,7 @@ const token = localStorage.getItem('token')
 const SystemRevenue = async(data) => {
     const title = document.getElementById('systemrevenue-title');
     const now = new Date();
-    console.log(now);
+    // console.log(now);
     title.textContent = `Doanh thu hệ thống năm ${now.getFullYear()} (VND)`;
     
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -99,7 +99,7 @@ const SystemRevenue = async(data) => {
 }
 
 const AllOfUsers = async (data) => {
-    console.log(data)
+    // console.log(data)
     const typesofuser = ['Quản trị viên', 'Chuyên gia', 'Học viên'];
 
     var allofuserschart = Chart.getChart('AllOfUsers');
@@ -149,7 +149,7 @@ const AllOfUsers = async (data) => {
     // học viên tiêu biểu
     {
         const beststudents  = await userAPI.getBestStudents({}, token);
-        console.log(beststudents);
+        // console.log(beststudents);
         const prostudent = document.getElementById('pro-student');
         prostudent.textContent = "";
         beststudents.forEach((student) => {
@@ -212,7 +212,7 @@ const AllOfUsers = async (data) => {
 }
 
 const OverviewCourse = async(data) => {
-    console.log(data);
+    // console.log(data);
 
     var myChart = Chart.getChart('OverviewCourse');
     if(myChart != null) myChart.destroy();
@@ -312,7 +312,6 @@ const OverviewCourse = async(data) => {
 (async() => {
 
     const imgs = document.querySelectorAll('.avatar');
-    console.log(imgs)
     imgs.forEach((img) => {
       img.src = "https://media.istockphoto.com/id/1307140502/vi/vec-to/vector-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-h%E1%BB%93-s%C6%A1-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-ch%C3%A2n-dung-avatar-logo-k%C3%BD-t%C3%AAn-ng%C6%B0%E1%BB%9Di-h%C3%ACnh-d%E1%BA%A1ng.jpg?s=612x612&w=0&k=20&c=yCpEW0XGq3LCgCn-0GupWknu4pIYxEm8CigGHnqVkQU=";
     })
@@ -324,10 +323,10 @@ const OverviewCourse = async(data) => {
     const token = localStorage.getItem('token');
     try {
       const res = await accountAPI.checkToken({"token" : token});
-      console.log(res);
+    //   console.log(res);
       if(res.success) {
         const data = await userAPI.getByID({id : res.data.idUser}, token);
-        console.log(data)
+        // console.log(data)
         avatar.src = data.data.avatar;
         username.textContent = data.data.name;
       }
@@ -365,15 +364,15 @@ const OverviewCourse = async(data) => {
 
 export const ReloadOverview = async() => {
     const revenue = await tradeAPI.getSystemRevenue({}, token);
-    console.log(revenue)
+    // console.log(revenue)
     SystemRevenue(revenue);
 
     const users = await userAPI.getAllUsersByType({}, token);
-    console.log(users);
+    //console.log(users);
     AllOfUsers(users);
 
     const numofcourse = await courseAPI.getNumOfCourseByMonth({ 'year' :2023}, token);
-    console.log(numofcourse);
+    // console.log(numofcourse);
     OverviewCourse(numofcourse);
 }
 

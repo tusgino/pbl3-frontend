@@ -23,7 +23,6 @@ const createRecord = (data) => {
     setTextContent(record, '[data-id="dateUpload"]', dateupload);
     setTextContent(record, '[data-id="courseStatus"]', data.status);
 
-
     const detailcoursename = document.getElementById('detail-courseName');
     const detailcategory = document.getElementById('detail-courseCategory');
     const detailcourseuploader = document.getElementById('detail-courseUploader');
@@ -61,7 +60,7 @@ const createRecord = (data) => {
             btnunbancourse.style.display = "none";
             btndelcourse.style.display = "none";
         }
-        console.log(data.id)
+        console.log(data)
         btnbancourse.value = data.id;
         btnunbancourse.value = data.id;
         btndelcourse.value = data.id;
@@ -70,7 +69,6 @@ const createRecord = (data) => {
     })
     return record;
 }
-
 
 const getCourses = async(page) => {
     const params = {
@@ -83,14 +81,10 @@ const getCourses = async(page) => {
         "page" : page,
     };
 
-    const dataview = document.querySelector('.quanlikhoahoc .data-view');
-    dataview.textContent = "";
-
     const {data : {_data, _totalRows}} = await courseAPI.getAllCoursesByFiltering(params, token);
 
     systemAPI.renderRecord(_data, 'quanlikhoahoc', createRecord);
-    // systemAPI.renderPagination(_totalRows, 'quanlikhoahoc', getCourses, page);
-    systemAPI.renderPaginationNew(_totalRows, 'quanlikhoahoc', getCourses, page);
+    systemAPI.renderPagination(_totalRows, 'quanlikhoahoc', getCourses, page);
 }
 
 const setEventSearch = () => {
@@ -117,7 +111,6 @@ const setEventHandlerCourse = () => {
             id : event.target.value,
             patchDoc : JSON.stringify(patch),
         };
-        console.log(params)
         if(await courseAPI.updateCourse(params, token)) showNotication("Cập nhật thành công");
         getCourses(1);
     })
@@ -171,7 +164,6 @@ const setEventHandlerCourse = () => {
 
 (async() => {    
     try {
-
         setEventSearch();
         setEventHandlerCourse();
         getCourses(1);
@@ -179,7 +171,6 @@ const setEventHandlerCourse = () => {
     } catch (error) {
         console.log(error);
     }
-
 })()
 
 export const ReloadCourse = () => {
