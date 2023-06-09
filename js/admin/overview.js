@@ -9,7 +9,6 @@ const token = localStorage.getItem('token')
 const SystemRevenue = async (data) => {
     const title = document.getElementById('systemrevenue-title');
     const now = new Date();
-    // console.log(now);
     title.textContent = `Doanh thu hệ thống năm ${now.getFullYear()} (VND)`;
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -347,30 +346,22 @@ const OverviewCourse = async(data) => {
     })
 
 
-    const revenue = await tradeAPI.getSystemRevenue({}, token);
-    console.log(revenue)
-    SystemRevenue(revenue);
-
-    const users = await userAPI.getAllUsersByType({}, token);
-    console.log(users);
-    AllOfUsers(users);
-
-    const numofcourse = await courseAPI.getNumOfCourseByMonth({ 'year': 2023 }, token);
-    console.log(numofcourse);
-    OverviewCourse(numofcourse);
+    handleSystemRevenue();
+    handleAllOfUsers();
+    handleOverviewCourse();
 
 })()
 
 
 const handleSystemRevenue = async () => {
     const revenue = await tradeAPI.getSystemRevenue({}, token);
-    // console.log(revenue)
+    console.log(revenue)
     SystemRevenue(revenue);
 }
 
 const handleAllOfUsers = async () => {
     const users = await userAPI.getAllUsersByType({}, token);
-    //console.log(users);
+    console.log(users);
     AllOfUsers(users);
 }
 

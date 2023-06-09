@@ -177,7 +177,7 @@ const getTrade = async (page) => {
         "start_date" : document.getElementById('datetrade-from').value,    
         "end_date" : document.getElementById('datetrade-to').value,
         "start_balance" : !isNaN(parseInt(document.getElementById('txtbalance-from').value)) ? document.getElementById('txtbalance-from').value : (document.getElementById('txtbalance-from').value == "" ? document.getElementById('txtbalance-from').value : 999999999999999),
-        "end_balance" : !isNaN(parseInt(document.getElementById('txtbalance-to').value)) ? document.getElementById('txtbalance-to').value : (document.getElementById('txtbalance-to').value == "" ? document.getElementById('txtbalance-to').value : 0),
+        "end_balance" : !isNaN(parseInt(document.getElementById('txtbalance-to').value)) ? document.getElementById('txtbalance-to').value : (document.getElementById('txtbalance-to').value == "" ? document.getElementById('txtbalance-to').value : -1),
         "page" : page,
     };
 

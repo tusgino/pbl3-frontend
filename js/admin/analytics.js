@@ -222,12 +222,11 @@ const getStudents = async(page) => {
         "student_name_like" : document.getElementById('txtsearch-studentanalytics').value,
         "start_purchase_course" : document.getElementById('txtcoursebuy-from').value,
         "start_purchase_course" : !isNaN(parseInt(document.getElementById('txtcoursebuy-from').value)) ? document.getElementById('txtcoursebuy-from').value : (document.getElementById('txtcoursebuy-from').value == "" ? document.getElementById('txtcoursebuy-from').value : 99999999),
-        "end_purchase_course" : !isNaN(parseInt(document.getElementById('txtcoursebuy-to').value)) ? document.getElementById('txtcoursebuy-to').value : (document.getElementById('txtcoursebuy-to').value == "" ? document.getElementById('txtcoursebuy-to').value : 0),
+        "end_purchase_course" : !isNaN(parseInt(document.getElementById('txtcoursebuy-to').value)) ? document.getElementById('txtcoursebuy-to').value : (document.getElementById('txtcoursebuy-to').value == "" ? document.getElementById('txtcoursebuy-to').value : -1),
         "start_finish_course" : !isNaN(parseInt(document.getElementById('txtcoursefinish-from').value)) ? document.getElementById('txtcoursefinish-from').value : (document.getElementById('txtcoursefinish-from').value == "" ? document.getElementById('txtcoursefinish-from').value : 99999999),
-        "end_finish_course" : !isNaN(parseInt(document.getElementById('txtcoursefinish-to').value)) ? document.getElementById('txtcoursefinish-to').value : (document.getElementById('txtcoursefinish-to').value == "" ? document.getElementById('txtcoursefinish-to').value : 0),
+        "end_finish_course" : !isNaN(parseInt(document.getElementById('txtcoursefinish-to').value)) ? document.getElementById('txtcoursefinish-to').value : (document.getElementById('txtcoursefinish-to').value == "" ? document.getElementById('txtcoursefinish-to').value : -1),
         "page" : page,
     };
-    
     const dataview = document.querySelector('.thongkehocvien .data-view');
     dataview.textContent = "";
 
@@ -247,9 +246,9 @@ const getExperts = async(page) => {
     const params = {
         "expert_name" : document.getElementById('txtsearch-expertanalytics').value,
         "start_upload_course" : !isNaN(parseInt(document.getElementById('txtcourseupload-from').value)) ? document.getElementById('txtcourseupload-from').value : (document.getElementById('txtcourseupload-from').value == "" ? document.getElementById('txtcourseupload-from').value : 99999999),
-        "end_upload_course" : !isNaN(parseInt(document.getElementById('txtcourseupload-to').value)) ? document.getElementById('txtcourseupload-to').value : (document.getElementById('txtcourseupload-to').value == "" ? document.getElementById('txtcourseupload-to').value : 0),
+        "end_upload_course" : !isNaN(parseInt(document.getElementById('txtcourseupload-to').value)) ? document.getElementById('txtcourseupload-to').value : (document.getElementById('txtcourseupload-to').value == "" ? document.getElementById('txtcourseupload-to').value : -1),
         "start_revenue" : !isNaN(parseInt(document.getElementById('txtrevenue-from').value)) ? document.getElementById('txtrevenue-from').value : (document.getElementById('txtrevenue-from').value == "" ? document.getElementById('txtrevenue-from').value : 999999999999),
-        "end_revenue" : !isNaN(parseInt(document.getElementById('txtrevenue-to').value)) ? document.getElementById('txtrevenue-to').value : (document.getElementById('txtrevenue-to').value == "" ? document.getElementById('txtrevenue-to').value : 0),
+        "end_revenue" : !isNaN(parseInt(document.getElementById('txtrevenue-to').value)) ? document.getElementById('txtrevenue-to').value : (document.getElementById('txtrevenue-to').value == "" ? document.getElementById('txtrevenue-to').value : -1),
         "page" : page,
     };
     
@@ -273,7 +272,7 @@ const getCourses = async(page) => {
     const params = {
         "title_like" : document.getElementById('txtsearch-courseanalytics').value,
         "start_reg_user" : !isNaN(parseInt(document.getElementById('txtstudentreg-from').value)) ? document.getElementById('txtstudentreg-from').value : (document.getElementById('txtstudentreg-from').value == "" ? document.getElementById('txtstudentreg-from').value : 99999999),
-        "end_reg_user" : !isNaN(parseInt(document.getElementById('txtstudentreg-to').value)) ? document.getElementById('txtstudentreg-to').value : (document.getElementById('txtstudentreg-to').value == "" ? document.getElementById('txtstudentreg-to').value : 0),
+        "end_reg_user" : !isNaN(parseInt(document.getElementById('txtstudentreg-to').value)) ? document.getElementById('txtstudentreg-to').value : (document.getElementById('txtstudentreg-to').value == "" ? document.getElementById('txtstudentreg-to').value : -1),
         "start_rate" : document.getElementById('rate-from').value,
         "end_rate" : document.getElementById('rate-to').value,
         "page" : page,
@@ -451,8 +450,6 @@ const setSwapChart = async(chartID, toggleID) => {
         myChart = new Chart(document.getElementById(`${chartID}`), config);
     })
 
-    
-    
 }
 
 export const setEventHandlerChart = (chartID, toggleID) => {
