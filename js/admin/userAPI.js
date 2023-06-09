@@ -43,16 +43,6 @@ const userAPI = {
     }
     return axiosClient.get(url, config);
   },
-  getExpertRevenueByID(params, token) {
-    const url = `/private/User/Get-expert-revenue-by-id=${params.id}`;
-    const config = {
-        params,
-        headers : {
-            'Authorization' : `Bearer ${token}`,        
-        } 
-    }
-    return axiosClient.get(url, config);
-  },
   getByID(params, token) {
     const url = `/private/User/get-user`;
     const config = {

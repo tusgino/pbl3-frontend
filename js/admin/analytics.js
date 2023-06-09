@@ -234,11 +234,11 @@ const createRecord_Course = (data) => {
 
 const getStudents = async(page) => {
     const params = {
-        "_student_name_like" : document.getElementById('txtsearch-studentanalytics').value,
-        "_start_purchase_course" : document.getElementById('txtcoursebuy-from').value,
-        "_end_purchase_course" : document.getElementById('txtcoursebuy-to').value,
-        "_start_finish_course" : document.getElementById('txtcoursefinish-from').value,
-        "_end_finish_course" : document.getElementById('txtcoursefinish-to').value,
+        "student_name_like" : document.getElementById('txtsearch-studentanalytics').value,
+        "start_purchase_course" : document.getElementById('txtcoursebuy-from').value,
+        "end_purchase_course" : document.getElementById('txtcoursebuy-to').value,
+        "start_finish_course" : document.getElementById('txtcoursefinish-from').value,
+        "end_finish_course" : document.getElementById('txtcoursefinish-to').value,
         "page" : page,
     };
     
@@ -246,7 +246,6 @@ const getStudents = async(page) => {
     dataview.textContent = "";
 
     const {data : {_data, _totalRows}} = await userAPI.getAllStudentsForAnalytics(params, token);
-
 
     // sort by name
     // _data.sort((a,b) => { 
@@ -262,11 +261,11 @@ const getStudents = async(page) => {
 
 const getExperts = async(page) => {
     const params = {
-        "_expert_name_like" : document.getElementById('txtsearch-studentanalytics').value,
-        "_start_upload_course" : document.getElementById('txtcourseupload-from').value,
-        "_end_upload_course" : document.getElementById('txtcourseupload-to').value,
-        "_start_revenue" : document.getElementById('txtrevenue-from').value,
-        "_end_revenue" : document.getElementById('txtrevenue-to').value,
+        "expert_name" : document.getElementById('txtsearch-expertanalytics').value,
+        "start_upload_course" : document.getElementById('txtcourseupload-from').value,
+        "end_upload_course" : document.getElementById('txtcourseupload-to').value,
+        "start_revenue" : document.getElementById('txtrevenue-from').value,
+        "end_revenue" : document.getElementById('txtrevenue-to').value,
         "page" : page,
     };
     
@@ -290,11 +289,11 @@ const getExperts = async(page) => {
 
 const getCourses = async(page) => {
     const params = {
-        "_title_like" : document.getElementById('txtsearch-courseanalytics').value,
-        "_start_reg_user" : document.getElementById('txtstudentreg-from').value,
-        "_end_reg_user" : document.getElementById('txtstudentreg-to').value,
-        "_start_rate" : document.getElementById('rate-from').value,
-        "_end_rate" : document.getElementById('rate-to').value,
+        "title_like" : document.getElementById('txtsearch-courseanalytics').value,
+        "start_reg_user" : document.getElementById('txtstudentreg-from').value,
+        "end_reg_user" : document.getElementById('txtstudentreg-to').value,
+        "start_rate" : document.getElementById('rate-from').value,
+        "end_rate" : document.getElementById('rate-to').value,
         "page" : page,
     };
     

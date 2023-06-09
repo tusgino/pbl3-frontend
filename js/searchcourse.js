@@ -81,13 +81,13 @@ const getPosts = async (page) => {
     const txtsearch = document.getElementById('title-course');
 
     const params = {
-      _page: page,
-      _limit: 6,
+      page,
+      limit: 9,
       title_like: txtsearch.value,
     };
     const { data: { data, pagination } } = await courseAPI.getAll(params);
     console.log(data);
-    // console.log(pagination);
+    console.log(pagination);
     renderCourse(data);
     renderPagination(pagination._totalRows, getPosts, page);
   } catch (error) {
