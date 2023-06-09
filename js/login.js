@@ -23,12 +23,12 @@ import { getValueForm, showModal, showNotication } from "./utils";
     try {
       const res = await accountAPI.login(data);
       if (res.success) {
-        showModal('Đăng nhập thành công', 'Vui lòng đợi...');
+        showModal('Đăng nhập thành công', 'Đang chuyển hướng...');
         localStorage.setItem('token', res.data);
         // console.log(res.data);
         setTimeout(() => {
           window.location.assign('/');
-        }, 2000);
+        }, 1000);
       }
     } catch (error) {
       console.log(error);

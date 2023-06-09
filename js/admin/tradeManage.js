@@ -8,22 +8,22 @@ import { ReloadAnalytics } from "./analytics";
 const token = localStorage.getItem('token');
 
 const createRecord_Trade = (data) => {
-    if(!data) return;
+    if (!data) return;
 
     const tradeRecord = document.getElementById('tradeManageRecord');
-    if(!tradeRecord) return;
+    if (!tradeRecord) return;
 
     const record = tradeRecord.content.cloneNode(true);
-    if(!record) return;
+    if (!record) return;
 
-    if(data.typeOfTrade == 0) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Mua khoá học");
-    else if(data.typeOfTrade == 1) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Duy trì tài khoản");
+    if (data.typeOfTrade == 0) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Mua khoá học");
+    else if (data.typeOfTrade == 1) setTextContent(record, '[data-id="typeoftrade-trademanage"]', "Duy trì tài khoản");
     setTextContent(record, '[data-id="balance-trademanage"]', data.balance);
     const dateoftrade = new Date(data.dateOfTrade);
-    setTextContent(record, '[data-id="dateoftrade-trademanage"]', dateoftrade.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
-    if(data.tradeStatus == 1) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Thành công');
-    else if(data.tradeStatus == 0) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Đang chờ');
-    else if(data.tradeStatus == -1) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Thất bại');
+    setTextContent(record, '[data-id="dateoftrade-trademanage"]', dateoftrade.toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-'));
+    if (data.tradeStatus == 1) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Thành công');
+    else if (data.tradeStatus == 0) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Đang chờ');
+    else if (data.tradeStatus == -1) setTextContent(record, '[data-id="tradestatus-trademanage"]', 'Thất bại');
 
     const detailtradetype = document.getElementById('detail-tradetype');
     const detailtradeuser = document.getElementById('detail-tradeuser');
@@ -37,17 +37,17 @@ const createRecord_Trade = (data) => {
     const iconinfo = record.getElementById('trademanage-iconinfo');
 
     iconinfo.addEventListener('click', () => {
-        if(data.typeOfTrade == 0) detailtradetype.value = "Mua khoá học";
-        else if(data.typeOfTrade == 1) detailtradetype.value = "Duy trì tài khoản";
+        if (data.typeOfTrade == 0) detailtradetype.value = "Mua khoá học";
+        else if (data.typeOfTrade == 1) detailtradetype.value = "Duy trì tài khoản";
         detailtradeuser.value = data.user.name;
         detailtradebalance.value = data.balance;
-        detailtradeprice.value = data.requiredBalance;
-        detailtradedate.value = dateoftrade.toLocaleDateString('en-GB',{ year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
-        if(data.tradeStatus == 1) detailtradestatus.value = "Thành công";
-        else if(data.tradeStatus == 0) detailtradestatus.value = "Đang chờ";
-        else if(data.tradeStatus == -1) detailtradestatus.value = "Thất bại";
+        detailtradeprice.value = data.balance;
+        detailtradedate.value = dateoftrade.toLocaleDateString('en-GB', { year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '-');
+        if (data.tradeStatus == 1) detailtradestatus.value = "Thành công";
+        else if (data.tradeStatus == 0) detailtradestatus.value = "Đang chờ";
+        else if (data.tradeStatus == -1) detailtradestatus.value = "Thất bại";
 
-        if(data.tradeStatus == 0) {
+        if (data.tradeStatus == 0) {
             btnconfirmtrade.style.display = 'block';
             btnrefusetrade.style.display = 'block';
         } else {
@@ -74,16 +74,64 @@ const setEventHandlerAcc = () => {
             "value": 1,
         }];
         const params = {
-            id : event.target.value,
-            patchDoc : JSON.stringify(patch),
+            id: event.target.value,
+            patchDoc: JSON.stringify(patch),
         };
         if(await tradeAPI.updateTrade(params, token)) {
             const trade = await tradeAPI.getTradeByID({id: event.target.value}, token);
             if(!trade) return;
             const data = {
-                idUser : trade.idUser,
-                subject : "Thông báo từ THH Online Course",
-                body : "Giao dịch của bạn đã được xác nhận thành công",
+                idUser: trade.idUser,
+                subject: "Thông báo từ THH Online Course",
+                body: `<!DOCTYPE html>
+                        <html>
+
+                        <head>
+                        <meta charset="UTF-8">
+                        <title>Confirmation Email</title>
+                        <style>
+                            /* CSS styles */
+                            body {
+                            font-family: Arial, sans-serif;
+                            background-color: #f5f5f5;
+                            padding: 20px;
+                            }
+
+                            .container {
+                            max-width: 600px;
+                            margin: 0 auto;
+                            background-color: #ffffff;
+                            padding: 20px;
+                            border-radius: 5px;
+                            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                            }
+
+                            .header {
+                            text-align: center;
+                            margin-bottom: 20px;
+                            color: #5271ff;
+                            }
+
+                            .content {
+                            line-height: 1.6;
+                            text-align: center;
+                            }
+                        </style>
+                        </head>
+
+                        <body>
+                        <div class="container">
+                            <div class="header">
+                            <h1>Email xác nhận</h1>
+                            </div>
+                            <div class="content">
+                            <p>Giao dịch của bạn đã được xác nhận thành công.</p>
+                            </div>
+                        </div>
+                        </body>
+
+                        </html>
+                        `,
             }
             userAPI.sendMail(data, token);
             showNotication("Cập nhật thành công");
@@ -100,14 +148,14 @@ const setEventHandlerAcc = () => {
             "value": -1,
         }];
         const params = {
-            id : event.target.value,
-            patchDoc : JSON.stringify(patch),
+            id: event.target.value,
+            patchDoc: JSON.stringify(patch),
         };
-        if(await tradeAPI.updateTrade(params, token)) {
+        if (await tradeAPI.updateTrade(params, token)) {
             const data = {
-                idUser : event.target.value,
-                subject : "Thông báo từ THH Online Course",
-                body : "Giao dịch của bạn đã bị từ chối",
+                idUser: event.target.value,
+                subject: "Thông báo từ THH Online Course",
+                body: "Giao dịch của bạn đã bị từ chối",
             }
             userAPI.sendMail(data, token);
             showNotication("Cập nhật thành công");
@@ -119,7 +167,7 @@ const setEventHandlerAcc = () => {
 }
 
 
-const getTrade = async(page) => {
+const getTrade = async (page) => {
     const params = {
         "is_purchase" : document.getElementById('btnchecktrue-tradetype1').checked,
         "is_rent" : document.getElementById('btnchecktrue-tradetype2').checked,
@@ -133,7 +181,7 @@ const getTrade = async(page) => {
         "page" : page,
     };
 
-    const {data : {_data, _totalRows}} = await tradeAPI.getAllTradeDetailByFiltering(params, token);
+    const { data: { _data, _totalRows } } = await tradeAPI.getAllTradeDetailByFiltering(params, token);
 
     systemAPI.renderRecord(_data, 'quanligiaodich', createRecord_Trade);
     systemAPI.renderPagination(_totalRows, 'quanligiaodich', getTrade, page)
@@ -146,11 +194,11 @@ const setEventSearch = () => {
     })
 }
 
-(async() => {
+(async () => {
     try {
 
         setEventSearch();
-    
+
         setEventHandlerAcc();
 
         getTrade(1);
