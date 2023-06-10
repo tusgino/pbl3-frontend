@@ -27,17 +27,22 @@ const createCourseElement = (course) => {
     const params = {
       id: idUser,
     }
-    console.log(params);
+    // console.log(params);
     const { data } = await courseAPI.getByIDUser(params, token);
-    console.log(data);
+    // console.log(data);
     if (data.length !== 0) {
+      console.log(data);
+      let cnt = 0;
       data.forEach(course => {
         if (course.id === idCourse) {
-          console.log("Hello");
           window.location.href = `/lesson/index.html?id=${idUser}&course=${idCourse}`;
+          cnt++;
           return;
         }
       });
+      if (cnt == 0) {
+        window.location.assign(`/course/detail.html?id=${course.id}`);
+      }
     }
     else {
       window.location.assign(`/course/detail.html?id=${course.id}`);
@@ -90,7 +95,7 @@ const initMoreCourse = () => {
   buttonMore.addEventListener('click', async () => {
     const ulElement = getPostList();
     if (!ulElement) return;
-    
+
     const page = Number(++ulElement.dataset.page);
     const limit = 6;
     const totalPage = Number(ulElement.dataset.totalPage);

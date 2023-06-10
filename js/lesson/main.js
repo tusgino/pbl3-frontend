@@ -1,9 +1,12 @@
 import lessonAPI from "../api/lessonAPI";
 import { setSrcContent, setTextContent, showNotication } from "../utils";
 
+
 const createLessonElement = (chapter, lesson, nextLessons) => {
   if (!lesson) return;
   // console.log(nextLessons);
+
+
 
   const lessonTemplate = document.getElementById('lesson-template');
   if (!lessonTemplate) return;
@@ -16,7 +19,7 @@ const createLessonElement = (chapter, lesson, nextLessons) => {
     li.querySelector('.fa-check-circle')?.classList.remove('hidden');
   }
 
-  console.log(document.querySelectorAll('.lesson-item.active'));
+  // console.log(document.querySelectorAll('.lesson-item.active'));
   if (lesson.status === 0 && document.querySelectorAll('a.active').length === 0) {
     li.querySelector('.lesson-item')?.classList.add('active');
     renderDashboard(lesson.idLesson);
@@ -32,6 +35,7 @@ const createLessonElement = (chapter, lesson, nextLessons) => {
     event.preventDefault();
     const nextLesson = event.target.closest('.lesson-item').dataset.status;
     const currentLesson = document.querySelector('.lesson-item.active').dataset.status;
+    console.log('hello');
     if (nextLesson === '0' && currentLesson === '0') {
       showNotication('Bạn phải hoàn thành bài học trước đó!', 'error');
       return;
@@ -65,6 +69,8 @@ const createChapterElement = (tabList, chapter, nextChapter) => {
     if (lessonElement)
       lessonList.appendChild(lessonElement);
   });
+
+  // if(document.querySelectorAll('.lesson-item'))
 }
 
 
@@ -79,6 +85,12 @@ const handleTab = (chapters) => {
     // if (tab)
     // tabList.appendChild(tab);
   })
+  const lessonItems = document.querySelectorAll('.lesson-item');
+  if (lessonItems.length > 0) {
+    const lastLessonItem = lessonItems[lessonItems.length - 1];
+    lastLessonItem.classList.add('active');
+    renderDashboard(lastLessonItem.dataset.id);
+  }
 
 }
 
