@@ -86,12 +86,12 @@ const handleTab = (chapters) => {
     // tabList.appendChild(tab);
   })
   const lessonItems = document.querySelectorAll('.lesson-item');
-  if (lessonItems.length > 0) {
+  console.log(lessonItems.length);
+  if (lessonItems.length > 0 && document.querySelectorAll('.lesson-item.active') === 0) {
     const lastLessonItem = lessonItems[lessonItems.length - 1];
     lastLessonItem.classList.add('active');
     renderDashboard(lastLessonItem.dataset.id);
   }
-
 }
 
 const createQuizElement = (quiz, id) => {

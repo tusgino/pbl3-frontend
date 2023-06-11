@@ -185,6 +185,10 @@ const handleEmptyDegree = (idUser) => {
     if (!degreeModal) return;
     const btnCancel = degreeModal.querySelector('.degree-cancel');
     if (!btnCancel) return;
+    const image = document.querySelector('#degree-image');
+    if (!image) return;
+    image.classList.remove('hidden');
+    setSrcContent(degreeModal, '#degree-image', "https://plus.unsplash.com/premium_photo-1677474826931-eb70ec714d99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
     btnCancel.setAttribute('data-bs-dismiss', 'modal');
     setTextContent(degreeModal, '.degree-save', 'Thêm');
   })
@@ -220,7 +224,10 @@ const handleEmptyDegree = (idUser) => {
       }
       const res = await expertAPI.addDegree(data, token);
       // console.log(res);
-      handleDegree(idUser);
+      // handleDegree(idUser);
+      if (res) {
+        window.location = location;
+      }
     } catch (error) {
       console.log(error);
     }

@@ -31,8 +31,9 @@ import { getValueForm, showModal, showNotication } from "./utils";
         }, 1000);
       }
     } catch (error) {
+      console.log(res);
       console.log(error);
-      showNotication('Sai tài khoản hoặc mật khẩu!', 'error');
+      showNotication('Lỗi đăng nhập, vui lòng thử hoặc liên hệ admin!', 'error');
     }
 
   })

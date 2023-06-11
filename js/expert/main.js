@@ -304,7 +304,11 @@ const fillFormCourse = async (searchParams, editor) => {
 
       const dataNew = [];
 
-      if (idCategory !== data.category.idCategory) {
+      // data.category.idCategory = -1;
+      console.log(data.category);
+
+      // console.log(idCategory);
+      if (data.category === null || idCategory !== data.category.idCategory) {
         dataNew.push({
           "op": "replace",
           "path": "IdCategory",

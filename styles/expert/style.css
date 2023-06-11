@@ -156,14 +156,6 @@ h4.degree-title {
   outline: none;
 }
 
-.modal-footer > button {
-  width: 24rem;
-  height: 6rem;
-  position: relative;
-  left: 0;
-  transform: translateX(-70%);
-}
-
 .bankinfo-title {
   font-size: 2rem;
   text-align: center;
@@ -248,4 +240,16 @@ h4.degree-title {
 
 .number {
   color: var(--primary-color);
+}
+
+.modal-footer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.modal-footer button {
+  width: 25rem;
+  left: unset;
+  transform: unset;
 }

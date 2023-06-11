@@ -240,13 +240,12 @@ const handleClickEvent = (editor) => {
     document.getElementById('file-video').classList.add('hidden');
     document.getElementById('video-drag').classList.remove('invalid');
     document.getElementById('video-drag').style.border = "2px dashed #404040";
-
-
+    document.querySelector('.lesson-quiz').classList.add('hidden');
     lesson.value = 'default';
     document.querySelector('.lesson-content').dataset.id = '';
-
     if (document.querySelector('.btn-action .btn-save').classList.contains('hidden'))
       document.querySelector('.btn-action .btn-save').classList.remove('hidden');
+
   });
 
   editLessonBtn?.addEventListener('click', () => {
@@ -344,6 +343,7 @@ const renderInfo = async (searchParams, editor) => {
     }
     document.getElementById('video-drag').classList.add('invalid');
     document.getElementById('video-drag').style.border = "0px";
+    document.querySelector('.lesson-quiz').classList.remove('hidden');
     if (data.quizzes.length != 0) {
       // Clone template
       const quizTemplate = document.getElementById('quiz-template');
@@ -429,6 +429,7 @@ const handleVideoChange = () => {
       if (video.contentLink) {
         progressBar.style.width = `${100}%`;
         message.textContent = 'Đã tải file thành công';
+
       }
       videoPreview.dataset.video = video.contentLink;
     } catch (error) {
@@ -681,11 +682,7 @@ const handleLesson = (editor) => {
       count++
     }
 
-    if (!document.getElementById('file-video').dataset.video) {
-      showNotication('Vui lòng chọn video', 'error');
-      // return;
-      count++
-    }
+
 
     if (!parseInt(document.getElementById('lesson-duration').value)) {
       // showNotication('Vui lòng nhập thời lượng bài học', 'error');
@@ -696,6 +693,11 @@ const handleLesson = (editor) => {
 
     if (count > 0)
       return
+
+    if (!document.getElementById('file-video').dataset.video) {
+      showNotication('Vui lòng chọn video', 'error');
+      return;
+    }
     const idLesson = document.querySelector('.lesson-content').dataset.id;
 
     if (idLesson) {

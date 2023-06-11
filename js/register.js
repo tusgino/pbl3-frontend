@@ -11,7 +11,7 @@ import accountAPI from './api/accountAPI'
     const password = getValueForm(document, '#password');
     const rePassword = getValueForm(document, '#password_confirmation');
     const role = getValueForm(document, '#roles');
-    // console.log(name, email, password, rePassword, role);
+    console.log(name, email, password, rePassword, role);
     if (role == 'default' || name == '' || email == '' || password == '' || rePassword == '') {
       showModal('Lỗi đăng kí', 'Vui lòng điền đầy đủ thông tin');
       return;
